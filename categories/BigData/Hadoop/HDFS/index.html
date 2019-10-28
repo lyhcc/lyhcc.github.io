@@ -160,7 +160,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 732 words)
+                    5 minutes read (About 794 words)
                 </span>
                                             
                                                 
@@ -208,7 +208,33 @@
  <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -renameSnapshot /tmp/snapshot/ snapshot snapshot1	</span><br><span class="line"></span><br><span class="line">注：路径只是你创建得名字/tmp/snapshot，不要带后边得/tmp/snapshot/.snapshot/，不然会出现</span><br><span class="line">hdfs dfs -renameSnapshot /tmp/snapshot/.snapshot/ snapshot1 snapshot</span><br><span class="line">renameSnapshot: Modification on a read-only snapshot is disallowed</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>比较两个快照目录的不同之处</p>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs snapshotDiff /tmp/snapshot/  	snapshot snapshot1</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@vmaster opt]# hdfs snapshotDiff /tmp/snapshot s1 s2</span><br><span class="line">Difference between snapshot s1 and snapshot s2 under directory /tmp/snapshot:</span><br><span class="line">M	.</span><br><span class="line">+	./p</span><br></pre></td></tr></table></figure>
+<p> <strong>符号的意义：</strong>  </p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>文件或者目录被创建</td>
+</tr>
+<tr>
+<td>-</td>
+<td>文件或目录被删除</td>
+</tr>
+<tr>
+<td>M</td>
+<td>文件或目录被修改</td>
+</tr>
+<tr>
+<td>R</td>
+<td>文件或目录被重命名</td>
+</tr>
+</tbody></table>
+</li>
 <li><p>恢复快照</p>
  <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.自定义创建一个快照名：hdfs dfs -createSnapshot /HAHA1 snapshot1</span><br><span class="line">2.展示原文件包含内容：Hadoop fs -ls /HAHA1</span><br><span class="line">3.里面有五个文件、删除其中1~2个</span><br><span class="line">/HAHA1/.snapshot/snapshot1</span><br><span class="line">4.回复快照：hdfs dfs -cp /HAHA1/.snapshot/snapshot1 /snapshot</span><br></pre></td></tr></table></figure></li>
 <li><p>删除快照                                             </p>
@@ -243,7 +269,33 @@
  <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -renameSnapshot /tmp/snapshot/ snapshot snapshot1	</span><br><span class="line"></span><br><span class="line">注：路径只是你创建得名字/tmp/snapshot，不要带后边得/tmp/snapshot/.snapshot/，不然会出现</span><br><span class="line">hdfs dfs -renameSnapshot /tmp/snapshot/.snapshot/ snapshot1 snapshot</span><br><span class="line">renameSnapshot: Modification on a read-only snapshot is disallowed</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>比较两个快照目录的不同之处</p>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs snapshotDiff /tmp/snapshot/  	snapshot snapshot1</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@vmaster opt]# hdfs snapshotDiff /tmp/snapshot s1 s2</span><br><span class="line">Difference between snapshot s1 and snapshot s2 under directory /tmp/snapshot:</span><br><span class="line">M	.</span><br><span class="line">+	./p</span><br></pre></td></tr></table></figure>
+<p> <strong>符号的意义：</strong>  </p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>文件或者目录被创建</td>
+</tr>
+<tr>
+<td>-</td>
+<td>文件或目录被删除</td>
+</tr>
+<tr>
+<td>M</td>
+<td>文件或目录被修改</td>
+</tr>
+<tr>
+<td>R</td>
+<td>文件或目录被重命名</td>
+</tr>
+</tbody></table>
+</li>
 <li><p>恢复快照</p>
  <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.自定义创建一个快照名：hdfs dfs -createSnapshot /HAHA1 snapshot1</span><br><span class="line">2.展示原文件包含内容：Hadoop fs -ls /HAHA1</span><br><span class="line">3.里面有五个文件、删除其中1~2个</span><br><span class="line">/HAHA1/.snapshot/snapshot1</span><br><span class="line">4.回复快照：hdfs dfs -cp /HAHA1/.snapshot/snapshot1 /snapshot</span><br></pre></td></tr></table></figure></li>
 <li><p>删除快照                                             </p>

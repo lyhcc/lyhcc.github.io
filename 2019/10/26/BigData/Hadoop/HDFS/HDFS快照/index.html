@@ -20,7 +20,7 @@
 <meta property="og:description" content="快照管理 快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。  快照影响 快照创建瞬间完成，所耗时间成本为O(1) 快照修改时才会使用额外的额外的内存空间，内存成本O(M),M表示修改过的文件或目录数 快照记录块和文件大小，不对DataNode中的块进行复制 说明：* 快照可以在HDFS任何目录下设置，一个目录最多容纳65536个并发快照  基本">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-10-26T11:57:56.641Z">
+<meta property="og:updated_time" content="2019-10-26T13:51:25.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -148,7 +148,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 732 words)
+                    5 minutes read (About 794 words)
                 </span>
                                             
                                                 
@@ -194,7 +194,33 @@
  <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -renameSnapshot /tmp/snapshot/ snapshot snapshot1	</span><br><span class="line"></span><br><span class="line">注：路径只是你创建得名字/tmp/snapshot，不要带后边得/tmp/snapshot/.snapshot/，不然会出现</span><br><span class="line">hdfs dfs -renameSnapshot /tmp/snapshot/.snapshot/ snapshot1 snapshot</span><br><span class="line">renameSnapshot: Modification on a read-only snapshot is disallowed</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>比较两个快照目录的不同之处</p>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs snapshotDiff /tmp/snapshot/  	snapshot snapshot1</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@vmaster opt]# hdfs snapshotDiff /tmp/snapshot s1 s2</span><br><span class="line">Difference between snapshot s1 and snapshot s2 under directory /tmp/snapshot:</span><br><span class="line">M	.</span><br><span class="line">+	./p</span><br></pre></td></tr></table></figure>
+<p> <strong>符号的意义：</strong>  </p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>文件或者目录被创建</td>
+</tr>
+<tr>
+<td>-</td>
+<td>文件或目录被删除</td>
+</tr>
+<tr>
+<td>M</td>
+<td>文件或目录被修改</td>
+</tr>
+<tr>
+<td>R</td>
+<td>文件或目录被重命名</td>
+</tr>
+</tbody></table>
+</li>
 <li><p>恢复快照</p>
  <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.自定义创建一个快照名：hdfs dfs -createSnapshot /HAHA1 snapshot1</span><br><span class="line">2.展示原文件包含内容：Hadoop fs -ls /HAHA1</span><br><span class="line">3.里面有五个文件、删除其中1~2个</span><br><span class="line">/HAHA1/.snapshot/snapshot1</span><br><span class="line">4.回复快照：hdfs dfs -cp /HAHA1/.snapshot/snapshot1 /snapshot</span><br></pre></td></tr></table></figure></li>
 <li><p>删除快照                                             </p>
@@ -229,7 +255,33 @@
  <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -renameSnapshot /tmp/snapshot/ snapshot snapshot1	</span><br><span class="line"></span><br><span class="line">注：路径只是你创建得名字/tmp/snapshot，不要带后边得/tmp/snapshot/.snapshot/，不然会出现</span><br><span class="line">hdfs dfs -renameSnapshot /tmp/snapshot/.snapshot/ snapshot1 snapshot</span><br><span class="line">renameSnapshot: Modification on a read-only snapshot is disallowed</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>比较两个快照目录的不同之处</p>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs snapshotDiff /tmp/snapshot/  	snapshot snapshot1</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@vmaster opt]# hdfs snapshotDiff /tmp/snapshot s1 s2</span><br><span class="line">Difference between snapshot s1 and snapshot s2 under directory /tmp/snapshot:</span><br><span class="line">M	.</span><br><span class="line">+	./p</span><br></pre></td></tr></table></figure>
+<p> <strong>符号的意义：</strong>  </p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>文件或者目录被创建</td>
+</tr>
+<tr>
+<td>-</td>
+<td>文件或目录被删除</td>
+</tr>
+<tr>
+<td>M</td>
+<td>文件或目录被修改</td>
+</tr>
+<tr>
+<td>R</td>
+<td>文件或目录被重命名</td>
+</tr>
+</tbody></table>
+</li>
 <li><p>恢复快照</p>
  <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.自定义创建一个快照名：hdfs dfs -createSnapshot /HAHA1 snapshot1</span><br><span class="line">2.展示原文件包含内容：Hadoop fs -ls /HAHA1</span><br><span class="line">3.里面有五个文件、删除其中1~2个</span><br><span class="line">/HAHA1/.snapshot/snapshot1</span><br><span class="line">4.回复快照：hdfs dfs -cp /HAHA1/.snapshot/snapshot1 /snapshot</span><br></pre></td></tr></table></figure></li>
 <li><p>删除快照                                             </p>

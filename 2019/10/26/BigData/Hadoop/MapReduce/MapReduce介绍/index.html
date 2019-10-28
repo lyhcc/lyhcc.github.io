@@ -11,16 +11,16 @@
 <title>MapReduce介绍 - lyhcc博客</title>
 
 
-    <meta name="description" content="MapReduce的定义 s">
+    <meta name="description" content="MapReduce的定义 &amp;emsp;&amp;emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。&amp;emsp;&amp;emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。  MapReduce优缺点优点 MapReduce 易于编程。它简单的实现一些接口，就">
 <meta name="keywords" content="MapReduce介绍">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MapReduce介绍">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;2019&#x2F;10&#x2F;26&#x2F;BigData&#x2F;Hadoop&#x2F;MapReduce&#x2F;MapReduce%E4%BB%8B%E7%BB%8D&#x2F;index.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="MapReduce的定义 s">
+<meta property="og:description" content="MapReduce的定义 &amp;emsp;&amp;emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。&amp;emsp;&amp;emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。  MapReduce优缺点优点 MapReduce 易于编程。它简单的实现一些接口，就">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-10-26T12:05:49.339Z">
+<meta property="og:updated_time" content="2019-10-28T02:06:17.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -148,7 +148,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 5 words)
+                    8 minutes read (About 1133 words)
                 </span>
                                             
                                                 
@@ -164,17 +164,105 @@
                                 
                                                     
     <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">MapReduce的定义</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">MapReduce的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">MapReduce优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">MapReduce核心思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">MapReduce进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">MapReduce编程规范</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">第一代和第二代MapReduce的区别</span></a></li></ol>
     </div>
     
                                                         <h2><span id="mapreduce的定义">MapReduce的定义</span></h2><blockquote>
-<p>s</p>
+<p>&emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。<br>&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。</p>
 </blockquote>
+<h2><span id="mapreduce优缺点">MapReduce优缺点</span></h2><h3><span id="优点">优点</span></h3><ol>
+<li><strong>MapReduce 易于编程</strong>。它简单的实现一些接口，就可以完成一个分布式程序，这个分布式程序可以分布到大量廉价的PC机器上运行。也就是说你写一个分布式程序，跟写一个简单的串行程序是一模一样的。就是因为这个特点使得MapReduce编程变得非常流行。</li>
+<li><strong>良好的扩展性</strong>。当你的计算资源不能得到满足的时候，你可以通过简单的增加机器来扩展它的计算能力。</li>
+<li><strong>高容错性</strong>。MapReduce设计的初衷就是使程序能够部署在廉价的PC机器上，这就要求它具有很高的容错性。比如其中一台机器挂了，它可以把上面的计算任务转移到另外一个节点上运行，不至于这个任务运行失败，而且这个过程不需要人工参与，而完全是由 Hadoop内部完成的。</li>
+<li><strong>适合PB级以上海量数据的离线处理</strong>。这里加红字体离线处理，说明它适合离线处理而不适合在线处理。比如像毫秒级别的返回一个结果，MapReduce很难做到。<h3><span id="缺点">缺点</span></h3><blockquote>
+<p>MapReduce不擅长做实时计算、流式计算、DAG（有向图）计算。</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><strong>实时计算</strong>。MapReduce无法像Mysql一样，在毫秒或者秒级内返回结果。</li>
+<li><strong>流式计算</strong>。流式计算的输入数据是动态的，而MapReduce的输入数据集是静态的，不能动态变化。这是因为MapReduce自身的设计特点决定了数据源必须是静态的。</li>
+<li><strong>DAG（有向图）计算</strong>。多个应用程序存在依赖关系，后一个应用程序的输入为前一个的输出。在这种情况下，MapReduce并不是不能做，而是使用后，每个MapReduce作业的输出结果都会写入到磁盘，会造成大量的磁盘IO，导致性能非常的低下。</li>
+</ul>
+<h2><span id="mapreduce核心思想">MapReduce核心思想</span></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191026201155.png" alt>  </p>
+<blockquote>
+<ol>
+<li>分布式的运算程序往往需要分成至少2个阶段。<br>第一个阶段的maptask并发实例，完全并行运行，互不相干。</li>
+<li>第二个阶段的reduce task并发实例互不相干，但是他们的数据依赖于上一个阶段的所有maptask并发实例的输出。</li>
+<li>MapReduce编程模型只能包含一个map阶段和一个reduce阶段，如果用户的业务逻辑非常复杂，那就只能多个mapreduce程序，串行运行。</li>
+</ol>
+</blockquote>
+<h2><span id="mapreduce进程">MapReduce进程</span></h2><blockquote>
+<p>一个完整的mapreduce程序在分布式运行时有三类实例进程：</p>
+</blockquote>
+<ul>
+<li>MrAppMaster：负责整个程序的过程调度及状态协调。</li>
+<li>MapTask：负责map阶段的整个数据处理流程。</li>
+<li>ReduceTask：负责reduce阶段的整个数据处理流程。</li>
+</ul>
+<h3><span id="mapreduce编程规范">MapReduce编程规范</span></h3><blockquote>
+<p>用户编写的程序分成三个部分：Mapper，Reducer，Driver(提交运行mr程序的客户端)  </p>
+</blockquote>
+<ul>
+<li><p>Mapper阶段  </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1）用户自定义的Mapper要继承自己的父类  </span><br><span class="line">（2）Mapper的输入数据是KV对的形式（KV的类型可自定义）  </span><br><span class="line">（3）Mapper中的业务逻辑写在map()方法中  </span><br><span class="line">（4）Mapper的输出数据是KV对的形式（KV的类型可自定义）  </span><br><span class="line">（5）map()方法（maptask进程）对每一个&lt;K,V&gt;调用一次</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191026215909.png" alt></p>
+</li>
+<li><p>Reduce阶段  </p>
+</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">（1）用户自定义的Reducer要继承自己的父类   </span><br><span class="line">（2）Reducer的输入数据类型对应Mapper的输出数据类型，也是KV  </span><br><span class="line">（3）Reducer的业务逻辑写在reduce()方法中  </span><br><span class="line">（4）Reducetask进程对每一组相同k的&lt;k,v&gt;组调用一次reduce()方法</span><br></pre></td></tr></table></figure>
+
+<h2><span id="第一代和第二代mapreduce的区别">第一代和第二代MapReduce的区别</span></h2><p>1    第一代    第二代<br>架构图</p>
 
                                                             
                                                                 <!-- <h2><span id="mapreduce的定义">MapReduce的定义</span></h2><blockquote>
-<p>s</p>
+<p>&emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。<br>&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。</p>
 </blockquote>
+<h2><span id="mapreduce优缺点">MapReduce优缺点</span></h2><h3><span id="优点">优点</span></h3><ol>
+<li><strong>MapReduce 易于编程</strong>。它简单的实现一些接口，就可以完成一个分布式程序，这个分布式程序可以分布到大量廉价的PC机器上运行。也就是说你写一个分布式程序，跟写一个简单的串行程序是一模一样的。就是因为这个特点使得MapReduce编程变得非常流行。</li>
+<li><strong>良好的扩展性</strong>。当你的计算资源不能得到满足的时候，你可以通过简单的增加机器来扩展它的计算能力。</li>
+<li><strong>高容错性</strong>。MapReduce设计的初衷就是使程序能够部署在廉价的PC机器上，这就要求它具有很高的容错性。比如其中一台机器挂了，它可以把上面的计算任务转移到另外一个节点上运行，不至于这个任务运行失败，而且这个过程不需要人工参与，而完全是由 Hadoop内部完成的。</li>
+<li><strong>适合PB级以上海量数据的离线处理</strong>。这里加红字体离线处理，说明它适合离线处理而不适合在线处理。比如像毫秒级别的返回一个结果，MapReduce很难做到。<h3><span id="缺点">缺点</span></h3><blockquote>
+<p>MapReduce不擅长做实时计算、流式计算、DAG（有向图）计算。</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><strong>实时计算</strong>。MapReduce无法像Mysql一样，在毫秒或者秒级内返回结果。</li>
+<li><strong>流式计算</strong>。流式计算的输入数据是动态的，而MapReduce的输入数据集是静态的，不能动态变化。这是因为MapReduce自身的设计特点决定了数据源必须是静态的。</li>
+<li><strong>DAG（有向图）计算</strong>。多个应用程序存在依赖关系，后一个应用程序的输入为前一个的输出。在这种情况下，MapReduce并不是不能做，而是使用后，每个MapReduce作业的输出结果都会写入到磁盘，会造成大量的磁盘IO，导致性能非常的低下。</li>
+</ul>
+<h2><span id="mapreduce核心思想">MapReduce核心思想</span></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191026201155.png" alt>  </p>
+<blockquote>
+<ol>
+<li>分布式的运算程序往往需要分成至少2个阶段。<br>第一个阶段的maptask并发实例，完全并行运行，互不相干。</li>
+<li>第二个阶段的reduce task并发实例互不相干，但是他们的数据依赖于上一个阶段的所有maptask并发实例的输出。</li>
+<li>MapReduce编程模型只能包含一个map阶段和一个reduce阶段，如果用户的业务逻辑非常复杂，那就只能多个mapreduce程序，串行运行。</li>
+</ol>
+</blockquote>
+<h2><span id="mapreduce进程">MapReduce进程</span></h2><blockquote>
+<p>一个完整的mapreduce程序在分布式运行时有三类实例进程：</p>
+</blockquote>
+<ul>
+<li>MrAppMaster：负责整个程序的过程调度及状态协调。</li>
+<li>MapTask：负责map阶段的整个数据处理流程。</li>
+<li>ReduceTask：负责reduce阶段的整个数据处理流程。</li>
+</ul>
+<h3><span id="mapreduce编程规范">MapReduce编程规范</span></h3><blockquote>
+<p>用户编写的程序分成三个部分：Mapper，Reducer，Driver(提交运行mr程序的客户端)  </p>
+</blockquote>
+<ul>
+<li><p>Mapper阶段  </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1）用户自定义的Mapper要继承自己的父类  </span><br><span class="line">（2）Mapper的输入数据是KV对的形式（KV的类型可自定义）  </span><br><span class="line">（3）Mapper中的业务逻辑写在map()方法中  </span><br><span class="line">（4）Mapper的输出数据是KV对的形式（KV的类型可自定义）  </span><br><span class="line">（5）map()方法（maptask进程）对每一个&lt;K,V&gt;调用一次</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191026215909.png" alt></p>
+</li>
+<li><p>Reduce阶段  </p>
+</li>
+</ul>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">（1）用户自定义的Reducer要继承自己的父类   </span><br><span class="line">（2）Reducer的输入数据类型对应Mapper的输出数据类型，也是KV  </span><br><span class="line">（3）Reducer的业务逻辑写在reduce()方法中  </span><br><span class="line">（4）Reducetask进程对每一组相同k的&lt;k,v&gt;组调用一次reduce()方法</span><br></pre></td></tr></table></figure>
+
+<h2><span id="第一代和第二代mapreduce的区别">第一代和第二代MapReduce的区别</span></h2><p>1    第一代    第二代<br>架构图</p>
  -->
                             </div>
                             
