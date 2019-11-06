@@ -8,15 +8,19 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Tag: MapReduce介绍 - lyhcc博客</title>
+<title>Hadoop通信机制和内部协议之协议 - lyhcc博客</title>
 
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="lyhcc博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;tags&#x2F;MapReduce%E4%BB%8B%E7%BB%8D&#x2F;index.html">
+    <meta name="description" content="概述MapReduce核心协议     名称 描述    ClientProtocol 继承于Version基类，查看作业情况监控当前集群等   RefreshUserMappingProtocol 刷新用户到用户组映射关系到超级用户代理组列表   RefreshAuthorizationPolicyProtocol 刷新HDFS和MapReduce服务几倍访问控制列表   ResourceMan">
+<meta name="keywords" content="MapReduce 通信协议,Hadoop 协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop通信机制和内部协议之协议">
+<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;13550.html">
 <meta property="og:site_name" content="lyhcc博客">
+<meta property="og:description" content="概述MapReduce核心协议     名称 描述    ClientProtocol 继承于Version基类，查看作业情况监控当前集群等   RefreshUserMappingProtocol 刷新用户到用户组映射关系到超级用户代理组列表   RefreshAuthorizationPolicyProtocol 刷新HDFS和MapReduce服务几倍访问控制列表   ResourceMan">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
+<meta property="og:updated_time" content="2019-11-06T01:13:16.445Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -77,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="lyhcc博客" height="28">
+                <img src="/images/logo.svg" alt="Hadoop通信机制和内部协议之协议" height="28">
             
             </a>
         </div>
@@ -127,35 +131,24 @@
                 <div class="container">
                     <div class="columns">
                         <div class="column is-8-tablet is-8-desktop is-7-widescreen has-order-2 column-main">
-                            <div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">Tags</a></li>
-            <li class="is-active"><a href="#" aria-current="page">MapReduce介绍</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    
+                            
     <div class="card">
         
                 <div class="card-content article ">
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-10-26T10:46:05.391Z">2019-10-26</time>
+                                <time class="level-item has-text-grey" datetime="2019-10-31T12:41:47.554Z">2019-10-31</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/MapReduce/">MapReduce</a>
+                                        <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1134 words)
+                    4 minutes read (About 549 words)
                 </span>
                                             
                                                 
@@ -164,117 +157,136 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/5429.html">
-                                        MapReduce介绍
-                                    </a>
-                                    
+                                        Hadoop通信机制和内部协议之协议
+                                            
                             </h1>
                             <div class="content">
                                 
                                                     
     <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">MapReduce的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">MapReduce优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">MapReduce核心思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">MapReduce进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">MapReduce编程规范</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">第一代和第二代MapReduce的区别</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">ClientProtocol通信协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">RefreshUserMappingProtocol</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">RefreshAuthorizationPolicyProtocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">ResourceManagerAdministrationProtocol</span></a></li></ol></li></ol>
     </div>
     
-                                                        <h2><span id="mapreduce的定义">MapReduce的定义</span></h2><blockquote>
-<p>&emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。<br>&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。</p>
-</blockquote>
-<h2><span id="mapreduce优缺点">MapReduce优缺点</span></h2><h3><span id="优点">优点</span></h3><ol>
-<li><strong>MapReduce 易于编程</strong>。它简单的实现一些接口，就可以完成一个分布式程序，这个分布式程序可以分布到大量廉价的PC机器上运行。也就是说你写一个分布式程序，跟写一个简单的串行程序是一模一样的。就是因为这个特点使得MapReduce编程变得非常流行。</li>
-<li><strong>良好的扩展性</strong>。当你的计算资源不能得到满足的时候，你可以通过简单的增加机器来扩展它的计算能力。</li>
-<li><strong>高容错性</strong>。MapReduce设计的初衷就是使程序能够部署在廉价的PC机器上，这就要求它具有很高的容错性。比如其中一台机器挂了，它可以把上面的计算任务转移到另外一个节点上运行，不至于这个任务运行失败，而且这个过程不需要人工参与，而完全是由 Hadoop内部完成的。</li>
-<li><strong>适合PB级以上海量数据的离线处理</strong>。这里加红字体离线处理，说明它适合离线处理而不适合在线处理。比如像毫秒级别的返回一个结果，MapReduce很难做到。<h3><span id="缺点">缺点</span></h3><blockquote>
-<p>MapReduce不擅长做实时计算、流式计算、DAG（有向图）计算。</p>
-</blockquote>
-</li>
-</ol>
-<ul>
-<li><strong>实时计算</strong>。MapReduce无法像Mysql一样，在毫秒或者秒级内返回结果。</li>
-<li><strong>流式计算</strong>。流式计算的输入数据是动态的，而MapReduce的输入数据集是静态的，不能动态变化。这是因为MapReduce自身的设计特点决定了数据源必须是静态的。</li>
-<li><strong>DAG（有向图）计算</strong>。多个应用程序存在依赖关系，后一个应用程序的输入为前一个的输出。在这种情况下，MapReduce并不是不能做，而是使用后，每个MapReduce作业的输出结果都会写入到磁盘，会造成大量的磁盘IO，导致性能非常的低下。</li>
-</ul>
-<h2><span id="mapreduce核心思想">MapReduce核心思想</span></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191026201155.png" alt>  </p>
-<blockquote>
-<ol>
-<li>分布式的运算程序往往需要分成至少2个阶段。<br>第一个阶段的maptask并发实例，完全并行运行，互不相干。</li>
-<li>第二个阶段的reduce task并发实例互不相干，但是他们的数据依赖于上一个阶段的所有maptask并发实例的输出。</li>
-<li>MapReduce编程模型只能包含一个map阶段和一个reduce阶段，如果用户的业务逻辑非常复杂，那就只能多个mapreduce程序，串行运行。</li>
-</ol>
-</blockquote>
-<h2><span id="mapreduce进程">MapReduce进程</span></h2><blockquote>
-<p>一个完整的mapreduce程序在分布式运行时有三类实例进程：</p>
-</blockquote>
-<ul>
-<li>MrAppMaster：负责整个程序的过程调度及状态协调。</li>
-<li>MapTask：负责map阶段的整个数据处理流程。</li>
-<li>ReduceTask：负责reduce阶段的整个数据处理流程。</li>
-</ul>
-<h3><span id="mapreduce编程规范">MapReduce编程规范</span></h3><blockquote>
-<p>用户编写的程序分成三个部分：Mapper，Reducer，Driver(提交运行mr程序的客户端)  </p>
-</blockquote>
-<ul>
-<li><p>Mapper阶段  </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1）用户自定义的Mapper要继承自己的父类  </span><br><span class="line">（2）Mapper的输入数据是KV对的形式（KV的类型可自定义）  </span><br><span class="line">（3）Mapper中的业务逻辑写在map()方法中  </span><br><span class="line">（4）Mapper的输出数据是KV对的形式（KV的类型可自定义）  </span><br><span class="line">（5）map()方法（maptask进程）对每一个&lt;K,V&gt;调用一次</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191026215909.png" alt></p>
-</li>
-<li><p>Reduce阶段  </p>
-</li>
-</ul>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">（1）用户自定义的Reducer要继承自己的父类   </span><br><span class="line">（2）Reducer的输入数据类型对应Mapper的输出数据类型，也是KV  </span><br><span class="line">（3）Reducer的业务逻辑写在reduce()方法中  </span><br><span class="line">（4）Reducetask进程对每一组相同k的&lt;k,v&gt;组调用一次reduce()方法</span><br></pre></td></tr></table></figure>
+                                                        <h2><span id="概述">概述</span></h2><center>MapReduce核心协议</center>
 
-<h2><span id="第一代和第二代mapreduce的区别">第一代和第二代MapReduce的区别</span></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191028175301.png" alt></p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ClientProtocol</td>
+<td>继承于Version基类，查看作业情况监控当前集群等</td>
+</tr>
+<tr>
+<td>RefreshUserMappingProtocol</td>
+<td>刷新用户到用户组映射关系到超级用户代理组列表</td>
+</tr>
+<tr>
+<td>RefreshAuthorizationPolicyProtocol</td>
+<td>刷新HDFS和MapReduce服务几倍访问控制列表</td>
+</tr>
+<tr>
+<td>ResourceManagerAdministrationProtocol</td>
+<td>继承于GetUserMappingProtocol基类，刷新队列列表，节点列表</td>
+</tr>
+</tbody></table>
+<h2><span id="clientprotocol通信协议">ClientProtocol通信协议</span></h2><blockquote>
+<p>ClientProtocol协议是JobClient和JobTracker之间进行交流的枢纽。JobClient 可以使<br>用该协议中的函数来提交-一个作业(Job) 并执行，以了解当前系统的状态</p>
+</blockquote>
+<ol>
+<li>提交作业<br>协议中JobClient通过Hadoop RPC的submitjob()函数提交作业(Job)，函数所包含的参数有作业ID (JobID)，然后JobClient通过getNewJoblD0函数为作业(Job) 获得一个唯一的ID。</li>
+<li>操作作业<br>当用户提交作业(Job) 后，可以通过调用函数来控制该作业的执行流程，如设置提交作业的优先级(setlobPriority()函数) 、停止一个作业(killJob()函数) 、停止一个任务(illTask()函数)。</li>
+<li>查看状态<br>从实现源代码来看，该通信协议还提供了一系列函数来 查看状态，如查看集群当前状态(getClusterMetrics()函数)、查看当前任务状态(getJobTrackerStatus()函数) 、获取所有任务(getllobs()函数)等。</li>
+</ol>
+<h2><span id="refreshusermappingprotocol">RefreshUserMappingProtocol</span></h2><blockquote>
+<p>RefreshU serMappingsProtocol 协议用于更新 HDFS 和 MapReduce 级别的用户到用户组<br>映射关系及超级用户代理组列表</p>
+</blockquote>
+<blockquote>
+<p>refreshUserToGroupsMappings() 函数和refreshSuperUserGroupsConfiguration()函数来实现，这两个函数均是通过调用Hadoop RPC来完成具体的逻辑。</p>
+</blockquote>
+<h2><span id="refreshauthorizationpolicyprotocol">RefreshAuthorizationPolicyProtocol</span></h2><blockquote>
+<p>RefreshAuthorizationPol icyProtocol 协议用于刷新当前使用的授权策略</p>
+</blockquote>
+<blockquote>
+<p>通过调用 Hadoop RPC 远程调用 refreshServiceAcl（）函数，实现基于 HDFS 和<br>MapReduce 级别的授权策略</p>
+</blockquote>
+<h3><span id="resourcemanageradministrationprotocol">ResourceManagerAdministrationProtocol</span></h3><blockquote>
+<p>ResourceManagerAdministrationProtocol 协议用于更新队列列表、节点 列表 、节点资源等</p>
+</blockquote>
+<blockquote>
+<p>该协议继承于 GetUserMappingsProtocol 基类 ，通过 Hadoop RPC 远程调用来实现节点<br>更新、资源更新 、添加标签等操作  </p>
+</blockquote>
+<p><strong>说明：在IDE中导入hadoop源码加载进去后，按Ctrl+鼠标左键进入即可查看源码</strong></p>
 
                                                             
-                                                                <!-- <h2><span id="mapreduce的定义">MapReduce的定义</span></h2><blockquote>
-<p>&emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。<br>&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。</p>
-</blockquote>
-<h2><span id="mapreduce优缺点">MapReduce优缺点</span></h2><h3><span id="优点">优点</span></h3><ol>
-<li><strong>MapReduce 易于编程</strong>。它简单的实现一些接口，就可以完成一个分布式程序，这个分布式程序可以分布到大量廉价的PC机器上运行。也就是说你写一个分布式程序，跟写一个简单的串行程序是一模一样的。就是因为这个特点使得MapReduce编程变得非常流行。</li>
-<li><strong>良好的扩展性</strong>。当你的计算资源不能得到满足的时候，你可以通过简单的增加机器来扩展它的计算能力。</li>
-<li><strong>高容错性</strong>。MapReduce设计的初衷就是使程序能够部署在廉价的PC机器上，这就要求它具有很高的容错性。比如其中一台机器挂了，它可以把上面的计算任务转移到另外一个节点上运行，不至于这个任务运行失败，而且这个过程不需要人工参与，而完全是由 Hadoop内部完成的。</li>
-<li><strong>适合PB级以上海量数据的离线处理</strong>。这里加红字体离线处理，说明它适合离线处理而不适合在线处理。比如像毫秒级别的返回一个结果，MapReduce很难做到。<h3><span id="缺点">缺点</span></h3><blockquote>
-<p>MapReduce不擅长做实时计算、流式计算、DAG（有向图）计算。</p>
-</blockquote>
-</li>
-</ol>
-<ul>
-<li><strong>实时计算</strong>。MapReduce无法像Mysql一样，在毫秒或者秒级内返回结果。</li>
-<li><strong>流式计算</strong>。流式计算的输入数据是动态的，而MapReduce的输入数据集是静态的，不能动态变化。这是因为MapReduce自身的设计特点决定了数据源必须是静态的。</li>
-<li><strong>DAG（有向图）计算</strong>。多个应用程序存在依赖关系，后一个应用程序的输入为前一个的输出。在这种情况下，MapReduce并不是不能做，而是使用后，每个MapReduce作业的输出结果都会写入到磁盘，会造成大量的磁盘IO，导致性能非常的低下。</li>
-</ul>
-<h2><span id="mapreduce核心思想">MapReduce核心思想</span></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191026201155.png" alt>  </p>
-<blockquote>
-<ol>
-<li>分布式的运算程序往往需要分成至少2个阶段。<br>第一个阶段的maptask并发实例，完全并行运行，互不相干。</li>
-<li>第二个阶段的reduce task并发实例互不相干，但是他们的数据依赖于上一个阶段的所有maptask并发实例的输出。</li>
-<li>MapReduce编程模型只能包含一个map阶段和一个reduce阶段，如果用户的业务逻辑非常复杂，那就只能多个mapreduce程序，串行运行。</li>
-</ol>
-</blockquote>
-<h2><span id="mapreduce进程">MapReduce进程</span></h2><blockquote>
-<p>一个完整的mapreduce程序在分布式运行时有三类实例进程：</p>
-</blockquote>
-<ul>
-<li>MrAppMaster：负责整个程序的过程调度及状态协调。</li>
-<li>MapTask：负责map阶段的整个数据处理流程。</li>
-<li>ReduceTask：负责reduce阶段的整个数据处理流程。</li>
-</ul>
-<h3><span id="mapreduce编程规范">MapReduce编程规范</span></h3><blockquote>
-<p>用户编写的程序分成三个部分：Mapper，Reducer，Driver(提交运行mr程序的客户端)  </p>
-</blockquote>
-<ul>
-<li><p>Mapper阶段  </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1）用户自定义的Mapper要继承自己的父类  </span><br><span class="line">（2）Mapper的输入数据是KV对的形式（KV的类型可自定义）  </span><br><span class="line">（3）Mapper中的业务逻辑写在map()方法中  </span><br><span class="line">（4）Mapper的输出数据是KV对的形式（KV的类型可自定义）  </span><br><span class="line">（5）map()方法（maptask进程）对每一个&lt;K,V&gt;调用一次</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191026215909.png" alt></p>
-</li>
-<li><p>Reduce阶段  </p>
-</li>
-</ul>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">（1）用户自定义的Reducer要继承自己的父类   </span><br><span class="line">（2）Reducer的输入数据类型对应Mapper的输出数据类型，也是KV  </span><br><span class="line">（3）Reducer的业务逻辑写在reduce()方法中  </span><br><span class="line">（4）Reducetask进程对每一组相同k的&lt;k,v&gt;组调用一次reduce()方法</span><br></pre></td></tr></table></figure>
+                                                                <!-- <h2><span id="概述">概述</span></h2><center>MapReduce核心协议</center>
 
-<h2><span id="第一代和第二代mapreduce的区别">第一代和第二代MapReduce的区别</span></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191028175301.png" alt></p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ClientProtocol</td>
+<td>继承于Version基类，查看作业情况监控当前集群等</td>
+</tr>
+<tr>
+<td>RefreshUserMappingProtocol</td>
+<td>刷新用户到用户组映射关系到超级用户代理组列表</td>
+</tr>
+<tr>
+<td>RefreshAuthorizationPolicyProtocol</td>
+<td>刷新HDFS和MapReduce服务几倍访问控制列表</td>
+</tr>
+<tr>
+<td>ResourceManagerAdministrationProtocol</td>
+<td>继承于GetUserMappingProtocol基类，刷新队列列表，节点列表</td>
+</tr>
+</tbody></table>
+<h2><span id="clientprotocol通信协议">ClientProtocol通信协议</span></h2><blockquote>
+<p>ClientProtocol协议是JobClient和JobTracker之间进行交流的枢纽。JobClient 可以使<br>用该协议中的函数来提交-一个作业(Job) 并执行，以了解当前系统的状态</p>
+</blockquote>
+<ol>
+<li>提交作业<br>协议中JobClient通过Hadoop RPC的submitjob()函数提交作业(Job)，函数所包含的参数有作业ID (JobID)，然后JobClient通过getNewJoblD0函数为作业(Job) 获得一个唯一的ID。</li>
+<li>操作作业<br>当用户提交作业(Job) 后，可以通过调用函数来控制该作业的执行流程，如设置提交作业的优先级(setlobPriority()函数) 、停止一个作业(killJob()函数) 、停止一个任务(illTask()函数)。</li>
+<li>查看状态<br>从实现源代码来看，该通信协议还提供了一系列函数来 查看状态，如查看集群当前状态(getClusterMetrics()函数)、查看当前任务状态(getJobTrackerStatus()函数) 、获取所有任务(getllobs()函数)等。</li>
+</ol>
+<h2><span id="refreshusermappingprotocol">RefreshUserMappingProtocol</span></h2><blockquote>
+<p>RefreshU serMappingsProtocol 协议用于更新 HDFS 和 MapReduce 级别的用户到用户组<br>映射关系及超级用户代理组列表</p>
+</blockquote>
+<blockquote>
+<p>refreshUserToGroupsMappings() 函数和refreshSuperUserGroupsConfiguration()函数来实现，这两个函数均是通过调用Hadoop RPC来完成具体的逻辑。</p>
+</blockquote>
+<h2><span id="refreshauthorizationpolicyprotocol">RefreshAuthorizationPolicyProtocol</span></h2><blockquote>
+<p>RefreshAuthorizationPol icyProtocol 协议用于刷新当前使用的授权策略</p>
+</blockquote>
+<blockquote>
+<p>通过调用 Hadoop RPC 远程调用 refreshServiceAcl（）函数，实现基于 HDFS 和<br>MapReduce 级别的授权策略</p>
+</blockquote>
+<h3><span id="resourcemanageradministrationprotocol">ResourceManagerAdministrationProtocol</span></h3><blockquote>
+<p>ResourceManagerAdministrationProtocol 协议用于更新队列列表、节点 列表 、节点资源等</p>
+</blockquote>
+<blockquote>
+<p>该协议继承于 GetUserMappingsProtocol 基类 ，通过 Hadoop RPC 远程调用来实现节点<br>更新、资源更新 、添加标签等操作  </p>
+</blockquote>
+<p><strong>说明：在IDE中导入hadoop源码加载进去后，按Ctrl+鼠标左键进入即可查看源码</strong></p>
  -->
                             </div>
                             
+                                <div class="level is-size-7 is-uppercase">
+                                    <div class="level-start">
+                                        <div class="level-item">
+                                            <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                                            <a class="has-link-grey -link" href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" rel="tag">Hadoop 协议</a>, <a class="has-link-grey -link" href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" rel="tag">MapReduce 通信协议</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                     
                                             
                 </div>
@@ -282,12 +294,60 @@
 
     
         
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="menu-label has-text-centered">
+                        Like this article? Support the author with
+                    </h3>
+                    <div class="buttons is-centered">
+                        
+                            
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                                
+                            
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                                
+                            <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                                
+                            
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                                
+                    </div>
+                </div>
+            </div>
+            
 
                 
+                    <div class="card card-transparent">
+                        <div class="level post-navigation is-flex-wrap is-mobile">
+                            
+                                    
+                                        <div class="level-end">
+                                            <a class="level level-item has-link-grey  article-nav-next" href="/post/56192.html">
+                                                <span class="level-item">Hadoop通信机制和内部协议之RPC</span>
+                                                <i class="level-item fas fa-chevron-right"></i>
+                                            </a>
+                                        </div>
+                                        
+                        </div>
+                    </div>
+                    
 
                         
-
-
                         </div>
                         
 
@@ -912,7 +972,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="lyhcc博客" height="28">
+                    <img src="/images/logo.svg" alt="Hadoop通信机制和内部协议之协议" height="28">
                 
                 </a>
                 <p class="is-size-7">
