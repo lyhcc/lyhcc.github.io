@@ -148,14 +148,14 @@
                                 <time class="level-item has-text-grey" datetime="2019-10-31T12:41:47.554Z">2019-10-31</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
+                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 549 words)
+                    4 minutes read (About 550 words)
                 </span>
                                             
                                                 
@@ -171,12 +171,7 @@
                             </h1>
                             <div class="content">
                                 
-                                                    
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">ClientProtocol通信协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">RefreshUserMappingProtocol</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">RefreshAuthorizationPolicyProtocol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">ResourceManagerAdministrationProtocol</span></a></li></ol></li></ol>
-    </div>
-    
-                                                        <h2><span id="概述">概述</span></h2><center>MapReduce核心协议</center>
+                                    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><center>MapReduce核心协议</center>
 
 <table>
 <thead>
@@ -201,37 +196,11 @@
 <td>ResourceManagerAdministrationProtocol</td>
 <td>继承于GetUserMappingProtocol基类，刷新队列列表，节点列表</td>
 </tr>
-</tbody></table>
-<h2><span id="clientprotocol通信协议">ClientProtocol通信协议</span></h2><blockquote>
-<p>ClientProtocol协议是JobClient和JobTracker之间进行交流的枢纽。JobClient 可以使<br>用该协议中的函数来提交-一个作业(Job) 并执行，以了解当前系统的状态</p>
-</blockquote>
-<ol>
-<li>提交作业<br>协议中JobClient通过Hadoop RPC的submitjob()函数提交作业(Job)，函数所包含的参数有作业ID (JobID)，然后JobClient通过getNewJoblD0函数为作业(Job) 获得一个唯一的ID。</li>
-<li>操作作业<br>当用户提交作业(Job) 后，可以通过调用函数来控制该作业的执行流程，如设置提交作业的优先级(setlobPriority()函数) 、停止一个作业(killJob()函数) 、停止一个任务(illTask()函数)。</li>
-<li>查看状态<br>从实现源代码来看，该通信协议还提供了一系列函数来 查看状态，如查看集群当前状态(getClusterMetrics()函数)、查看当前任务状态(getJobTrackerStatus()函数) 、获取所有任务(getllobs()函数)等。</li>
-</ol>
-<h2><span id="refreshusermappingprotocol">RefreshUserMappingProtocol</span></h2><blockquote>
-<p>RefreshU serMappingsProtocol 协议用于更新 HDFS 和 MapReduce 级别的用户到用户组<br>映射关系及超级用户代理组列表</p>
-</blockquote>
-<blockquote>
-<p>refreshUserToGroupsMappings() 函数和refreshSuperUserGroupsConfiguration()函数来实现，这两个函数均是通过调用Hadoop RPC来完成具体的逻辑。</p>
-</blockquote>
-<h2><span id="refreshauthorizationpolicyprotocol">RefreshAuthorizationPolicyProtocol</span></h2><blockquote>
-<p>RefreshAuthorizationPol icyProtocol 协议用于刷新当前使用的授权策略</p>
-</blockquote>
-<blockquote>
-<p>通过调用 Hadoop RPC 远程调用 refreshServiceAcl（）函数，实现基于 HDFS 和<br>MapReduce 级别的授权策略</p>
-</blockquote>
-<h3><span id="resourcemanageradministrationprotocol">ResourceManagerAdministrationProtocol</span></h3><blockquote>
-<p>ResourceManagerAdministrationProtocol 协议用于更新队列列表、节点 列表 、节点资源等</p>
-</blockquote>
-<blockquote>
-<p>该协议继承于 GetUserMappingsProtocol 基类 ，通过 Hadoop RPC 远程调用来实现节点<br>更新、资源更新 、添加标签等操作  </p>
-</blockquote>
-<p><strong>说明：在IDE中导入hadoop源码加载进去后，按Ctrl+鼠标左键进入即可查看源码</strong></p>
-
-                                                            
-                                                                <!-- <h2><span id="概述">概述</span></h2><center>MapReduce核心协议</center>
+<tr>
+<td></td></tr></tbody></table>
+                                        
+                                                
+                                                                <!-- <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><center>MapReduce核心协议</center>
 
 <table>
 <thead>
@@ -256,38 +225,21 @@
 <td>ResourceManagerAdministrationProtocol</td>
 <td>继承于GetUserMappingProtocol基类，刷新队列列表，节点列表</td>
 </tr>
-</tbody></table>
-<h2><span id="clientprotocol通信协议">ClientProtocol通信协议</span></h2><blockquote>
-<p>ClientProtocol协议是JobClient和JobTracker之间进行交流的枢纽。JobClient 可以使<br>用该协议中的函数来提交-一个作业(Job) 并执行，以了解当前系统的状态</p>
-</blockquote>
-<ol>
-<li>提交作业<br>协议中JobClient通过Hadoop RPC的submitjob()函数提交作业(Job)，函数所包含的参数有作业ID (JobID)，然后JobClient通过getNewJoblD0函数为作业(Job) 获得一个唯一的ID。</li>
-<li>操作作业<br>当用户提交作业(Job) 后，可以通过调用函数来控制该作业的执行流程，如设置提交作业的优先级(setlobPriority()函数) 、停止一个作业(killJob()函数) 、停止一个任务(illTask()函数)。</li>
-<li>查看状态<br>从实现源代码来看，该通信协议还提供了一系列函数来 查看状态，如查看集群当前状态(getClusterMetrics()函数)、查看当前任务状态(getJobTrackerStatus()函数) 、获取所有任务(getllobs()函数)等。</li>
-</ol>
-<h2><span id="refreshusermappingprotocol">RefreshUserMappingProtocol</span></h2><blockquote>
-<p>RefreshU serMappingsProtocol 协议用于更新 HDFS 和 MapReduce 级别的用户到用户组<br>映射关系及超级用户代理组列表</p>
-</blockquote>
-<blockquote>
-<p>refreshUserToGroupsMappings() 函数和refreshSuperUserGroupsConfiguration()函数来实现，这两个函数均是通过调用Hadoop RPC来完成具体的逻辑。</p>
-</blockquote>
-<h2><span id="refreshauthorizationpolicyprotocol">RefreshAuthorizationPolicyProtocol</span></h2><blockquote>
-<p>RefreshAuthorizationPol icyProtocol 协议用于刷新当前使用的授权策略</p>
-</blockquote>
-<blockquote>
-<p>通过调用 Hadoop RPC 远程调用 refreshServiceAcl（）函数，实现基于 HDFS 和<br>MapReduce 级别的授权策略</p>
-</blockquote>
-<h3><span id="resourcemanageradministrationprotocol">ResourceManagerAdministrationProtocol</span></h3><blockquote>
-<p>ResourceManagerAdministrationProtocol 协议用于更新队列列表、节点 列表 、节点资源等</p>
-</blockquote>
-<blockquote>
-<p>该协议继承于 GetUserMappingsProtocol 基类 ，通过 Hadoop RPC 远程调用来实现节点<br>更新、资源更新 、添加标签等操作  </p>
-</blockquote>
-<p><strong>说明：在IDE中导入hadoop源码加载进去后，按Ctrl+鼠标左键进入即可查看源码</strong></p>
- -->
+<tr>
+<td></td></tr></tbody></table> -->
                             </div>
                             
                                     
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/13550.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                             
                 </div>
     </div>
@@ -344,7 +296,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        6
+                        8
                     </p>
                 </div>
             </div>
@@ -354,7 +306,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        5
+                        4
                     </p>
                 </div>
             </div>
@@ -364,7 +316,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        8
+                        12
                     </p>
                 </div>
             </div>
@@ -471,7 +423,7 @@
                 <span class="level-item">BigData</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">8</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/BigData/Hadoop/">
@@ -479,17 +431,9 @@
                 <span class="level-item">Hadoop</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">6</span>
             </span>
-        </a></li></ul></li><li>
-        <a class="level is-marginless" href="/categories/Hadoop/">
-            <span class="level-start">
-                <span class="level-item">Hadoop</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">3</span>
-            </span>
-        </a></li>
+        </a></li></ul></li>
             </ul>
         </div>
     </div>
@@ -500,7 +444,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a>
+        <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a>
     </div>
 </div>
     
@@ -515,6 +459,44 @@
         
         <article class="media">
             
+            <a href="/post/8a9ad9ba.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hadoop介绍">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-11T09:44:03.112Z">2019-11-11</time></div>
+                    <a href="/post/8a9ad9ba.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop介绍</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/4faba951.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="分布式存储管理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-07T12:55:51.611Z">2019-11-07</time></div>
+                    <a href="/post/4faba951.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">分布式存储管理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/13550.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Hadoop通信机制和内部协议之协议">
@@ -526,7 +508,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-31T12:41:47.554Z">2019-10-31</time></div>
                     <a href="/post/13550.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop通信机制和内部协议之协议</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
+                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
                     </p>
                 </div>
             </div>
@@ -545,7 +527,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-30T09:39:49.048Z">2019-10-30</time></div>
                     <a href="/post/56192.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop通信机制和内部协议之RPC</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
+                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
                     </p>
                 </div>
             </div>
@@ -564,44 +546,6 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-28T10:01:26.105Z">2019-10-28</time></div>
                     <a href="/post/20979.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">hadoop序列化</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/5429.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MapReduce介绍">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-26T10:46:05.391Z">2019-10-26</time></div>
-                    <a href="/post/5429.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">MapReduce介绍</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/21534.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HDFS快照管理">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-26T08:47:04.559Z">2019-10-26</time></div>
-                    <a href="/post/21534.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">HDFS快照管理</a>
-                    <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
                     </p>
                 </div>
@@ -618,6 +562,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/10/">
@@ -644,8 +599,22 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Google%E4%B8%89%E5%AE%9D/">
+                        <span class="tag">Google三宝</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/HDFS%E5%BF%AB%E7%85%A7/">
                         <span class="tag">HDFS快照</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/">
+                        <span class="tag">Hadooop介绍</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -686,6 +655,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/NoSSQL%E7%89%B9%E7%82%B9/">
+                        <span class="tag">NoSSQL特点</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/">
                         <span class="tag">hadoop序列化</span>
                         <span class="tag is-grey">1</span>
@@ -695,6 +671,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/">
                         <span class="tag">什么是大数据</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/">
+                        <span class="tag">分布式存储管理</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -723,6 +706,44 @@
         
         <article class="media">
             
+            <a href="/post/8a9ad9ba.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hadoop介绍">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-11T09:44:03.112Z">2019-11-11</time></div>
+                    <a href="/post/8a9ad9ba.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop介绍</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/4faba951.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="分布式存储管理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-07T12:55:51.611Z">2019-11-07</time></div>
+                    <a href="/post/4faba951.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">分布式存储管理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/13550.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Hadoop通信机制和内部协议之协议">
@@ -734,7 +755,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-31T12:41:47.554Z">2019-10-31</time></div>
                     <a href="/post/13550.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop通信机制和内部协议之协议</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
+                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
                     </p>
                 </div>
             </div>
@@ -753,7 +774,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-30T09:39:49.048Z">2019-10-30</time></div>
                     <a href="/post/56192.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop通信机制和内部协议之RPC</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
+                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
                     </p>
                 </div>
             </div>
@@ -772,44 +793,6 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-28T10:01:26.105Z">2019-10-28</time></div>
                     <a href="/post/20979.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">hadoop序列化</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/5429.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MapReduce介绍">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-26T10:46:05.391Z">2019-10-26</time></div>
-                    <a href="/post/5429.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">MapReduce介绍</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/21534.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HDFS快照管理">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-26T08:47:04.559Z">2019-10-26</time></div>
-                    <a href="/post/21534.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">HDFS快照管理</a>
-                    <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
                     </p>
                 </div>
@@ -826,6 +809,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/10/">
@@ -852,8 +846,22 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Google%E4%B8%89%E5%AE%9D/">
+                        <span class="tag">Google三宝</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/HDFS%E5%BF%AB%E7%85%A7/">
                         <span class="tag">HDFS快照</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/">
+                        <span class="tag">Hadooop介绍</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -894,6 +902,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/NoSSQL%E7%89%B9%E7%82%B9/">
+                        <span class="tag">NoSSQL特点</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/">
                         <span class="tag">hadoop序列化</span>
                         <span class="tag is-grey">1</span>
@@ -903,6 +918,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/">
                         <span class="tag">什么是大数据</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/">
+                        <span class="tag">分布式存储管理</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

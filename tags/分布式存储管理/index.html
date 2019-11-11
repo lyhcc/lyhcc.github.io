@@ -8,12 +8,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Tag: MapReduce介绍 - lyhcc博客</title>
+<title>Tag: 分布式存储管理 - lyhcc博客</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="lyhcc博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;tags&#x2F;MapReduce%E4%BB%8B%E7%BB%8D&#x2F;index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;tags&#x2F;%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86&#x2F;index.html">
 <meta property="og:site_name" content="lyhcc博客">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
@@ -132,7 +132,7 @@
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="/tags">Tags</a></li>
-            <li class="is-active"><a href="#" aria-current="page">MapReduce介绍</a></li>
+            <li class="is-active"><a href="#" aria-current="page">分布式存储管理</a></li>
         </ul>
         </nav>
     </div>
@@ -145,17 +145,17 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-10-26T10:46:05.391Z">2019-10-26</time>
+                                <time class="level-item has-text-grey" datetime="2019-11-07T12:55:51.611Z">2019-11-07</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/MapReduce/">MapReduce</a>
+                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1135 words)
+                    3 minutes read (About 429 words)
                 </span>
                                             
                                                 
@@ -164,34 +164,100 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/5429.html">
-                                        MapReduce介绍
+                                    <a class="has-link-black-ter" href="/post/4faba951.html">
+                                        分布式存储管理
                                     </a>
                                     
                             </h1>
                             <div class="content">
                                 
-                                    <h2 id="MapReduce的定义"><a href="#MapReduce的定义" class="headerlink" title="MapReduce的定义"></a>MapReduce的定义</h2><blockquote>
-<p>&emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。<br>&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。</p>
-</blockquote>
-                                        
-                                                
-                                                                <!-- <h2 id="MapReduce的定义"><a href="#MapReduce的定义" class="headerlink" title="MapReduce的定义"></a>MapReduce的定义</h2><blockquote>
-<p>&emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。<br>&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。</p>
-</blockquote> -->
+                                                    
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">NoSQL 特点</span></a></li></ol>
+    </div>
+    
+                                                        <h2><span id="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的">为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？</span></h2><ul>
+<li><p>规模效应所带来的压力</p>
+<ul>
+<li>传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能</li>
+<li>适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机</li>
+</ul>
+</li>
+<li><p>数据类型的多样化<br>  传统数据类型：</p>
+<ul>
+<li>结构化数据<br>大数据时代的数据类型：</li>
+<li>结构化数据</li>
+<li>半结构化数据</li>
+<li>非结构化数据</li>
+</ul>
+</li>
+<li><p>设计理念所带来的冲突</p>
+<ul>
+<li>关系型数据库 One size fits all ,即面对不同问题不需要重新考虑数据管理问题<br>  简单来说就是，单一模式可以适应所有变化</li>
+<li>新理念 “One size fits one” 和 “One size fits domain”</li>
+</ul>
+</li>
+<li><p>数据库的事务特性</p>
+<ul>
+<li>传统数据库ACID特性 A(Atom，原子性)，C(Consistency，一致性)，I(Isolation,隔离性)，D(Durability,持久性)</li>
+<li>大数据时代的数据库BASE。 Basically Available(基本可用)，Soft State(柔性状态)，Eventually Consistency(最终一致性)<br>根据分布式领域著名的CAP理论来看，ACID追求一致性C,而BASE更加关注A<br>一致性（Consistency）、可用性（Availability）、分区容错性（Partition tolerance）<br>新型数据库<a href="https://cloud.google.com/spanner/docs/?hl=zh-cn" target="_blank" rel="noopener">Spanner</a><h2><span id="nosql-特点">NoSQL 特点</span></h2></li>
+</ul>
+</li>
+<li><p>模式自由（Schema-free）</p>
+</li>
+<li><p>支持简易备份（Easy Replication Support)</p>
+</li>
+<li><p>简单应用程序接口（Simple API）</p>
+</li>
+<li><p>最终一致性（或说支持BASE特性，不支持ACID特性）</p>
+</li>
+<li><p>支持海量数据（Huge Amount of Data）</p>
+</li>
+</ul>
+
+                                                            
+                                                                <!-- <h2><span id="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的">为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？</span></h2><ul>
+<li><p>规模效应所带来的压力</p>
+<ul>
+<li>传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能</li>
+<li>适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机</li>
+</ul>
+</li>
+<li><p>数据类型的多样化<br>  传统数据类型：</p>
+<ul>
+<li>结构化数据<br>大数据时代的数据类型：</li>
+<li>结构化数据</li>
+<li>半结构化数据</li>
+<li>非结构化数据</li>
+</ul>
+</li>
+<li><p>设计理念所带来的冲突</p>
+<ul>
+<li>关系型数据库 One size fits all ,即面对不同问题不需要重新考虑数据管理问题<br>  简单来说就是，单一模式可以适应所有变化</li>
+<li>新理念 “One size fits one” 和 “One size fits domain”</li>
+</ul>
+</li>
+<li><p>数据库的事务特性</p>
+<ul>
+<li>传统数据库ACID特性 A(Atom，原子性)，C(Consistency，一致性)，I(Isolation,隔离性)，D(Durability,持久性)</li>
+<li>大数据时代的数据库BASE。 Basically Available(基本可用)，Soft State(柔性状态)，Eventually Consistency(最终一致性)<br>根据分布式领域著名的CAP理论来看，ACID追求一致性C,而BASE更加关注A<br>一致性（Consistency）、可用性（Availability）、分区容错性（Partition tolerance）<br>新型数据库<a href="https://cloud.google.com/spanner/docs/?hl=zh-cn" target="_blank" rel="noopener">Spanner</a><h2><span id="nosql-特点">NoSQL 特点</span></h2></li>
+</ul>
+</li>
+<li><p>模式自由（Schema-free）</p>
+</li>
+<li><p>支持简易备份（Easy Replication Support)</p>
+</li>
+<li><p>简单应用程序接口（Simple API）</p>
+</li>
+<li><p>最终一致性（或说支持BASE特性，不支持ACID特性）</p>
+</li>
+<li><p>支持海量数据（Huge Amount of Data）</p>
+</li>
+</ul>
+ -->
                             </div>
                             
                                     
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/5429.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
                                             
                 </div>
     </div>
