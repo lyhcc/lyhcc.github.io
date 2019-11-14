@@ -623,7 +623,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 398 words)
+                    16 minutes read (About 2446 words)
                 </span>
                                             
                                                 
@@ -639,20 +639,30 @@
                             </h1>
                             <div class="content">
                                 
-                                    <h3 id="序列化介绍"><a href="#序列化介绍" class="headerlink" title="序列化介绍"></a>序列化介绍</h3><blockquote>
-<p>序列化是一种将对象的状态信息转化成可以存储或者传输的过程<br>不是某一种编程语言所独有的特性</p>
+                                    <h2 id="序列化介绍"><a href="#序列化介绍" class="headerlink" title="序列化介绍"></a>序列化介绍</h2><blockquote>
+<p>序列化是一种将对象的状态信息转化成可以存储或者传输的过程，与之相反的为反序列化<br>不是某一种编程语言所独有的特性<br><strong>序列化的用途</strong>  </p>
 </blockquote>
-<h3 id="Java序列化"><a href="#Java序列化" class="headerlink" title="Java序列化"></a>Java序列化</h3><blockquote>
-<p>Java通过实现Serializable接口</p>
+<ul>
+<li>作为一种持久化格式。对象序列化后存盘</li>
+<li>作为一种通信的数据格式。如虚拟机之间通信</li>
+<li>作为一种拷贝、克隆机制。放缓存</li>
+</ul>
+<h2 id="Java序列化"><a href="#Java序列化" class="headerlink" title="Java序列化"></a>Java序列化</h2><blockquote>
+<p>Java通过实现Serializable接口<br>Java序列化后放入对象，通过对象流进行IO操作，ObjectInputStream/ObjectOutputStream</p>
 </blockquote>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> java. io.Serializable ;</span><br><span class="line"></span><br><span class="line">／＊＊定义一个可以序列化的 App 信息类. */</span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Appinfo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span></span>&#123;</span><br><span class="line">	／／序列化标识</span><br><span class="line">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">11</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
                                         
                                                 
-                                                                <!-- <h3 id="序列化介绍"><a href="#序列化介绍" class="headerlink" title="序列化介绍"></a>序列化介绍</h3><blockquote>
-<p>序列化是一种将对象的状态信息转化成可以存储或者传输的过程<br>不是某一种编程语言所独有的特性</p>
+                                                                <!-- <h2 id="序列化介绍"><a href="#序列化介绍" class="headerlink" title="序列化介绍"></a>序列化介绍</h2><blockquote>
+<p>序列化是一种将对象的状态信息转化成可以存储或者传输的过程，与之相反的为反序列化<br>不是某一种编程语言所独有的特性<br><strong>序列化的用途</strong>  </p>
 </blockquote>
-<h3 id="Java序列化"><a href="#Java序列化" class="headerlink" title="Java序列化"></a>Java序列化</h3><blockquote>
-<p>Java通过实现Serializable接口</p>
+<ul>
+<li>作为一种持久化格式。对象序列化后存盘</li>
+<li>作为一种通信的数据格式。如虚拟机之间通信</li>
+<li>作为一种拷贝、克隆机制。放缓存</li>
+</ul>
+<h2 id="Java序列化"><a href="#Java序列化" class="headerlink" title="Java序列化"></a>Java序列化</h2><blockquote>
+<p>Java通过实现Serializable接口<br>Java序列化后放入对象，通过对象流进行IO操作，ObjectInputStream/ObjectOutputStream</p>
 </blockquote>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> java. io.Serializable ;</span><br><span class="line"></span><br><span class="line">／＊＊定义一个可以序列化的 App 信息类. */</span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Appinfo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span></span>&#123;</span><br><span class="line">	／／序列化标识</span><br><span class="line">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">11</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> -->
                             </div>
