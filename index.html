@@ -135,6 +135,250 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2019-11-17T06:20:40.619Z">2019-11-17</time>
+                                
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 0 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/f2d80d11.html">
+                                        others/Java_NIO
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+                                
+                                                    
+    <div id="toc">
+        
+    </div>
+    
+                                                        
+                                                            
+                                                                <!--  -->
+                            </div>
+                            
+                                    
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2019-11-17T06:12:49.807Z">2019-11-17</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/others/">others</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 1119 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/e63a7813.html">
+                                        Java动态代理
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+                                
+                                                    
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">代理接口的创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">java.lang.eflct.Proxy比较重要的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">调用转发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">Java动态代理实例</span></a></li></ol>
+    </div>
+    
+                                                        <h2><span id="概述">概述</span></h2><blockquote>
+<p>Hadoop远程过程调用实现使用Java动态代理和新输入1输出系统(NewInput/Output,NIO)  </p>
+</blockquote>
+<blockquote>
+<p>Java动态代理类位于java.lang.reflect包下，主要包括java.lang rlfct.Proxy和java.lang.reflect.InvocationHandler</p>
+</blockquote>
+<p><strong>代理对象两大任务</strong>  </p>
+<ol>
+<li>创建代理接口<br> 实现由java.lang,reflect.Proxy完成</li>
+<li>调用转发<br>通过java.lang.reflect.InvocationHandler的实例完成</li>
+</ol>
+<h2><span id="代理接口的创建">代理接口的创建</span></h2><blockquote>
+<p>在Java中，代理对象往往实现和目标对象-致的接口，并作为目标对象的代替，接收对<br>象用户(Client) 的调用，并将全部或部分调用转发给目标对象</p>
+</blockquote>
+<blockquote>
+<p>代理也是拥有和目标对象一样的权利的‘人’， 简单的说， <strong>代理可以越俎代庖</strong>。实际上他是调用转发，将这个任务交给有权利实施的人</p>
+</blockquote>
+<center>代理时序图</center>   
+
+<p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191117143912.png" alt>  </p>
+<blockquote>
+<p>java.lang.eflct.Proxy提供了用于创建动态代理类和对象的静态方法。也就是说，通过java.lang.reflect.Proxy可以动态地创建某个接口实现</p>
+</blockquote>
+<h2><span id="javalangeflctproxy比较重要的方法">java.lang.eflct.Proxy比较重要的方法</span></h2><ul>
+<li><p>public static Class&lt;?&gt; getProxyClass(ClassLoader loader,</p>
+<pre><code>Class&lt;?&gt;... interfaces)</code></pre><blockquote>
+<p>获得代理类的java.lang.Class对象。该代理类将定义在指定的类加载器（参数loader）中，并将实现参数interfaces指定所有接口</p>
+</blockquote>
+<hr>
+<p><strong>注意</strong>： 这个类只创建一次，如果再次传入相同的loader和interfaces给newProxyInstance()方法，获得的也只是第一次调用创建的那个java.lang.Class对象</p>
+<hr>
+<blockquote>
+<p>通过Proxy.getProxyClass()获得的代理类都包含一个构造函数,该构造函数需要一个java.lang.reflect.InvocationHandler 的实例</p>
+</blockquote>
+<p><strong>如何获取Proxy对象？</strong>，请看以下代码</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Class clss = Proxy.getProxyClass(loader, interfaces);</span><br><span class="line"><span class="hljs-comment">//获得构造函数</span></span><br><span class="line">Constructor constructor = clss.getConstructor(<span class="hljs-keyword">new</span> Class[]&#123;InvocationHandler.class&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//创建代理对象</span></span><br><span class="line">Object proxy = constructor.newInstance(<span class="hljs-keyword">new</span> Object[]&#123;invocationHandler&#125;);</span><br></pre></td></tr></table></figure></li>
+<li><p>public static boolean isProxyClass(Class&lt;?&gt; cl) </p>
+<blockquote>
+<p>判断java.lang.Class对象是否是代理类</p>
+</blockquote>
+</li>
+<li><p>public static InvocationHandler getInvocationHandler(Object proxy)</p>
+<pre><code>throws IllegalArgumentException</code></pre><blockquote>
+<p>获取代理实例对应的调用处理程序（即构建代理传入的InvocationHandler实例）</p>
+</blockquote>
+</li>
+</ul>
+<h2><span id="调用转发">调用转发</span></h2><blockquote>
+<p>InvocationHandler调用实例也叫调用句柄实例  </p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> proxy     代理对象本身</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> method    用户调用的代理对象上的方法</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> args      传递给该方法的参数</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@return</span>          代理对象方法调用结果 </span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * java.lang.reflect.Method</span></span><br><span class="line"><span class="hljs-comment"> * 它提供了关于类或接口上某个方法以及如何访问该方法的信息</span></span><br><span class="line"><span class="hljs-comment"> * 其中的invoke方法可以在指定对象上调用对象的方法</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">@Override</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Method类中的invoke方法声明如下</strong>  </p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object obj, Object... args)</span></span></span><br><span class="line"><span class="hljs-function">        <span class="hljs-keyword">throws</span> IllegalAccessException, IllegalArgumentException,</span></span><br><span class="line"><span class="hljs-function">           InvocationTargetException</span></span><br></pre></td></tr></table></figure>
+<p>假设目标对象为target，实现转发代码如下</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                <span class="hljs-keyword">return</span> method.invoke(target, args);</span><br><span class="line">s&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="java动态代理实例">Java动态代理实例</span></h2><p><strong>实例类图</strong><br><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191117161540.png" alt>  </p>
+<p><strong>代码</strong>  </p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**DPStatus.java**/</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPStatus</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DPStatus</span><span class="hljs-params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, "</span> + name + <span class="hljs-string">"!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * PDQueryStatus.java</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * 动态代理机制与java远程调用不同，不需要继承什么接口</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">PDQueryStatus</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> DPStatus <span class="hljs-title">getStatus</span><span class="hljs-params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * DPQueryStatusImpl.java</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * PDQueryStatus的简单实现</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPQueryStatusImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">PDQueryStatus</span></span>&#123;</span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> DPStatus <span class="hljs-title">getStatus</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DPStatus(<span class="hljs-string">"Bitty"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="hljs-keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="hljs-keyword">import</span> java.text.MessageFormat;</span><br><span class="line"><span class="hljs-keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * DPInvocationHandler.java</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * 转发由该类实现</span></span><br><span class="line"><span class="hljs-comment"> * 该类中最重要的一部分是invoke方法，</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * 如果代理对象调用某个方法时，DPInvocationHandler.invoke将会被调用，</span></span><br><span class="line"><span class="hljs-comment"> * 传入invoke的method中，也就是说，PDQueryStatus.getStatus()就是是method对象，</span></span><br><span class="line"><span class="hljs-comment"> * 而getStatus()没有参数</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * 在这里完成代理转发的是</span></span><br><span class="line"><span class="hljs-comment"> * Object res = method.invoke(dpqs, args);</span></span><br><span class="line"><span class="hljs-comment"> * 当method是PDQueryStatus.getStatus()时，其效果就相当于</span></span><br><span class="line"><span class="hljs-comment"> * res = pdqs.getStatus()</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPInvocationHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//目标对象</span></span><br><span class="line">    <span class="hljs-keyword">private</span> DPQueryStatusImpl dpqs;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DPInvocationHandler</span><span class="hljs-params">(DPQueryStatusImpl dpqs)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.dpqs = dpqs;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//实现附加功能，在控制台输出调用参数的String表示</span></span><br><span class="line">        String msg = MessageFormat.format(<span class="hljs-string">"Calling method"</span>, method.getName(), Arrays.toString(args));</span><br><span class="line"></span><br><span class="line">        System.out.println(msg);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//调用转发</span></span><br><span class="line">        Object res = method.invoke(dpqs, args);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//其他附加功能</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * DPMain.java</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * 在这个类中使用create方法创建代理</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPMain</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> PDQueryStatus <span class="hljs-title">create</span><span class="hljs-params">(DPQueryStatusImpl dpqs)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//newProxyInstance(ClassLoader loader,Class&lt;?&gt;[] interfaces,InvocationHandler h)</span></span><br><span class="line">        <span class="hljs-comment">//参数准备</span></span><br><span class="line">        Class&lt;?&gt;[] interfaces = <span class="hljs-keyword">new</span> Class[]&#123;PDQueryStatus.class&#125;;</span><br><span class="line">        DPInvocationHandler handler = <span class="hljs-keyword">new</span> DPInvocationHandler(dpqs);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> (PDQueryStatus) Proxy.newProxyInstance(dpqs.getClass().getClassLoader(), interfaces, handler);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        PDQueryStatus pdqs = DPMain.create(<span class="hljs-keyword">new</span> DPQueryStatusImpl());</span><br><span class="line">        System.out.println(pdqs.getStatus());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+                                                            
+                                                                <!-- <h2><span id="概述">概述</span></h2><blockquote>
+<p>Hadoop远程过程调用实现使用Java动态代理和新输入1输出系统(NewInput/Output,NIO)  </p>
+</blockquote>
+<blockquote>
+<p>Java动态代理类位于java.lang.reflect包下，主要包括java.lang rlfct.Proxy和java.lang.reflect.InvocationHandler</p>
+</blockquote>
+<p><strong>代理对象两大任务</strong>  </p>
+<ol>
+<li>创建代理接口<br> 实现由java.lang,reflect.Proxy完成</li>
+<li>调用转发<br>通过java.lang.reflect.InvocationHandler的实例完成</li>
+</ol>
+<h2><span id="代理接口的创建">代理接口的创建</span></h2><blockquote>
+<p>在Java中，代理对象往往实现和目标对象-致的接口，并作为目标对象的代替，接收对<br>象用户(Client) 的调用，并将全部或部分调用转发给目标对象</p>
+</blockquote>
+<blockquote>
+<p>代理也是拥有和目标对象一样的权利的‘人’， 简单的说， <strong>代理可以越俎代庖</strong>。实际上他是调用转发，将这个任务交给有权利实施的人</p>
+</blockquote>
+<center>代理时序图</center>   
+
+<p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191117143912.png" alt>  </p>
+<blockquote>
+<p>java.lang.eflct.Proxy提供了用于创建动态代理类和对象的静态方法。也就是说，通过java.lang.reflect.Proxy可以动态地创建某个接口实现</p>
+</blockquote>
+<h2><span id="javalangeflctproxy比较重要的方法">java.lang.eflct.Proxy比较重要的方法</span></h2><ul>
+<li><p>public static Class&lt;?&gt; getProxyClass(ClassLoader loader,</p>
+<pre><code>Class&lt;?&gt;... interfaces)</code></pre><blockquote>
+<p>获得代理类的java.lang.Class对象。该代理类将定义在指定的类加载器（参数loader）中，并将实现参数interfaces指定所有接口</p>
+</blockquote>
+<hr>
+<p><strong>注意</strong>： 这个类只创建一次，如果再次传入相同的loader和interfaces给newProxyInstance()方法，获得的也只是第一次调用创建的那个java.lang.Class对象</p>
+<hr>
+<blockquote>
+<p>通过Proxy.getProxyClass()获得的代理类都包含一个构造函数,该构造函数需要一个java.lang.reflect.InvocationHandler 的实例</p>
+</blockquote>
+<p><strong>如何获取Proxy对象？</strong>，请看以下代码</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Class clss = Proxy.getProxyClass(loader, interfaces);</span><br><span class="line"><span class="hljs-comment">//获得构造函数</span></span><br><span class="line">Constructor constructor = clss.getConstructor(<span class="hljs-keyword">new</span> Class[]&#123;InvocationHandler.class&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//创建代理对象</span></span><br><span class="line">Object proxy = constructor.newInstance(<span class="hljs-keyword">new</span> Object[]&#123;invocationHandler&#125;);</span><br></pre></td></tr></table></figure></li>
+<li><p>public static boolean isProxyClass(Class&lt;?&gt; cl) </p>
+<blockquote>
+<p>判断java.lang.Class对象是否是代理类</p>
+</blockquote>
+</li>
+<li><p>public static InvocationHandler getInvocationHandler(Object proxy)</p>
+<pre><code>throws IllegalArgumentException</code></pre><blockquote>
+<p>获取代理实例对应的调用处理程序（即构建代理传入的InvocationHandler实例）</p>
+</blockquote>
+</li>
+</ul>
+<h2><span id="调用转发">调用转发</span></h2><blockquote>
+<p>InvocationHandler调用实例也叫调用句柄实例  </p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> proxy     代理对象本身</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> method    用户调用的代理对象上的方法</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> args      传递给该方法的参数</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@return</span>          代理对象方法调用结果 </span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * java.lang.reflect.Method</span></span><br><span class="line"><span class="hljs-comment"> * 它提供了关于类或接口上某个方法以及如何访问该方法的信息</span></span><br><span class="line"><span class="hljs-comment"> * 其中的invoke方法可以在指定对象上调用对象的方法</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">@Override</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Method类中的invoke方法声明如下</strong>  </p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object obj, Object... args)</span></span></span><br><span class="line"><span class="hljs-function">        <span class="hljs-keyword">throws</span> IllegalAccessException, IllegalArgumentException,</span></span><br><span class="line"><span class="hljs-function">           InvocationTargetException</span></span><br></pre></td></tr></table></figure>
+<p>假设目标对象为target，实现转发代码如下</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                <span class="hljs-keyword">return</span> method.invoke(target, args);</span><br><span class="line">s&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="java动态代理实例">Java动态代理实例</span></h2><p><strong>实例类图</strong><br><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191117161540.png" alt>  </p>
+<p><strong>代码</strong>  </p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**DPStatus.java**/</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPStatus</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DPStatus</span><span class="hljs-params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, "</span> + name + <span class="hljs-string">"!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * PDQueryStatus.java</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * 动态代理机制与java远程调用不同，不需要继承什么接口</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">PDQueryStatus</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> DPStatus <span class="hljs-title">getStatus</span><span class="hljs-params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * DPQueryStatusImpl.java</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * PDQueryStatus的简单实现</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPQueryStatusImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">PDQueryStatus</span></span>&#123;</span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> DPStatus <span class="hljs-title">getStatus</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DPStatus(<span class="hljs-string">"Bitty"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="hljs-keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="hljs-keyword">import</span> java.text.MessageFormat;</span><br><span class="line"><span class="hljs-keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * DPInvocationHandler.java</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * 转发由该类实现</span></span><br><span class="line"><span class="hljs-comment"> * 该类中最重要的一部分是invoke方法，</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * 如果代理对象调用某个方法时，DPInvocationHandler.invoke将会被调用，</span></span><br><span class="line"><span class="hljs-comment"> * 传入invoke的method中，也就是说，PDQueryStatus.getStatus()就是是method对象，</span></span><br><span class="line"><span class="hljs-comment"> * 而getStatus()没有参数</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * 在这里完成代理转发的是</span></span><br><span class="line"><span class="hljs-comment"> * Object res = method.invoke(dpqs, args);</span></span><br><span class="line"><span class="hljs-comment"> * 当method是PDQueryStatus.getStatus()时，其效果就相当于</span></span><br><span class="line"><span class="hljs-comment"> * res = pdqs.getStatus()</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPInvocationHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//目标对象</span></span><br><span class="line">    <span class="hljs-keyword">private</span> DPQueryStatusImpl dpqs;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DPInvocationHandler</span><span class="hljs-params">(DPQueryStatusImpl dpqs)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.dpqs = dpqs;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//实现附加功能，在控制台输出调用参数的String表示</span></span><br><span class="line">        String msg = MessageFormat.format(<span class="hljs-string">"Calling method"</span>, method.getName(), Arrays.toString(args));</span><br><span class="line"></span><br><span class="line">        System.out.println(msg);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//调用转发</span></span><br><span class="line">        Object res = method.invoke(dpqs, args);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//其他附加功能</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * DPMain.java</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * 在这个类中使用create方法创建代理</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPMain</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> PDQueryStatus <span class="hljs-title">create</span><span class="hljs-params">(DPQueryStatusImpl dpqs)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//newProxyInstance(ClassLoader loader,Class&lt;?&gt;[] interfaces,InvocationHandler h)</span></span><br><span class="line">        <span class="hljs-comment">//参数准备</span></span><br><span class="line">        Class&lt;?&gt;[] interfaces = <span class="hljs-keyword">new</span> Class[]&#123;PDQueryStatus.class&#125;;</span><br><span class="line">        DPInvocationHandler handler = <span class="hljs-keyword">new</span> DPInvocationHandler(dpqs);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> (PDQueryStatus) Proxy.newProxyInstance(dpqs.getClass().getClassLoader(), interfaces, handler);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        PDQueryStatus pdqs = DPMain.create(<span class="hljs-keyword">new</span> DPQueryStatusImpl());</span><br><span class="line">        System.out.println(pdqs.getStatus());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+ -->
+                            </div>
+                            
+                                    
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
                                 <time class="level-item has-text-grey" datetime="2019-11-17T04:52:38.134Z">2019-11-17</time>
                                 
                                     <div class="level-item">
@@ -145,7 +389,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 661 words)
+                    5 minutes read (About 694 words)
                 </span>
                                             
                                                 
@@ -161,67 +405,33 @@
                             </h1>
                             <div class="content">
                                 
-                                                    
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">远程方法调用实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">Java远程调用实例类图</span></a></li></ol>
-    </div>
-    
-                                                        <h2><span id="概述">概述</span></h2><blockquote>
+                                    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
 <p>Java远程方法调用(Remote Method Invocation, RMI)是Java的一个核心API和类库,<br>允许一个Java虚拟机上运行的Java程序调用不同虚拟机上运行的对象中的方法，即使这两个<br>虚拟机运行于物理隔离的不同主机上。在某种程度上，RMI可以看成RPC的Java升级版。</p>
 </blockquote>
 <blockquote>
 <p>和RPC一样,存在服务端和客户端<br>典型服务器端应用程序 创建多个远程对象（Remote Object）,使这些对象能被客户端引用，并等待客户端调用远程对象的方法<br>典型的客户端程序 从服务器获得一个或多个远程对象的引用，然后调用远程对象的方法</p>
 </blockquote>
-<hr>
-<p>Java远程方法调用依赖于Java序列化，调用远程方法传的参数、返回值都是序列化对象</p>
-<hr>
-<h2><span id="远程方法调用实例">远程方法调用实例</span></h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**RMIQueryStatus.java**/</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.Remote;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">RMIQueryStatus</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Remote</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function">String <span class="hljs-title">getStatus</span><span class="hljs-params">(String name)</span> <span class="hljs-keyword">throws</span> RemoteException</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>RMIQueryStatus的定义要求</strong>  </p>
-<ul>
-<li>远程接口必须声明为public，否则客户端试着装载“实现远程接口”的远端对象时，会收到错误的消息。</li>
-<li>远程接口必须继承自java.rmi.Remote。</li>
-<li>远程接口中的每-一个方法，除了自定义的异常之外，必须将java.rmi.RemoteException<br>声明于其throws子句中。</li>
-<li>在远程方法声明中，作为参数或者返回值的远程对象，或者包含在其他非远程对象中<br>的远程对象，必须声明为其对应的远程接口，而不是实际的实现类。(这点在String类中并没有体现)</li>
-</ul>
-<p><strong>RMIQueryStatus的实现类</strong></p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**RMIQueryStatusImp.java**/</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.server.UnicastRemoteObject;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RMIQueryStatusImp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">UnicastRemoteObject</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">RMIQueryStatus</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">RMIQueryStatusImp</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getStatus</span><span class="hljs-params">(String name)</span> <span class="hljs-keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">"I'm "</span> + name + <span class="hljs-string">"."</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>客户端和服务端的代码</strong></p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**RMIDemoServer**/</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.net.MalformedURLException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.Naming;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.registry.LocateRegistry;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> lyhcc</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RMIDemoServer</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> RemoteException, MalformedURLException </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//1. 创建RMIQueryStatus对象</span></span><br><span class="line">        RMIQueryStatusImp queryService = <span class="hljs-keyword">new</span> RMIQueryStatusImp();</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//2. 设置服务端口</span></span><br><span class="line">        LocateRegistry.createRegistry(<span class="hljs-number">12090</span>);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//3. 绑定远端对象名</span></span><br><span class="line">        Naming.rebind(<span class="hljs-string">"rmi://localhost:12090/queryTest"</span>, queryService);</span><br><span class="line">        System.out.println(<span class="hljs-string">"Server is running!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/**客户端的代码**/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> java.net.MalformedURLException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.Naming;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.NotBoundException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RMIDemoClient</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> RemoteException, NotBoundException, MalformedURLException </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//1. 创建RMIQueryStatusImp对象</span></span><br><span class="line">        RMIQueryStatus queryStatus = (RMIQueryStatus) Naming.lookup(<span class="hljs-string">"rmi://localhost:12090/queryTest"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//2. 调用远程方法</span></span><br><span class="line">        String status = queryStatus.getStatus(<span class="hljs-string">"KiKi"</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(status);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>先运行服务端然后运行客户端查看结果</p>
-<h2><span id="java远程调用实例类图">Java远程调用实例类图</span></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191117135546.png" alt>  </p>
-<hr>
-<hr>
-
-                                                            
-                                                                <!-- <h2><span id="概述">概述</span></h2><blockquote>
+                                        
+                                                
+                                                                <!-- <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
 <p>Java远程方法调用(Remote Method Invocation, RMI)是Java的一个核心API和类库,<br>允许一个Java虚拟机上运行的Java程序调用不同虚拟机上运行的对象中的方法，即使这两个<br>虚拟机运行于物理隔离的不同主机上。在某种程度上，RMI可以看成RPC的Java升级版。</p>
 </blockquote>
 <blockquote>
 <p>和RPC一样,存在服务端和客户端<br>典型服务器端应用程序 创建多个远程对象（Remote Object）,使这些对象能被客户端引用，并等待客户端调用远程对象的方法<br>典型的客户端程序 从服务器获得一个或多个远程对象的引用，然后调用远程对象的方法</p>
-</blockquote>
-<hr>
-<p>Java远程方法调用依赖于Java序列化，调用远程方法传的参数、返回值都是序列化对象</p>
-<hr>
-<h2><span id="远程方法调用实例">远程方法调用实例</span></h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**RMIQueryStatus.java**/</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.Remote;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">RMIQueryStatus</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Remote</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function">String <span class="hljs-title">getStatus</span><span class="hljs-params">(String name)</span> <span class="hljs-keyword">throws</span> RemoteException</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>RMIQueryStatus的定义要求</strong>  </p>
-<ul>
-<li>远程接口必须声明为public，否则客户端试着装载“实现远程接口”的远端对象时，会收到错误的消息。</li>
-<li>远程接口必须继承自java.rmi.Remote。</li>
-<li>远程接口中的每-一个方法，除了自定义的异常之外，必须将java.rmi.RemoteException<br>声明于其throws子句中。</li>
-<li>在远程方法声明中，作为参数或者返回值的远程对象，或者包含在其他非远程对象中<br>的远程对象，必须声明为其对应的远程接口，而不是实际的实现类。(这点在String类中并没有体现)</li>
-</ul>
-<p><strong>RMIQueryStatus的实现类</strong></p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**RMIQueryStatusImp.java**/</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.server.UnicastRemoteObject;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RMIQueryStatusImp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">UnicastRemoteObject</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">RMIQueryStatus</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">RMIQueryStatusImp</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getStatus</span><span class="hljs-params">(String name)</span> <span class="hljs-keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">"I'm "</span> + name + <span class="hljs-string">"."</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>客户端和服务端的代码</strong></p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**RMIDemoServer**/</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.net.MalformedURLException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.Naming;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.registry.LocateRegistry;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> lyhcc</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RMIDemoServer</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> RemoteException, MalformedURLException </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//1. 创建RMIQueryStatus对象</span></span><br><span class="line">        RMIQueryStatusImp queryService = <span class="hljs-keyword">new</span> RMIQueryStatusImp();</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//2. 设置服务端口</span></span><br><span class="line">        LocateRegistry.createRegistry(<span class="hljs-number">12090</span>);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//3. 绑定远端对象名</span></span><br><span class="line">        Naming.rebind(<span class="hljs-string">"rmi://localhost:12090/queryTest"</span>, queryService);</span><br><span class="line">        System.out.println(<span class="hljs-string">"Server is running!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/**客户端的代码**/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> java.net.MalformedURLException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.Naming;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.NotBoundException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RMIDemoClient</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> RemoteException, NotBoundException, MalformedURLException </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//1. 创建RMIQueryStatusImp对象</span></span><br><span class="line">        RMIQueryStatus queryStatus = (RMIQueryStatus) Naming.lookup(<span class="hljs-string">"rmi://localhost:12090/queryTest"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//2. 调用远程方法</span></span><br><span class="line">        String status = queryStatus.getStatus(<span class="hljs-string">"KiKi"</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(status);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>先运行服务端然后运行客户端查看结果</p>
-<h2><span id="java远程调用实例类图">Java远程调用实例类图</span></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191117135546.png" alt>  </p>
-<hr>
-<hr>
- -->
+</blockquote> -->
                             </div>
                             
                                     
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/55cde24e.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                             
                 </div>
     </div>
@@ -804,156 +1014,6 @@
 
                         
 
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.559Z">2019-11-16</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop common</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    12 minutes read (About 1753 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/420bf138.html">
-                                        Hadoop 压缩
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-                                
-                                    <h2 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h2><blockquote>
-<p>压缩是指将数据转换为比原来的格式占用空间更小的格式来存储，以达到减小存储空间<br>解压是压缩的反过程</p>
-</blockquote>
-<h2 id="Hadoop文件切片"><a href="#Hadoop文件切片" class="headerlink" title="Hadoop文件切片"></a>Hadoop文件切片</h2><blockquote>
-<p>Hadoop MapReduce是通过划分切片来处理得，这样就使得支持分割的压缩格式更适合Hadoop</p>
-</blockquote>
-<p>针对ss.txt文件大小为300M</p>
-<ul>
-<li><strong>计算公式</strong><br>computeSliteSize(Math.max(minSize,Math.min(maxSize,blocksize)))=blocksize=128M（Hadoop 1.x中块大小为64M）  </li>
-<li>默认情况下，切片大小=blocksize</li>
-<li>开始切，形成第1个切片：ss.txt—0:128M 第2个切片ss.txt—128:256M 第3个切片ss.txt—256M:300M（每次切片时，都要判断切完剩下的部分是否大于块的1.1倍，不大于1.1倍就划分一块切片）</li></ul>
-                                        
-                                                
-                                                                <!-- <h2 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h2><blockquote>
-<p>压缩是指将数据转换为比原来的格式占用空间更小的格式来存储，以达到减小存储空间<br>解压是压缩的反过程</p>
-</blockquote>
-<h2 id="Hadoop文件切片"><a href="#Hadoop文件切片" class="headerlink" title="Hadoop文件切片"></a>Hadoop文件切片</h2><blockquote>
-<p>Hadoop MapReduce是通过划分切片来处理得，这样就使得支持分割的压缩格式更适合Hadoop</p>
-</blockquote>
-<p>针对ss.txt文件大小为300M</p>
-<ul>
-<li><strong>计算公式</strong><br>computeSliteSize(Math.max(minSize,Math.min(maxSize,blocksize)))=blocksize=128M（Hadoop 1.x中块大小为64M）  </li>
-<li>默认情况下，切片大小=blocksize</li>
-<li>开始切，形成第1个切片：ss.txt—0:128M 第2个切片ss.txt—128:256M 第3个切片ss.txt—256M:300M（每次切片时，都要判断切完剩下的部分是否大于块的1.1倍，不大于1.1倍就划分一块切片）</li></ul> -->
-                            </div>
-                            
-                                    
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/420bf138.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.535Z">2019-11-16</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 165 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/8a9ad9ba.html">
-                                        Hadoop介绍
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-                                
-                                                    
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">起源 Google 在大数据方面的三大论文 （谷歌三宝）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">Hadoop 三大发行版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">硬件要求</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">硬盘:500G+</span></a></li></ol></li></ol></li></ol>
-    </div>
-    
-                                                        <h2><span id="起源-google-在大数据方面的三大论文-谷歌三宝">起源 Google 在大数据方面的三大论文 （谷歌三宝）</span></h2><p><a href="https://github.com/lyhcc/NoteBook/tree/master/bigdata" target="_blank" rel="noopener">在github大的当前目录下</a><br><a href="https://www.cnblogs.com/javhu/archive/2013/03/25/cyue_hadoop_google.html" target="_blank" rel="noopener">三宝的介绍</a></p>
-<h2><span id="hadoop-三大发行版本">Hadoop 三大发行版本</span></h2><ol>
-<li>Apache、Cloudera、Hortonworks Apache版本最原始、最基础：适合零基础 大公司在用</li>
-<li>Cloudera Cloudera’s DistributionIncluding Apache Hadoop 简称CDH<br>中小型公司用、简单方便、自带可视化 </li>
-<li>Hortonworks  文档较好  注：Cloudera 和Hortonworks 在2018年10月，国庆期间宣布合并<h2><span id="硬件要求">硬件要求</span></h2><h4><span id="内存">内存</span></h4></li>
-</ol>
-<p><strong>最大支持内存查询：</strong>win + R<br><strong>输入</strong>  wmic memphysical get maxcapacity<br><strong>计算</strong> MaxCapacity/1024/1024GB  </p>
-<h4><span id="硬盘500g">硬盘:500G+</span></h4>
-                                                            
-                                                                <!-- <h2><span id="起源-google-在大数据方面的三大论文-谷歌三宝">起源 Google 在大数据方面的三大论文 （谷歌三宝）</span></h2><p><a href="https://github.com/lyhcc/NoteBook/tree/master/bigdata" target="_blank" rel="noopener">在github大的当前目录下</a><br><a href="https://www.cnblogs.com/javhu/archive/2013/03/25/cyue_hadoop_google.html" target="_blank" rel="noopener">三宝的介绍</a></p>
-<h2><span id="hadoop-三大发行版本">Hadoop 三大发行版本</span></h2><ol>
-<li>Apache、Cloudera、Hortonworks Apache版本最原始、最基础：适合零基础 大公司在用</li>
-<li>Cloudera Cloudera’s DistributionIncluding Apache Hadoop 简称CDH<br>中小型公司用、简单方便、自带可视化 </li>
-<li>Hortonworks  文档较好  注：Cloudera 和Hortonworks 在2018年10月，国庆期间宣布合并<h2><span id="硬件要求">硬件要求</span></h2><h4><span id="内存">内存</span></h4></li>
-</ol>
-<p><strong>最大支持内存查询：</strong>win + R<br><strong>输入</strong>  wmic memphysical get maxcapacity<br><strong>计算</strong> MaxCapacity/1024/1024GB  </p>
-<h4><span id="硬盘500g">硬盘:500G+</span></h4> -->
-                            </div>
-                            
-                                    
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
 
     
 <div class="card card-transparent">
@@ -1018,7 +1078,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        14
                     </p>
                 </div>
             </div>
@@ -1038,7 +1098,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        22
+                        24
                     </p>
                 </div>
             </div>
@@ -1161,7 +1221,7 @@
                 <span class="level-item">others</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li>
             </ul>
@@ -1174,7 +1234,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a>
+        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a>
     </div>
 </div>
     
@@ -1186,6 +1246,44 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/post/f2d80d11.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="others/Java_NIO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-17T06:20:40.619Z">2019-11-17</time></div>
+                    <a href="/post/f2d80d11.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">others/Java_NIO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/e63a7813.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java动态代理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-17T06:12:49.807Z">2019-11-17</time></div>
+                    <a href="/post/e63a7813.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java动态代理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/others/">others</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1244,44 +1342,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/21534.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HDFS快照管理">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-16T06:53:46.637Z">2019-11-16</time></div>
-                    <a href="/post/21534.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">HDFS快照管理</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/fa571a7.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="配置文件">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-16T06:53:46.625Z">2019-11-16</time></div>
-                    <a href="/post/fa571a7.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">配置文件</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -1299,7 +1359,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">14</span>
                 </span>
             </a>
         </li>
@@ -1388,8 +1448,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Java-Proxy/">
+                        <span class="tag">Java Proxy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86/">
                         <span class="tag">Java代理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/">
+                        <span class="tag">Java代理机制</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1495,6 +1569,44 @@
         
         <article class="media">
             
+            <a href="/post/f2d80d11.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="others/Java_NIO">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-17T06:20:40.619Z">2019-11-17</time></div>
+                    <a href="/post/f2d80d11.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">others/Java_NIO</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/e63a7813.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java动态代理">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-17T06:12:49.807Z">2019-11-17</time></div>
+                    <a href="/post/e63a7813.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java动态代理</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/others/">others</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/55cde24e.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Java远程调用">
@@ -1550,44 +1662,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/21534.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HDFS快照管理">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-16T06:53:46.637Z">2019-11-16</time></div>
-                    <a href="/post/21534.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">HDFS快照管理</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/fa571a7.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="配置文件">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-16T06:53:46.625Z">2019-11-16</time></div>
-                    <a href="/post/fa571a7.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">配置文件</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1605,7 +1679,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">14</span>
                 </span>
             </a>
         </li>
@@ -1694,8 +1768,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Java-Proxy/">
+                        <span class="tag">Java Proxy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86/">
                         <span class="tag">Java代理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/">
+                        <span class="tag">Java代理机制</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

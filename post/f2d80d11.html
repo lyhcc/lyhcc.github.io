@@ -8,19 +8,16 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>分布式存储管理 - lyhcc博客</title>
+<title>others/Java_NIO - lyhcc博客</title>
 
 
-    <meta name="description" content="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ 规模效应所带来的压力  传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能 适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机">
-<meta name="keywords" content="分布式存储管理,NoSSQL特点">
-<meta property="og:type" content="article">
-<meta property="og:title" content="分布式存储管理">
-<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;4faba951.html">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="others&#x2F;Java_NIO">
+<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;f2d80d11.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ 规模效应所带来的压力  传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能 适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-12T03:45:04.159Z">
+<meta property="og:updated_time" content="2019-11-17T06:20:40.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -81,7 +78,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="分布式存储管理" height="28">
+                <img src="/images/logo.svg" alt="others/Java_NIO" height="28">
             
             </a>
         </div>
@@ -138,17 +135,13 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.525Z">2019-11-16</time>
+                                <time class="level-item has-text-grey" datetime="2019-11-17T06:20:40.619Z">2019-11-17</time>
                                 
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>
-                                    </div>
-                                    
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 430 words)
+                    a few seconds read (About 0 words)
                 </span>
                                             
                                                 
@@ -157,100 +150,21 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                        分布式存储管理
+                                        others/Java_NIO
                                             
                             </h1>
                             <div class="content">
                                 
                                                     
     <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">NoSQL 特点</span></a></li></ol>
+        
     </div>
     
-                                                        <h2><span id="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的">为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？</span></h2><ol>
-<li><p>规模效应所带来的压力</p>
-<ul>
-<li>传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能</li>
-<li>适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机<a id="more"></a></li>
-</ul>
-</li>
-<li><p>数据类型的多样化<br> 传统数据类型：</p>
-<ul>
-<li>结构化数据<br>大数据时代的数据类型：</li>
-<li>结构化数据</li>
-<li>半结构化数据</li>
-<li>非结构化数据</li>
-</ul>
-</li>
-<li><p>设计理念所带来的冲突</p>
-<ul>
-<li>关系型数据库 One size fits all ,即面对不同问题不需要重新考虑数据管理问题<br>  简单来说就是，单一模式可以适应所有变化</li>
-<li>新理念 “One size fits one” 和 “One size fits domain”</li>
-</ul>
-</li>
-<li><p>数据库的事务特性</p>
-<ul>
-<li>传统数据库ACID特性 A(Atom，原子性)，C(Consistency，一致性)，I(Isolation,隔离性)，D(Durability,持久性)</li>
-<li>大数据时代的数据库BASE。 Basically Available(基本可用)，Soft State(柔性状态)，Eventually Consistency(最终一致性)<br>根据分布式领域著名的CAP理论来看，ACID追求一致性C,而BASE更加关注A<br>一致性（Consistency）、可用性（Availability）、分区容错性（Partition tolerance）<br>新型数据库<a href="https://cloud.google.com/spanner/docs/?hl=zh-cn" target="_blank" rel="noopener">Spanner</a></li>
-</ul>
-</li>
-</ol>
-<h2><span id="nosql-特点">NoSQL 特点</span></h2><ul>
-<li>模式自由（Schema-free）</li>
-<li>支持简易备份（Easy Replication Support)</li>
-<li>简单应用程序接口（Simple API）</li>
-<li>最终一致性（或说支持BASE特性，不支持ACID特性）</li>
-<li>支持海量数据（Huge Amount of Data）</li>
-</ul>
-
+                                                        
                                                             
-                                                                <!-- <h2><span id="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的">为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？</span></h2><ol>
-<li><p>规模效应所带来的压力</p>
-<ul>
-<li>传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能</li>
-<li>适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机<a id="more"></a></li>
-</ul>
-</li>
-<li><p>数据类型的多样化<br> 传统数据类型：</p>
-<ul>
-<li>结构化数据<br>大数据时代的数据类型：</li>
-<li>结构化数据</li>
-<li>半结构化数据</li>
-<li>非结构化数据</li>
-</ul>
-</li>
-<li><p>设计理念所带来的冲突</p>
-<ul>
-<li>关系型数据库 One size fits all ,即面对不同问题不需要重新考虑数据管理问题<br>  简单来说就是，单一模式可以适应所有变化</li>
-<li>新理念 “One size fits one” 和 “One size fits domain”</li>
-</ul>
-</li>
-<li><p>数据库的事务特性</p>
-<ul>
-<li>传统数据库ACID特性 A(Atom，原子性)，C(Consistency，一致性)，I(Isolation,隔离性)，D(Durability,持久性)</li>
-<li>大数据时代的数据库BASE。 Basically Available(基本可用)，Soft State(柔性状态)，Eventually Consistency(最终一致性)<br>根据分布式领域著名的CAP理论来看，ACID追求一致性C,而BASE更加关注A<br>一致性（Consistency）、可用性（Availability）、分区容错性（Partition tolerance）<br>新型数据库<a href="https://cloud.google.com/spanner/docs/?hl=zh-cn" target="_blank" rel="noopener">Spanner</a></li>
-</ul>
-</li>
-</ol>
-<h2><span id="nosql-特点">NoSQL 特点</span></h2><ul>
-<li>模式自由（Schema-free）</li>
-<li>支持简易备份（Easy Replication Support)</li>
-<li>简单应用程序接口（Simple API）</li>
-<li>最终一致性（或说支持BASE特性，不支持ACID特性）</li>
-<li>支持海量数据（Huge Amount of Data）</li>
-</ul>
- -->
+                                                                <!--  -->
                             </div>
                             
-                                <div class="level is-size-7 is-uppercase">
-                                    <div class="level-start">
-                                        <div class="level-item">
-                                            <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                                            <a class="has-link-grey -link" href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" rel="tag">NoSSQL特点</a>, <a class="has-link-grey -link" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" rel="tag">分布式存储管理</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                
                                     
                                             
                 </div>
@@ -299,14 +213,14 @@
                     <div class="card card-transparent">
                         <div class="level post-navigation is-flex-wrap is-mobile">
                             
-                                <div class="level-start">
-                                    <a class="level level-item has-link-grey  article-nav-prev" href="/post/2260.html">
-                                        <i class="level-item fas fa-chevron-left"></i>
-                                        <span class="level-item">大数据介绍</span>
-                                    </a>
-                                </div>
-                                
                                     
+                                        <div class="level-end">
+                                            <a class="level level-item has-link-grey  article-nav-next" href="/post/e63a7813.html">
+                                                <span class="level-item">Java动态代理</span>
+                                                <i class="level-item fas fa-chevron-right"></i>
+                                            </a>
+                                        </div>
+                                        
                         </div>
                     </div>
                     
@@ -1160,7 +1074,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="分布式存储管理" height="28">
+                    <img src="/images/logo.svg" alt="others/Java_NIO" height="28">
                 
                 </a>
                 <p class="is-size-7">

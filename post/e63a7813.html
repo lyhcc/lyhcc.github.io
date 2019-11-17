@@ -8,19 +8,19 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>分布式存储管理 - lyhcc博客</title>
+<title>Java动态代理 - lyhcc博客</title>
 
 
-    <meta name="description" content="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ 规模效应所带来的压力  传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能 适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机">
-<meta name="keywords" content="分布式存储管理,NoSSQL特点">
+    <meta name="description" content="概述 Hadoop远程过程调用实现使用Java动态代理和新输入1输出系统(NewInput&#x2F;Output,NIO)     Java动态代理类位于java.lang.reflect包下，主要包括java.lang rlfct.Proxy和java.lang.reflect.InvocationHandler  代理对象两大任务    创建代理接口 实现由java.lang,reflect.Prox">
+<meta name="keywords" content="Java代理机制,Java Proxy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分布式存储管理">
-<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;4faba951.html">
+<meta property="og:title" content="Java动态代理">
+<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;e63a7813.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ 规模效应所带来的压力  传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能 适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机">
+<meta property="og:description" content="概述 Hadoop远程过程调用实现使用Java动态代理和新输入1输出系统(NewInput&#x2F;Output,NIO)     Java动态代理类位于java.lang.reflect包下，主要包括java.lang rlfct.Proxy和java.lang.reflect.InvocationHandler  代理对象两大任务    创建代理接口 实现由java.lang,reflect.Prox">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-12T03:45:04.159Z">
+<meta property="og:updated_time" content="2019-11-17T08:55:08.704Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -81,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="分布式存储管理" height="28">
+                <img src="/images/logo.svg" alt="Java动态代理" height="28">
             
             </a>
         </div>
@@ -138,17 +138,17 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.525Z">2019-11-16</time>
+                                <time class="level-item has-text-grey" datetime="2019-11-17T06:12:49.807Z">2019-11-17</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>
+                                        <a class="has-link-grey -link" href="/categories/others/">others</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 430 words)
+                    7 minutes read (About 1119 words)
                 </span>
                                             
                                                 
@@ -157,88 +157,156 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                        分布式存储管理
+                                        Java动态代理
                                             
                             </h1>
                             <div class="content">
                                 
                                                     
     <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">NoSQL 特点</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">代理接口的创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">java.lang.eflct.Proxy比较重要的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">调用转发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">Java动态代理实例</span></a></li></ol>
     </div>
     
-                                                        <h2><span id="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的">为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？</span></h2><ol>
-<li><p>规模效应所带来的压力</p>
-<ul>
-<li>传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能</li>
-<li>适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机<a id="more"></a></li>
-</ul>
-</li>
-<li><p>数据类型的多样化<br> 传统数据类型：</p>
-<ul>
-<li>结构化数据<br>大数据时代的数据类型：</li>
-<li>结构化数据</li>
-<li>半结构化数据</li>
-<li>非结构化数据</li>
-</ul>
-</li>
-<li><p>设计理念所带来的冲突</p>
-<ul>
-<li>关系型数据库 One size fits all ,即面对不同问题不需要重新考虑数据管理问题<br>  简单来说就是，单一模式可以适应所有变化</li>
-<li>新理念 “One size fits one” 和 “One size fits domain”</li>
-</ul>
-</li>
-<li><p>数据库的事务特性</p>
-<ul>
-<li>传统数据库ACID特性 A(Atom，原子性)，C(Consistency，一致性)，I(Isolation,隔离性)，D(Durability,持久性)</li>
-<li>大数据时代的数据库BASE。 Basically Available(基本可用)，Soft State(柔性状态)，Eventually Consistency(最终一致性)<br>根据分布式领域著名的CAP理论来看，ACID追求一致性C,而BASE更加关注A<br>一致性（Consistency）、可用性（Availability）、分区容错性（Partition tolerance）<br>新型数据库<a href="https://cloud.google.com/spanner/docs/?hl=zh-cn" target="_blank" rel="noopener">Spanner</a></li>
-</ul>
-</li>
+                                                        <h2><span id="概述">概述</span></h2><blockquote>
+<p>Hadoop远程过程调用实现使用Java动态代理和新输入1输出系统(NewInput/Output,NIO)  </p>
+</blockquote>
+<blockquote>
+<p>Java动态代理类位于java.lang.reflect包下，主要包括java.lang rlfct.Proxy和java.lang.reflect.InvocationHandler</p>
+</blockquote>
+<p><strong>代理对象两大任务</strong>  </p>
+<ol>
+<li>创建代理接口<br> 实现由java.lang,reflect.Proxy完成</li>
+<li>调用转发<br>通过java.lang.reflect.InvocationHandler的实例完成</li>
 </ol>
-<h2><span id="nosql-特点">NoSQL 特点</span></h2><ul>
-<li>模式自由（Schema-free）</li>
-<li>支持简易备份（Easy Replication Support)</li>
-<li>简单应用程序接口（Simple API）</li>
-<li>最终一致性（或说支持BASE特性，不支持ACID特性）</li>
-<li>支持海量数据（Huge Amount of Data）</li>
+<h2><span id="代理接口的创建">代理接口的创建</span></h2><blockquote>
+<p>在Java中，代理对象往往实现和目标对象-致的接口，并作为目标对象的代替，接收对<br>象用户(Client) 的调用，并将全部或部分调用转发给目标对象</p>
+</blockquote>
+<blockquote>
+<p>代理也是拥有和目标对象一样的权利的‘人’， 简单的说， <strong>代理可以越俎代庖</strong>。实际上他是调用转发，将这个任务交给有权利实施的人</p>
+</blockquote>
+<center>代理时序图</center>   
+
+<p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191117143912.png" alt>  </p>
+<blockquote>
+<p>java.lang.eflct.Proxy提供了用于创建动态代理类和对象的静态方法。也就是说，通过java.lang.reflect.Proxy可以动态地创建某个接口实现</p>
+</blockquote>
+<h2><span id="javalangeflctproxy比较重要的方法">java.lang.eflct.Proxy比较重要的方法</span></h2><ul>
+<li><p>public static Class&lt;?&gt; getProxyClass(ClassLoader loader,</p>
+<pre><code>Class&lt;?&gt;... interfaces)</code></pre><blockquote>
+<p>获得代理类的java.lang.Class对象。该代理类将定义在指定的类加载器（参数loader）中，并将实现参数interfaces指定所有接口</p>
+</blockquote>
+<hr>
+<p><strong>注意</strong>： 这个类只创建一次，如果再次传入相同的loader和interfaces给newProxyInstance()方法，获得的也只是第一次调用创建的那个java.lang.Class对象</p>
+<hr>
+<blockquote>
+<p>通过Proxy.getProxyClass()获得的代理类都包含一个构造函数,该构造函数需要一个java.lang.reflect.InvocationHandler 的实例</p>
+</blockquote>
+<p><strong>如何获取Proxy对象？</strong>，请看以下代码</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Class clss = Proxy.getProxyClass(loader, interfaces);</span><br><span class="line"><span class="hljs-comment">//获得构造函数</span></span><br><span class="line">Constructor constructor = clss.getConstructor(<span class="hljs-keyword">new</span> Class[]&#123;InvocationHandler.class&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//创建代理对象</span></span><br><span class="line">Object proxy = constructor.newInstance(<span class="hljs-keyword">new</span> Object[]&#123;invocationHandler&#125;);</span><br></pre></td></tr></table></figure></li>
+<li><p>public static boolean isProxyClass(Class&lt;?&gt; cl) </p>
+<blockquote>
+<p>判断java.lang.Class对象是否是代理类</p>
+</blockquote>
+</li>
+<li><p>public static InvocationHandler getInvocationHandler(Object proxy)</p>
+<pre><code>throws IllegalArgumentException</code></pre><blockquote>
+<p>获取代理实例对应的调用处理程序（即构建代理传入的InvocationHandler实例）</p>
+</blockquote>
+</li>
 </ul>
+<h2><span id="调用转发">调用转发</span></h2><blockquote>
+<p>InvocationHandler调用实例也叫调用句柄实例  </p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> proxy     代理对象本身</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> method    用户调用的代理对象上的方法</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> args      传递给该方法的参数</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@return</span>          代理对象方法调用结果 </span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * java.lang.reflect.Method</span></span><br><span class="line"><span class="hljs-comment"> * 它提供了关于类或接口上某个方法以及如何访问该方法的信息</span></span><br><span class="line"><span class="hljs-comment"> * 其中的invoke方法可以在指定对象上调用对象的方法</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">@Override</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Method类中的invoke方法声明如下</strong>  </p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object obj, Object... args)</span></span></span><br><span class="line"><span class="hljs-function">        <span class="hljs-keyword">throws</span> IllegalAccessException, IllegalArgumentException,</span></span><br><span class="line"><span class="hljs-function">           InvocationTargetException</span></span><br></pre></td></tr></table></figure>
+<p>假设目标对象为target，实现转发代码如下</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                <span class="hljs-keyword">return</span> method.invoke(target, args);</span><br><span class="line">s&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="java动态代理实例">Java动态代理实例</span></h2><p><strong>实例类图</strong><br><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191117161540.png" alt>  </p>
+<p><strong>代码</strong>  </p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**DPStatus.java**/</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPStatus</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DPStatus</span><span class="hljs-params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, "</span> + name + <span class="hljs-string">"!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * PDQueryStatus.java</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * 动态代理机制与java远程调用不同，不需要继承什么接口</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">PDQueryStatus</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> DPStatus <span class="hljs-title">getStatus</span><span class="hljs-params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * DPQueryStatusImpl.java</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * PDQueryStatus的简单实现</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPQueryStatusImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">PDQueryStatus</span></span>&#123;</span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> DPStatus <span class="hljs-title">getStatus</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DPStatus(<span class="hljs-string">"Bitty"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="hljs-keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="hljs-keyword">import</span> java.text.MessageFormat;</span><br><span class="line"><span class="hljs-keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * DPInvocationHandler.java</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * 转发由该类实现</span></span><br><span class="line"><span class="hljs-comment"> * 该类中最重要的一部分是invoke方法，</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * 如果代理对象调用某个方法时，DPInvocationHandler.invoke将会被调用，</span></span><br><span class="line"><span class="hljs-comment"> * 传入invoke的method中，也就是说，PDQueryStatus.getStatus()就是是method对象，</span></span><br><span class="line"><span class="hljs-comment"> * 而getStatus()没有参数</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * 在这里完成代理转发的是</span></span><br><span class="line"><span class="hljs-comment"> * Object res = method.invoke(dpqs, args);</span></span><br><span class="line"><span class="hljs-comment"> * 当method是PDQueryStatus.getStatus()时，其效果就相当于</span></span><br><span class="line"><span class="hljs-comment"> * res = pdqs.getStatus()</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPInvocationHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//目标对象</span></span><br><span class="line">    <span class="hljs-keyword">private</span> DPQueryStatusImpl dpqs;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DPInvocationHandler</span><span class="hljs-params">(DPQueryStatusImpl dpqs)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.dpqs = dpqs;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//实现附加功能，在控制台输出调用参数的String表示</span></span><br><span class="line">        String msg = MessageFormat.format(<span class="hljs-string">"Calling method"</span>, method.getName(), Arrays.toString(args));</span><br><span class="line"></span><br><span class="line">        System.out.println(msg);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//调用转发</span></span><br><span class="line">        Object res = method.invoke(dpqs, args);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//其他附加功能</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * DPMain.java</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * 在这个类中使用create方法创建代理</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPMain</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> PDQueryStatus <span class="hljs-title">create</span><span class="hljs-params">(DPQueryStatusImpl dpqs)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//newProxyInstance(ClassLoader loader,Class&lt;?&gt;[] interfaces,InvocationHandler h)</span></span><br><span class="line">        <span class="hljs-comment">//参数准备</span></span><br><span class="line">        Class&lt;?&gt;[] interfaces = <span class="hljs-keyword">new</span> Class[]&#123;PDQueryStatus.class&#125;;</span><br><span class="line">        DPInvocationHandler handler = <span class="hljs-keyword">new</span> DPInvocationHandler(dpqs);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> (PDQueryStatus) Proxy.newProxyInstance(dpqs.getClass().getClassLoader(), interfaces, handler);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        PDQueryStatus pdqs = DPMain.create(<span class="hljs-keyword">new</span> DPQueryStatusImpl());</span><br><span class="line">        System.out.println(pdqs.getStatus());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
                                                             
-                                                                <!-- <h2><span id="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的">为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？</span></h2><ol>
-<li><p>规模效应所带来的压力</p>
-<ul>
-<li>传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能</li>
-<li>适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机<a id="more"></a></li>
-</ul>
-</li>
-<li><p>数据类型的多样化<br> 传统数据类型：</p>
-<ul>
-<li>结构化数据<br>大数据时代的数据类型：</li>
-<li>结构化数据</li>
-<li>半结构化数据</li>
-<li>非结构化数据</li>
-</ul>
-</li>
-<li><p>设计理念所带来的冲突</p>
-<ul>
-<li>关系型数据库 One size fits all ,即面对不同问题不需要重新考虑数据管理问题<br>  简单来说就是，单一模式可以适应所有变化</li>
-<li>新理念 “One size fits one” 和 “One size fits domain”</li>
-</ul>
-</li>
-<li><p>数据库的事务特性</p>
-<ul>
-<li>传统数据库ACID特性 A(Atom，原子性)，C(Consistency，一致性)，I(Isolation,隔离性)，D(Durability,持久性)</li>
-<li>大数据时代的数据库BASE。 Basically Available(基本可用)，Soft State(柔性状态)，Eventually Consistency(最终一致性)<br>根据分布式领域著名的CAP理论来看，ACID追求一致性C,而BASE更加关注A<br>一致性（Consistency）、可用性（Availability）、分区容错性（Partition tolerance）<br>新型数据库<a href="https://cloud.google.com/spanner/docs/?hl=zh-cn" target="_blank" rel="noopener">Spanner</a></li>
-</ul>
-</li>
+                                                                <!-- <h2><span id="概述">概述</span></h2><blockquote>
+<p>Hadoop远程过程调用实现使用Java动态代理和新输入1输出系统(NewInput/Output,NIO)  </p>
+</blockquote>
+<blockquote>
+<p>Java动态代理类位于java.lang.reflect包下，主要包括java.lang rlfct.Proxy和java.lang.reflect.InvocationHandler</p>
+</blockquote>
+<p><strong>代理对象两大任务</strong>  </p>
+<ol>
+<li>创建代理接口<br> 实现由java.lang,reflect.Proxy完成</li>
+<li>调用转发<br>通过java.lang.reflect.InvocationHandler的实例完成</li>
 </ol>
-<h2><span id="nosql-特点">NoSQL 特点</span></h2><ul>
-<li>模式自由（Schema-free）</li>
-<li>支持简易备份（Easy Replication Support)</li>
-<li>简单应用程序接口（Simple API）</li>
-<li>最终一致性（或说支持BASE特性，不支持ACID特性）</li>
-<li>支持海量数据（Huge Amount of Data）</li>
+<h2><span id="代理接口的创建">代理接口的创建</span></h2><blockquote>
+<p>在Java中，代理对象往往实现和目标对象-致的接口，并作为目标对象的代替，接收对<br>象用户(Client) 的调用，并将全部或部分调用转发给目标对象</p>
+</blockquote>
+<blockquote>
+<p>代理也是拥有和目标对象一样的权利的‘人’， 简单的说， <strong>代理可以越俎代庖</strong>。实际上他是调用转发，将这个任务交给有权利实施的人</p>
+</blockquote>
+<center>代理时序图</center>   
+
+<p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191117143912.png" alt>  </p>
+<blockquote>
+<p>java.lang.eflct.Proxy提供了用于创建动态代理类和对象的静态方法。也就是说，通过java.lang.reflect.Proxy可以动态地创建某个接口实现</p>
+</blockquote>
+<h2><span id="javalangeflctproxy比较重要的方法">java.lang.eflct.Proxy比较重要的方法</span></h2><ul>
+<li><p>public static Class&lt;?&gt; getProxyClass(ClassLoader loader,</p>
+<pre><code>Class&lt;?&gt;... interfaces)</code></pre><blockquote>
+<p>获得代理类的java.lang.Class对象。该代理类将定义在指定的类加载器（参数loader）中，并将实现参数interfaces指定所有接口</p>
+</blockquote>
+<hr>
+<p><strong>注意</strong>： 这个类只创建一次，如果再次传入相同的loader和interfaces给newProxyInstance()方法，获得的也只是第一次调用创建的那个java.lang.Class对象</p>
+<hr>
+<blockquote>
+<p>通过Proxy.getProxyClass()获得的代理类都包含一个构造函数,该构造函数需要一个java.lang.reflect.InvocationHandler 的实例</p>
+</blockquote>
+<p><strong>如何获取Proxy对象？</strong>，请看以下代码</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Class clss = Proxy.getProxyClass(loader, interfaces);</span><br><span class="line"><span class="hljs-comment">//获得构造函数</span></span><br><span class="line">Constructor constructor = clss.getConstructor(<span class="hljs-keyword">new</span> Class[]&#123;InvocationHandler.class&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">//创建代理对象</span></span><br><span class="line">Object proxy = constructor.newInstance(<span class="hljs-keyword">new</span> Object[]&#123;invocationHandler&#125;);</span><br></pre></td></tr></table></figure></li>
+<li><p>public static boolean isProxyClass(Class&lt;?&gt; cl) </p>
+<blockquote>
+<p>判断java.lang.Class对象是否是代理类</p>
+</blockquote>
+</li>
+<li><p>public static InvocationHandler getInvocationHandler(Object proxy)</p>
+<pre><code>throws IllegalArgumentException</code></pre><blockquote>
+<p>获取代理实例对应的调用处理程序（即构建代理传入的InvocationHandler实例）</p>
+</blockquote>
+</li>
 </ul>
+<h2><span id="调用转发">调用转发</span></h2><blockquote>
+<p>InvocationHandler调用实例也叫调用句柄实例  </p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> proxy     代理对象本身</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> method    用户调用的代理对象上的方法</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> args      传递给该方法的参数</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@return</span>          代理对象方法调用结果 </span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * java.lang.reflect.Method</span></span><br><span class="line"><span class="hljs-comment"> * 它提供了关于类或接口上某个方法以及如何访问该方法的信息</span></span><br><span class="line"><span class="hljs-comment"> * 其中的invoke方法可以在指定对象上调用对象的方法</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">@Override</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Method类中的invoke方法声明如下</strong>  </p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object obj, Object... args)</span></span></span><br><span class="line"><span class="hljs-function">        <span class="hljs-keyword">throws</span> IllegalAccessException, IllegalArgumentException,</span></span><br><span class="line"><span class="hljs-function">           InvocationTargetException</span></span><br></pre></td></tr></table></figure>
+<p>假设目标对象为target，实现转发代码如下</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                <span class="hljs-keyword">return</span> method.invoke(target, args);</span><br><span class="line">s&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="java动态代理实例">Java动态代理实例</span></h2><p><strong>实例类图</strong><br><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191117161540.png" alt>  </p>
+<p><strong>代码</strong>  </p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**DPStatus.java**/</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPStatus</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DPStatus</span><span class="hljs-params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, "</span> + name + <span class="hljs-string">"!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * PDQueryStatus.java</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * 动态代理机制与java远程调用不同，不需要继承什么接口</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">PDQueryStatus</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> DPStatus <span class="hljs-title">getStatus</span><span class="hljs-params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * DPQueryStatusImpl.java</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * PDQueryStatus的简单实现</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPQueryStatusImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">PDQueryStatus</span></span>&#123;</span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> DPStatus <span class="hljs-title">getStatus</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DPStatus(<span class="hljs-string">"Bitty"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="hljs-keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="hljs-keyword">import</span> java.text.MessageFormat;</span><br><span class="line"><span class="hljs-keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * DPInvocationHandler.java</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * 转发由该类实现</span></span><br><span class="line"><span class="hljs-comment"> * 该类中最重要的一部分是invoke方法，</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * 如果代理对象调用某个方法时，DPInvocationHandler.invoke将会被调用，</span></span><br><span class="line"><span class="hljs-comment"> * 传入invoke的method中，也就是说，PDQueryStatus.getStatus()就是是method对象，</span></span><br><span class="line"><span class="hljs-comment"> * 而getStatus()没有参数</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> * 在这里完成代理转发的是</span></span><br><span class="line"><span class="hljs-comment"> * Object res = method.invoke(dpqs, args);</span></span><br><span class="line"><span class="hljs-comment"> * 当method是PDQueryStatus.getStatus()时，其效果就相当于</span></span><br><span class="line"><span class="hljs-comment"> * res = pdqs.getStatus()</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> *</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPInvocationHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//目标对象</span></span><br><span class="line">    <span class="hljs-keyword">private</span> DPQueryStatusImpl dpqs;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DPInvocationHandler</span><span class="hljs-params">(DPQueryStatusImpl dpqs)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.dpqs = dpqs;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//实现附加功能，在控制台输出调用参数的String表示</span></span><br><span class="line">        String msg = MessageFormat.format(<span class="hljs-string">"Calling method"</span>, method.getName(), Arrays.toString(args));</span><br><span class="line"></span><br><span class="line">        System.out.println(msg);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//调用转发</span></span><br><span class="line">        Object res = method.invoke(dpqs, args);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//其他附加功能</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * DPMain.java</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> * 在这个类中使用create方法创建代理</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DPMain</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> PDQueryStatus <span class="hljs-title">create</span><span class="hljs-params">(DPQueryStatusImpl dpqs)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//newProxyInstance(ClassLoader loader,Class&lt;?&gt;[] interfaces,InvocationHandler h)</span></span><br><span class="line">        <span class="hljs-comment">//参数准备</span></span><br><span class="line">        Class&lt;?&gt;[] interfaces = <span class="hljs-keyword">new</span> Class[]&#123;PDQueryStatus.class&#125;;</span><br><span class="line">        DPInvocationHandler handler = <span class="hljs-keyword">new</span> DPInvocationHandler(dpqs);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> (PDQueryStatus) Proxy.newProxyInstance(dpqs.getClass().getClassLoader(), interfaces, handler);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        PDQueryStatus pdqs = DPMain.create(<span class="hljs-keyword">new</span> DPQueryStatusImpl());</span><br><span class="line">        System.out.println(pdqs.getStatus());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
  -->
                             </div>
                             
@@ -246,7 +314,7 @@
                                     <div class="level-start">
                                         <div class="level-item">
                                             <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                                            <a class="has-link-grey -link" href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" rel="tag">NoSSQL特点</a>, <a class="has-link-grey -link" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" rel="tag">分布式存储管理</a>
+                                            <a class="has-link-grey -link" href="/tags/Java-Proxy/" rel="tag">Java Proxy</a>, <a class="has-link-grey -link" href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" rel="tag">Java代理机制</a>
                                         </div>
                                     </div>
                                 </div>
@@ -300,13 +368,20 @@
                         <div class="level post-navigation is-flex-wrap is-mobile">
                             
                                 <div class="level-start">
-                                    <a class="level level-item has-link-grey  article-nav-prev" href="/post/2260.html">
+                                    <a class="level level-item has-link-grey  article-nav-prev" href="/post/f2d80d11.html">
                                         <i class="level-item fas fa-chevron-left"></i>
-                                        <span class="level-item">大数据介绍</span>
+                                        <span class="level-item">others/Java_NIO</span>
                                     </a>
                                 </div>
                                 
                                     
+                                        <div class="level-end">
+                                            <a class="level level-item has-link-grey  article-nav-next" href="/post/55cde24e.html">
+                                                <span class="level-item">Java远程调用</span>
+                                                <i class="level-item fas fa-chevron-right"></i>
+                                            </a>
+                                        </div>
+                                        
                         </div>
                     </div>
                     
@@ -1160,7 +1235,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="分布式存储管理" height="28">
+                    <img src="/images/logo.svg" alt="Java动态代理" height="28">
                 
                 </a>
                 <p class="is-size-7">
