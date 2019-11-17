@@ -8,16 +8,19 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>others/Java_NIO - lyhcc博客</title>
+<title>Java NIO - lyhcc博客</title>
 
 
-    <meta property="og:type" content="article">
-<meta property="og:title" content="others&#x2F;Java_NIO">
+    <meta name="description" content="Java基本套接字基本操作 连接远程机器。 发送数据。 接收数据。 关闭连接。 绑定端口。 监听入站数据。 在所绑定端口.上接受来自远程机器的连接。   其中，前四项用于客户端，后六项用于服务器，最后三项只有服务器才需要，即等待客户端的连接，这些操作通过ServerSocket类实现。">
+<meta name="keywords" content="Java NIO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java NIO">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;f2d80d11.html">
 <meta property="og:site_name" content="lyhcc博客">
+<meta property="og:description" content="Java基本套接字基本操作 连接远程机器。 发送数据。 接收数据。 关闭连接。 绑定端口。 监听入站数据。 在所绑定端口.上接受来自远程机器的连接。   其中，前四项用于客户端，后六项用于服务器，最后三项只有服务器才需要，即等待客户端的连接，这些操作通过ServerSocket类实现。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-17T06:20:40.752Z">
+<meta property="og:updated_time" content="2019-11-17T13:22:15.279Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -78,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="others/Java_NIO" height="28">
+                <img src="/images/logo.svg" alt="Java NIO" height="28">
             
             </a>
         </div>
@@ -137,11 +140,15 @@
                             <div class="level-left">
                                 <time class="level-item has-text-grey" datetime="2019-11-17T06:20:40.619Z">2019-11-17</time>
                                 
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/others/">others</a>
+                                    </div>
+                                    
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 0 words)
+                    11 minutes read (About 1709 words)
                 </span>
                                             
                                                 
@@ -150,21 +157,170 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                        others/Java_NIO
+                                        Java NIO
                                             
                             </h1>
                             <div class="content">
                                 
                                                     
     <div id="toc">
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">Java基本套接字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">基本操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">Java NIO基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">缓冲区</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">ByteBuffer的创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">ByteBuffer的读写</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">工具方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">通道</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">对象的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">数据的读写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">是否支持工作在非阻塞状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">和选择器配合工作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">选择器的打开关闭</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">获取/设置标志位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">SeverSocketChannel/SocketChannel配合工作的API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">注销选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">select方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">判断通道上等待操作的方法</span></a></li></ol></li></ol>
     </div>
     
-                                                        
+                                                        <h2><span id="java基本套接字">Java基本套接字</span></h2><h3><span id="基本操作">基本操作</span></h3><ul>
+<li>连接远程机器。</li>
+<li>发送数据。</li>
+<li>接收数据。</li>
+<li>关闭连接。</li>
+<li>绑定端口。</li>
+<li>监听入站数据。</li>
+<li>在所绑定端口.上接受来自远程机器的连接。</li>
+</ul>
+<blockquote>
+<p>其中，前四项用于客户端，后六项用于服务器，最后三项只有服务器才需要，即等待客<br>户端的连接，这些操作通过ServerSocket类实现。</p>
+</blockquote>
+<a id="more"></a>
+<p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191117201536.png" alt></p>
+<h2><span id="java-nio基础">Java NIO基础</span></h2><p><strong>概述</strong>  </p>
+<blockquote>
+<p>NIO解决一客户一线程所带来的开销大的问题<br>所谓一客户一线程是指，多个客户端访问同一个服务器进程时，服务器需要为每个请求创建一个服务线程</p>
+</blockquote>
+<blockquote>
+<p>并且非堵塞是NIO实现的重要功能之一，为了实现非堵塞，NIO引入了</p>
+<ul>
+<li>选择器 Selector</li>
+<li>通道 Channel<br>通道表示到实体(如硬件设备、文件、网络套接字或者可以执行一个或多个不同的的IO操作)的程序组件开放连接  </li>
+</ul>
+<p>通道可以注册一个选择器实例，通过该实例的select方法，用户可以询问“在一个或一组通道中，哪一个是当前需要的服务（即被读、写或被接受）“<br>在一个准备好的通道执行相应的I/O操作，就不需要等待，也就不会堵塞了</p>
+</blockquote>
+<h3><span id="缓冲区">缓冲区</span></h3><blockquote>
+<p>NIO中一个主要的特性是java.nio.Buffer。缓冲区(Buffer)提供了一个比流抽象的、更高效和可预测的I/O。Buffer 代表了一个有限容量的容器一其本质是一个数组，通道Channel使用Buffer实例来传输数据<br><strong>Buffer包含4个索引</strong>  </p>
+</blockquote>
+<ul>
+<li>capacity: 缓冲区总容量，可通过Buffer.capacity获取,并且是不可修改</li>
+<li>position: 缓冲区位置，即下一个要写入或读取的索引，获取/设置通过position()/position(int)</li>
+<li>limit: 缓冲区限制，即第一个不应该读取或写入的位置，获取/设置通过limit()/limit(int)</li>
+<li>mark: 缓冲区位置标记，通过mark()设置一个位置，reset()方法被调用后，position被置为mark<blockquote>
+<p>遵循如下规则</p>
+<blockquote>
+<p>0 ≤ mark ≤ position ≤ limit ≤ capacity</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h4><span id="bytebuffer的创建">ByteBuffer的创建</span></h4><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//直接创建缓冲区</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ByteBuffer <span class="hljs-title">allocate</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> capacity)</span>    </span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">//在某个字节数组上创建缓冲区</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ByteBuffer <span class="hljs-title">wrap</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span>[] array)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">//上面的调用下面的</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">//上一个方法的返回 wrap(array, 0, array.length)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ByteBuffer <span class="hljs-title">wrap</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span>[] array, <span class="hljs-keyword">int</span> offset, <span class="hljs-keyword">int</span> length)</span></span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这种方式与流的区别：流是单向的，而这种方式看读可写</p>
+</blockquote>
+<h4><span id="bytebuffer的读写">ByteBuffer的读写</span></h4><blockquote>
+<p>put()/get()方法：基于相对位置和绝对位置的读写<br>基于相对位置就是基于目前缓冲区位置position的当前值，从“下一个”位置读取或存放数据，并为position增加适当的值。  </p>
+<p>绝对位置的put)/get()方法，必须提供写入/读出的位置, 该方式的读写操作，不改变position的值</p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//相对位置</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">byte</span> <span class="hljs-title">get</span> <span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> ByteBuffer <span class="hljs-title">get</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span>[] dst)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> ByteBuffer <span class="hljs-title">get</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span>[] dst, <span class="hljs-keyword">int</span> offset，<span class="hljs-keyword">int</span> length)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> ByteBuffer <span class="hljs-title">put</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span> b)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> ByteBuffer <span class="hljs-title">put</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span>[] src)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> ByteBuffer <span class="hljs-title">put</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span>[] src, <span class="hljs-keyword">int</span> offset, <span class="hljs-keyword">int</span> length)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> ByteBuffer <span class="hljs-title">put</span> <span class="hljs-params">(ByteBuffer src)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">//绝对位置</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">byte</span> <span class="hljs-title">get</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> ByteBuffer <span class="hljs-title">put</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> index, <span class="hljs-keyword">byte</span> b)</span></span></span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>需要注意的是</strong> ，部分数据的get()/put()是不允许的。以写人<br>为例，如果要写入的数据量超过当前缓冲区允许写入的数据量(可通过Buffer.remaining()<br>方法获得该值)，则所有的数据都不会写入缓冲区，position的位置不变，put()方法抛出<br>BufferOverflowException异常。</p>
+<hr>
+<h4><span id="工具方法">工具方法</span></h4><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191117210951.png" alt>  </p>
+<ul>
+<li><p>clear() 通过clear()方法，缓冲区的poistion被设置为0, limit 设置为capacity,这样，缓冲区准备好接收新数据。后续的put()/readO调用，将数据从第-一个元素开始填入缓冲区，最多直到填满该缓冲区，达到limit位置(等于capacity)。</p>
+</li>
+<li><p>flip()方法用于将缓冲区准备为数据传出状态，该方法将limit设置为position后，将<br>position 设置为0。后续的get()/write()方法将从缓冲区的第一个元素开始传出数据，直到<br>limit位置。通过fip0方法和get(/write()方法配合，可以将前面利用put()/read)方法放入<br>缓冲区的所有数据读出(一直读到limit)。</p>
+</li>
+<li><p>rewind)方法将position设置为0，但不改变limit的值，如果需要多次读取缓冲区里的<br>数据，可以在两次读取间使用rewind()方法。</p>
+</li>
+<li><p>compact()方法将position和limit间的数据复制到缓冲区的开始位置，为后续的put()/<br>read()调用让出空间。调用结束后，poistion的值被设置为数据的长度，也就是原来的limit<br>减去position的值，而limit则设置为capacity。和clear()、fip() 等方法不同，compact() 不但改变了position 和limit的位置，还改变了缓冲区中的数据。  </p>
+<blockquote>
+<p>compact()主要用于在缓冲区中还有未写出的数据时，为读入数据准备空间:即在write()方法调用后和添加新数据的read)方法前调用compact()方法，将未写出的“剩余”数据移动到缓冲区前面，为后面read()方法提供释放空间。在图中，假设write()方法调用后，缓冲区处于“某工作状态”，这时，position 到limit间的数据为未写出的“剩余”数据，而limit到capacity的空间则是read)方法可以使用的空间，通过compact()操作，position 到limit 间的数据被挪到缓冲区的前面，position 的位置也被设置为“剩余”数据长度。接下来，开发人员就可以直接调用read0/put0方法，从position位置开始放入数据。该数据和原来的“剩余”数据- -起，构成了连续的可用数据。<br>  Buffer还支持一些其他功能，如直接缓冲区(directbuffer)、Java基本类型的put()/get()、缓冲区共享、复制、透视、字符编码转换等</p>
+</blockquote>
+</li>
+</ul>
+<h2><span id="通道">通道</span></h2><blockquote>
+<p>一个Channel的实例代表一个 和设备的 连接</p>
+</blockquote>
+<h3><span id="对象的创建">对象的创建</span></h3><h3><span id="数据的读写">数据的读写</span></h3><h3><span id="是否支持工作在非阻塞状态">是否支持工作在非阻塞状态</span></h3><h3><span id="和选择器配合工作">和选择器配合工作</span></h3><h2><span id="选择器">选择器</span></h2><h3><span id="选择器的打开关闭">选择器的打开关闭</span></h3><h3><span id="获取设置标志位">获取/设置标志位</span></h3><h3><span id="seversocketchannelsocketchannel配合工作的api">SeverSocketChannel/SocketChannel配合工作的API</span></h3><h3><span id="注销选择器">注销选择器</span></h3><h3><span id="select方法">select方法</span></h3><h3><span id="判断通道上等待操作的方法">判断通道上等待操作的方法</span></h3>
                                                             
-                                                                <!--  -->
+                                                                <!-- <h2><span id="java基本套接字">Java基本套接字</span></h2><h3><span id="基本操作">基本操作</span></h3><ul>
+<li>连接远程机器。</li>
+<li>发送数据。</li>
+<li>接收数据。</li>
+<li>关闭连接。</li>
+<li>绑定端口。</li>
+<li>监听入站数据。</li>
+<li>在所绑定端口.上接受来自远程机器的连接。</li>
+</ul>
+<blockquote>
+<p>其中，前四项用于客户端，后六项用于服务器，最后三项只有服务器才需要，即等待客<br>户端的连接，这些操作通过ServerSocket类实现。</p>
+</blockquote>
+<a id="more"></a>
+<p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191117201536.png" alt></p>
+<h2><span id="java-nio基础">Java NIO基础</span></h2><p><strong>概述</strong>  </p>
+<blockquote>
+<p>NIO解决一客户一线程所带来的开销大的问题<br>所谓一客户一线程是指，多个客户端访问同一个服务器进程时，服务器需要为每个请求创建一个服务线程</p>
+</blockquote>
+<blockquote>
+<p>并且非堵塞是NIO实现的重要功能之一，为了实现非堵塞，NIO引入了</p>
+<ul>
+<li>选择器 Selector</li>
+<li>通道 Channel<br>通道表示到实体(如硬件设备、文件、网络套接字或者可以执行一个或多个不同的的IO操作)的程序组件开放连接  </li>
+</ul>
+<p>通道可以注册一个选择器实例，通过该实例的select方法，用户可以询问“在一个或一组通道中，哪一个是当前需要的服务（即被读、写或被接受）“<br>在一个准备好的通道执行相应的I/O操作，就不需要等待，也就不会堵塞了</p>
+</blockquote>
+<h3><span id="缓冲区">缓冲区</span></h3><blockquote>
+<p>NIO中一个主要的特性是java.nio.Buffer。缓冲区(Buffer)提供了一个比流抽象的、更高效和可预测的I/O。Buffer 代表了一个有限容量的容器一其本质是一个数组，通道Channel使用Buffer实例来传输数据<br><strong>Buffer包含4个索引</strong>  </p>
+</blockquote>
+<ul>
+<li>capacity: 缓冲区总容量，可通过Buffer.capacity获取,并且是不可修改</li>
+<li>position: 缓冲区位置，即下一个要写入或读取的索引，获取/设置通过position()/position(int)</li>
+<li>limit: 缓冲区限制，即第一个不应该读取或写入的位置，获取/设置通过limit()/limit(int)</li>
+<li>mark: 缓冲区位置标记，通过mark()设置一个位置，reset()方法被调用后，position被置为mark<blockquote>
+<p>遵循如下规则</p>
+<blockquote>
+<p>0 ≤ mark ≤ position ≤ limit ≤ capacity</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h4><span id="bytebuffer的创建">ByteBuffer的创建</span></h4><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//直接创建缓冲区</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ByteBuffer <span class="hljs-title">allocate</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> capacity)</span>    </span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">//在某个字节数组上创建缓冲区</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ByteBuffer <span class="hljs-title">wrap</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span>[] array)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">//上面的调用下面的</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">//上一个方法的返回 wrap(array, 0, array.length)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> ByteBuffer <span class="hljs-title">wrap</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span>[] array, <span class="hljs-keyword">int</span> offset, <span class="hljs-keyword">int</span> length)</span></span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这种方式与流的区别：流是单向的，而这种方式看读可写</p>
+</blockquote>
+<h4><span id="bytebuffer的读写">ByteBuffer的读写</span></h4><blockquote>
+<p>put()/get()方法：基于相对位置和绝对位置的读写<br>基于相对位置就是基于目前缓冲区位置position的当前值，从“下一个”位置读取或存放数据，并为position增加适当的值。  </p>
+<p>绝对位置的put)/get()方法，必须提供写入/读出的位置, 该方式的读写操作，不改变position的值</p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//相对位置</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">byte</span> <span class="hljs-title">get</span> <span class="hljs-params">()</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> ByteBuffer <span class="hljs-title">get</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span>[] dst)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> ByteBuffer <span class="hljs-title">get</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span>[] dst, <span class="hljs-keyword">int</span> offset，<span class="hljs-keyword">int</span> length)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> ByteBuffer <span class="hljs-title">put</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span> b)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> ByteBuffer <span class="hljs-title">put</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span>[] src)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> ByteBuffer <span class="hljs-title">put</span> <span class="hljs-params">(<span class="hljs-keyword">byte</span>[] src, <span class="hljs-keyword">int</span> offset, <span class="hljs-keyword">int</span> length)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> ByteBuffer <span class="hljs-title">put</span> <span class="hljs-params">(ByteBuffer src)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-comment">//绝对位置</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">byte</span> <span class="hljs-title">get</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> ByteBuffer <span class="hljs-title">put</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> index, <span class="hljs-keyword">byte</span> b)</span></span></span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>需要注意的是</strong> ，部分数据的get()/put()是不允许的。以写人<br>为例，如果要写入的数据量超过当前缓冲区允许写入的数据量(可通过Buffer.remaining()<br>方法获得该值)，则所有的数据都不会写入缓冲区，position的位置不变，put()方法抛出<br>BufferOverflowException异常。</p>
+<hr>
+<h4><span id="工具方法">工具方法</span></h4><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191117210951.png" alt>  </p>
+<ul>
+<li><p>clear() 通过clear()方法，缓冲区的poistion被设置为0, limit 设置为capacity,这样，缓冲区准备好接收新数据。后续的put()/readO调用，将数据从第-一个元素开始填入缓冲区，最多直到填满该缓冲区，达到limit位置(等于capacity)。</p>
+</li>
+<li><p>flip()方法用于将缓冲区准备为数据传出状态，该方法将limit设置为position后，将<br>position 设置为0。后续的get()/write()方法将从缓冲区的第一个元素开始传出数据，直到<br>limit位置。通过fip0方法和get(/write()方法配合，可以将前面利用put()/read)方法放入<br>缓冲区的所有数据读出(一直读到limit)。</p>
+</li>
+<li><p>rewind)方法将position设置为0，但不改变limit的值，如果需要多次读取缓冲区里的<br>数据，可以在两次读取间使用rewind()方法。</p>
+</li>
+<li><p>compact()方法将position和limit间的数据复制到缓冲区的开始位置，为后续的put()/<br>read()调用让出空间。调用结束后，poistion的值被设置为数据的长度，也就是原来的limit<br>减去position的值，而limit则设置为capacity。和clear()、fip() 等方法不同，compact() 不但改变了position 和limit的位置，还改变了缓冲区中的数据。  </p>
+<blockquote>
+<p>compact()主要用于在缓冲区中还有未写出的数据时，为读入数据准备空间:即在write()方法调用后和添加新数据的read)方法前调用compact()方法，将未写出的“剩余”数据移动到缓冲区前面，为后面read()方法提供释放空间。在图中，假设write()方法调用后，缓冲区处于“某工作状态”，这时，position 到limit间的数据为未写出的“剩余”数据，而limit到capacity的空间则是read)方法可以使用的空间，通过compact()操作，position 到limit 间的数据被挪到缓冲区的前面，position 的位置也被设置为“剩余”数据长度。接下来，开发人员就可以直接调用read0/put0方法，从position位置开始放入数据。该数据和原来的“剩余”数据- -起，构成了连续的可用数据。<br>  Buffer还支持一些其他功能，如直接缓冲区(directbuffer)、Java基本类型的put()/get()、缓冲区共享、复制、透视、字符编码转换等</p>
+</blockquote>
+</li>
+</ul>
+<h2><span id="通道">通道</span></h2><blockquote>
+<p>一个Channel的实例代表一个 和设备的 连接</p>
+</blockquote>
+<h3><span id="对象的创建">对象的创建</span></h3><h3><span id="数据的读写">数据的读写</span></h3><h3><span id="是否支持工作在非阻塞状态">是否支持工作在非阻塞状态</span></h3><h3><span id="和选择器配合工作">和选择器配合工作</span></h3><h2><span id="选择器">选择器</span></h2><h3><span id="选择器的打开关闭">选择器的打开关闭</span></h3><h3><span id="获取设置标志位">获取/设置标志位</span></h3><h3><span id="seversocketchannelsocketchannel配合工作的api">SeverSocketChannel/SocketChannel配合工作的API</span></h3><h3><span id="注销选择器">注销选择器</span></h3><h3><span id="select方法">select方法</span></h3><h3><span id="判断通道上等待操作的方法">判断通道上等待操作的方法</span></h3> -->
                             </div>
                             
+                                <div class="level is-size-7 is-uppercase">
+                                    <div class="level-start">
+                                        <div class="level-item">
+                                            <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                                            <a class="has-link-grey -link" href="/tags/Java-NIO/" rel="tag">Java NIO</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                     
                                             
                 </div>
@@ -290,7 +446,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        24
+                        26
                     </p>
                 </div>
             </div>
@@ -413,7 +569,7 @@
                 <span class="level-item">others</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li>
             </ul>
@@ -426,7 +582,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a>
+        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a>
     </div>
 </div>
     
@@ -443,16 +599,16 @@
             
             <a href="/post/f2d80d11.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="others/Java_NIO">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java NIO">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-17T06:20:40.619Z">2019-11-17</time></div>
-                    <a href="/post/f2d80d11.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">others/Java_NIO</a>
+                    <a href="/post/f2d80d11.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java NIO</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/others/">others</a>
                     </p>
                 </div>
             </div>
@@ -598,6 +754,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-IPC/">
+                        <span class="tag">Hadoop IPC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Hadoop-RPC/">
                         <span class="tag">Hadoop RPC</span>
                         <span class="tag is-grey">1</span>
@@ -635,6 +798,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Hadoop配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java-NIO/">
+                        <span class="tag">Java NIO</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -763,16 +933,16 @@
             
             <a href="/post/f2d80d11.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="others/Java_NIO">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java NIO">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-17T06:20:40.619Z">2019-11-17</time></div>
-                    <a href="/post/f2d80d11.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">others/Java_NIO</a>
+                    <a href="/post/f2d80d11.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java NIO</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/others/">others</a>
                     </p>
                 </div>
             </div>
@@ -918,6 +1088,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-IPC/">
+                        <span class="tag">Hadoop IPC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Hadoop-RPC/">
                         <span class="tag">Hadoop RPC</span>
                         <span class="tag is-grey">1</span>
@@ -955,6 +1132,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Hadoop配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java-NIO/">
+                        <span class="tag">Java NIO</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1074,7 +1258,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="others/Java_NIO" height="28">
+                    <img src="/images/logo.svg" alt="Java NIO" height="28">
                 
                 </a>
                 <p class="is-size-7">

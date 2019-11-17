@@ -399,6 +399,9 @@ img.thumbnail {
   background: transparent;
   padding: 0;
 }
+.content blockquote {
+  border-left: 5px solid #2366d1;
+}
 .content blockquote footer strong + cite {
   margin-left: 0.5em;
 }
