@@ -8,19 +8,15 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>HDFS快照管理 - lyhcc博客</title>
+<title>Tag: RMI - lyhcc博客</title>
 
 
-    <meta name="description" content="快照管理 快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。">
-<meta name="keywords" content="HDFS快照">
-<meta property="og:type" content="article">
-<meta property="og:title" content="HDFS快照管理">
-<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;21534.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="lyhcc博客">
+<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;tags&#x2F;RMI&#x2F;index.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="快照管理 快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-07T11:14:35.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -81,7 +77,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="HDFS快照管理" height="28">
+                <img src="/images/logo.svg" alt="lyhcc博客" height="28">
             
             </a>
         </div>
@@ -131,24 +127,35 @@
                 <div class="container">
                     <div class="columns">
                         <div class="column is-8-tablet is-8-desktop is-7-widescreen has-order-2 column-main">
-                            
+                            <div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">Tags</a></li>
+            <li class="is-active"><a href="#" aria-current="page">RMI</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    
     <div class="card">
         
                 <div class="card-content article ">
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.637Z">2019-11-16</time>
+                                <time class="level-item has-text-grey" datetime="2019-11-17T04:52:38.134Z">2019-11-17</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/HDFS/">HDFS</a>
+                                        <a class="has-link-grey -link" href="/categories/others/">others</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 795 words)
+                    3 minutes read (About 483 words)
                 </span>
                                             
                                                 
@@ -157,150 +164,67 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                        HDFS快照管理
-                                            
+                                    <a class="has-link-black-ter" href="/post/55cde24e.html">
+                                        Java远程调用
+                                    </a>
+                                    
                             </h1>
                             <div class="content">
                                 
                                                     
     <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">快照管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">快照影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">基本语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">案例实操</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">远程方法调用实例</span></a></li></ol>
     </div>
     
-                                                        <h2><span id="快照管理">快照管理</span></h2><blockquote>
-<p>快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。</p>
+                                                        <h2><span id="概述">概述</span></h2><blockquote>
+<p>Java远程方法调用(Remote Method Invocation, RMI)是Java的一个核心API和类库,<br>允许一个Java虚拟机上运行的Java程序调用不同虚拟机上运行的对象中的方法，即使这两个<br>虚拟机运行于物理隔离的不同主机上。在某种程度上，RMI可以看成RPC的Java升级版。</p>
 </blockquote>
-<a id="more"></a>
-<h3><span id="快照影响">快照影响</span></h3><ul>
-<li>快照创建瞬间完成，所耗时间成本为O(1)</li>
-<li>快照修改时才会使用额外的额外的内存空间，内存成本O(M),M表示修改过的文件或目录数</li>
-<li>快照记录块和文件大小，不对DataNode中的块进行复制</li>
-<li><em>说明：*</em> 快照可以在HDFS任何目录下设置，一个目录最多容纳65536个并发快照</li>
+<blockquote>
+<p>和RPC一样,存在服务端和客户端<br>典型服务器端应用程序 创建多个远程对象（Remote Object）,使这些对象能被客户端引用，并等待客户端调用远程对象的方法<br>典型的客户端程序 从服务器获得一个或多个远程对象的引用，然后调用远程对象的方法</p>
+</blockquote>
+<hr>
+<p>Java远程方法调用依赖于Java序列化，调用远程方法传的参数、返回值都是序列化对象</p>
+<hr>
+<h2><span id="远程方法调用实例">远程方法调用实例</span></h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**RMIQueryStatus.java**/</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.Remote;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">RMIQueryStatus</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Remote</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function">String <span class="hljs-title">getStatus</span><span class="hljs-params">(String name)</span> <span class="hljs-keyword">throws</span> RemoteException</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>RMIQueryStatus的定义要求</strong>  </p>
+<ul>
+<li>远程接口必须声明为public，否则客户端试着装载“实现远程接口”的远端对象时，会收到错误的消息。</li>
+<li>远程接口必须继承自java.rmi.Remote。</li>
+<li>远程接口中的每-一个方法，除了自定义的异常之外，必须将java.rmi.RemoteException<br>声明于其throws子句中。</li>
+<li>在远程方法声明中，作为参数或者返回值的远程对象，或者包含在其他非远程对象中<br>的远程对象，必须声明为其对应的远程接口，而不是实际的实现类。(这点在String类中并没有体现)</li>
 </ul>
-<h3><span id="基本语法">基本语法</span></h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">（1）hdfs dfsadmin -allowSnapshot 路径   （功能描述：开启指定目录的快照功能）</span><br><span class="line">（2）hdfs dfsadmin -disallowSnapshot 路径 （功能描述：禁用指定目录的快照功能，默认是禁用）</span><br><span class="line">（3）hdfs dfs -createSnapshot 路径        （功能描述：对目录创建快照）</span><br><span class="line">（4）hdfs dfs -createSnapshot 路径 名称   （功能描述：指定名称创建快照）</span><br><span class="line">（5）hdfs dfs -renameSnapshot 路径 旧名称 新名称 （功能描述：重命名快照）</span><br><span class="line">（6）hdfs lsSnapshottableDir         （功能描述：列出当前用户所有已快照目录）</span><br><span class="line">（7）hdfs snapshotDiff 路径1 路径2 （功能描述：比较两个快照目录的不同之处）</span><br><span class="line">（8）hdfs dfs -deleteSnapshot &lt;path&gt; &lt;snapshotName&gt;  （功能描述：删除快照）</span><br></pre></td></tr></table></figure>
-<h3><span id="案例实操">案例实操</span></h3><ol>
-<li><p>开启/禁用指定目录的快照功能</p>
-<blockquote>
-<p>指定创建目录的位置为 /tmp/snapshot(即快照的存储目录)，在指定目录之前必须创建目录，不然会报错</p>
-</blockquote>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -allowSnapshot /tmp/snapshot	</span><br><span class="line">hdfs dfsadmin -disallowSnapshot /tmp/snapshot	 //禁用时，对应的目录不允许存在快照</span><br></pre></td></tr></table></figure></li>
-<li><p>对目录创建快照</p>
-<blockquote>
-<p>只有被开启快照功能的目录才能创建快照</p>
-</blockquote>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -createSnapshot /tmp/snapshot		// 对目录创建快照</span><br><span class="line">hdfs dfs -createSnapshot /tmp/snapshot snapshot //重命名快照（注：快照是只读的，无法修改名）</span><br><span class="line">通过web访问hdfs://Master:9000/tmp/snapshot/.snapshot/s…..// 快照和源文件使用相同数据块</span><br></pre></td></tr></table></figure></li>
-<li><p>查看快照</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -lsr /tmp/snapshot/.snapshot/   //查看快照目录的详细信息</span><br><span class="line">hdfs lsSnapshottableDir                  //查看所有允许快照的目录</span><br></pre></td></tr></table></figure></li>
-<li><p>更改快照名字</p>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -renameSnapshot /tmp/snapshot/ snapshot snapshot1	</span><br><span class="line"></span><br><span class="line">注：路径只是你创建得名字/tmp/snapshot，不要带后边得/tmp/snapshot/.snapshot/，不然会出现</span><br><span class="line">hdfs dfs -renameSnapshot /tmp/snapshot/.snapshot/ snapshot1 snapshot</span><br><span class="line">renameSnapshot: Modification on a read-only snapshot is disallowed</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>比较两个快照目录的不同之处</p>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@vmaster opt]# hdfs snapshotDiff /tmp/snapshot s1 s2</span><br><span class="line">Difference between snapshot s1 and snapshot s2 under directory /tmp/snapshot:</span><br><span class="line">M	.</span><br><span class="line">+	./p</span><br></pre></td></tr></table></figure>
-<p> <strong>符号的意义：</strong>  </p>
-<table>
-<thead>
-<tr>
-<th>符号</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>+</td>
-<td>文件或者目录被创建</td>
-</tr>
-<tr>
-<td>-</td>
-<td>文件或目录被删除</td>
-</tr>
-<tr>
-<td>M</td>
-<td>文件或目录被修改</td>
-</tr>
-<tr>
-<td>R</td>
-<td>文件或目录被重命名</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>恢复快照</p>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.自定义创建一个快照名：hdfs dfs -createSnapshot /HAHA1 snapshot1</span><br><span class="line">2.展示原文件包含内容：Hadoop fs -ls /HAHA1</span><br><span class="line">3.里面有五个文件、删除其中1~2个</span><br><span class="line">/HAHA1/.snapshot/snapshot1</span><br><span class="line">4.回复快照：hdfs dfs -cp /HAHA1/.snapshot/snapshot1 /snapshot</span><br></pre></td></tr></table></figure></li>
-<li><p>删除快照                                             </p>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dfs dfs -deleteSnapshot 快照目录 快照名称</span><br><span class="line">dfs dfs -deleteSnapshot /tmp/snapshot snapshot1</span><br></pre></td></tr></table></figure></li>
-</ol>
+<p><strong>RMIQueryStatus的实现类</strong></p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**RMIQueryStatusImp.java**/</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.server.UnicastRemoteObject;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RMIQueryStatusImp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">UnicastRemoteObject</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">RMIQueryStatus</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">RMIQueryStatusImp</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getStatus</span><span class="hljs-params">(String name)</span> <span class="hljs-keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">"I'm "</span> + name + <span class="hljs-string">"."</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 
                                                             
-                                                                <!-- <h2><span id="快照管理">快照管理</span></h2><blockquote>
-<p>快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。</p>
+                                                                <!-- <h2><span id="概述">概述</span></h2><blockquote>
+<p>Java远程方法调用(Remote Method Invocation, RMI)是Java的一个核心API和类库,<br>允许一个Java虚拟机上运行的Java程序调用不同虚拟机上运行的对象中的方法，即使这两个<br>虚拟机运行于物理隔离的不同主机上。在某种程度上，RMI可以看成RPC的Java升级版。</p>
 </blockquote>
-<a id="more"></a>
-<h3><span id="快照影响">快照影响</span></h3><ul>
-<li>快照创建瞬间完成，所耗时间成本为O(1)</li>
-<li>快照修改时才会使用额外的额外的内存空间，内存成本O(M),M表示修改过的文件或目录数</li>
-<li>快照记录块和文件大小，不对DataNode中的块进行复制</li>
-<li><em>说明：*</em> 快照可以在HDFS任何目录下设置，一个目录最多容纳65536个并发快照</li>
+<blockquote>
+<p>和RPC一样,存在服务端和客户端<br>典型服务器端应用程序 创建多个远程对象（Remote Object）,使这些对象能被客户端引用，并等待客户端调用远程对象的方法<br>典型的客户端程序 从服务器获得一个或多个远程对象的引用，然后调用远程对象的方法</p>
+</blockquote>
+<hr>
+<p>Java远程方法调用依赖于Java序列化，调用远程方法传的参数、返回值都是序列化对象</p>
+<hr>
+<h2><span id="远程方法调用实例">远程方法调用实例</span></h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**RMIQueryStatus.java**/</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.Remote;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">RMIQueryStatus</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Remote</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function">String <span class="hljs-title">getStatus</span><span class="hljs-params">(String name)</span> <span class="hljs-keyword">throws</span> RemoteException</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>RMIQueryStatus的定义要求</strong>  </p>
+<ul>
+<li>远程接口必须声明为public，否则客户端试着装载“实现远程接口”的远端对象时，会收到错误的消息。</li>
+<li>远程接口必须继承自java.rmi.Remote。</li>
+<li>远程接口中的每-一个方法，除了自定义的异常之外，必须将java.rmi.RemoteException<br>声明于其throws子句中。</li>
+<li>在远程方法声明中，作为参数或者返回值的远程对象，或者包含在其他非远程对象中<br>的远程对象，必须声明为其对应的远程接口，而不是实际的实现类。(这点在String类中并没有体现)</li>
 </ul>
-<h3><span id="基本语法">基本语法</span></h3><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">（1）hdfs dfsadmin -allowSnapshot 路径   （功能描述：开启指定目录的快照功能）</span><br><span class="line">（2）hdfs dfsadmin -disallowSnapshot 路径 （功能描述：禁用指定目录的快照功能，默认是禁用）</span><br><span class="line">（3）hdfs dfs -createSnapshot 路径        （功能描述：对目录创建快照）</span><br><span class="line">（4）hdfs dfs -createSnapshot 路径 名称   （功能描述：指定名称创建快照）</span><br><span class="line">（5）hdfs dfs -renameSnapshot 路径 旧名称 新名称 （功能描述：重命名快照）</span><br><span class="line">（6）hdfs lsSnapshottableDir         （功能描述：列出当前用户所有已快照目录）</span><br><span class="line">（7）hdfs snapshotDiff 路径1 路径2 （功能描述：比较两个快照目录的不同之处）</span><br><span class="line">（8）hdfs dfs -deleteSnapshot &lt;path&gt; &lt;snapshotName&gt;  （功能描述：删除快照）</span><br></pre></td></tr></table></figure>
-<h3><span id="案例实操">案例实操</span></h3><ol>
-<li><p>开启/禁用指定目录的快照功能</p>
-<blockquote>
-<p>指定创建目录的位置为 /tmp/snapshot(即快照的存储目录)，在指定目录之前必须创建目录，不然会报错</p>
-</blockquote>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -allowSnapshot /tmp/snapshot	</span><br><span class="line">hdfs dfsadmin -disallowSnapshot /tmp/snapshot	 //禁用时，对应的目录不允许存在快照</span><br></pre></td></tr></table></figure></li>
-<li><p>对目录创建快照</p>
-<blockquote>
-<p>只有被开启快照功能的目录才能创建快照</p>
-</blockquote>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -createSnapshot /tmp/snapshot		// 对目录创建快照</span><br><span class="line">hdfs dfs -createSnapshot /tmp/snapshot snapshot //重命名快照（注：快照是只读的，无法修改名）</span><br><span class="line">通过web访问hdfs://Master:9000/tmp/snapshot/.snapshot/s…..// 快照和源文件使用相同数据块</span><br></pre></td></tr></table></figure></li>
-<li><p>查看快照</p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -lsr /tmp/snapshot/.snapshot/   //查看快照目录的详细信息</span><br><span class="line">hdfs lsSnapshottableDir                  //查看所有允许快照的目录</span><br></pre></td></tr></table></figure></li>
-<li><p>更改快照名字</p>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -renameSnapshot /tmp/snapshot/ snapshot snapshot1	</span><br><span class="line"></span><br><span class="line">注：路径只是你创建得名字/tmp/snapshot，不要带后边得/tmp/snapshot/.snapshot/，不然会出现</span><br><span class="line">hdfs dfs -renameSnapshot /tmp/snapshot/.snapshot/ snapshot1 snapshot</span><br><span class="line">renameSnapshot: Modification on a read-only snapshot is disallowed</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>比较两个快照目录的不同之处</p>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@vmaster opt]# hdfs snapshotDiff /tmp/snapshot s1 s2</span><br><span class="line">Difference between snapshot s1 and snapshot s2 under directory /tmp/snapshot:</span><br><span class="line">M	.</span><br><span class="line">+	./p</span><br></pre></td></tr></table></figure>
-<p> <strong>符号的意义：</strong>  </p>
-<table>
-<thead>
-<tr>
-<th>符号</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>+</td>
-<td>文件或者目录被创建</td>
-</tr>
-<tr>
-<td>-</td>
-<td>文件或目录被删除</td>
-</tr>
-<tr>
-<td>M</td>
-<td>文件或目录被修改</td>
-</tr>
-<tr>
-<td>R</td>
-<td>文件或目录被重命名</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>恢复快照</p>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.自定义创建一个快照名：hdfs dfs -createSnapshot /HAHA1 snapshot1</span><br><span class="line">2.展示原文件包含内容：Hadoop fs -ls /HAHA1</span><br><span class="line">3.里面有五个文件、删除其中1~2个</span><br><span class="line">/HAHA1/.snapshot/snapshot1</span><br><span class="line">4.回复快照：hdfs dfs -cp /HAHA1/.snapshot/snapshot1 /snapshot</span><br></pre></td></tr></table></figure></li>
-<li><p>删除快照                                             </p>
- <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dfs dfs -deleteSnapshot 快照目录 快照名称</span><br><span class="line">dfs dfs -deleteSnapshot /tmp/snapshot snapshot1</span><br></pre></td></tr></table></figure></li>
-</ol>
+<p><strong>RMIQueryStatus的实现类</strong></p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**RMIQueryStatusImp.java**/</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.RemoteException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.rmi.server.UnicastRemoteObject;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RMIQueryStatusImp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">UnicastRemoteObject</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">RMIQueryStatus</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">RMIQueryStatusImp</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getStatus</span><span class="hljs-params">(String name)</span> <span class="hljs-keyword">throws</span> RemoteException </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-string">"I'm "</span> + name + <span class="hljs-string">"."</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
  -->
                             </div>
                             
-                                <div class="level is-size-7 is-uppercase">
-                                    <div class="level-start">
-                                        <div class="level-item">
-                                            <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                                            <a class="has-link-grey -link" href="/tags/HDFS%E5%BF%AB%E7%85%A7/" rel="tag">HDFS快照</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                
                                     
                                             
                 </div>
@@ -308,67 +232,12 @@
 
     
         
-            <div class="card">
-                <div class="card-content">
-                    <h3 class="menu-label has-text-centered">
-                        Like this article? Support the author with
-                    </h3>
-                    <div class="buttons is-centered">
-                        
-                            
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
-</div>
-
-                                
-                            
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
-</div>
-
-                                
-                            <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
-
-<div class="notification is-danger">
-    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
-</div>
-
-                                
-                            
-<div class="notification is-danger">
-    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
-</div>
-
-                                
-                    </div>
-                </div>
-            </div>
-            
 
                 
-                    <div class="card card-transparent">
-                        <div class="level post-navigation is-flex-wrap is-mobile">
-                            
-                                <div class="level-start">
-                                    <a class="level level-item has-link-grey  article-nav-prev" href="/post/5429.html">
-                                        <i class="level-item fas fa-chevron-left"></i>
-                                        <span class="level-item">MapReduce介绍</span>
-                                    </a>
-                                </div>
-                                
-                                    
-                                        <div class="level-end">
-                                            <a class="level level-item has-link-grey  article-nav-next" href="/post/fa571a7.html">
-                                                <span class="level-item">配置文件</span>
-                                                <i class="level-item fas fa-chevron-right"></i>
-                                            </a>
-                                        </div>
-                                        
-                        </div>
-                    </div>
-                    
 
                         
+
+
                         </div>
                         
 
@@ -1175,7 +1044,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="HDFS快照管理" height="28">
+                    <img src="/images/logo.svg" alt="lyhcc博客" height="28">
                 
                 </a>
                 <p class="is-size-7">
