@@ -20,7 +20,7 @@
 <meta property="og:description" content="概述 Hadoop远程过程调用实现使用Java动态代理和新输入1输出系统(NewInput&#x2F;Output,NIO)     Java动态代理类位于java.lang.reflect包下，主要包括java.lang rlfct.Proxy和java.lang.reflect.InvocationHandler  代理对象两大任务    创建代理接口 实现由java.lang,reflect.Prox">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-17T08:55:08.704Z">
+<meta property="og:updated_time" content="2019-11-17T08:58:04.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -148,7 +148,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1119 words)
+                    7 minutes read (About 1120 words)
                 </span>
                                             
                                                 
@@ -176,11 +176,12 @@
 <p><strong>代理对象两大任务</strong>  </p>
 <ol>
 <li>创建代理接口<br> 实现由java.lang,reflect.Proxy完成</li>
-<li>调用转发<br>通过java.lang.reflect.InvocationHandler的实例完成</li>
-</ol>
+<li>调用转发<br>通过java.lang.reflect.InvocationHandler的实例完成<a id="more"></a>
 <h2><span id="代理接口的创建">代理接口的创建</span></h2><blockquote>
 <p>在Java中，代理对象往往实现和目标对象-致的接口，并作为目标对象的代替，接收对<br>象用户(Client) 的调用，并将全部或部分调用转发给目标对象</p>
 </blockquote>
+</li>
+</ol>
 <blockquote>
 <p>代理也是拥有和目标对象一样的权利的‘人’， 简单的说， <strong>代理可以越俎代庖</strong>。实际上他是调用转发，将这个任务交给有权利实施的人</p>
 </blockquote>
@@ -247,11 +248,12 @@
 <p><strong>代理对象两大任务</strong>  </p>
 <ol>
 <li>创建代理接口<br> 实现由java.lang,reflect.Proxy完成</li>
-<li>调用转发<br>通过java.lang.reflect.InvocationHandler的实例完成</li>
-</ol>
+<li>调用转发<br>通过java.lang.reflect.InvocationHandler的实例完成<a id="more"></a>
 <h2><span id="代理接口的创建">代理接口的创建</span></h2><blockquote>
 <p>在Java中，代理对象往往实现和目标对象-致的接口，并作为目标对象的代替，接收对<br>象用户(Client) 的调用，并将全部或部分调用转发给目标对象</p>
 </blockquote>
+</li>
+</ol>
 <blockquote>
 <p>代理也是拥有和目标对象一样的权利的‘人’， 简单的说， <strong>代理可以越俎代庖</strong>。实际上他是调用转发，将这个任务交给有权利实施的人</p>
 </blockquote>
