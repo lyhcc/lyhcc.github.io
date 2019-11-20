@@ -8,12 +8,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Tag: RMI - lyhcc博客</title>
+<title>Category: IPC - lyhcc博客</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="lyhcc博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;tags&#x2F;RMI&#x2F;index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;categories&#x2F;BigData&#x2F;Hadoop&#x2F;Hadoop-common&#x2F;IPC&#x2F;index.html">
 <meta property="og:site_name" content="lyhcc博客">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
@@ -131,8 +131,15 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/tags">Tags</a></li>
-            <li class="is-active"><a href="#" aria-current="page">RMI</a></li>
+            <li><a href="/categories">Categories</a></li>
+            
+            <li><a href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop common</a></li>
+            
+            <li><a href="/categories/BigData/Hadoop/">Hadoop</a></li>
+            
+            <li><a href="/categories/BigData/">BigData</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">IPC</a></li>
         </ul>
         </nav>
     </div>
@@ -145,17 +152,17 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-17T04:52:38.134Z">2019-11-17</time>
+                                <time class="level-item has-text-grey" datetime="2019-11-20T09:54:55.955Z">2019-11-20</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/others/">others</a>
+                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop common</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/IPC/">IPC</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 702 words)
+                    5 minutes read (About 750 words)
                 </span>
                                             
                                                 
@@ -164,40 +171,96 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/55cde24e.html">
-                                        Java远程调用
+                                    <a class="has-link-black-ter" href="/post/28a780a5.html">
+                                        Hadoop IPC 连接的建立
                                     </a>
                                     
                             </h1>
                             <div class="content">
                                 
-                                    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
-<p>Java远程方法调用(Remote Method Invocation, RMI)是Java的一个核心API和类库,<br>允许一个Java虚拟机上运行的Java程序调用不同虚拟机上运行的对象中的方法，即使这两个<br>虚拟机运行于物理隔离的不同主机上。在某种程度上，RMI可以看成RPC的Java升级版。</p>
-</blockquote>
+                                                    
+    <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">相关参数说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">相关方法说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">完整源代码（带注释）</span></a></li></ol>
+    </div>
+    
+                                                        <hr>
+<p>Hadoop 2.x</p>
+<hr>
+<h2><span id="相关参数说明">相关参数说明</span></h2><ul>
+<li>connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> ConcurrentMap&lt;Client.ConnectionId, Client.Connection&gt; connections;</span><br></pre></td></tr></table></figure></li>
+<li>calls 当前正在处理的远程调用，位于org.apache.hadoop.ipc.Client.Connection中  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> Hashtable&lt;Integer, Client.Call&gt; calls = <span class="hljs-keyword">new</span> Hashtable();</span><br></pre></td></tr></table></figure></li>
+<li>shouldCloseConnection 连接关闭标志  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> AtomicBoolean shouldCloseConnection = <span class="hljs-keyword">new</span> AtomicBoolean();</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2><span id="相关方法说明">相关方法说明</span></h2><ul>
+<li><p><strong>getConnection</strong></p>
 <blockquote>
-<p>和RPC一样,存在服务端和客户端<br>典型服务器端应用程序 创建多个远程对象（Remote Object）,使这些对象能被客户端引用，并等待客户端调用远程对象的方法<br>典型的客户端程序 从服务器获得一个或多个远程对象的引用，然后调用远程对象的方法</p>
+<p>Client需要获取连接的时候，调用getConnection方法，该方法先检查connections中是否存在满足条件的IPC连接。有，则 <strong>复用</strong> ，否则，创建新的连接<br>复用是指connection相等（connection里面的三个参数相等则说明两个connection相等），就使用同一个connection</p>
 </blockquote>
-                                        
-                                                
-                                                                <!-- <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
-<p>Java远程方法调用(Remote Method Invocation, RMI)是Java的一个核心API和类库,<br>允许一个Java虚拟机上运行的Java程序调用不同虚拟机上运行的对象中的方法，即使这两个<br>虚拟机运行于物理隔离的不同主机上。在某种程度上，RMI可以看成RPC的Java升级版。</p>
+<p>  <strong>相关代码如下</strong>  </p>
+  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    <span class="hljs-keyword">private</span> Client.<span class="hljs-function">Connection <span class="hljs-title">getConnection</span><span class="hljs-params">(Client.ConnectionId remoteId, Client.Call call, <span class="hljs-keyword">int</span> serviceClass, AtomicBoolean fallbackToSimpleAuth)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//首先，看看客户端是否还在运行</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.running.get()) &#123;</span><br><span class="line">        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IOException(<span class="hljs-string">"The client is stopped"</span>);</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">while</span>(<span class="hljs-keyword">true</span>) &#123;</span><br><span class="line">            <span class="hljs-comment">//2. 查一下是否存在remoteId对应的连接connection</span></span><br><span class="line">            Client.Connection connection = (Client.Connection)<span class="hljs-keyword">this</span>.connections.get(remoteId);</span><br><span class="line">            <span class="hljs-comment">//connection==null，表明不存在，就需要创建一个新的IPC连接</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (connection == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                <span class="hljs-comment">//创建连接</span></span><br><span class="line">                connection = <span class="hljs-keyword">new</span> Client.Connection(remoteId, serviceClass);</span><br><span class="line">                Client.Connection existing = (Client.Connection)<span class="hljs-keyword">this</span>.connections.putIfAbsent(remoteId, connection);</span><br><span class="line">                <span class="hljs-keyword">if</span> (existing != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                    connection = existing;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="hljs-comment">//将IPC调用放入IPC连接中</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (connection.addCall(call)) &#123;</span><br><span class="line">                connection.setupIOstreams(fallbackToSimpleAuth);</span><br><span class="line">                <span class="hljs-keyword">return</span> connection;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">this</span>.connections.remove(remoteId, connection);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>addCall</strong><blockquote>
+<p>作用是将一个IPC调用放入IPC连接中<br>&emsp;如果成员变量shouldCloseConnection为true, 返回false，这样可以防止将一个IPC调用放入一个已经关闭的IPC连接中。<br>&emsp;否则，将调用放入IPC连接calls中<br>再说一下，为什么会有这种情况？IPC来呢及可以在多个地方被触发,进入关闭过程，但知道Connection.close方法被调用，对应的connection才会在connections中删除。删除后的连接只有新建后才能将IPC调用传入连接中<br><strong>相关代码</strong>  </p>
 </blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">addCall</span><span class="hljs-params">(Client.Call call)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.shouldCloseConnection.get()) &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.calls.put(call.id, call);</span><br><span class="line">        <span class="hljs-comment">//notify是唤醒等待的线程，因为这个方法会有多个地方调用，但进来的只能有一个</span></span><br><span class="line">        <span class="hljs-keyword">this</span>.notify();</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>setupIOstreams</strong></p>
 <blockquote>
-<p>和RPC一样,存在服务端和客户端<br>典型服务器端应用程序 创建多个远程对象（Remote Object）,使这些对象能被客户端引用，并等待客户端调用远程对象的方法<br>典型的客户端程序 从服务器获得一个或多个远程对象的引用，然后调用远程对象的方法</p>
-</blockquote> -->
+<p>该方法是使客户端和服务器通过Socket连接起来<br>连接失败的话，会重传，最多maxRetries，可以设置${ipc.client.connect.max.retries}</p>
+  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setupIOstreams</span><span class="hljs-params">(AtomicBoolean fallbackToSimpleAuth)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.socket == <span class="hljs-keyword">null</span> &amp;&amp; !<span class="hljs-keyword">this</span>.shouldCloseConnection.get()) &#123;</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">            <span class="hljs-keyword">if</span> (Client.LOG.isDebugEnabled()) &#123;</span><br><span class="line">                Client.LOG.debug(<span class="hljs-string">"Connecting to "</span> + <span class="hljs-keyword">this</span>.server);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            Span span = Tracer.getCurrentSpan();</span><br><span class="line">            <span class="hljs-keyword">if</span> (span != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                span.addTimelineAnnotation(<span class="hljs-string">"IPC client connecting to "</span> + <span class="hljs-keyword">this</span>.server);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">short</span> numRetries = <span class="hljs-number">0</span>;</span><br><span class="line">            Random rand = <span class="hljs-keyword">null</span>;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">while</span>(<span class="hljs-keyword">true</span>) &#123;</span><br><span class="line">                    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">                     * 建立Socket连接，具体可以查看源代码Ctrl + 鼠标左键查看</span></span><br><span class="line"><span class="hljs-comment">                     * connection使用Socket连接设置了tcpNoDelay标志，禁用Nagle算法,无需等待直接发送</span></span><br><span class="line"><span class="hljs-comment">                     * 配置项$&#123;ipc.client.tcpnodelay&#125;</span></span><br><span class="line"><span class="hljs-comment">                     */</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.setupConnection(ticket);</span><br><span class="line">                ...</span><br><span class="line">                <span class="hljs-comment">//与IPC服务器进行握手</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.writeConnectionContext(<span class="hljs-keyword">this</span>.remoteId, <span class="hljs-keyword">this</span>.authMethod);</span><br><span class="line">                <span class="hljs-comment">//更改最后访问时间lastActivity,该变量也是Client成员变量</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.touch();</span><br><span class="line">                ...</span><br><span class="line">                <span class="hljs-comment">//启动接受进程</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.start();</span><br><span class="line">                ...</span><br><span class="line">                <span class="hljs-keyword">this</span>.close();</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<hr>
+<p>以上是客户端，下面为IPC连接的另一端</p>
+<hr>
+<h2><span id="完整源代码带注释">完整源代码（带注释）</span></h2>
+                                                            
+                                                                <!-- <hr>
+<p>Hadoop 2.x</p>
+<hr>
+<h2><span id="相关参数说明">相关参数说明</span></h2><ul>
+<li>connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> ConcurrentMap&lt;Client.ConnectionId, Client.Connection&gt; connections;</span><br></pre></td></tr></table></figure></li>
+<li>calls 当前正在处理的远程调用，位于org.apache.hadoop.ipc.Client.Connection中  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> Hashtable&lt;Integer, Client.Call&gt; calls = <span class="hljs-keyword">new</span> Hashtable();</span><br></pre></td></tr></table></figure></li>
+<li>shouldCloseConnection 连接关闭标志  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> AtomicBoolean shouldCloseConnection = <span class="hljs-keyword">new</span> AtomicBoolean();</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2><span id="相关方法说明">相关方法说明</span></h2><ul>
+<li><p><strong>getConnection</strong></p>
+<blockquote>
+<p>Client需要获取连接的时候，调用getConnection方法，该方法先检查connections中是否存在满足条件的IPC连接。有，则 <strong>复用</strong> ，否则，创建新的连接<br>复用是指connection相等（connection里面的三个参数相等则说明两个connection相等），就使用同一个connection</p>
+</blockquote>
+<p>  <strong>相关代码如下</strong>  </p>
+  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    <span class="hljs-keyword">private</span> Client.<span class="hljs-function">Connection <span class="hljs-title">getConnection</span><span class="hljs-params">(Client.ConnectionId remoteId, Client.Call call, <span class="hljs-keyword">int</span> serviceClass, AtomicBoolean fallbackToSimpleAuth)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//首先，看看客户端是否还在运行</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.running.get()) &#123;</span><br><span class="line">        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IOException(<span class="hljs-string">"The client is stopped"</span>);</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">while</span>(<span class="hljs-keyword">true</span>) &#123;</span><br><span class="line">            <span class="hljs-comment">//2. 查一下是否存在remoteId对应的连接connection</span></span><br><span class="line">            Client.Connection connection = (Client.Connection)<span class="hljs-keyword">this</span>.connections.get(remoteId);</span><br><span class="line">            <span class="hljs-comment">//connection==null，表明不存在，就需要创建一个新的IPC连接</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (connection == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                <span class="hljs-comment">//创建连接</span></span><br><span class="line">                connection = <span class="hljs-keyword">new</span> Client.Connection(remoteId, serviceClass);</span><br><span class="line">                Client.Connection existing = (Client.Connection)<span class="hljs-keyword">this</span>.connections.putIfAbsent(remoteId, connection);</span><br><span class="line">                <span class="hljs-keyword">if</span> (existing != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                    connection = existing;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="hljs-comment">//将IPC调用放入IPC连接中</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (connection.addCall(call)) &#123;</span><br><span class="line">                connection.setupIOstreams(fallbackToSimpleAuth);</span><br><span class="line">                <span class="hljs-keyword">return</span> connection;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">this</span>.connections.remove(remoteId, connection);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>addCall</strong><blockquote>
+<p>作用是将一个IPC调用放入IPC连接中<br>&emsp;如果成员变量shouldCloseConnection为true, 返回false，这样可以防止将一个IPC调用放入一个已经关闭的IPC连接中。<br>&emsp;否则，将调用放入IPC连接calls中<br>再说一下，为什么会有这种情况？IPC来呢及可以在多个地方被触发,进入关闭过程，但知道Connection.close方法被调用，对应的connection才会在connections中删除。删除后的连接只有新建后才能将IPC调用传入连接中<br><strong>相关代码</strong>  </p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">addCall</span><span class="hljs-params">(Client.Call call)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.shouldCloseConnection.get()) &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.calls.put(call.id, call);</span><br><span class="line">        <span class="hljs-comment">//notify是唤醒等待的线程，因为这个方法会有多个地方调用，但进来的只能有一个</span></span><br><span class="line">        <span class="hljs-keyword">this</span>.notify();</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>setupIOstreams</strong></p>
+<blockquote>
+<p>该方法是使客户端和服务器通过Socket连接起来<br>连接失败的话，会重传，最多maxRetries，可以设置${ipc.client.connect.max.retries}</p>
+  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setupIOstreams</span><span class="hljs-params">(AtomicBoolean fallbackToSimpleAuth)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.socket == <span class="hljs-keyword">null</span> &amp;&amp; !<span class="hljs-keyword">this</span>.shouldCloseConnection.get()) &#123;</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">            <span class="hljs-keyword">if</span> (Client.LOG.isDebugEnabled()) &#123;</span><br><span class="line">                Client.LOG.debug(<span class="hljs-string">"Connecting to "</span> + <span class="hljs-keyword">this</span>.server);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            Span span = Tracer.getCurrentSpan();</span><br><span class="line">            <span class="hljs-keyword">if</span> (span != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                span.addTimelineAnnotation(<span class="hljs-string">"IPC client connecting to "</span> + <span class="hljs-keyword">this</span>.server);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">short</span> numRetries = <span class="hljs-number">0</span>;</span><br><span class="line">            Random rand = <span class="hljs-keyword">null</span>;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">while</span>(<span class="hljs-keyword">true</span>) &#123;</span><br><span class="line">                    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">                     * 建立Socket连接，具体可以查看源代码Ctrl + 鼠标左键查看</span></span><br><span class="line"><span class="hljs-comment">                     * connection使用Socket连接设置了tcpNoDelay标志，禁用Nagle算法,无需等待直接发送</span></span><br><span class="line"><span class="hljs-comment">                     * 配置项$&#123;ipc.client.tcpnodelay&#125;</span></span><br><span class="line"><span class="hljs-comment">                     */</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.setupConnection(ticket);</span><br><span class="line">                ...</span><br><span class="line">                <span class="hljs-comment">//与IPC服务器进行握手</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.writeConnectionContext(<span class="hljs-keyword">this</span>.remoteId, <span class="hljs-keyword">this</span>.authMethod);</span><br><span class="line">                <span class="hljs-comment">//更改最后访问时间lastActivity,该变量也是Client成员变量</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.touch();</span><br><span class="line">                ...</span><br><span class="line">                <span class="hljs-comment">//启动接受进程</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.start();</span><br><span class="line">                ...</span><br><span class="line">                <span class="hljs-keyword">this</span>.close();</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<hr>
+<p>以上是客户端，下面为IPC连接的另一端</p>
+<hr>
+<h2><span id="完整源代码带注释">完整源代码（带注释）</span></h2> -->
                             </div>
                             
                                     
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/55cde24e.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
                                             
                 </div>
     </div>
