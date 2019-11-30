@@ -156,7 +156,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    10 minutes read (About 1444 words)
+                    10 minutes read (About 1446 words)
                 </span>
                                             
                                                 
@@ -171,125 +171,26 @@
                                     
                             </h1>
                             <div class="content">
-                                
-                                                    
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">KNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">Apriori</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">决策树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">CART</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">EM （Expectation Maximization）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">朴素贝叶斯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">K-means</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">PageRank</span></a></li></ol>
-    </div>
-    
-                                                        <h2><span id="knn">KNN</span></h2><p><strong>优点：</strong>  </p>
-<ol>
-<li>理论成熟，实现简单</li>
-</ol>
-<p><strong>缺点：</strong>  </p>
-<ol>
-<li>当样本不平衡时，如一个类的样本容量很大，而其他类样本容量很小时，有可能导致当输入一个新样本时，该样本的K个邻居中大容量类的样本占多数</li>
-<li>计算量较大</li>
-</ol>
-<h2><span id="apriori">Apriori</span></h2><p><strong>优点：</strong>  </p>
-<ol>
-<li>适合稀疏数据集。</li>
-<li>算法原理简单，易实现。</li>
-<li>适合事务数据库的关联规则挖掘  </li>
-</ol>
-<p><strong>缺点：</strong>  </p>
-<ol>
-<li>多次扫描事务数据库，需要很大的I/O负载<blockquote>
-<p>对每次k循环，侯选集Ck中的每个元素都必须通过扫描数据库一次来验证其是否加入Lk。假如有一个最大频繁项目集包含10个项的话，那么就至少需要扫描事务数据库10遍。</p>
-</blockquote>
-</li>
-<li>可能产生庞大的侯选集<blockquote>
-<p>由Lk-1产生k-侯选集Ck是指数增长的，例如104个1-频繁项目集就有可能产生接近107个元素的2-侯选集。如此大的侯选集对时间和主存空间都是一种挑战。</p>
-</blockquote>
-</li>
-</ol>
-<h2><span id="决策树">决策树</span></h2><p><strong>ID3</strong>  </p>
-<p><strong>优点：</strong>  </p>
-<ol>
-<li>理论清晰，方法简单</li>
-<li>学习能力强</li>
-<li>ID3算法在搜索的每一步都使用当前的所有训练样例，大大降低了对个别训练样例错误的敏感性</li>
-</ol>
-<p><strong>缺点：</strong>  </p>
-<ol>
-<li>只对比较小的数据集有效，且对噪声比较敏感，当训练数据集加大时，决策树可能会随之改变。</li>
-<li>ID3算法在搜索过程中不进行回溯。收敛到局部最优而不是全局最优</li>
-<li>ID3算法只能处理离散值的属性。</li>
-<li>信息增益度量存在一个内在偏置，它偏袒具有较多值的属性。如日期属性。</li>
-<li>ID3算法增长树的每一个分支的深度，直到恰好能对训练样例完美地分类。当数据中有噪声或训练样例的数量太少时，产生的树会过渡拟合训练样例。</li>
-</ol>
-<p><strong>ID3的改进 C4.5</strong></p>
-<p><strong>优点：</strong>  </p>
-<ul>
-<li>通过引入信息增益比，一定程度上对取值比较多的特征进行惩罚，避免出现过拟合的特性，提升决策树的泛化能力。</li>
-</ul>
-<h2><span id="cart">CART</span></h2><p><strong>优点：</strong>  </p>
-<ol>
-<li>可以处理连续值</li>
-</ol>
-<p><strong>缺点：</strong>  </p>
-<h2><span id="em-expectation-maximization">EM （Expectation Maximization）</span></h2><p><strong>优点：</strong>  </p>
-<ol>
-<li>简单稳定</li>
-</ol>
-<p><strong>缺点：</strong>  </p>
-<ol>
-<li>在缺失数据较多的情形,收敛的速度较慢，次数多，容易陷入局部最优</li>
-<li>对于某些情况下,要计算算法中的M步,即完成对似然函数的估计是非常困难的</li>
-<li>在某些情况下是要获得EM算法中的E步的期望显式是非常困难或者不可能的</li>
-</ol>
-<h2><span id="朴素贝叶斯">朴素贝叶斯</span></h2><p><strong>优点：</strong> </p>
-<ol>
-<li>生成式模型，通过计算概率来进行分类，可以用来处理多分类问题，</li>
-<li>对小规模的数据表现很好，适合多分类任务，适合增量式训练，算法也比较简单。</li>
-</ol>
-<p><strong>缺点：</strong></p>
-<ol>
-<li>对输入数据的表达形式很敏感，</li>
-<li>由于朴素贝叶斯的“朴素”特点，所以会带来一些准确率上的损失。</li>
-<li>需要计算先验概率，分类决策存在错误率。</li>
-</ol>
-<h2><span id="k-means">K-means</span></h2><p>优点：</p>
-<ol>
-<li>可解释性比较强。</li>
-<li>调参的参数仅为簇数k。</li>
-<li>相对于高斯混合模型而言收敛速度快，因而常用于高斯混合模型的初始值选择。K-means 的时间复杂度为 O(N⋅K⋅I) ，簇数 K 和 迭代次数 I 通常远小于N，所以可优化为 O(N) ，效率较高。</li>
-</ol>
-<p><strong>缺点：</strong></p>
-<ol>
-<li>对离群点敏感。</li>
-<li>K值难以事先选取，交叉验证不大适合</li>
-</ol>
-<h2><span id="pagerank">PageRank</span></h2><p><strong>优点：</strong>  </p>
-<ol>
-<li>PageRank算法通过网页间的链接来评价网页的重要性，在一定程度上避免和减少了人为因素对排序结果的影响；</li>
-<li>采用与查询无关的离线计算方式，使其具有较高的响应速度；</li>
-<li>一个网页只能通过别的网页对其引用来增加自身的PR值，且算法的均分策略使得一个网页的引用越多，被引用网页所获得的PR值就越少。 因此，算法可以有效避免那些为了提高网站的搜索排名而故意使用链接的行为。</li>
-</ol>
-<p><strong>缺点：</strong>  </p>
-<ol>
-<li>主题漂移问题<blockquote>
-<p>PageRank 算法仅利用网络的链接结构，无法判断网页内容上的相似性；且算法根据向外链接平均分配权值使得主题不相关的网页获得与主题相关的网页同样的重视度，出现主题漂移。</p>
-</blockquote>
-</li>
-<li>偏重旧网页问题<blockquote>
-<p>决定网页 P R 值的主要因素是指向它的链接个数的多少。一个含有重要价值的新网页，可能因为链接数目的限制很难出现在搜索结果的前面，而不能获得与实际价值相符的排名。 算法并不一定能反映网页的重要性，存在偏重旧网页现象。</p>
-</blockquote>
-</li>
-<li>忽视用户个性化问题<blockquote>
-<p>PageRank算法在设计之初，没有考虑用户的个性化需要。个性化搜索引擎的兴起，对 PageRank排序算法提出新的挑战。</p>
-</blockquote>
-</li>
-</ol>
-<hr>
-<p>参考：</p>
-<ul>
-<li>朴素贝叶斯 <a href="https://www.jianshu.com/p/6309e084ce64" target="_blank" rel="noopener">https://www.jianshu.com/p/6309e084ce64</a></li>
-<li>K-means <a href="https://www.cnblogs.com/massquantity/p/9416109.html" target="_blank" rel="noopener">https://www.cnblogs.com/massquantity/p/9416109.html</a></li>
-</ul>
 
-                                                            
-                                                                <!-- <h2><span id="knn">KNN</span></h2><p><strong>优点：</strong>  </p>
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#knn">KNN</a></li>
+<li><a href="#apriori">Apriori</a></li>
+<li><a href="#jue-ce-shu">决策树</a></li>
+<li><a href="#cart">CART</a></li>
+<li><a href="#em-expectation-maximization">EM （Expectation Maximization）</a></li>
+<li><a href="#po-su-bei-xie-si">朴素贝叶斯</a></li>
+<li><a href="#k-means">K-means</a></li>
+<li><a href="#pagerank">PageRank</a></li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+
+<h2 id="KNN"><a href="#KNN" class="headerlink" title="KNN"></a>KNN</h2><p><strong>优点：</strong>  </p>
 <ol>
 <li>理论成熟，实现简单</li>
 </ol>
@@ -298,111 +199,19 @@
 <li>当样本不平衡时，如一个类的样本容量很大，而其他类样本容量很小时，有可能导致当输入一个新样本时，该样本的K个邻居中大容量类的样本占多数</li>
 <li>计算量较大</li>
 </ol>
-<h2><span id="apriori">Apriori</span></h2><p><strong>优点：</strong>  </p>
-<ol>
-<li>适合稀疏数据集。</li>
-<li>算法原理简单，易实现。</li>
-<li>适合事务数据库的关联规则挖掘  </li>
-</ol>
-<p><strong>缺点：</strong>  </p>
-<ol>
-<li>多次扫描事务数据库，需要很大的I/O负载<blockquote>
-<p>对每次k循环，侯选集Ck中的每个元素都必须通过扫描数据库一次来验证其是否加入Lk。假如有一个最大频繁项目集包含10个项的话，那么就至少需要扫描事务数据库10遍。</p>
-</blockquote>
-</li>
-<li>可能产生庞大的侯选集<blockquote>
-<p>由Lk-1产生k-侯选集Ck是指数增长的，例如104个1-频繁项目集就有可能产生接近107个元素的2-侯选集。如此大的侯选集对时间和主存空间都是一种挑战。</p>
-</blockquote>
-</li>
-</ol>
-<h2><span id="决策树">决策树</span></h2><p><strong>ID3</strong>  </p>
-<p><strong>优点：</strong>  </p>
-<ol>
-<li>理论清晰，方法简单</li>
-<li>学习能力强</li>
-<li>ID3算法在搜索的每一步都使用当前的所有训练样例，大大降低了对个别训练样例错误的敏感性</li>
-</ol>
-<p><strong>缺点：</strong>  </p>
-<ol>
-<li>只对比较小的数据集有效，且对噪声比较敏感，当训练数据集加大时，决策树可能会随之改变。</li>
-<li>ID3算法在搜索过程中不进行回溯。收敛到局部最优而不是全局最优</li>
-<li>ID3算法只能处理离散值的属性。</li>
-<li>信息增益度量存在一个内在偏置，它偏袒具有较多值的属性。如日期属性。</li>
-<li>ID3算法增长树的每一个分支的深度，直到恰好能对训练样例完美地分类。当数据中有噪声或训练样例的数量太少时，产生的树会过渡拟合训练样例。</li>
-</ol>
-<p><strong>ID3的改进 C4.5</strong></p>
-<p><strong>优点：</strong>  </p>
-<ul>
-<li>通过引入信息增益比，一定程度上对取值比较多的特征进行惩罚，避免出现过拟合的特性，提升决策树的泛化能力。</li>
-</ul>
-<h2><span id="cart">CART</span></h2><p><strong>优点：</strong>  </p>
-<ol>
-<li>可以处理连续值</li>
-</ol>
-<p><strong>缺点：</strong>  </p>
-<h2><span id="em-expectation-maximization">EM （Expectation Maximization）</span></h2><p><strong>优点：</strong>  </p>
-<ol>
-<li>简单稳定</li>
-</ol>
-<p><strong>缺点：</strong>  </p>
-<ol>
-<li>在缺失数据较多的情形,收敛的速度较慢，次数多，容易陷入局部最优</li>
-<li>对于某些情况下,要计算算法中的M步,即完成对似然函数的估计是非常困难的</li>
-<li>在某些情况下是要获得EM算法中的E步的期望显式是非常困难或者不可能的</li>
-</ol>
-<h2><span id="朴素贝叶斯">朴素贝叶斯</span></h2><p><strong>优点：</strong> </p>
-<ol>
-<li>生成式模型，通过计算概率来进行分类，可以用来处理多分类问题，</li>
-<li>对小规模的数据表现很好，适合多分类任务，适合增量式训练，算法也比较简单。</li>
-</ol>
-<p><strong>缺点：</strong></p>
-<ol>
-<li>对输入数据的表达形式很敏感，</li>
-<li>由于朴素贝叶斯的“朴素”特点，所以会带来一些准确率上的损失。</li>
-<li>需要计算先验概率，分类决策存在错误率。</li>
-</ol>
-<h2><span id="k-means">K-means</span></h2><p>优点：</p>
-<ol>
-<li>可解释性比较强。</li>
-<li>调参的参数仅为簇数k。</li>
-<li>相对于高斯混合模型而言收敛速度快，因而常用于高斯混合模型的初始值选择。K-means 的时间复杂度为 O(N⋅K⋅I) ，簇数 K 和 迭代次数 I 通常远小于N，所以可优化为 O(N) ，效率较高。</li>
-</ol>
-<p><strong>缺点：</strong></p>
-<ol>
-<li>对离群点敏感。</li>
-<li>K值难以事先选取，交叉验证不大适合</li>
-</ol>
-<h2><span id="pagerank">PageRank</span></h2><p><strong>优点：</strong>  </p>
-<ol>
-<li>PageRank算法通过网页间的链接来评价网页的重要性，在一定程度上避免和减少了人为因素对排序结果的影响；</li>
-<li>采用与查询无关的离线计算方式，使其具有较高的响应速度；</li>
-<li>一个网页只能通过别的网页对其引用来增加自身的PR值，且算法的均分策略使得一个网页的引用越多，被引用网页所获得的PR值就越少。 因此，算法可以有效避免那些为了提高网站的搜索排名而故意使用链接的行为。</li>
-</ol>
-<p><strong>缺点：</strong>  </p>
-<ol>
-<li>主题漂移问题<blockquote>
-<p>PageRank 算法仅利用网络的链接结构，无法判断网页内容上的相似性；且算法根据向外链接平均分配权值使得主题不相关的网页获得与主题相关的网页同样的重视度，出现主题漂移。</p>
-</blockquote>
-</li>
-<li>偏重旧网页问题<blockquote>
-<p>决定网页 P R 值的主要因素是指向它的链接个数的多少。一个含有重要价值的新网页，可能因为链接数目的限制很难出现在搜索结果的前面，而不能获得与实际价值相符的排名。 算法并不一定能反映网页的重要性，存在偏重旧网页现象。</p>
-</blockquote>
-</li>
-<li>忽视用户个性化问题<blockquote>
-<p>PageRank算法在设计之初，没有考虑用户的个性化需要。个性化搜索引擎的兴起，对 PageRank排序算法提出新的挑战。</p>
-</blockquote>
-</li>
-</ol>
-<hr>
-<p>参考：</p>
-<ul>
-<li>朴素贝叶斯 <a href="https://www.jianshu.com/p/6309e084ce64" target="_blank" rel="noopener">https://www.jianshu.com/p/6309e084ce64</a></li>
-<li>K-means <a href="https://www.cnblogs.com/massquantity/p/9416109.html" target="_blank" rel="noopener">https://www.cnblogs.com/massquantity/p/9416109.html</a></li>
-</ul>
- -->
                             </div>
                             
                                     
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/85ed9b6d.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                             
                 </div>
     </div>
@@ -469,7 +278,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        13
                     </p>
                 </div>
             </div>
@@ -479,7 +288,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -613,6 +422,14 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Kafka/">
+            <span class="level-start">
+                <span class="level-item">Kafka</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Python/">
             <span class="level-start">
                 <span class="level-item">Python</span>
@@ -647,7 +464,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a>
+        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a>
     </div>
 </div>
     
@@ -659,6 +476,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/post/df89d65f.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka初始">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time></div>
+                    <a href="/post/df89d65f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka初始</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -731,25 +567,6 @@
                     <a href="/post/a9423fcb.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop IPC 数据分帧和读写</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/22365c12.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BigData/Hadoop/Hadoop_Common/IPC/IPC建立">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T11:37:40.771Z">2019-11-20</time></div>
-                    <a href="/post/22365c12.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">BigData/Hadoop/Hadoop_Common/IPC/IPC建立</a>
-                    <p class="is-size-7 is-uppercase">
-                        
                     </p>
                 </div>
             </div>
@@ -933,6 +750,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Java配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Kafka初识</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1031,6 +855,25 @@
         
         <article class="media">
             
+            <a href="/post/df89d65f.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka初始">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time></div>
+                    <a href="/post/df89d65f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka初始</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/85ed9b6d.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="十大经典算法的优缺点">
@@ -1100,25 +943,6 @@
                     <a href="/post/a9423fcb.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop IPC 数据分帧和读写</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/22365c12.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BigData/Hadoop/Hadoop_Common/IPC/IPC建立">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T11:37:40.771Z">2019-11-20</time></div>
-                    <a href="/post/22365c12.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">BigData/Hadoop/Hadoop_Common/IPC/IPC建立</a>
-                    <p class="is-size-7 is-uppercase">
-                        
                     </p>
                 </div>
             </div>
@@ -1302,6 +1126,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Java配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Kafka初识</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

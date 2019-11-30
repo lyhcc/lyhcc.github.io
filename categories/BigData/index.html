@@ -156,7 +156,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 270 words)
+                    2 minutes read (About 271 words)
                 </span>
                                             
                                                 
@@ -171,35 +171,30 @@
                                     
                             </h1>
                             <div class="content">
-                                
-                                                    
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">数据通信中定界的方法</span></a></li></ol>
-    </div>
-    
-                                                        <h2><span id="数据通信中定界的方法">数据通信中定界的方法</span></h2><ul>
-<li>定长消息:通信双方发送的消息长度是固定的，接收者只需要简单地将数据读入对应的缓冲区中，就可以获得消息。</li>
-<li>基于定界符:消息的结束由唯一标记指出，消息发送者在传输完数据后，添加一-个特殊的字节序列。这个特殊的标记不能在传输的数据中出现，接收者简单地扫描输入信<br>息并查找定界符，并将定位符前面的数据形成消息交给上层应用。</li>
-<li>显式长度:在具体消息前面附加一一个固定大小的字段，指示该消息包含多少字节。接<br>收者首先以定长消息的方式接受长度字段，然后根据这个长度接收消息。</li>
+
+                                <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#shu-ju-tong-xin-zhong-ding-jie-de-fang-fa">数据通信中定界的方法</a></li>
 </ul>
+<!-- tocstop -->
+
+</div>
+## 数据通信中定界的方法  
+- 定长消息:通信双方发送的消息长度是固定的，接收者只需要简单地将数据读入对应的缓冲区中，就可以获得消息。
+- 基于定界符:消息的结束由唯一标记指出，消息发送者在传输完数据后，添加一-个特殊的字节序列。这个特殊的标记不能在传输的数据中出现，接收者简单地扫描输入信
+息并查找定界符，并将定位符前面的数据形成消息交给上层应用。
+- 显式长度:在具体消息前面附加一一个固定大小的字段，指示该消息包含多少字节。接
+收者首先以定长消息的方式接受长度字段，然后根据这个长度接收消息。
+
 <p><strong>Hadoop IPC通信的定界方法</strong>  </p>
 <ul>
 <li>客户端-&gt;服务器端：显式长度</li>
 <li>服务器-&gt;客户端：定长消息，通过Writable序列化</li>
 </ul>
 
-                                                            
-                                                                <!-- <h2><span id="数据通信中定界的方法">数据通信中定界的方法</span></h2><ul>
-<li>定长消息:通信双方发送的消息长度是固定的，接收者只需要简单地将数据读入对应的缓冲区中，就可以获得消息。</li>
-<li>基于定界符:消息的结束由唯一标记指出，消息发送者在传输完数据后，添加一-个特殊的字节序列。这个特殊的标记不能在传输的数据中出现，接收者简单地扫描输入信<br>息并查找定界符，并将定位符前面的数据形成消息交给上层应用。</li>
-<li>显式长度:在具体消息前面附加一一个固定大小的字段，指示该消息包含多少字节。接<br>收者首先以定长消息的方式接受长度字段，然后根据这个长度接收消息。</li>
-</ul>
-<p><strong>Hadoop IPC通信的定界方法</strong>  </p>
-<ul>
-<li>客户端-&gt;服务器端：显式长度</li>
-<li>服务器-&gt;客户端：定长消息，通过Writable序列化</li>
-</ul>
- -->
                             </div>
                             
                                     
@@ -231,7 +226,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 997 words)
+                    7 minutes read (About 999 words)
                 </span>
                                             
                                                 
@@ -246,104 +241,44 @@
                                     
                             </h1>
                             <div class="content">
-                                
-                                                    
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">相关参数说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">相关方法说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">服务器端</span></a></li></ol></li></ol>
-    </div>
-    
-                                                        <hr>
-<p>Hadoop 2.x</p>
-<hr>
-<h2><span id="相关参数说明">相关参数说明</span></h2><ul>
-<li>connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> ConcurrentMap&lt;Client.ConnectionId, Client.Connection&gt; connections;</span><br></pre></td></tr></table></figure></li>
-<li>calls 当前正在处理的远程调用，位于org.apache.hadoop.ipc.Client.Connection中  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> Hashtable&lt;Integer, Client.Call&gt; calls = <span class="hljs-keyword">new</span> Hashtable();</span><br></pre></td></tr></table></figure></li>
-<li>shouldCloseConnection 连接关闭标志  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> AtomicBoolean shouldCloseConnection = <span class="hljs-keyword">new</span> AtomicBoolean();</span><br></pre></td></tr></table></figure>
 
+                                <div class="tocStart"></div>
 
+<!-- toc -->
 
-</li>
-</ul>
-<h2><span id="相关方法说明">相关方法说明</span></h2><ul>
-<li><p><strong>getConnection</strong></p>
-<blockquote>
-<p>Client需要获取连接的时候，调用getConnection方法，该方法先检查connections中是否存在满足条件的IPC连接。有，则 <strong>复用</strong> ，否则，创建新的连接<br>复用是指connection相等（connection里面的三个参数相等则说明两个connection相等），就使用同一个connection</p>
-</blockquote>
-<p>  <strong>相关代码如下</strong>  </p>
-  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    <span class="hljs-keyword">private</span> Client.<span class="hljs-function">Connection <span class="hljs-title">getConnection</span><span class="hljs-params">(Client.ConnectionId remoteId, Client.Call call, <span class="hljs-keyword">int</span> serviceClass, AtomicBoolean fallbackToSimpleAuth)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//首先，看看客户端是否还在运行</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.running.get()) &#123;</span><br><span class="line">        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IOException(<span class="hljs-string">"The client is stopped"</span>);</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">while</span>(<span class="hljs-keyword">true</span>) &#123;</span><br><span class="line">            <span class="hljs-comment">//2. 查一下是否存在remoteId对应的连接connection</span></span><br><span class="line">            Client.Connection connection = (Client.Connection)<span class="hljs-keyword">this</span>.connections.get(remoteId);</span><br><span class="line">            <span class="hljs-comment">//connection==null，表明不存在，就需要创建一个新的IPC连接</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (connection == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                <span class="hljs-comment">//创建连接</span></span><br><span class="line">                connection = <span class="hljs-keyword">new</span> Client.Connection(remoteId, serviceClass);</span><br><span class="line">                Client.Connection existing = (Client.Connection)<span class="hljs-keyword">this</span>.connections.putIfAbsent(remoteId, connection);</span><br><span class="line">                <span class="hljs-keyword">if</span> (existing != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                    connection = existing;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="hljs-comment">//将IPC调用放入IPC连接中</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (connection.addCall(call)) &#123;</span><br><span class="line">                connection.setupIOstreams(fallbackToSimpleAuth);</span><br><span class="line">                <span class="hljs-keyword">return</span> connection;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">this</span>.connections.remove(remoteId, connection);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><strong>addCall</strong><blockquote>
-<p>作用是将一个IPC调用放入IPC连接中<br>&emsp;如果成员变量shouldCloseConnection为true, 返回false，这样可以防止将一个IPC调用放入一个已经关闭的IPC连接中。<br>&emsp;否则，将调用放入IPC连接calls中<br>再说一下，为什么会有这种情况？IPC来呢及可以在多个地方被触发,进入关闭过程，但知道Connection.close方法被调用，对应的connection才会在connections中删除。删除后的连接只有新建后才能将IPC调用传入连接中<br><strong>相关代码</strong>  </p>
-</blockquote>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">addCall</span><span class="hljs-params">(Client.Call call)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.shouldCloseConnection.get()) &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.calls.put(call.id, call);</span><br><span class="line">        <span class="hljs-comment">//notify是唤醒等待的线程，因为这个方法会有多个地方调用，但进来的只能有一个</span></span><br><span class="line">        <span class="hljs-keyword">this</span>.notify();</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><a href="#xiang-guan-can-shu-shuo-ming">相关参数说明</a></li>
+<li><a href="#xiang-guan-fang-fa-shuo-ming">相关方法说明</a><ul>
+<li><a href="#fu-wu-qi-duan">服务器端</a></li>
 </ul>
 </li>
-<li><p><strong>setupIOstreams</strong></p>
-<blockquote>
-<p>该方法是使客户端和服务器通过Socket连接起来<br>连接失败的话，会重传，最多maxRetries，可以设置${ipc.client.connect.max.retries}</p>
-  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setupIOstreams</span><span class="hljs-params">(AtomicBoolean fallbackToSimpleAuth)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.socket == <span class="hljs-keyword">null</span> &amp;&amp; !<span class="hljs-keyword">this</span>.shouldCloseConnection.get()) &#123;</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">            <span class="hljs-keyword">if</span> (Client.LOG.isDebugEnabled()) &#123;</span><br><span class="line">                Client.LOG.debug(<span class="hljs-string">"Connecting to "</span> + <span class="hljs-keyword">this</span>.server);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            Span span = Tracer.getCurrentSpan();</span><br><span class="line">            <span class="hljs-keyword">if</span> (span != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                span.addTimelineAnnotation(<span class="hljs-string">"IPC client connecting to "</span> + <span class="hljs-keyword">this</span>.server);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">short</span> numRetries = <span class="hljs-number">0</span>;</span><br><span class="line">            Random rand = <span class="hljs-keyword">null</span>;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">while</span>(<span class="hljs-keyword">true</span>) &#123;</span><br><span class="line">                    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">                     * 建立Socket连接，具体可以查看源代码Ctrl + 鼠标左键查看</span></span><br><span class="line"><span class="hljs-comment">                     * connection使用Socket连接设置了tcpNoDelay标志，禁用Nagle算法,无需等待直接发送</span></span><br><span class="line"><span class="hljs-comment">                     * 配置项$&#123;ipc.client.tcpnodelay&#125;</span></span><br><span class="line"><span class="hljs-comment">                     */</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.setupConnection(ticket);</span><br><span class="line">                ...</span><br><span class="line">                <span class="hljs-comment">//与IPC服务器进行握手</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.writeConnectionContext(<span class="hljs-keyword">this</span>.remoteId, <span class="hljs-keyword">this</span>.authMethod);</span><br><span class="line">                <span class="hljs-comment">//更改最后访问时间lastActivity,该变量也是Client成员变量</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.touch();</span><br><span class="line">                ...</span><br><span class="line">                <span class="hljs-comment">//启动接受进程</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.start();</span><br><span class="line">                ...</span><br><span class="line">                <span class="hljs-keyword">this</span>.close();</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-</li>
 </ul>
-<hr>
-<p>以上是客户端，下面为IPC连接的另一端</p>
-<hr>
-<h3><span id="服务器端">服务器端</span></h3><blockquote>
-<p>服务器建立IPC连接的代码分散在Listener和Server.Connection中<br>Listener基于<a href="https://lyhcc.github.io/post/93c86522.html#more">Java NIO</a>开发的，是一个标准的NIO应用，其构造函数中打开服务器端口，创建Selector监听<br>注意参数backlogLength，它由ipc.server.listen.queue.size参数指定，backlogLength是调用ServerSocket.bind()时可以额外提供的一个参数，用于指定在监听端口上排队请求的最大长度，队列满了以后的客户端请求，会被拒绝  </p>
-</blockquote>
-<ul>
-<li><strong>run方法</strong><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">           ...</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">while</span>(Server.<span class="hljs-keyword">this</span>.running) &#123;</span><br><span class="line">                SelectionKey key = <span class="hljs-keyword">null</span>;</span><br><span class="line"></span><br><span class="line">                <span class="hljs-keyword">try</span> &#123;</span><br><span class="line">                    <span class="hljs-comment">//select调用</span></span><br><span class="line">                    <span class="hljs-keyword">this</span>.getSelector().select();</span><br><span class="line"></span><br><span class="line">                    <span class="hljs-comment">//获取相关键</span></span><br><span class="line">                    <span class="hljs-keyword">for</span>(Iterator iter = <span class="hljs-keyword">this</span>.getSelector().selectedKeys().iterator(); iter.hasNext(); key = <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                        key = (SelectionKey)iter.next();</span><br><span class="line">                        iter.remove();</span><br><span class="line"></span><br><span class="line">                        <span class="hljs-keyword">try</span> &#123;</span><br><span class="line">                            <span class="hljs-comment">//判断是不是可接受事件</span></span><br><span class="line">                            <span class="hljs-keyword">if</span> (key.isValid() &amp;&amp; key.isAcceptable()) &#123;</span><br><span class="line"></span><br><span class="line">                                <span class="hljs-comment">//doAccept方法,接受客户端请求、注册Socket到选择器上，</span></span><br><span class="line">                                <span class="hljs-comment">//并且创建Reader，Reader里面的run方法处理 OP_READ</span></span><br><span class="line">                                <span class="hljs-comment">//该方法中最主要的是ReadAndProcess方法</span></span><br><span class="line">                                <span class="hljs-keyword">this</span>.doAccept(key);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125; <span class="hljs-keyword">catch</span> (IOException var8) &#123;</span><br><span class="line">                        &#125;</span><br><span class="line">                        ...</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<!-- tocstop -->
 
-                                                            
-                                                                <!-- <hr>
-<p>Hadoop 2.x</p>
-<hr>
-<h2><span id="相关参数说明">相关参数说明</span></h2><ul>
-<li>connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> ConcurrentMap&lt;Client.ConnectionId, Client.Connection&gt; connections;</span><br></pre></td></tr></table></figure></li>
-<li>calls 当前正在处理的远程调用，位于org.apache.hadoop.ipc.Client.Connection中  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> Hashtable&lt;Integer, Client.Call&gt; calls = <span class="hljs-keyword">new</span> Hashtable();</span><br></pre></td></tr></table></figure></li>
-<li>shouldCloseConnection 连接关闭标志  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> AtomicBoolean shouldCloseConnection = <span class="hljs-keyword">new</span> AtomicBoolean();</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h2><span id="相关方法说明">相关方法说明</span></h2><ul>
-<li><p><strong>getConnection</strong></p>
-<blockquote>
-<p>Client需要获取连接的时候，调用getConnection方法，该方法先检查connections中是否存在满足条件的IPC连接。有，则 <strong>复用</strong> ，否则，创建新的连接<br>复用是指connection相等（connection里面的三个参数相等则说明两个connection相等），就使用同一个connection</p>
-</blockquote>
-<p>  <strong>相关代码如下</strong>  </p>
-  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    <span class="hljs-keyword">private</span> Client.<span class="hljs-function">Connection <span class="hljs-title">getConnection</span><span class="hljs-params">(Client.ConnectionId remoteId, Client.Call call, <span class="hljs-keyword">int</span> serviceClass, AtomicBoolean fallbackToSimpleAuth)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//首先，看看客户端是否还在运行</span></span><br><span class="line">    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.running.get()) &#123;</span><br><span class="line">        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IOException(<span class="hljs-string">"The client is stopped"</span>);</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">while</span>(<span class="hljs-keyword">true</span>) &#123;</span><br><span class="line">            <span class="hljs-comment">//2. 查一下是否存在remoteId对应的连接connection</span></span><br><span class="line">            Client.Connection connection = (Client.Connection)<span class="hljs-keyword">this</span>.connections.get(remoteId);</span><br><span class="line">            <span class="hljs-comment">//connection==null，表明不存在，就需要创建一个新的IPC连接</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (connection == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                <span class="hljs-comment">//创建连接</span></span><br><span class="line">                connection = <span class="hljs-keyword">new</span> Client.Connection(remoteId, serviceClass);</span><br><span class="line">                Client.Connection existing = (Client.Connection)<span class="hljs-keyword">this</span>.connections.putIfAbsent(remoteId, connection);</span><br><span class="line">                <span class="hljs-keyword">if</span> (existing != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                    connection = existing;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="hljs-comment">//将IPC调用放入IPC连接中</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (connection.addCall(call)) &#123;</span><br><span class="line">                connection.setupIOstreams(fallbackToSimpleAuth);</span><br><span class="line">                <span class="hljs-keyword">return</span> connection;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">this</span>.connections.remove(remoteId, connection);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>addCall</strong><blockquote>
-<p>作用是将一个IPC调用放入IPC连接中<br>&emsp;如果成员变量shouldCloseConnection为true, 返回false，这样可以防止将一个IPC调用放入一个已经关闭的IPC连接中。<br>&emsp;否则，将调用放入IPC连接calls中<br>再说一下，为什么会有这种情况？IPC来呢及可以在多个地方被触发,进入关闭过程，但知道Connection.close方法被调用，对应的connection才会在connections中删除。删除后的连接只有新建后才能将IPC调用传入连接中<br><strong>相关代码</strong>  </p>
-</blockquote>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">addCall</span><span class="hljs-params">(Client.Call call)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.shouldCloseConnection.get()) &#123;</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;</span><br><span class="line">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.calls.put(call.id, call);</span><br><span class="line">        <span class="hljs-comment">//notify是唤醒等待的线程，因为这个方法会有多个地方调用，但进来的只能有一个</span></span><br><span class="line">        <span class="hljs-keyword">this</span>.notify();</span><br><span class="line">        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>setupIOstreams</strong></p>
-<blockquote>
-<p>该方法是使客户端和服务器通过Socket连接起来<br>连接失败的话，会重传，最多maxRetries，可以设置${ipc.client.connect.max.retries}</p>
-  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setupIOstreams</span><span class="hljs-params">(AtomicBoolean fallbackToSimpleAuth)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.socket == <span class="hljs-keyword">null</span> &amp;&amp; !<span class="hljs-keyword">this</span>.shouldCloseConnection.get()) &#123;</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">            <span class="hljs-keyword">if</span> (Client.LOG.isDebugEnabled()) &#123;</span><br><span class="line">                Client.LOG.debug(<span class="hljs-string">"Connecting to "</span> + <span class="hljs-keyword">this</span>.server);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            Span span = Tracer.getCurrentSpan();</span><br><span class="line">            <span class="hljs-keyword">if</span> (span != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                span.addTimelineAnnotation(<span class="hljs-string">"IPC client connecting to "</span> + <span class="hljs-keyword">this</span>.server);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">short</span> numRetries = <span class="hljs-number">0</span>;</span><br><span class="line">            Random rand = <span class="hljs-keyword">null</span>;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">while</span>(<span class="hljs-keyword">true</span>) &#123;</span><br><span class="line">                    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">                     * 建立Socket连接，具体可以查看源代码Ctrl + 鼠标左键查看</span></span><br><span class="line"><span class="hljs-comment">                     * connection使用Socket连接设置了tcpNoDelay标志，禁用Nagle算法,无需等待直接发送</span></span><br><span class="line"><span class="hljs-comment">                     * 配置项$&#123;ipc.client.tcpnodelay&#125;</span></span><br><span class="line"><span class="hljs-comment">                     */</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.setupConnection(ticket);</span><br><span class="line">                ...</span><br><span class="line">                <span class="hljs-comment">//与IPC服务器进行握手</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.writeConnectionContext(<span class="hljs-keyword">this</span>.remoteId, <span class="hljs-keyword">this</span>.authMethod);</span><br><span class="line">                <span class="hljs-comment">//更改最后访问时间lastActivity,该变量也是Client成员变量</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.touch();</span><br><span class="line">                ...</span><br><span class="line">                <span class="hljs-comment">//启动接受进程</span></span><br><span class="line">                <span class="hljs-keyword">this</span>.start();</span><br><span class="line">                ...</span><br><span class="line">                <span class="hljs-keyword">this</span>.close();</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-</li>
-</ul>
-<hr>
-<p>以上是客户端，下面为IPC连接的另一端</p>
-<hr>
-<h3><span id="服务器端">服务器端</span></h3><blockquote>
-<p>服务器建立IPC连接的代码分散在Listener和Server.Connection中<br>Listener基于<a href="https://lyhcc.github.io/post/93c86522.html#more">Java NIO</a>开发的，是一个标准的NIO应用，其构造函数中打开服务器端口，创建Selector监听<br>注意参数backlogLength，它由ipc.server.listen.queue.size参数指定，backlogLength是调用ServerSocket.bind()时可以额外提供的一个参数，用于指定在监听端口上排队请求的最大长度，队列满了以后的客户端请求，会被拒绝  </p>
-</blockquote>
-<ul>
-<li><strong>run方法</strong><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">           ...</span><br><span class="line"></span><br><span class="line">            <span class="hljs-keyword">while</span>(Server.<span class="hljs-keyword">this</span>.running) &#123;</span><br><span class="line">                SelectionKey key = <span class="hljs-keyword">null</span>;</span><br><span class="line"></span><br><span class="line">                <span class="hljs-keyword">try</span> &#123;</span><br><span class="line">                    <span class="hljs-comment">//select调用</span></span><br><span class="line">                    <span class="hljs-keyword">this</span>.getSelector().select();</span><br><span class="line"></span><br><span class="line">                    <span class="hljs-comment">//获取相关键</span></span><br><span class="line">                    <span class="hljs-keyword">for</span>(Iterator iter = <span class="hljs-keyword">this</span>.getSelector().selectedKeys().iterator(); iter.hasNext(); key = <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                        key = (SelectionKey)iter.next();</span><br><span class="line">                        iter.remove();</span><br><span class="line"></span><br><span class="line">                        <span class="hljs-keyword">try</span> &#123;</span><br><span class="line">                            <span class="hljs-comment">//判断是不是可接受事件</span></span><br><span class="line">                            <span class="hljs-keyword">if</span> (key.isValid() &amp;&amp; key.isAcceptable()) &#123;</span><br><span class="line"></span><br><span class="line">                                <span class="hljs-comment">//doAccept方法,接受客户端请求、注册Socket到选择器上，</span></span><br><span class="line">                                <span class="hljs-comment">//并且创建Reader，Reader里面的run方法处理 OP_READ</span></span><br><span class="line">                                <span class="hljs-comment">//该方法中最主要的是ReadAndProcess方法</span></span><br><span class="line">                                <span class="hljs-keyword">this</span>.doAccept(key);</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125; <span class="hljs-keyword">catch</span> (IOException var8) &#123;</span><br><span class="line">                        &#125;</span><br><span class="line">                        ...</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
- -->
+<div class="tocEnd"></div>
+****
+Hadoop 2.x
+****
+## 相关参数说明
+- connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中  
+    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> ConcurrentMap&lt;Client.ConnectionId, Client.Connection&gt; connections;</span><br></pre></td></tr></table></figure>
+- calls 当前正在处理的远程调用，位于org.apache.hadoop.ipc.Client.Connection中
+    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> Hashtable&lt;Integer, Client.Call&gt; calls = <span class="hljs-keyword">new</span> Hashtable();</span><br></pre></td></tr></table></figure>
+- shouldCloseConnection 连接关闭标志
+    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> AtomicBoolean shouldCloseConnection = <span class="hljs-keyword">new</span> AtomicBoolean();</span><br></pre></td></tr></table></figure>
                             </div>
                             
                                     
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/28a780a5.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                             
                 </div>
     </div>
@@ -372,7 +307,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1135 words)
+                    8 minutes read (About 1136 words)
                 </span>
                                             
                                                 
@@ -387,15 +322,31 @@
                                     
                             </h1>
                             <div class="content">
-                                
-                                    <h2 id="MapReduce的定义"><a href="#MapReduce的定义" class="headerlink" title="MapReduce的定义"></a>MapReduce的定义</h2><blockquote>
-<p>&emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。<br>&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。</p>
-</blockquote>
-                                        
-                                                
-                                                                <!-- <h2 id="MapReduce的定义"><a href="#MapReduce的定义" class="headerlink" title="MapReduce的定义"></a>MapReduce的定义</h2><blockquote>
-<p>&emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。<br>&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。</p>
-</blockquote> -->
+
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#mapreduce-de-ding-yi">MapReduce的定义</a></li>
+<li><a href="#mapreduce-you-que-dian">MapReduce优缺点</a><ul>
+<li><a href="#you-dian">优点</a></li>
+<li><a href="#que-dian">缺点</a></li>
+</ul>
+</li>
+<li><a href="#mapreduce-he-xin-si-xiang">MapReduce核心思想</a></li>
+<li><a href="#mapreduce-jin-cheng">MapReduce进程</a><ul>
+<li><a href="#mapreduce-bian-cheng-gui-fan">MapReduce编程规范</a></li>
+</ul>
+</li>
+<li><a href="#di-yi-dai-he-di-er-dai-mapreduce-de-qu-bie">第一代和第二代MapReduce的区别</a></li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+##  MapReduce的定义
+> &emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。  
+&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。
                             </div>
                             
                                     
@@ -452,15 +403,10 @@
                                     
                             </h1>
                             <div class="content">
-                                
-                                    <h2 id="快照管理"><a href="#快照管理" class="headerlink" title="快照管理"></a>快照管理</h2><blockquote>
+
+                                <h2 id="快照管理"><a href="#快照管理" class="headerlink" title="快照管理"></a>快照管理</h2><blockquote>
 <p>快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。</p>
 </blockquote>
-                                        
-                                                
-                                                                <!-- <h2 id="快照管理"><a href="#快照管理" class="headerlink" title="快照管理"></a>快照管理</h2><blockquote>
-<p>快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。</p>
-</blockquote> -->
                             </div>
                             
                                     
@@ -502,7 +448,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    19 minutes read (About 2839 words)
+                    19 minutes read (About 2840 words)
                 </span>
                                             
                                                 
@@ -517,10 +463,29 @@
                                     
                             </h1>
                             <div class="content">
-                                
-                                    <h2 id="Windows操作系统配置文件"><a href="#Windows操作系统配置文件" class="headerlink" title="Windows操作系统配置文件"></a>Windows操作系统配置文件</h2><blockquote>
-<p>配置设置文件（INI）文件是windows操作系统中的一种特殊的ASCII文件，以ini为文件扩展名,作为它的主要文件配置文件标准。该文件也被称为初始化文件initialization file和概要文件profile。<br>应用程序可以拥有自己的配置文件，存储应用设置信息，也可以访问windows的基本系统配置文件win.ini中存储的配置信息  </p>
-</blockquote>
+
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#windows-cao-zuo-xi-tong-pei-zhi-wen-jian">Windows操作系统配置文件</a></li>
+<li><a href="#java-pei-zhi-wen-jian">Java配置文件</a></li>
+<li><a href="#hadoop-configuration-xiang-jie">Hadoop Configuration详解</a><ul>
+<li><a href="#hadoop-pei-zhi-wen-jian-ge-shi">hadoop 配置文件格式</a></li>
+<li><a href="#configuration-lei-jie-shao">Configuration类介绍</a></li>
+<li><a href="#configuration-lei-de-guo-cheng">Configuration类的过程</a></li>
+<li><a href="#configurable-jie-kou">Configurable接口</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+## Windows操作系统配置文件
+>配置设置文件（INI）文件是windows操作系统中的一种特殊的ASCII文件，以ini为文件扩展名,作为它的主要文件配置文件标准。该文件也被称为初始化文件initialization file和概要文件profile。  
+>应用程序可以拥有自己的配置文件，存储应用设置信息，也可以访问windows的基本系统配置文件win.ini中存储的配置信息  
+
 <p><strong>INI配置信息分为两部分</strong>  </p>
 <ul>
 <li>节，节标题放在方括号中, [section]</li>
@@ -528,18 +493,6 @@
 </ul>
 <p><strong>INI文件片段</strong></p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[0x0419]</span><br><span class="line">1100=Ошибка инициализации программы установки</span><br><span class="line">1101=%s</span><br><span class="line">1102=%1 Идет подготовка к запуску мастера %2, выполняющего установку программы.  Ждите.</span><br></pre></td></tr></table></figure>
-                                        
-                                                
-                                                                <!-- <h2 id="Windows操作系统配置文件"><a href="#Windows操作系统配置文件" class="headerlink" title="Windows操作系统配置文件"></a>Windows操作系统配置文件</h2><blockquote>
-<p>配置设置文件（INI）文件是windows操作系统中的一种特殊的ASCII文件，以ini为文件扩展名,作为它的主要文件配置文件标准。该文件也被称为初始化文件initialization file和概要文件profile。<br>应用程序可以拥有自己的配置文件，存储应用设置信息，也可以访问windows的基本系统配置文件win.ini中存储的配置信息  </p>
-</blockquote>
-<p><strong>INI配置信息分为两部分</strong>  </p>
-<ul>
-<li>节，节标题放在方括号中, [section]</li>
-<li>项，一个等式，key=value <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">;注释</span><br><span class="line"></span><br><span class="line">;节 </span><br><span class="line">[section]  </span><br><span class="line"></span><br><span class="line">;参数（键=值） </span><br><span class="line">name=value</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p><strong>INI文件片段</strong></p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[0x0419]</span><br><span class="line">1100=Ошибка инициализации программы установки</span><br><span class="line">1101=%s</span><br><span class="line">1102=%1 Идет подготовка к запуску мастера %2, выполняющего установку программы.  Ждите.</span><br></pre></td></tr></table></figure> -->
                             </div>
                             
                                     
@@ -581,7 +534,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 550 words)
+                    4 minutes read (About 551 words)
                 </span>
                                             
                                                 
@@ -596,8 +549,25 @@
                                     
                             </h1>
                             <div class="content">
-                                
-                                    <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><center>MapReduce核心协议</center>
+
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#gai-shu">概述</a></li>
+<li><a href="#clientprotocol-tong-xin-xie-yi">ClientProtocol通信协议</a></li>
+<li><a href="#refreshusermappingprotocol">RefreshUserMappingProtocol</a></li>
+<li><a href="#refreshauthorizationpolicyprotocol">RefreshAuthorizationPolicyProtocol</a><ul>
+<li><a href="#resourcemanageradministrationprotocol">ResourceManagerAdministrationProtocol</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+## 概述
+<center>MapReduce核心协议</center>
 
 <table>
 <thead>
@@ -624,35 +594,6 @@
 </tr>
 <tr>
 <td></td></tr></tbody></table>
-                                        
-                                                
-                                                                <!-- <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><center>MapReduce核心协议</center>
-
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ClientProtocol</td>
-<td>继承于Version基类，查看作业情况监控当前集群等</td>
-</tr>
-<tr>
-<td>RefreshUserMappingProtocol</td>
-<td>刷新用户到用户组映射关系到超级用户代理组列表</td>
-</tr>
-<tr>
-<td>RefreshAuthorizationPolicyProtocol</td>
-<td>刷新HDFS和MapReduce服务几倍访问控制列表</td>
-</tr>
-<tr>
-<td>ResourceManagerAdministrationProtocol</td>
-<td>继承于GetUserMappingProtocol基类，刷新队列列表，节点列表</td>
-</tr>
-<tr>
-<td></td></tr></tbody></table> -->
                             </div>
                             
                                     
@@ -694,7 +635,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    10 minutes read (About 1529 words)
+                    10 minutes read (About 1530 words)
                 </span>
                                             
                                                 
@@ -709,10 +650,30 @@
                                     
                             </h1>
                             <div class="content">
-                                
-                                    <h2 id="Hadoop-RPC"><a href="#Hadoop-RPC" class="headerlink" title="Hadoop RPC"></a>Hadoop RPC</h2><h3 id="RPC简介"><a href="#RPC简介" class="headerlink" title="RPC简介"></a>RPC简介</h3><blockquote>
-<p>简要地说，RPC就是允许程序调用位于其他机器上的过程(也可以是同一台机器的不同进程)。<br>RPC调用过程是透明的  </p>
-</blockquote>
+
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#hadoop-rpc">Hadoop RPC</a><ul>
+<li><a href="#rpc-jian-jie">RPC简介</a></li>
+<li><a href="#rpc-mo-xing">RPC模型</a></li>
+<li><a href="#rpc-te-xing">RPC特性</a></li>
+<li><a href="#rpc-li-zi">RPC例子</a></li>
+<li><a href="#qi-ta-kai-yuan-rpc-jia-gou">其他开源RPC架构</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+## Hadoop RPC
+### RPC简介
+>简要地说，RPC就是允许程序调用位于其他机器上的过程(也可以是同一台机器的不同进程)。  
+>RPC调用过程是透明的  
+
+
 <blockquote>
 <p>传统过程调用：传统的过程调用中，主程序将参数压人栈内并调用过程，这时候主程序停止执行并开始执行相应的过程。被调用的过程从栈中获取参数，然后执行过程函数;执行完毕后，将返回参数入栈(或者保存在寄存器里)，并将控制权交还给调用方。调用方获取返回参数，并继续执行。  </p>
 </blockquote>
@@ -726,24 +687,6 @@
 <li><strong>调度程序：</strong> 调度来自通行模块的请求信息，根据其中标识选一个Stub程序运行</li>
 <li><strong>客户程序：</strong> 请求发出者</li>
 <li><strong>服务过程：</strong> 请求接收者</li></ul>
-                                        
-                                                
-                                                                <!-- <h2 id="Hadoop-RPC"><a href="#Hadoop-RPC" class="headerlink" title="Hadoop RPC"></a>Hadoop RPC</h2><h3 id="RPC简介"><a href="#RPC简介" class="headerlink" title="RPC简介"></a>RPC简介</h3><blockquote>
-<p>简要地说，RPC就是允许程序调用位于其他机器上的过程(也可以是同一台机器的不同进程)。<br>RPC调用过程是透明的  </p>
-</blockquote>
-<blockquote>
-<p>传统过程调用：传统的过程调用中，主程序将参数压人栈内并调用过程，这时候主程序停止执行并开始执行相应的过程。被调用的过程从栈中获取参数，然后执行过程函数;执行完毕后，将返回参数入栈(或者保存在寄存器里)，并将控制权交还给调用方。调用方获取返回参数，并继续执行。  </p>
-</blockquote>
-<blockquote>
-<p>而RPC调用是进程间的过程调用  </p>
-</blockquote>
-<h3 id="RPC模型"><a href="#RPC模型" class="headerlink" title="RPC模型"></a>RPC模型</h3><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191031181948.png" alt></p>
-<ul>
-<li><strong>通行模块：</strong> 请求-响应</li>
-<li><strong>Stub程序：</strong> 用于保证RPC的透明性。在客户端，不在本地调用，而是将请求信息通过网络模块发送给法服务器端，服务器接收后进行解码。服务器中，Stub程序依次进行 解码（请求的参数）、调用相应的服务过程、编码返回结果等处理</li>
-<li><strong>调度程序：</strong> 调度来自通行模块的请求信息，根据其中标识选一个Stub程序运行</li>
-<li><strong>客户程序：</strong> 请求发出者</li>
-<li><strong>服务过程：</strong> 请求接收者</li></ul> -->
                             </div>
                             
                                     
@@ -785,7 +728,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    16 minutes read (About 2446 words)
+                    16 minutes read (About 2447 words)
                 </span>
                                             
                                                 
@@ -800,8 +743,28 @@
                                     
                             </h1>
                             <div class="content">
-                                
-                                    <h2 id="序列化介绍"><a href="#序列化介绍" class="headerlink" title="序列化介绍"></a>序列化介绍</h2><blockquote>
+
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#xu-lie-hua-jie-shao">序列化介绍</a></li>
+<li><a href="#java-xu-lie-hua">Java序列化</a></li>
+<li><a href="#hadoop-bu-shi-yong-java-xu-lie-hua-yuan-yin">Hadoop 不使用Java序列化原因</a></li>
+<li><a href="#hadoop-xu-lie-hua">Hadoop 序列化</a><ul>
+<li><a href="#hadoop-xu-lie-hua-ji-zhi-de-te-zheng">Hadoop序列化机制的特征</a></li>
+<li><a href="#hadoop-writable-ji-zhi">Hadoop Writable机制</a></li>
+<li><a href="#hadoop-xu-lie-hua-de-qi-ta-ji-ge-jie-kou">Hadoop序列化的其它几个接口</a></li>
+<li><a href="#hadoop-xu-lie-hua-de-lei">Hadoop 序列化的类</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+
+<h2 id="序列化介绍"><a href="#序列化介绍" class="headerlink" title="序列化介绍"></a>序列化介绍</h2><blockquote>
 <p>序列化是一种将对象的状态信息转化成可以存储或者传输的过程，与之相反的为反序列化<br>不是某一种编程语言所独有的特性<br><strong>序列化的用途</strong>  </p>
 </blockquote>
 <ul>
@@ -813,20 +776,6 @@
 <p>Java通过实现Serializable接口<br>Java序列化后放入对象，通过对象流进行IO操作，ObjectInputStream/ObjectOutputStream</p>
 </blockquote>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> java. io.Serializable ;</span><br><span class="line"></span><br><span class="line">／＊＊定义一个可以序列化的 App 信息类. */</span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Appinfo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span></span>&#123;</span><br><span class="line">	／／序列化标识</span><br><span class="line">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">11</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-                                        
-                                                
-                                                                <!-- <h2 id="序列化介绍"><a href="#序列化介绍" class="headerlink" title="序列化介绍"></a>序列化介绍</h2><blockquote>
-<p>序列化是一种将对象的状态信息转化成可以存储或者传输的过程，与之相反的为反序列化<br>不是某一种编程语言所独有的特性<br><strong>序列化的用途</strong>  </p>
-</blockquote>
-<ul>
-<li>作为一种持久化格式。对象序列化后存盘</li>
-<li>作为一种通信的数据格式。如虚拟机之间通信</li>
-<li>作为一种拷贝、克隆机制。放缓存</li>
-</ul>
-<h2 id="Java序列化"><a href="#Java序列化" class="headerlink" title="Java序列化"></a>Java序列化</h2><blockquote>
-<p>Java通过实现Serializable接口<br>Java序列化后放入对象，通过对象流进行IO操作，ObjectInputStream/ObjectOutputStream</p>
-</blockquote>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> java. io.Serializable ;</span><br><span class="line"></span><br><span class="line">／＊＊定义一个可以序列化的 App 信息类. */</span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Appinfo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span></span>&#123;</span><br><span class="line">	／／序列化标识</span><br><span class="line">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">11</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> -->
                             </div>
                             
                                     
@@ -868,7 +817,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    12 minutes read (About 1753 words)
+                    12 minutes read (About 1754 words)
                 </span>
                                             
                                                 
@@ -883,10 +832,27 @@
                                     
                             </h1>
                             <div class="content">
-                                
-                                    <h2 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h2><blockquote>
-<p>压缩是指将数据转换为比原来的格式占用空间更小的格式来存储，以达到减小存储空间<br>解压是压缩的反过程</p>
-</blockquote>
+
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#ya-suo">压缩</a></li>
+<li><a href="#hadoop-wen-jian-qie-pian">Hadoop文件切片</a></li>
+<li><a href="#hadoop-ya-suo">Hadoop压缩</a><ul>
+<li><a href="#ya-suo-ge-shi-xuan-ze">压缩格式选择</a></li>
+<li><a href="#hadoop-ya-suo-an-li">Hadoop 压缩案例</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+## 压缩
+>压缩是指将数据转换为比原来的格式占用空间更小的格式来存储，以达到减小存储空间  
+>解压是压缩的反过程
+
 <h2 id="Hadoop文件切片"><a href="#Hadoop文件切片" class="headerlink" title="Hadoop文件切片"></a>Hadoop文件切片</h2><blockquote>
 <p>Hadoop MapReduce是通过划分切片来处理得，这样就使得支持分割的压缩格式更适合Hadoop</p>
 </blockquote>
@@ -895,19 +861,6 @@
 <li><strong>计算公式</strong><br>computeSliteSize(Math.max(minSize,Math.min(maxSize,blocksize)))=blocksize=128M（Hadoop 1.x中块大小为64M）  </li>
 <li>默认情况下，切片大小=blocksize</li>
 <li>开始切，形成第1个切片：ss.txt—0:128M 第2个切片ss.txt—128:256M 第3个切片ss.txt—256M:300M（每次切片时，都要判断切完剩下的部分是否大于块的1.1倍，不大于1.1倍就划分一块切片）</li></ul>
-                                        
-                                                
-                                                                <!-- <h2 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h2><blockquote>
-<p>压缩是指将数据转换为比原来的格式占用空间更小的格式来存储，以达到减小存储空间<br>解压是压缩的反过程</p>
-</blockquote>
-<h2 id="Hadoop文件切片"><a href="#Hadoop文件切片" class="headerlink" title="Hadoop文件切片"></a>Hadoop文件切片</h2><blockquote>
-<p>Hadoop MapReduce是通过划分切片来处理得，这样就使得支持分割的压缩格式更适合Hadoop</p>
-</blockquote>
-<p>针对ss.txt文件大小为300M</p>
-<ul>
-<li><strong>计算公式</strong><br>computeSliteSize(Math.max(minSize,Math.min(maxSize,blocksize)))=blocksize=128M（Hadoop 1.x中块大小为64M）  </li>
-<li>默认情况下，切片大小=blocksize</li>
-<li>开始切，形成第1个切片：ss.txt—0:128M 第2个切片ss.txt—128:256M 第3个切片ss.txt—256M:300M（每次切片时，都要判断切完剩下的部分是否大于块的1.1倍，不大于1.1倍就划分一块切片）</li></ul> -->
                             </div>
                             
                                     
@@ -949,7 +902,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 165 words)
+                    a minute read (About 166 words)
                 </span>
                                             
                                                 
@@ -964,29 +917,30 @@
                                     
                             </h1>
                             <div class="content">
-                                
-                                                    
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">起源 Google 在大数据方面的三大论文 （谷歌三宝）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">Hadoop 三大发行版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">硬件要求</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">硬盘:500G+</span></a></li></ol></li></ol></li></ol>
-    </div>
-    
-                                                        <h2><span id="起源-google-在大数据方面的三大论文-谷歌三宝">起源 Google 在大数据方面的三大论文 （谷歌三宝）</span></h2><p><a href="https://github.com/lyhcc/NoteBook/tree/master/bigdata" target="_blank" rel="noopener">在github大的当前目录下</a><br><a href="https://www.cnblogs.com/javhu/archive/2013/03/25/cyue_hadoop_google.html" target="_blank" rel="noopener">三宝的介绍</a></p>
-<h2><span id="hadoop-三大发行版本">Hadoop 三大发行版本</span></h2><ol>
+
+                                <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#qi-yuan-google-zai-da-shu-ju-fang-mian-de-san-da-lun-wen-gu-ge-san-bao">起源 Google 在大数据方面的三大论文 （谷歌三宝）</a></li>
+<li><a href="#hadoop-san-da-fa-xing-ban-ben">Hadoop 三大发行版本</a></li>
+<li><a href="#ying-jian-yao-qiu">硬件要求</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+##  起源 Google 在大数据方面的三大论文 （谷歌三宝）
+[在github大的当前目录下](https://github.com/lyhcc/NoteBook/tree/master/bigdata)
+[三宝的介绍](https://www.cnblogs.com/javhu/archive/2013/03/25/cyue_hadoop_google.html)
+
+<h2><span id="hadoop-san-da-fa-xing-ban-ben">Hadoop 三大发行版本</span><a href="#hadoop-san-da-fa-xing-ban-ben" class="header-anchor">$</a></h2><ol>
 <li>Apache、Cloudera、Hortonworks Apache版本最原始、最基础：适合零基础 大公司在用</li>
 <li>Cloudera Cloudera’s DistributionIncluding Apache Hadoop 简称CDH<br>中小型公司用、简单方便、自带可视化 </li>
-<li>Hortonworks  文档较好  注：Cloudera 和Hortonworks 在2018年10月，国庆期间宣布合并<h2><span id="硬件要求">硬件要求</span></h2><h4><span id="内存">内存</span></h4></li>
+<li>Hortonworks  文档较好  注：Cloudera 和Hortonworks 在2018年10月，国庆期间宣布合并<h2><span id="ying-jian-yao-qiu">硬件要求</span><a href="#ying-jian-yao-qiu" class="header-anchor">$</a></h2><h4><span id="nei-cun">内存</span><a href="#nei-cun" class="header-anchor">$</a></h4></li>
 </ol>
 <p><strong>最大支持内存查询：</strong>win + R<br><strong>输入</strong>  wmic memphysical get maxcapacity<br><strong>计算</strong> MaxCapacity/1024/1024GB  </p>
-<h4><span id="硬盘500g">硬盘:500G+</span></h4>
-                                                            
-                                                                <!-- <h2><span id="起源-google-在大数据方面的三大论文-谷歌三宝">起源 Google 在大数据方面的三大论文 （谷歌三宝）</span></h2><p><a href="https://github.com/lyhcc/NoteBook/tree/master/bigdata" target="_blank" rel="noopener">在github大的当前目录下</a><br><a href="https://www.cnblogs.com/javhu/archive/2013/03/25/cyue_hadoop_google.html" target="_blank" rel="noopener">三宝的介绍</a></p>
-<h2><span id="hadoop-三大发行版本">Hadoop 三大发行版本</span></h2><ol>
-<li>Apache、Cloudera、Hortonworks Apache版本最原始、最基础：适合零基础 大公司在用</li>
-<li>Cloudera Cloudera’s DistributionIncluding Apache Hadoop 简称CDH<br>中小型公司用、简单方便、自带可视化 </li>
-<li>Hortonworks  文档较好  注：Cloudera 和Hortonworks 在2018年10月，国庆期间宣布合并<h2><span id="硬件要求">硬件要求</span></h2><h4><span id="内存">内存</span></h4></li>
-</ol>
-<p><strong>最大支持内存查询：</strong>win + R<br><strong>输入</strong>  wmic memphysical get maxcapacity<br><strong>计算</strong> MaxCapacity/1024/1024GB  </p>
-<h4><span id="硬盘500g">硬盘:500G+</span></h4> -->
+<h4><span id="ying-pan-500g">硬盘:500G+</span><a href="#ying-pan-500g" class="header-anchor">$</a></h4>
                             </div>
                             
                                     
@@ -1075,7 +1029,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        13
                     </p>
                 </div>
             </div>
@@ -1085,7 +1039,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -1219,6 +1173,14 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Kafka/">
+            <span class="level-start">
+                <span class="level-item">Kafka</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Python/">
             <span class="level-start">
                 <span class="level-item">Python</span>
@@ -1253,7 +1215,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a>
+        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a>
     </div>
 </div>
     
@@ -1265,6 +1227,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/post/df89d65f.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka初始">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time></div>
+                    <a href="/post/df89d65f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka初始</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1337,25 +1318,6 @@
                     <a href="/post/a9423fcb.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop IPC 数据分帧和读写</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/22365c12.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BigData/Hadoop/Hadoop_Common/IPC/IPC建立">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T11:37:40.771Z">2019-11-20</time></div>
-                    <a href="/post/22365c12.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">BigData/Hadoop/Hadoop_Common/IPC/IPC建立</a>
-                    <p class="is-size-7 is-uppercase">
-                        
                     </p>
                 </div>
             </div>
@@ -1539,6 +1501,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Java配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Kafka初识</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1637,6 +1606,25 @@
         
         <article class="media">
             
+            <a href="/post/df89d65f.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka初始">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time></div>
+                    <a href="/post/df89d65f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka初始</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/85ed9b6d.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="十大经典算法的优缺点">
@@ -1706,25 +1694,6 @@
                     <a href="/post/a9423fcb.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop IPC 数据分帧和读写</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/22365c12.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BigData/Hadoop/Hadoop_Common/IPC/IPC建立">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T11:37:40.771Z">2019-11-20</time></div>
-                    <a href="/post/22365c12.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">BigData/Hadoop/Hadoop_Common/IPC/IPC建立</a>
-                    <p class="is-size-7 is-uppercase">
-                        
                     </p>
                 </div>
             </div>
@@ -1908,6 +1877,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Java配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Kafka初识</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

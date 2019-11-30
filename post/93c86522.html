@@ -161,13 +161,8 @@
                                             
                             </h1>
                             <div class="content">
-                                
-                                                    
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">Selector的使用步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">错误总结</span></a></li></ol>
-    </div>
-    
-                                                        <h2><span id="概述">概述</span></h2><blockquote>
+
+                                <h2><span id="概述">概述</span></h2><blockquote>
 <p>回显服务器是指接收到客户端的数据，原封不动的返回给客户端</p>
 </blockquote>
 <hr>
@@ -202,42 +197,6 @@
 <p>这里的connkey用错会报错<br><code>Exception in thread &quot;main&quot; java.lang.ClassCastException: sun.nio.ch.ServerSocketChannelImpl cannot be cast to java.nio.channels.SocketChannel</code></p>
 </blockquote>
 
-                                                            
-                                                                <!-- <h2><span id="概述">概述</span></h2><blockquote>
-<p>回显服务器是指接收到客户端的数据，原封不动的返回给客户端</p>
-</blockquote>
-<hr>
-<p><strong>小提示</strong> &nbsp;<br>在阅读这里之前，希望先看一个视频和相关API的介绍，API的介绍不是很详细，当然也可以遇到不知道的API在百度/Google搜索<br>视频：<a href="https://www.bilibili.com/video/av57390893?t=5655" target="_blank" rel="noopener">https://www.bilibili.com/video/av57390893?t=5655</a><br>相关API: <a href="https://lyhcc.github.io/post/f2d80d11.html#more">https://lyhcc.github.io/post/f2d80d11.html#more</a></p>
-<hr>
-<a id="more"></a>
-<h2><span id="源码">源码</span></h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**NIOServer.java**/</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.net.InetSocketAddress;</span><br><span class="line"><span class="hljs-keyword">import</span> java.nio.channels.SelectionKey;</span><br><span class="line"><span class="hljs-keyword">import</span> java.nio.channels.Selector;</span><br><span class="line"><span class="hljs-keyword">import</span> java.nio.channels.ServerSocketChannel;</span><br><span class="line"><span class="hljs-keyword">import</span> java.nio.channels.SocketChannel;</span><br><span class="line"><span class="hljs-keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NIOServer</span> </span>&#123;</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//1. 打开一个选择器</span></span><br><span class="line">        Selector selector = Selector.open();</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//2. 打开一个ServerSocketChannel</span></span><br><span class="line">        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//3. 配置异步模式</span></span><br><span class="line">        serverSocketChannel.configureBlocking(<span class="hljs-keyword">false</span>);</span><br><span class="line">        <span class="hljs-comment">//4. 绑定到TCP端口上，注意ServerSocketChannel不提供bind方法</span></span><br><span class="line">        <span class="hljs-comment">//需要使用ServerSocketChannel 内部的socket对象对应的bind方法</span></span><br><span class="line">        serverSocketChannel.socket().bind(<span class="hljs-keyword">new</span> InetSocketAddress(<span class="hljs-string">"127.0.0.1"</span>,<span class="hljs-number">12122</span>));</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//5. 注册</span></span><br><span class="line">        serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//6. 服务器循环，调用Selector.select()方法等待IO事件，如果返回值为0，表明没有事件发生</span></span><br><span class="line">        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;</span><br><span class="line">            <span class="hljs-comment">//如果select()带参数，它将不会堵塞到等有感兴趣的数据过来</span></span><br><span class="line">            <span class="hljs-keyword">if</span> (selector.select() == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">                System.out.println(<span class="hljs-string">"Nothing to do!"</span>);</span><br><span class="line">                <span class="hljs-keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-comment">//获得连接已选键</span></span><br><span class="line">            Iterator&lt;SelectionKey&gt; iterator = selector.selectedKeys().iterator();</span><br><span class="line">            <span class="hljs-keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">                SelectionKey key = iterator.next();</span><br><span class="line">                iterator.remove();</span><br><span class="line"></span><br><span class="line">                <span class="hljs-comment">//如果是事件是”通道上有请求“</span></span><br><span class="line">                <span class="hljs-keyword">if</span> (key.isAcceptable()) &#123;</span><br><span class="line">                    <span class="hljs-comment">//相应的处理是通过accept()操作获得SocketChannel对象，并配置对象的异步工作方式</span></span><br><span class="line">                    SocketChannel channel = serverSocketChannel.accept();</span><br><span class="line"></span><br><span class="line">                    <span class="hljs-comment">//设置异步工作模式、注册到选择器中，注册事件为通道可读 SelectionKeys.OP_READ</span></span><br><span class="line">                    channel.configureBlocking(<span class="hljs-keyword">false</span>);</span><br><span class="line">                    SelectionKey connkey = channel.register(selector, SelectionKey.OP_READ);</span><br><span class="line">                    <span class="hljs-comment">//根据注册分到的SelectionKey 对象构造连接对象，并将对象作为SelectionKey对象附件</span></span><br><span class="line">                    NIOConnection conn = <span class="hljs-keyword">new</span> NIOConnection(connkey);</span><br><span class="line">                    connkey.attach(conn);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="hljs-comment">//key有效，即通道未关闭，并且为可读的OP_READ</span></span><br><span class="line">                <span class="hljs-keyword">if</span> (key.isValid() &amp;&amp; key.isReadable()) &#123;</span><br><span class="line">                    NIOConnection conn = (NIOConnection) key.attachment();</span><br><span class="line">                    conn.handleRead();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="hljs-comment">//key有效，即通道未关闭，并且为可写的 OP_WRITE</span></span><br><span class="line">                <span class="hljs-keyword">if</span> (key.isValid() &amp;&amp; key.isWritable()) &#123;</span><br><span class="line">                    NIOConnection conn = (NIOConnection) key.attachment();</span><br><span class="line">                    conn.handleWrite();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**NIOConnection.java**/</span></span><br><span class="line"><span class="hljs-keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="hljs-keyword">import</span> java.nio.ByteBuffer;</span><br><span class="line"><span class="hljs-keyword">import</span> java.nio.channels.SelectionKey;</span><br><span class="line"><span class="hljs-keyword">import</span> java.nio.channels.SocketChannel;</span><br><span class="line"><span class="hljs-keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NIOConnection</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">private</span> SelectionKey key;</span><br><span class="line">    <span class="hljs-keyword">private</span> SocketChannel channel;</span><br><span class="line">    <span class="hljs-keyword">private</span> ByteBuffer buffer;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">NIOConnection</span><span class="hljs-params">(SelectionKey key)</span> </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.buffer = ByteBuffer.allocate(<span class="hljs-number">1024</span>);</span><br><span class="line">        <span class="hljs-keyword">this</span>.key = key;</span><br><span class="line">        <span class="hljs-keyword">this</span>.channel = (SocketChannel) key.channel();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">     * 读操作</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@throws</span> IOException</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleRead</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="hljs-keyword">int</span> byteRead = channel.read(buffer);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> (byteRead == -<span class="hljs-number">1</span>) &#123;</span><br><span class="line">            <span class="hljs-comment">//对方已关闭socket，服务器就将通道关闭</span></span><br><span class="line">            channel.close();</span><br><span class="line">        &#125;<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">            <span class="hljs-comment">//有数据可读，此时设置感兴趣的I/O事件为读或写，</span></span><br><span class="line">            <span class="hljs-comment">//读出了一部分数据，就说嘛有空间可以写了，当然还有可能有其他数据可读</span></span><br><span class="line">            key.interestOps(SelectionKey.OP_READ | SelectionKey.OP_WRITE);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleWrite</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//要开始读数据了，就得先把数据的开始索引，也就是当前索引position，改为数据的开始位置，</span></span><br><span class="line">        <span class="hljs-comment">//在此之前，得先把limit的改为position,position所在位置是数据的下一个写入位置，</span></span><br><span class="line">        <span class="hljs-comment">// 把限制limit设置为position</span></span><br><span class="line">        <span class="hljs-comment">// 结合上面position ~ limit就是当前的全部数据的位置</span></span><br><span class="line">        buffer.flip();</span><br><span class="line">        <span class="hljs-comment">//开始写出</span></span><br><span class="line">        System.out.println(<span class="hljs-string">"收到的数据："</span> + Charset.forName(<span class="hljs-string">"UTF-8"</span>).decode(buffer).toString());</span><br><span class="line">        channel.write(buffer);</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//之后判断是否还有数据存在，如果没数据了，就可以将其设置为只可以读了</span></span><br><span class="line">        <span class="hljs-keyword">if</span> (!buffer.hasRemaining()) &#123;</span><br><span class="line">            key.interestOps(SelectionKey.OP_READ);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="hljs-comment">//写完后，有可能还有数据剩余，就将数据移到buffer的最前面</span></span><br><span class="line">        buffer.compact();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>注意：NIO是没有专门的客户端的，你可以使用Socket进行连接，也可以使用telnet进行连接</p>
-<hr>
-<h2><span id="selector的使用步骤">Selector的使用步骤</span></h2><ol>
-<li>创建一个Selector实例:</li>
-<li>将该实例注册到各种通道，指定每个通道上感兴趣的I/O操作;</li>
-<li>重复执行(选择器循环):<ol>
-<li>调用一种select()方法;</li>
-<li>获取已选键集;</li>
-<li>对于已选键集中的每-一个键:<ol>
-<li>将已选键从键集中移除;</li>
-<li>获取信道，并从键中获取附件(如果需要);</li>
-<li>确定准备就绪的操作并执行;对于accept操作获得的SocketChannel对象，需将信道设置为非阻塞模式，并将其注册到选择器中;</li>
-<li>根据需要，修改键的兴趣操作集。</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h2><span id="错误总结">错误总结</span></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191118230053.png" alt></p>
-<blockquote>
-<p>这里的connkey用错会报错<br><code>Exception in thread &quot;main&quot; java.lang.ClassCastException: sun.nio.ch.ServerSocketChannelImpl cannot be cast to java.nio.channels.SocketChannel</code></p>
-</blockquote>
- -->
                             </div>
                             
                                 <div class="level is-size-7 is-uppercase">
@@ -371,7 +330,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        13
                     </p>
                 </div>
             </div>
@@ -381,7 +340,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -515,6 +474,14 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Kafka/">
+            <span class="level-start">
+                <span class="level-item">Kafka</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Python/">
             <span class="level-start">
                 <span class="level-item">Python</span>
@@ -549,7 +516,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a>
+        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a>
     </div>
 </div>
     
@@ -561,6 +528,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/post/df89d65f.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka初始">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time></div>
+                    <a href="/post/df89d65f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka初始</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -633,25 +619,6 @@
                     <a href="/post/a9423fcb.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop IPC 数据分帧和读写</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/22365c12.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BigData/Hadoop/Hadoop_Common/IPC/IPC建立">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T11:37:40.771Z">2019-11-20</time></div>
-                    <a href="/post/22365c12.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">BigData/Hadoop/Hadoop_Common/IPC/IPC建立</a>
-                    <p class="is-size-7 is-uppercase">
-                        
                     </p>
                 </div>
             </div>
@@ -835,6 +802,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Java配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Kafka初识</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -933,6 +907,25 @@
         
         <article class="media">
             
+            <a href="/post/df89d65f.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka初始">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time></div>
+                    <a href="/post/df89d65f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka初始</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/85ed9b6d.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="十大经典算法的优缺点">
@@ -1002,25 +995,6 @@
                     <a href="/post/a9423fcb.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop IPC 数据分帧和读写</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/22365c12.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BigData/Hadoop/Hadoop_Common/IPC/IPC建立">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T11:37:40.771Z">2019-11-20</time></div>
-                    <a href="/post/22365c12.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">BigData/Hadoop/Hadoop_Common/IPC/IPC建立</a>
-                    <p class="is-size-7 is-uppercase">
-                        
                     </p>
                 </div>
             </div>
@@ -1204,6 +1178,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Java配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Kafka初识</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

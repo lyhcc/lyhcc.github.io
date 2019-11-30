@@ -11,16 +11,16 @@
 <title>分布式存储管理 - lyhcc博客</title>
 
 
-    <meta name="description" content="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ 规模效应所带来的压力  传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能 适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机">
+    <meta name="description" content="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ NoSQL 特点     ## 为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ 1. 规模效应所带来的压力     - 传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能     - 适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机">
 <meta name="keywords" content="分布式存储管理,NoSSQL特点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式存储管理">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;4faba951.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ 规模效应所带来的压力  传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能 适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机">
+<meta property="og:description" content="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ NoSQL 特点     ## 为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ 1. 规模效应所带来的压力     - 传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能     - 适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-12T03:45:04.159Z">
+<meta property="og:updated_time" content="2019-11-29T09:51:40.977Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -148,7 +148,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 430 words)
+                    3 minutes read (About 431 words)
                 </span>
                                             
                                                 
@@ -161,41 +161,43 @@
                                             
                             </h1>
                             <div class="content">
-                                
-                                                    
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">NoSQL 特点</span></a></li></ol>
-    </div>
-    
-                                                        <h2><span id="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的">为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？</span></h2><ol>
-<li><p>规模效应所带来的压力</p>
+
+                                <div class="toc">
+
+<!-- toc -->
+
 <ul>
-<li>传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能</li>
-<li>适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机<a id="more"></a></li>
+<li><a href="#wei-shi-me-zhi-jie-cai-yong-guan-xi-mo-xing-de-fen-bu-shi-shu-ju-ku-bing-bu-neng-gua-ying-da-shu-ju-shi-dai-de">为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？</a></li>
+<li><a href="#nosql-te-dian">NoSQL 特点</a></li>
 </ul>
-</li>
-<li><p>数据类型的多样化<br> 传统数据类型：</p>
-<ul>
-<li>结构化数据<br>大数据时代的数据类型：</li>
-<li>结构化数据</li>
-<li>半结构化数据</li>
-<li>非结构化数据</li>
-</ul>
-</li>
-<li><p>设计理念所带来的冲突</p>
-<ul>
-<li>关系型数据库 One size fits all ,即面对不同问题不需要重新考虑数据管理问题<br>  简单来说就是，单一模式可以适应所有变化</li>
-<li>新理念 “One size fits one” 和 “One size fits domain”</li>
-</ul>
-</li>
-<li><p>数据库的事务特性</p>
-<ul>
+<!-- tocstop -->
+
+</div>
+## 为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？
+1. 规模效应所带来的压力
+    - 传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能
+    - 适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机
+<a id="more"></a>
+2. 数据类型的多样化  
+    传统数据类型：
+    - 结构化数据
+    大数据时代的数据类型：
+    - 结构化数据
+    - 半结构化数据
+    - 非结构化数据
+3. 设计理念所带来的冲突
+    - 关系型数据库 One size fits all ,即面对不同问题不需要重新考虑数据管理问题  
+        简单来说就是，单一模式可以适应所有变化
+    - 新理念 "One size fits one" 和 "One size fits domain"
+
+<ol start="4">
+<li>数据库的事务特性<ul>
 <li>传统数据库ACID特性 A(Atom，原子性)，C(Consistency，一致性)，I(Isolation,隔离性)，D(Durability,持久性)</li>
 <li>大数据时代的数据库BASE。 Basically Available(基本可用)，Soft State(柔性状态)，Eventually Consistency(最终一致性)<br>根据分布式领域著名的CAP理论来看，ACID追求一致性C,而BASE更加关注A<br>一致性（Consistency）、可用性（Availability）、分区容错性（Partition tolerance）<br>新型数据库<a href="https://cloud.google.com/spanner/docs/?hl=zh-cn" target="_blank" rel="noopener">Spanner</a></li>
 </ul>
 </li>
 </ol>
-<h2><span id="nosql-特点">NoSQL 特点</span></h2><ul>
+<h2><span id="nosql-te-dian">NoSQL 特点</span><a href="#nosql-te-dian" class="header-anchor">$</a></h2><ul>
 <li>模式自由（Schema-free）</li>
 <li>支持简易备份（Easy Replication Support)</li>
 <li>简单应用程序接口（Simple API）</li>
@@ -203,43 +205,6 @@
 <li>支持海量数据（Huge Amount of Data）</li>
 </ul>
 
-                                                            
-                                                                <!-- <h2><span id="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的">为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？</span></h2><ol>
-<li><p>规模效应所带来的压力</p>
-<ul>
-<li>传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能</li>
-<li>适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机<a id="more"></a></li>
-</ul>
-</li>
-<li><p>数据类型的多样化<br> 传统数据类型：</p>
-<ul>
-<li>结构化数据<br>大数据时代的数据类型：</li>
-<li>结构化数据</li>
-<li>半结构化数据</li>
-<li>非结构化数据</li>
-</ul>
-</li>
-<li><p>设计理念所带来的冲突</p>
-<ul>
-<li>关系型数据库 One size fits all ,即面对不同问题不需要重新考虑数据管理问题<br>  简单来说就是，单一模式可以适应所有变化</li>
-<li>新理念 “One size fits one” 和 “One size fits domain”</li>
-</ul>
-</li>
-<li><p>数据库的事务特性</p>
-<ul>
-<li>传统数据库ACID特性 A(Atom，原子性)，C(Consistency，一致性)，I(Isolation,隔离性)，D(Durability,持久性)</li>
-<li>大数据时代的数据库BASE。 Basically Available(基本可用)，Soft State(柔性状态)，Eventually Consistency(最终一致性)<br>根据分布式领域著名的CAP理论来看，ACID追求一致性C,而BASE更加关注A<br>一致性（Consistency）、可用性（Availability）、分区容错性（Partition tolerance）<br>新型数据库<a href="https://cloud.google.com/spanner/docs/?hl=zh-cn" target="_blank" rel="noopener">Spanner</a></li>
-</ul>
-</li>
-</ol>
-<h2><span id="nosql-特点">NoSQL 特点</span></h2><ul>
-<li>模式自由（Schema-free）</li>
-<li>支持简易备份（Easy Replication Support)</li>
-<li>简单应用程序接口（Simple API）</li>
-<li>最终一致性（或说支持BASE特性，不支持ACID特性）</li>
-<li>支持海量数据（Huge Amount of Data）</li>
-</ul>
- -->
                             </div>
                             
                                 <div class="level is-size-7 is-uppercase">
@@ -366,7 +331,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        13
                     </p>
                 </div>
             </div>
@@ -376,7 +341,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -510,6 +475,14 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Kafka/">
+            <span class="level-start">
+                <span class="level-item">Kafka</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Python/">
             <span class="level-start">
                 <span class="level-item">Python</span>
@@ -544,7 +517,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a>
+        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a>
     </div>
 </div>
     
@@ -556,6 +529,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/post/df89d65f.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka初始">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time></div>
+                    <a href="/post/df89d65f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka初始</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -628,25 +620,6 @@
                     <a href="/post/a9423fcb.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop IPC 数据分帧和读写</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/22365c12.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BigData/Hadoop/Hadoop_Common/IPC/IPC建立">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T11:37:40.771Z">2019-11-20</time></div>
-                    <a href="/post/22365c12.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">BigData/Hadoop/Hadoop_Common/IPC/IPC建立</a>
-                    <p class="is-size-7 is-uppercase">
-                        
                     </p>
                 </div>
             </div>
@@ -830,6 +803,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Java配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Kafka初识</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -928,6 +908,25 @@
         
         <article class="media">
             
+            <a href="/post/df89d65f.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka初始">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time></div>
+                    <a href="/post/df89d65f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka初始</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/85ed9b6d.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="十大经典算法的优缺点">
@@ -997,25 +996,6 @@
                     <a href="/post/a9423fcb.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop IPC 数据分帧和读写</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/22365c12.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BigData/Hadoop/Hadoop_Common/IPC/IPC建立">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T11:37:40.771Z">2019-11-20</time></div>
-                    <a href="/post/22365c12.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">BigData/Hadoop/Hadoop_Common/IPC/IPC建立</a>
-                    <p class="is-size-7 is-uppercase">
-                        
                     </p>
                 </div>
             </div>
@@ -1199,6 +1179,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Java配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Kafka初识</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

@@ -11,16 +11,16 @@
 <title>MapReduce介绍 - lyhcc博客</title>
 
 
-    <meta name="description" content="MapReduce的定义 &amp;emsp;&amp;emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。&amp;emsp;&amp;emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。">
+    <meta name="description" content="MapReduce的定义 MapReduce优缺点 优点 缺点   MapReduce核心思想 MapReduce进程 MapReduce编程规范   第一代和第二代MapReduce的区别     ##  MapReduce的定义 &amp;gt; &amp;emsp;&amp;emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。   &amp;emsp;&amp;e">
 <meta name="keywords" content="MapReduce介绍">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MapReduce介绍">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;5429.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="MapReduce的定义 &amp;emsp;&amp;emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。&amp;emsp;&amp;emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。">
+<meta property="og:description" content="MapReduce的定义 MapReduce优缺点 优点 缺点   MapReduce核心思想 MapReduce进程 MapReduce编程规范   第一代和第二代MapReduce的区别     ##  MapReduce的定义 &amp;gt; &amp;emsp;&amp;emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。   &amp;emsp;&amp;e">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-07T11:14:10.371Z">
+<meta property="og:updated_time" content="2019-11-29T09:51:27.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -148,7 +148,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1135 words)
+                    8 minutes read (About 1136 words)
                 </span>
                                             
                                                 
@@ -161,31 +161,47 @@
                                             
                             </h1>
                             <div class="content">
-                                
-                                                    
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">MapReduce的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">MapReduce优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">MapReduce核心思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">MapReduce进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">MapReduce编程规范</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">第一代和第二代MapReduce的区别</span></a></li></ol>
-    </div>
-    
-                                                        <h2><span id="mapreduce的定义">MapReduce的定义</span></h2><blockquote>
-<p>&emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。<br>&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。</p>
-</blockquote>
-<a id="more"></a>
-<h2><span id="mapreduce优缺点">MapReduce优缺点</span></h2><h3><span id="优点">优点</span></h3><ol>
-<li><strong>MapReduce 易于编程</strong>。它简单的实现一些接口，就可以完成一个分布式程序，这个分布式程序可以分布到大量廉价的PC机器上运行。也就是说你写一个分布式程序，跟写一个简单的串行程序是一模一样的。就是因为这个特点使得MapReduce编程变得非常流行。</li>
-<li><strong>良好的扩展性</strong>。当你的计算资源不能得到满足的时候，你可以通过简单的增加机器来扩展它的计算能力。</li>
-<li><strong>高容错性</strong>。MapReduce设计的初衷就是使程序能够部署在廉价的PC机器上，这就要求它具有很高的容错性。比如其中一台机器挂了，它可以把上面的计算任务转移到另外一个节点上运行，不至于这个任务运行失败，而且这个过程不需要人工参与，而完全是由 Hadoop内部完成的。</li>
-<li><strong>适合PB级以上海量数据的离线处理</strong>。这里加红字体离线处理，说明它适合离线处理而不适合在线处理。比如像毫秒级别的返回一个结果，MapReduce很难做到。<h3><span id="缺点">缺点</span></h3><blockquote>
-<p>MapReduce不擅长做实时计算、流式计算、DAG（有向图）计算。</p>
-</blockquote>
+
+                                <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#mapreduce-de-ding-yi">MapReduce的定义</a></li>
+<li><a href="#mapreduce-you-que-dian">MapReduce优缺点</a><ul>
+<li><a href="#you-dian">优点</a></li>
+<li><a href="#que-dian">缺点</a></li>
+</ul>
 </li>
-</ol>
+<li><a href="#mapreduce-he-xin-si-xiang">MapReduce核心思想</a></li>
+<li><a href="#mapreduce-jin-cheng">MapReduce进程</a><ul>
+<li><a href="#mapreduce-bian-cheng-gui-fan">MapReduce编程规范</a></li>
+</ul>
+</li>
+<li><a href="#di-yi-dai-he-di-er-dai-mapreduce-de-qu-bie">第一代和第二代MapReduce的区别</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+##  MapReduce的定义
+> &emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。  
+&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。
+<a id="more"></a>
+##  MapReduce优缺点
+### 优点
+1. **MapReduce 易于编程**。它简单的实现一些接口，就可以完成一个分布式程序，这个分布式程序可以分布到大量廉价的PC机器上运行。也就是说你写一个分布式程序，跟写一个简单的串行程序是一模一样的。就是因为这个特点使得MapReduce编程变得非常流行。
+2. **良好的扩展性**。当你的计算资源不能得到满足的时候，你可以通过简单的增加机器来扩展它的计算能力。
+3. **高容错性**。MapReduce设计的初衷就是使程序能够部署在廉价的PC机器上，这就要求它具有很高的容错性。比如其中一台机器挂了，它可以把上面的计算任务转移到另外一个节点上运行，不至于这个任务运行失败，而且这个过程不需要人工参与，而完全是由 Hadoop内部完成的。
+4. **适合PB级以上海量数据的离线处理**。这里加红字体离线处理，说明它适合离线处理而不适合在线处理。比如像毫秒级别的返回一个结果，MapReduce很难做到。
+### 缺点
+>MapReduce不擅长做实时计算、流式计算、DAG（有向图）计算。
+
 <ul>
 <li><strong>实时计算</strong>。MapReduce无法像Mysql一样，在毫秒或者秒级内返回结果。</li>
 <li><strong>流式计算</strong>。流式计算的输入数据是动态的，而MapReduce的输入数据集是静态的，不能动态变化。这是因为MapReduce自身的设计特点决定了数据源必须是静态的。</li>
 <li><strong>DAG（有向图）计算</strong>。多个应用程序存在依赖关系，后一个应用程序的输入为前一个的输出。在这种情况下，MapReduce并不是不能做，而是使用后，每个MapReduce作业的输出结果都会写入到磁盘，会造成大量的磁盘IO，导致性能非常的低下。</li>
 </ul>
-<h2><span id="mapreduce核心思想">MapReduce核心思想</span></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191026201155.png" alt>  </p>
+<h2><span id="mapreduce-he-xin-si-xiang">MapReduce核心思想</span><a href="#mapreduce-he-xin-si-xiang" class="header-anchor">$</a></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191026201155.png" alt>  </p>
 <blockquote>
 <ol>
 <li>分布式的运算程序往往需要分成至少2个阶段。<br>第一个阶段的maptask并发实例，完全并行运行，互不相干。</li>
@@ -193,7 +209,7 @@
 <li>MapReduce编程模型只能包含一个map阶段和一个reduce阶段，如果用户的业务逻辑非常复杂，那就只能多个mapreduce程序，串行运行。</li>
 </ol>
 </blockquote>
-<h2><span id="mapreduce进程">MapReduce进程</span></h2><blockquote>
+<h2><span id="mapreduce-jin-cheng">MapReduce进程</span><a href="#mapreduce-jin-cheng" class="header-anchor">$</a></h2><blockquote>
 <p>一个完整的mapreduce程序在分布式运行时有三类实例进程：</p>
 </blockquote>
 <ul>
@@ -201,7 +217,7 @@
 <li>MapTask：负责map阶段的整个数据处理流程。</li>
 <li>ReduceTask：负责reduce阶段的整个数据处理流程。</li>
 </ul>
-<h3><span id="mapreduce编程规范">MapReduce编程规范</span></h3><blockquote>
+<h3><span id="mapreduce-bian-cheng-gui-fan">MapReduce编程规范</span><a href="#mapreduce-bian-cheng-gui-fan" class="header-anchor">$</a></h3><blockquote>
 <p>用户编写的程序分成三个部分：Mapper，Reducer，Driver(提交运行mr程序的客户端)  </p>
 </blockquote>
 <ul>
@@ -214,58 +230,8 @@
 </ul>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">（1）用户自定义的Reducer要继承自己的父类   </span><br><span class="line">（2）Reducer的输入数据类型对应Mapper的输出数据类型，也是KV  </span><br><span class="line">（3）Reducer的业务逻辑写在reduce()方法中  </span><br><span class="line">（4）Reducetask进程对每一组相同k的&lt;k,v&gt;组调用一次reduce()方法</span><br></pre></td></tr></table></figure>
 
-<h2><span id="第一代和第二代mapreduce的区别">第一代和第二代MapReduce的区别</span></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191028175301.png" alt></p>
+<h2><span id="di-yi-dai-he-di-er-dai-mapreduce-de-qu-bie">第一代和第二代MapReduce的区别</span><a href="#di-yi-dai-he-di-er-dai-mapreduce-de-qu-bie" class="header-anchor">$</a></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191028175301.png" alt></p>
 
-                                                            
-                                                                <!-- <h2><span id="mapreduce的定义">MapReduce的定义</span></h2><blockquote>
-<p>&emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。<br>&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。</p>
-</blockquote>
-<a id="more"></a>
-<h2><span id="mapreduce优缺点">MapReduce优缺点</span></h2><h3><span id="优点">优点</span></h3><ol>
-<li><strong>MapReduce 易于编程</strong>。它简单的实现一些接口，就可以完成一个分布式程序，这个分布式程序可以分布到大量廉价的PC机器上运行。也就是说你写一个分布式程序，跟写一个简单的串行程序是一模一样的。就是因为这个特点使得MapReduce编程变得非常流行。</li>
-<li><strong>良好的扩展性</strong>。当你的计算资源不能得到满足的时候，你可以通过简单的增加机器来扩展它的计算能力。</li>
-<li><strong>高容错性</strong>。MapReduce设计的初衷就是使程序能够部署在廉价的PC机器上，这就要求它具有很高的容错性。比如其中一台机器挂了，它可以把上面的计算任务转移到另外一个节点上运行，不至于这个任务运行失败，而且这个过程不需要人工参与，而完全是由 Hadoop内部完成的。</li>
-<li><strong>适合PB级以上海量数据的离线处理</strong>。这里加红字体离线处理，说明它适合离线处理而不适合在线处理。比如像毫秒级别的返回一个结果，MapReduce很难做到。<h3><span id="缺点">缺点</span></h3><blockquote>
-<p>MapReduce不擅长做实时计算、流式计算、DAG（有向图）计算。</p>
-</blockquote>
-</li>
-</ol>
-<ul>
-<li><strong>实时计算</strong>。MapReduce无法像Mysql一样，在毫秒或者秒级内返回结果。</li>
-<li><strong>流式计算</strong>。流式计算的输入数据是动态的，而MapReduce的输入数据集是静态的，不能动态变化。这是因为MapReduce自身的设计特点决定了数据源必须是静态的。</li>
-<li><strong>DAG（有向图）计算</strong>。多个应用程序存在依赖关系，后一个应用程序的输入为前一个的输出。在这种情况下，MapReduce并不是不能做，而是使用后，每个MapReduce作业的输出结果都会写入到磁盘，会造成大量的磁盘IO，导致性能非常的低下。</li>
-</ul>
-<h2><span id="mapreduce核心思想">MapReduce核心思想</span></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191026201155.png" alt>  </p>
-<blockquote>
-<ol>
-<li>分布式的运算程序往往需要分成至少2个阶段。<br>第一个阶段的maptask并发实例，完全并行运行，互不相干。</li>
-<li>第二个阶段的reduce task并发实例互不相干，但是他们的数据依赖于上一个阶段的所有maptask并发实例的输出。</li>
-<li>MapReduce编程模型只能包含一个map阶段和一个reduce阶段，如果用户的业务逻辑非常复杂，那就只能多个mapreduce程序，串行运行。</li>
-</ol>
-</blockquote>
-<h2><span id="mapreduce进程">MapReduce进程</span></h2><blockquote>
-<p>一个完整的mapreduce程序在分布式运行时有三类实例进程：</p>
-</blockquote>
-<ul>
-<li>MrAppMaster：负责整个程序的过程调度及状态协调。</li>
-<li>MapTask：负责map阶段的整个数据处理流程。</li>
-<li>ReduceTask：负责reduce阶段的整个数据处理流程。</li>
-</ul>
-<h3><span id="mapreduce编程规范">MapReduce编程规范</span></h3><blockquote>
-<p>用户编写的程序分成三个部分：Mapper，Reducer，Driver(提交运行mr程序的客户端)  </p>
-</blockquote>
-<ul>
-<li><p>Mapper阶段  </p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">（1）用户自定义的Mapper要继承自己的父类  </span><br><span class="line">（2）Mapper的输入数据是KV对的形式（KV的类型可自定义）  </span><br><span class="line">（3）Mapper中的业务逻辑写在map()方法中  </span><br><span class="line">（4）Mapper的输出数据是KV对的形式（KV的类型可自定义）  </span><br><span class="line">（5）map()方法（maptask进程）对每一个&lt;K,V&gt;调用一次</span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191026215909.png" alt></p>
-</li>
-<li><p>Reduce阶段  </p>
-</li>
-</ul>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">（1）用户自定义的Reducer要继承自己的父类   </span><br><span class="line">（2）Reducer的输入数据类型对应Mapper的输出数据类型，也是KV  </span><br><span class="line">（3）Reducer的业务逻辑写在reduce()方法中  </span><br><span class="line">（4）Reducetask进程对每一组相同k的&lt;k,v&gt;组调用一次reduce()方法</span><br></pre></td></tr></table></figure>
-
-<h2><span id="第一代和第二代mapreduce的区别">第一代和第二代MapReduce的区别</span></h2><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191028175301.png" alt></p>
- -->
                             </div>
                             
                                 <div class="level is-size-7 is-uppercase">
@@ -399,7 +365,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        13
                     </p>
                 </div>
             </div>
@@ -409,7 +375,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -543,6 +509,14 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Kafka/">
+            <span class="level-start">
+                <span class="level-item">Kafka</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Python/">
             <span class="level-start">
                 <span class="level-item">Python</span>
@@ -577,7 +551,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a>
+        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a>
     </div>
 </div>
     
@@ -589,6 +563,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/post/df89d65f.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka初始">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time></div>
+                    <a href="/post/df89d65f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka初始</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -661,25 +654,6 @@
                     <a href="/post/a9423fcb.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop IPC 数据分帧和读写</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/22365c12.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BigData/Hadoop/Hadoop_Common/IPC/IPC建立">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T11:37:40.771Z">2019-11-20</time></div>
-                    <a href="/post/22365c12.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">BigData/Hadoop/Hadoop_Common/IPC/IPC建立</a>
-                    <p class="is-size-7 is-uppercase">
-                        
                     </p>
                 </div>
             </div>
@@ -863,6 +837,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Java配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Kafka初识</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -961,6 +942,25 @@
         
         <article class="media">
             
+            <a href="/post/df89d65f.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka初始">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time></div>
+                    <a href="/post/df89d65f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka初始</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/85ed9b6d.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="十大经典算法的优缺点">
@@ -1030,25 +1030,6 @@
                     <a href="/post/a9423fcb.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop IPC 数据分帧和读写</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/22365c12.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BigData/Hadoop/Hadoop_Common/IPC/IPC建立">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T11:37:40.771Z">2019-11-20</time></div>
-                    <a href="/post/22365c12.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">BigData/Hadoop/Hadoop_Common/IPC/IPC建立</a>
-                    <p class="is-size-7 is-uppercase">
-                        
                     </p>
                 </div>
             </div>
@@ -1232,6 +1213,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Java配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Kafka初识</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

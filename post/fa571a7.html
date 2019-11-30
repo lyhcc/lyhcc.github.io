@@ -11,16 +11,16 @@
 <title>配置文件 - lyhcc博客</title>
 
 
-    <meta name="description" content="Windows操作系统配置文件 配置设置文件（INI）文件是windows操作系统中的一种特殊的ASCII文件，以ini为文件扩展名,作为它的主要文件配置文件标准。该文件也被称为初始化文件initialization file和概要文件profile。应用程序可以拥有自己的配置文件，存储应用设置信息，也可以访问windows的基本系统配置文件win.ini中存储的配置信息    INI配置信息分为">
+    <meta name="description" content="Windows操作系统配置文件 Java配置文件 Hadoop Configuration详解 hadoop 配置文件格式 Configuration类介绍 Configuration类的过程 Configurable接口       ## Windows操作系统配置文件 &amp;gt;配置设置文件（INI）文件是windows操作系统中的一种特殊的ASCII文件，以ini为文件扩展名,作为它的主要">
 <meta name="keywords" content="Windows操作系统配置文件,Java配置文件,Hadoop配置文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="配置文件">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;fa571a7.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="Windows操作系统配置文件 配置设置文件（INI）文件是windows操作系统中的一种特殊的ASCII文件，以ini为文件扩展名,作为它的主要文件配置文件标准。该文件也被称为初始化文件initialization file和概要文件profile。应用程序可以拥有自己的配置文件，存储应用设置信息，也可以访问windows的基本系统配置文件win.ini中存储的配置信息    INI配置信息分为">
+<meta property="og:description" content="Windows操作系统配置文件 Java配置文件 Hadoop Configuration详解 hadoop 配置文件格式 Configuration类介绍 Configuration类的过程 Configurable接口       ## Windows操作系统配置文件 &amp;gt;配置设置文件（INI）文件是windows操作系统中的一种特殊的ASCII文件，以ini为文件扩展名,作为它的主要">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-13T10:29:48.613Z">
+<meta property="og:updated_time" content="2019-11-29T09:50:57.736Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -148,7 +148,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    19 minutes read (About 2839 words)
+                    19 minutes read (About 2840 words)
                 </span>
                                             
                                                 
@@ -161,15 +161,29 @@
                                             
                             </h1>
                             <div class="content">
-                                
-                                                    
-    <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">Windows操作系统配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">Java配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text">Hadoop Configuration详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">hadoop 配置文件格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">Hadoop 配置文件参数说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">合并资源</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">Configuration类介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">类图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">说明</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">Configuration类的过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">构造Configuration对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">资源加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-text">hadoop配置文件解析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null"><span class="toc-text">Configurable接口</span></a></li></ol></li></ol>
-    </div>
-    
-                                                        <h2><span id="windows操作系统配置文件">Windows操作系统配置文件</span></h2><blockquote>
-<p>配置设置文件（INI）文件是windows操作系统中的一种特殊的ASCII文件，以ini为文件扩展名,作为它的主要文件配置文件标准。该文件也被称为初始化文件initialization file和概要文件profile。<br>应用程序可以拥有自己的配置文件，存储应用设置信息，也可以访问windows的基本系统配置文件win.ini中存储的配置信息  </p>
-</blockquote>
+
+                                <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#windows-cao-zuo-xi-tong-pei-zhi-wen-jian">Windows操作系统配置文件</a></li>
+<li><a href="#java-pei-zhi-wen-jian">Java配置文件</a></li>
+<li><a href="#hadoop-configuration-xiang-jie">Hadoop Configuration详解</a><ul>
+<li><a href="#hadoop-pei-zhi-wen-jian-ge-shi">hadoop 配置文件格式</a></li>
+<li><a href="#configuration-lei-jie-shao">Configuration类介绍</a></li>
+<li><a href="#configuration-lei-de-guo-cheng">Configuration类的过程</a></li>
+<li><a href="#configurable-jie-kou">Configurable接口</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+## Windows操作系统配置文件
+>配置设置文件（INI）文件是windows操作系统中的一种特殊的ASCII文件，以ini为文件扩展名,作为它的主要文件配置文件标准。该文件也被称为初始化文件initialization file和概要文件profile。  
+>应用程序可以拥有自己的配置文件，存储应用设置信息，也可以访问windows的基本系统配置文件win.ini中存储的配置信息  
+
 <p><strong>INI配置信息分为两部分</strong>  </p>
 <ul>
 <li>节，节标题放在方括号中, [section]</li>
@@ -183,7 +197,7 @@
 <p><strong>Windows 提供的API</strong></p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">DWORD GetPrivateProfileString(</span><br><span class="line">  LPCTSTR lpAppName, // If this parameter is NULL, the GetPrivateProfileString function copies all section names in the file to the supplied buffer.</span><br><span class="line">  LPCTSTR lpKeyName, // If this parameter is NULL, all key names in the section specified by the lpAppNameparameter are copied to the buffer specified by the lpReturnedString parameter.</span><br><span class="line">  LPCTSTR lpDefault, // If the lpKeyName key cannot be found in the initialization file, GetPrivateProfileString copies the default string to the lpReturnedString buffer.</span><br><span class="line">  LPTSTR  lpReturnedString,  // destination buffer</span><br><span class="line">  DWORD   nSize,             // size of destination buffer</span><br><span class="line">  LPCTSTR lpFileName         // The name of the initialization file</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">UINT GetPrivateProfileInt(</span><br><span class="line">  LPCTSTR lpAppName, //节</span><br><span class="line">  LPCTSTR lpKeyName,//项</span><br><span class="line">  INT     nDefault, //The default value to return if the key name cannot be found in the initialization file.</span><br><span class="line">  LPCTSTR lpFileName //INI文件名</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 
-<h2><span id="java配置文件">Java配置文件</span></h2><blockquote>
+<h2><span id="java-pei-zhi-wen-jian">Java配置文件</span><a href="#java-pei-zhi-wen-jian" class="header-anchor">$</a></h2><blockquote>
 <p>JDK提供了java.util.Properties类，用于处理简单的配置文件。Properties继承自Hashtable<br>相对于INI文件，Properties处理得配合文件格式非常简单  </p>
 </blockquote>
 <p><strong>Properties的使用</strong></p>
@@ -212,11 +226,11 @@
 <p>java.util.Properties提供的能力有限，其他配置信息读写方法，如Apache Jakarta Commons工具集提供的Commons Configuration  </p>
 </blockquote>
 <p>【说明】：上面的MyConfiguration都是自定义的类,并且这些配置文件都在resources文件夹下</p>
-<h2><span id="hadoop-configuration详解">Hadoop Configuration详解</span></h2><blockquote>
+<h2><span id="hadoop-configuration-xiang-jie">Hadoop Configuration详解</span><a href="#hadoop-configuration-xiang-jie" class="header-anchor">$</a></h2><blockquote>
 <p>Hadoop没有使用java.util.Properties管理配置文件，也没有使用Apache Jakarta<br>Commons Configuration 管理配置文件，而是使用了一套独有的配置文件管理系统，并提供自己的API，即使用org.apache.hadoop.conf.Configuration处理配置信息。</p>
 </blockquote>
-<h3><span id="hadoop-配置文件格式">hadoop 配置文件格式</span></h3><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="hljs-meta">&lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt;</span></span><br><span class="line"><span class="hljs-comment">&lt;!--</span></span><br><span class="line"><span class="hljs-comment">  Licensed under the Apache License, Version 2.0 (the "License");</span></span><br><span class="line"><span class="hljs-comment">  you may not use this file except in compliance with the License.</span></span><br><span class="line"><span class="hljs-comment">  You may obtain a copy of the License at</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">    http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">  Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="hljs-comment">  distributed under the License is distributed on an "AS IS" BASIS,</span></span><br><span class="line"><span class="hljs-comment">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="hljs-comment">  See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="hljs-comment">  limitations under the License. See accompanying LICENSE file.</span></span><br><span class="line"><span class="hljs-comment">--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">&lt;!-- Put site-specific property overrides in this file. --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span></span><br><span class="line"><span class="hljs-comment">&lt;!-- 指定HDFS中NameNode的地址 --&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>fs.defaultFS<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">        	<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>hdfs://master:9000<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">&lt;!-- 指定hadoop运行时产生文件的存储目录 --&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>hadoop.tmp.dir<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>/opt/module/hadoop-2.9.2/data<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4><span id="hadoop-配置文件参数说明">Hadoop 配置文件参数说明</span></h4><p><strong>配置参数类型说明</strong>  </p>
+<h3><span id="hadoop-pei-zhi-wen-jian-ge-shi">hadoop 配置文件格式</span><a href="#hadoop-pei-zhi-wen-jian-ge-shi" class="header-anchor">$</a></h3><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="hljs-meta">&lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt;</span></span><br><span class="line"><span class="hljs-comment">&lt;!--</span></span><br><span class="line"><span class="hljs-comment">  Licensed under the Apache License, Version 2.0 (the "License");</span></span><br><span class="line"><span class="hljs-comment">  you may not use this file except in compliance with the License.</span></span><br><span class="line"><span class="hljs-comment">  You may obtain a copy of the License at</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">    http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">  Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="hljs-comment">  distributed under the License is distributed on an "AS IS" BASIS,</span></span><br><span class="line"><span class="hljs-comment">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="hljs-comment">  See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="hljs-comment">  limitations under the License. See accompanying LICENSE file.</span></span><br><span class="line"><span class="hljs-comment">--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">&lt;!-- Put site-specific property overrides in this file. --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span></span><br><span class="line"><span class="hljs-comment">&lt;!-- 指定HDFS中NameNode的地址 --&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>fs.defaultFS<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">        	<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>hdfs://master:9000<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">&lt;!-- 指定hadoop运行时产生文件的存储目录 --&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>hadoop.tmp.dir<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>/opt/module/hadoop-2.9.2/data<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4><span id="hadoop-pei-zhi-wen-jian-can-shu-shuo-ming">Hadoop 配置文件参数说明</span><a href="#hadoop-pei-zhi-wen-jian-can-shu-shuo-ming" class="header-anchor">$</a></h4><p><strong>配置参数类型说明</strong>  </p>
 <ul>
 <li>参数名 String  </li>
 <li>参数值 boolean int long float，也可以是其他类型</li>
@@ -233,7 +247,7 @@
 </ul>
 </li>
 </ul>
-<h4><span id="合并资源">合并资源</span></h4><blockquote>
+<h4><span id="he-bing-zi-yuan">合并资源</span><a href="#he-bing-zi-yuan" class="header-anchor">$</a></h4><blockquote>
 <p>合并资源是是指将多个配置合并，产生一个配置文件，如core-site.xml和core-defualt.xml通过addResources()方法合并</p>
 </blockquote>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Configuration conf = <span class="hljs-keyword">new</span> Configuration();</span><br><span class="line"><span class="hljs-comment">//加载resources文件夹内容</span></span><br><span class="line">ClassLoader classLoader = HadoopConfiguaration.class.getClassLoader</span><br><span class="line"><span class="hljs-comment">//添加合并资源</span></span><br><span class="line">conf.addResource(Objects.requireNonNull(classLoader.getResourceAsSt(<span class="hljs-string">"core-site.xml"</span>)));</span><br><span class="line">conf.addResource(Objects.requireNonNull(classLoader.getResourceAsSt(<span class="hljs-string">"core-default.xml"</span>)</span><br><span class="line">System.out.println(conf.get(<span class="hljs-string">"fs.defaultFS"</span>));</span><br></pre></td></tr></table></figure>
@@ -250,8 +264,8 @@
 <li>然后通过set<em>/get</em> 方法访问/设置配置项  </li>
 </ol>
 <p>【说明】资源会在第一次使用时自动加载到对象中</p>
-<h3><span id="configuration类介绍">Configuration类介绍</span></h3><h4><span id="类图">类图</span></h4><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191112180834.png" alt></p>
-<h4><span id="说明">说明</span></h4><p>类图中，Configuration有7个非静态成员</p>
+<h3><span id="configuration-lei-jie-shao">Configuration类介绍</span><a href="#configuration-lei-jie-shao" class="header-anchor">$</a></h3><h4><span id="lei-tu">类图</span><a href="#lei-tu" class="header-anchor">$</a></h4><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191112180834.png" alt></p>
+<h4><span id="shuo-ming">说明</span><a href="#shuo-ming" class="header-anchor">$</a></h4><p>类图中，Configuration有7个非静态成员</p>
 <ul>
 <li>布尔变量quietmode，用来设置加载配置的模式。如果quietmode为true (默认值)，则在加载解析配置文件的过程中，不输出日志信息。quietmode只是-一个方便开发人员调试的变量。</li>
 <li>数组resources保存了所有通过addResource()方法添加Configuration对象的资源</li>
@@ -269,7 +283,7 @@
 </blockquote>
 </li>
 </ul>
-<h3><span id="configuration类的过程">Configuration类的过程</span></h3><h4><span id="构造configuration对象">构造Configuration对象</span></h4><h4><span id="资源加载">资源加载</span></h4><p><strong>添加资源到Configuration对象的方法有两种</strong>  </p>
+<h3><span id="configuration-lei-de-guo-cheng">Configuration类的过程</span><a href="#configuration-lei-de-guo-cheng" class="header-anchor">$</a></h3><h4><span id="gou-zao-configuration-dui-xiang">构造Configuration对象</span><a href="#gou-zao-configuration-dui-xiang" class="header-anchor">$</a></h4><h4><span id="zi-yuan-jia-zai">资源加载</span><a href="#zi-yuan-jia-zai" class="header-anchor">$</a></h4><p><strong>添加资源到Configuration对象的方法有两种</strong>  </p>
 <ul>
 <li>对象的addResource()方法</li>
 <li>类的静态addDefaultResource()方法(设置了loadDefaults标志)  <blockquote>
@@ -291,7 +305,7 @@
 </blockquote>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">synchronized</span> Properties <span class="hljs-title">getProps</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.properties == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.properties = <span class="hljs-keyword">new</span> Properties();</span><br><span class="line">        Map&lt;String, String[]&gt; backup = <span class="hljs-keyword">new</span> ConcurrentHashMap(<span class="hljs-keyword">this</span>.updatingResource);</span><br><span class="line">        <span class="hljs-keyword">this</span>.loadResources(<span class="hljs-keyword">this</span>.properties, <span class="hljs-keyword">this</span>.resources, <span class="hljs-keyword">this</span>.quietmode);</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.properties;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//加载默认资源</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loadResources</span><span class="hljs-params">(Properties properties, ArrayList&lt;Configuration.Resource&gt; resources, <span class="hljs-keyword">boolean</span> quiet)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.loadDefaults) &#123;</span><br><span class="line">        Iterator i$ = defaultResources.iterator();</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">while</span>(i$.hasNext()) &#123;</span><br><span class="line">            String resource = (String)i$.next();</span><br><span class="line">            <span class="hljs-keyword">this</span>.loadResource(properties, <span class="hljs-keyword">new</span> Configuration.Resource(resource, <span class="hljs-keyword">false</span>), quiet);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.getResource(<span class="hljs-string">"hadoop-site.xml"</span>) != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">this</span>.loadResource(properties, <span class="hljs-keyword">new</span> Configuration.Resource(<span class="hljs-string">"hadoop-site.xml"</span>, <span class="hljs-keyword">false</span>), quiet);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4><span id="hadoop配置文件解析">hadoop配置文件解析</span></h4><blockquote>
+<h4><span id="hadoop-pei-zhi-wen-jian-jie-xi">hadoop配置文件解析</span><a href="#hadoop-pei-zhi-wen-jian-jie-xi" class="header-anchor">$</a></h4><blockquote>
 <p>hadoop 的配置文件都是XML文件，JAXP(JAVA API for XML processing)是一种稳定的、可靠的XML处理API，支持两种XML处理方法  </p>
 </blockquote>
 <ul>
@@ -315,7 +329,7 @@
 </ul>
 </li>
 </ol>
-<h3><span id="configurable接口">Configurable接口</span></h3><blockquote>
+<h3><span id="configurable-jie-kou">Configurable接口</span><a href="#configurable-jie-kou" class="header-anchor">$</a></h3><blockquote>
 <p>Configurable是一个很简单的接口，位于org.apache.hadoop.conf包中</p>
 </blockquote>
 <p><strong>类图</strong><br><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191113182340.png" alt></p>
@@ -327,167 +341,6 @@
 <p>该方法调用了ReflectionUtils中的setConf方法</p>
 </blockquote>
 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setConf</span><span class="hljs-params">(Object theObject, Configuration conf)</span> </span>&#123;</span><br><span class="line">       <span class="hljs-keyword">if</span> (conf != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">           <span class="hljs-keyword">if</span> (theObject <span class="hljs-keyword">instanceof</span> Configurable) &#123;</span><br><span class="line">               ((Configurable)theObject).setConf(conf);</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           setJobConf(theObject, conf);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-                                                            
-                                                                <!-- <h2><span id="windows操作系统配置文件">Windows操作系统配置文件</span></h2><blockquote>
-<p>配置设置文件（INI）文件是windows操作系统中的一种特殊的ASCII文件，以ini为文件扩展名,作为它的主要文件配置文件标准。该文件也被称为初始化文件initialization file和概要文件profile。<br>应用程序可以拥有自己的配置文件，存储应用设置信息，也可以访问windows的基本系统配置文件win.ini中存储的配置信息  </p>
-</blockquote>
-<p><strong>INI配置信息分为两部分</strong>  </p>
-<ul>
-<li>节，节标题放在方括号中, [section]</li>
-<li>项，一个等式，key=value <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">;注释</span><br><span class="line"></span><br><span class="line">;节 </span><br><span class="line">[section]  </span><br><span class="line"></span><br><span class="line">;参数（键=值） </span><br><span class="line">name=value</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p><strong>INI文件片段</strong></p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[0x0419]</span><br><span class="line">1100=Ошибка инициализации программы установки</span><br><span class="line">1101=%s</span><br><span class="line">1102=%1 Идет подготовка к запуску мастера %2, выполняющего установку программы.  Ждите.</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-
-
-<p><strong>Windows 提供的API</strong></p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">DWORD GetPrivateProfileString(</span><br><span class="line">  LPCTSTR lpAppName, // If this parameter is NULL, the GetPrivateProfileString function copies all section names in the file to the supplied buffer.</span><br><span class="line">  LPCTSTR lpKeyName, // If this parameter is NULL, all key names in the section specified by the lpAppNameparameter are copied to the buffer specified by the lpReturnedString parameter.</span><br><span class="line">  LPCTSTR lpDefault, // If the lpKeyName key cannot be found in the initialization file, GetPrivateProfileString copies the default string to the lpReturnedString buffer.</span><br><span class="line">  LPTSTR  lpReturnedString,  // destination buffer</span><br><span class="line">  DWORD   nSize,             // size of destination buffer</span><br><span class="line">  LPCTSTR lpFileName         // The name of the initialization file</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">UINT GetPrivateProfileInt(</span><br><span class="line">  LPCTSTR lpAppName, //节</span><br><span class="line">  LPCTSTR lpKeyName,//项</span><br><span class="line">  INT     nDefault, //The default value to return if the key name cannot be found in the initialization file.</span><br><span class="line">  LPCTSTR lpFileName //INI文件名</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<h2><span id="java配置文件">Java配置文件</span></h2><blockquote>
-<p>JDK提供了java.util.Properties类，用于处理简单的配置文件。Properties继承自Hashtable<br>相对于INI文件，Properties处理得配合文件格式非常简单  </p>
-</blockquote>
-<p><strong>Properties的使用</strong></p>
-<ol>
-<li>非XML文件格式<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//通过指定的键搜索属性</span><br><span class="line">public String getProperty(String key)</span><br><span class="line"></span><br><span class="line">//功能同上，参数defaultValue提供了默认值</span><br><span class="line">public String getProperty(String key, String defaultValue)</span><br><span class="line"></span><br><span class="line">//最终调用Hashtable 的方法put</span><br><span class="line">public synchronized object setProperty (String key, String value)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<blockquote>
-<p>Properties中的属性通过load)方法加载，该方法从输入流中读取键-值对，而store()<br>方法法则将Properties表中的属性列表写入输出流。使用输入流和输出流，Properties对象但可以保存在文件中，而且还可以保存在其他支持流的系统中，如Web服务器。  </p>
-</blockquote>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">    * log4j.properties内容如下</span></span><br><span class="line"><span class="hljs-comment">    * log4j.rootLogger=INFO, stdout  </span></span><br><span class="line"><span class="hljs-comment">    * log4j.appender.stdout=org.apache.log4j.ConsoleAppender  </span></span><br><span class="line"><span class="hljs-comment">    * log4j.appender.stdout.layout=org.apache.log4j.PatternLayout  </span></span><br><span class="line"><span class="hljs-comment">    * log4j.appender.stdout.layout.ConversionPattern=%d %p [%c] - %m%n  </span></span><br><span class="line"><span class="hljs-comment">    * log4j.appender.logfile=org.apache.log4j.FileAppender  </span></span><br><span class="line"><span class="hljs-comment">    * log4j.appender.logfile.File=target/spring.log  </span></span><br><span class="line"><span class="hljs-comment">    * log4j.appender.logfile.layout=org.apache.log4j.PatternLayout  </span></span><br><span class="line"><span class="hljs-comment">    * log4j.appender.logfile.layout.ConversionPattern=%d %p [%c] - %m%n</span></span><br><span class="line"><span class="hljs-comment">    * <span class="hljs-doctag">@param</span> args</span></span><br><span class="line"><span class="hljs-comment">    * <span class="hljs-doctag">@throws</span> IOException</span></span><br><span class="line"><span class="hljs-comment">    */</span></span><br><span class="line">   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">       Properties properties = <span class="hljs-keyword">new</span> Properties();</span><br><span class="line">       <span class="hljs-comment">//获取resources目录下的文件流</span></span><br><span class="line">       InputStream stream = MyConfiguration.class.getClassLoader().getResourceAsStream(<span class="hljs-string">"log4j.properties"</span>);</span><br><span class="line">       <span class="hljs-comment">//加载文件获取并获取配合信息</span></span><br><span class="line">       properties.load(stream);</span><br><span class="line">       String property = properties.getProperty(<span class="hljs-string">"log4j.rootLogger"</span>);</span><br><span class="line">       System.out.println(property);</span><br><span class="line">       <span class="hljs-comment">/*输出： INFO, stdout  */</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-
-<blockquote>
-<p>Java 1.5之后支持XML配置文件,Properties中的数据也可以以XML格式保存，对应的加载和写出方法是loadFromXML()和storeToXML()  </p>
-</blockquote>
-<p><strong>storeToXML()</strong></p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Properties props = <span class="hljs-keyword">new</span> Properties();</span><br><span class="line">props.setProperty(<span class="hljs-string">"Length"</span>, <span class="hljs-string">"100"</span>);</span><br><span class="line">props.setProperty(<span class="hljs-string">"Width"</span>, <span class="hljs-string">"50"</span>)</span><br><span class="line">FileOutputStream fos = <span class="hljs-keyword">new</span> FileOutputStream(<span class="hljs-string">"properties.xml"</span>);</span><br><span class="line">props.storeToXML(fos, <span class="hljs-keyword">null</span>);</span><br></pre></td></tr></table></figure>
-<p><strong>loadFromXML()</strong></p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Properties props = <span class="hljs-keyword">new</span> Properties();</span><br><span class="line">InputStream in = MyConfiguaration2.class.getClassLoader().getResourceAsStream(<span class="hljs-string">"properties.xml"</span>);</span><br><span class="line"></span><br><span class="line">props.loadFromXML(in)</span><br><span class="line">String length = props.getProperty(<span class="hljs-string">"Length"</span>);</span><br><span class="line">System.out.println(length);</span><br></pre></td></tr></table></figure>
-<p><strong>xml有指定格式</strong></p>
-<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;</span></span><br><span class="line"><span class="hljs-meta">&lt;!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd"&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">entry</span> <span class="hljs-attr">key</span>=<span class="hljs-string">"Width"</span>&gt;</span>50<span class="hljs-tag">&lt;/<span class="hljs-name">entry</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">entry</span> <span class="hljs-attr">key</span>=<span class="hljs-string">"Length"</span>&gt;</span>100<span class="hljs-tag">&lt;/<span class="hljs-name">entry</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>java.util.Properties提供的能力有限，其他配置信息读写方法，如Apache Jakarta Commons工具集提供的Commons Configuration  </p>
-</blockquote>
-<p>【说明】：上面的MyConfiguration都是自定义的类,并且这些配置文件都在resources文件夹下</p>
-<h2><span id="hadoop-configuration详解">Hadoop Configuration详解</span></h2><blockquote>
-<p>Hadoop没有使用java.util.Properties管理配置文件，也没有使用Apache Jakarta<br>Commons Configuration 管理配置文件，而是使用了一套独有的配置文件管理系统，并提供自己的API，即使用org.apache.hadoop.conf.Configuration处理配置信息。</p>
-</blockquote>
-<h3><span id="hadoop-配置文件格式">hadoop 配置文件格式</span></h3><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="hljs-meta">&lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt;</span></span><br><span class="line"><span class="hljs-comment">&lt;!--</span></span><br><span class="line"><span class="hljs-comment">  Licensed under the Apache License, Version 2.0 (the "License");</span></span><br><span class="line"><span class="hljs-comment">  you may not use this file except in compliance with the License.</span></span><br><span class="line"><span class="hljs-comment">  You may obtain a copy of the License at</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">    http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="hljs-comment"></span></span><br><span class="line"><span class="hljs-comment">  Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="hljs-comment">  distributed under the License is distributed on an "AS IS" BASIS,</span></span><br><span class="line"><span class="hljs-comment">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="hljs-comment">  See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="hljs-comment">  limitations under the License. See accompanying LICENSE file.</span></span><br><span class="line"><span class="hljs-comment">--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">&lt;!-- Put site-specific property overrides in this file. --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span></span><br><span class="line"><span class="hljs-comment">&lt;!-- 指定HDFS中NameNode的地址 --&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>fs.defaultFS<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">        	<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>hdfs://master:9000<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">&lt;!-- 指定hadoop运行时产生文件的存储目录 --&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>hadoop.tmp.dir<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>/opt/module/hadoop-2.9.2/data<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4><span id="hadoop-配置文件参数说明">Hadoop 配置文件参数说明</span></h4><p><strong>配置参数类型说明</strong>  </p>
-<ul>
-<li>参数名 String  </li>
-<li>参数值 boolean int long float，也可以是其他类型</li>
-</ul>
-<p><strong>参数说明</strong>  </p>
-<ul>
-<li>根元素 configuration</li>
-<li>configuration下的property元素</li>
-<li>property下<ul>
-<li>name        参数名</li>
-<li>value       参数值</li>
-<li>description 参数描述</li>
-<li>final 相当于java的final关键字，在资源合并时可以防止配置项被覆盖</li>
-</ul>
-</li>
-</ul>
-<h4><span id="合并资源">合并资源</span></h4><blockquote>
-<p>合并资源是是指将多个配置合并，产生一个配置文件，如core-site.xml和core-defualt.xml通过addResources()方法合并</p>
-</blockquote>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Configuration conf = <span class="hljs-keyword">new</span> Configuration();</span><br><span class="line"><span class="hljs-comment">//加载resources文件夹内容</span></span><br><span class="line">ClassLoader classLoader = HadoopConfiguaration.class.getClassLoader</span><br><span class="line"><span class="hljs-comment">//添加合并资源</span></span><br><span class="line">conf.addResource(Objects.requireNonNull(classLoader.getResourceAsSt(<span class="hljs-string">"core-site.xml"</span>)));</span><br><span class="line">conf.addResource(Objects.requireNonNull(classLoader.getResourceAsSt(<span class="hljs-string">"core-default.xml"</span>)</span><br><span class="line">System.out.println(conf.get(<span class="hljs-string">"fs.defaultFS"</span>));</span><br></pre></td></tr></table></figure>
-<p>【注意】如果第一个配置中存在final，则会以下出现警告,并且值不发生更改</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-number">2019</span>-<span class="hljs-number">11</span>-<span class="hljs-number">12</span> <span class="hljs-number">17</span>:<span class="hljs-number">31</span>:<span class="hljs-number">34</span>,<span class="hljs-number">548</span> WARN [org.apache.hadoop.util.Shell] - Did not find winutils.exe: java.io.FileNotFoundException: java.io.FileNotFoundException: HADOOP_HOME and hadoop.home.dir are unset. -see https:<span class="hljs-comment">//wiki.apache.org/hadoop/WindowsProblems</span></span><br><span class="line">  <span class="hljs-number">2019</span>-<span class="hljs-number">11</span>-<span class="hljs-number">12</span> <span class="hljs-number">17</span>:<span class="hljs-number">31</span>:<span class="hljs-number">34</span>,<span class="hljs-number">777</span> WARN [org.apache.hadoop.conf.Configuration] - java.io.BufferedInputStream<span class="hljs-meta">@cac</span>736f:an attempt to override <span class="hljs-keyword">final</span> parameter: fs.defaultFS;  Ignoring.</span><br><span class="line">  <span class="hljs-number">2019</span>-<span class="hljs-number">11</span>-<span class="hljs-number">12</span> <span class="hljs-number">17</span>:<span class="hljs-number">31</span>:<span class="hljs-number">34</span>,<span class="hljs-number">777</span> WARN [org.apache.hadoop.conf.Configuration] - java.io.BufferedInputStream@<span class="hljs-number">1</span>d7acb34:an attempt to override <span class="hljs-keyword">final</span> parameter: fs.defaultFS;  Ignoring.</span><br></pre></td></tr></table></figure>
-
-<p><strong>测试用的core-default.xml文件</strong></p>
-<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="hljs-meta">&lt;?xml-stylesheet type="text/xsl" href="configuration.xsl"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span></span><br><span class="line">    <span class="hljs-comment">&lt;!-- 指定HDFS中NameNode的地址 --&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>fs.defaultFS<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>hdfs://vmaster:8200<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">&lt;!-- 指定hadoop运行时产生文件的存储目录 --&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>hadoop.tmp.dir<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>/opt/module/hadoop-2.3.2/tmp<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>123<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>wer<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Configuation类的一般过程</strong></p>
-<ol>
-<li>构造Configuration对象</li>
-<li>添加需要加载的资源  addResource()方法</li>
-<li>然后通过set<em>/get</em> 方法访问/设置配置项  </li>
-</ol>
-<p>【说明】资源会在第一次使用时自动加载到对象中</p>
-<h3><span id="configuration类介绍">Configuration类介绍</span></h3><h4><span id="类图">类图</span></h4><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191112180834.png" alt></p>
-<h4><span id="说明">说明</span></h4><p>类图中，Configuration有7个非静态成员</p>
-<ul>
-<li>布尔变量quietmode，用来设置加载配置的模式。如果quietmode为true (默认值)，则在加载解析配置文件的过程中，不输出日志信息。quietmode只是-一个方便开发人员调试的变量。</li>
-<li>数组resources保存了所有通过addResource()方法添加Configuration对象的资源</li>
-</ul>
-<p><strong>Configuration.addResource()有如下4种形式:</strong><br>  <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public void addResource (InputStream in)  //已打开的输入流</span><br><span class="line">public void addResource (Path file)       //Hadoop文件路径</span><br><span class="line">public void addResource (String name)     //CLASSPATH 资源 String形式</span><br><span class="line">public void addResource (URL url)         //URL,统一资源定位符，如https://lyhcc.github.io</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>布尔变量loadDefaults用于确定是否加载默认资源，这些默认资源保存在defaultResources<br>中。注意，defaultResources 是个静态成员变量，通过方法addDefaultResource()可以添加系<br>统的默认资源。在HDFS中，会把hdfs-default.xml和hdfs-site.xml作为默认资源，并通过addDefaultResource()保存在成员变量defaultResources中;在MapReduce中，默认资源是<br>mapred-default.xml和mapred-site.xml。<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//下面的代码来自hadoop-1.x 的org.apache.hadoop.hdfs.server.datanode.DataNode </span></span><br><span class="line"><span class="hljs-keyword">static</span>&#123;</span><br><span class="line">  Configuration . <span class="hljs-function">addDe <span class="hljs-title">faultResource</span> <span class="hljs-params">(<span class="hljs-string">"hdfs-default . xml"</span>)</span> </span>;</span><br><span class="line">  Conf igurat ion. <span class="hljs-function">addDe <span class="hljs-title">faultResource</span> <span class="hljs-params">(<span class="hljs-string">"hdfs-site. xml"</span>)</span> </span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//在hadoop2.x以后这代码被移到了Configuration类里面</span></span><br><span class="line"><span class="hljs-comment">//hadoop-2.8.4中的1809行</span></span><br></pre></td></tr></table></figure></li>
-<li>properties 存放Hadoop配置文件解析后的键-值对，为java.util.Properties类型</li>
-<li>finalParameters  类型是Set<string>， 用来保存所有在配置文件中已经被声明为final的键-值对的键</string></li>
-<li>overlay用于记录通过set()方式改变的配置项。也就是说，出现在overlay中的键-值对是应用设置的，而不是通过对配置资源解析得到的，为java.util.Properties类型</li>
-<li>Configuration 是一一个类加载器变量，可以通过它来加载指定类，也可以通过它加载相关的资源。<blockquote>
-<p>上面提到addResource()可以通过字符串方式加载CLASSPATH资源，它其实通过Configuration中的getResource()将字符串转换成URL资源</p>
-  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> URL <span class="hljs-title">getResource</span> <span class="hljs-params">(String name)</span></span>&#123;</span><br><span class="line">  <span class="hljs-keyword">return</span> classLoader.getResource(name) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.8.4版本的Configuration类的1188行</p>
-</blockquote>
-</li>
-</ul>
-<h3><span id="configuration类的过程">Configuration类的过程</span></h3><h4><span id="构造configuration对象">构造Configuration对象</span></h4><h4><span id="资源加载">资源加载</span></h4><p><strong>添加资源到Configuration对象的方法有两种</strong>  </p>
-<ul>
-<li>对象的addResource()方法</li>
-<li>类的静态addDefaultResource()方法(设置了loadDefaults标志)  <blockquote>
-<p>添加的资源并不会立即被加载，只是通过reloadConfiguration()方法清空properties和finalParameters。相关代码如下:</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> <span class="hljs-comment">//以URL资源为例</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addResource</span><span class="hljs-params">(URL url)</span> </span>&#123;</span><br><span class="line">       <span class="hljs-keyword">this</span>.addResourceObject(<span class="hljs-keyword">new</span> Configuration.Resource(url));</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="hljs-comment">//添加资源</span></span><br><span class="line"> <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addResourceObject</span><span class="hljs-params">(Configuration.Resource resource)</span></span>&#123;</span><br><span class="line">     <span class="hljs-keyword">this</span>.resources.add(resource);</span><br><span class="line">     <span class="hljs-keyword">this</span>.restrictSystemProps |= resource.isParserRestricted();</span><br><span class="line">     <span class="hljs-keyword">this</span>.reloadConfiguration();</span><br><span class="line"> &#125; </span><br><span class="line"> <span class="hljs-comment">//资源重新加载触发函数</span></span><br><span class="line"> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">reloadConfiguration</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">   <span class="hljs-keyword">this</span>.properties = <span class="hljs-keyword">null</span>;</span><br><span class="line">   <span class="hljs-keyword">this</span>.finalParameters.clear();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>以上是类的成员方法addResource()方法的调用。  </p>
-</blockquote>
-<blockquote>
-<p>静态方法dDefaultResource()也可以清空Configuration对象中的数据（非静态成员），只不过是通过需要通过REGISTRY作为媒介进行。能够调用是因为REGISTRY记录了系统所有的Configuration对象<br><strong>REGISTRY的定义以及为其添加参数的过程</strong>  </p>
-</blockquote>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> WeakHashMap&lt;Configuration, Object&gt; REGISTRY = <span class="hljs-keyword">new</span> WeakHashMap();</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Configuration</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> loadDefaults)</span> </span>&#123;</span><br><span class="line">       ...</span><br><span class="line">       <span class="hljs-keyword">synchronized</span>(Configuration.class) &#123;</span><br><span class="line">           REGISTRY.put(<span class="hljs-keyword">this</span>, (Object)<span class="hljs-keyword">null</span>);</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>成员变量properties中的数据只在被调用的时候才会被加载进来。在getProps方法中，properties为空时，会触发loadResources()执行</p>
-</blockquote>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">synchronized</span> Properties <span class="hljs-title">getProps</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.properties == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">        <span class="hljs-keyword">this</span>.properties = <span class="hljs-keyword">new</span> Properties();</span><br><span class="line">        Map&lt;String, String[]&gt; backup = <span class="hljs-keyword">new</span> ConcurrentHashMap(<span class="hljs-keyword">this</span>.updatingResource);</span><br><span class="line">        <span class="hljs-keyword">this</span>.loadResources(<span class="hljs-keyword">this</span>.properties, <span class="hljs-keyword">this</span>.resources, <span class="hljs-keyword">this</span>.quietmode);</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.properties;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">//加载默认资源</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loadResources</span><span class="hljs-params">(Properties properties, ArrayList&lt;Configuration.Resource&gt; resources, <span class="hljs-keyword">boolean</span> quiet)</span> </span>&#123;</span><br><span class="line">    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.loadDefaults) &#123;</span><br><span class="line">        Iterator i$ = defaultResources.iterator();</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">while</span>(i$.hasNext()) &#123;</span><br><span class="line">            String resource = (String)i$.next();</span><br><span class="line">            <span class="hljs-keyword">this</span>.loadResource(properties, <span class="hljs-keyword">new</span> Configuration.Resource(resource, <span class="hljs-keyword">false</span>), quiet);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.getResource(<span class="hljs-string">"hadoop-site.xml"</span>) != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">            <span class="hljs-keyword">this</span>.loadResource(properties, <span class="hljs-keyword">new</span> Configuration.Resource(<span class="hljs-string">"hadoop-site.xml"</span>, <span class="hljs-keyword">false</span>), quiet);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4><span id="hadoop配置文件解析">hadoop配置文件解析</span></h4><blockquote>
-<p>hadoop 的配置文件都是XML文件，JAXP(JAVA API for XML processing)是一种稳定的、可靠的XML处理API，支持两种XML处理方法  </p>
-</blockquote>
-<ul>
-<li><a href>SAX解析(Simple API for XML)</a></li>
-<li><a href="https://lyhcc.github.io/post/e9fcf702.html#more">DOM解析(Documnet Object Model)</a><blockquote>
-<p>hadoop使用的DOM解析</p>
-</blockquote>
-</li>
-</ul>
-<p><strong>两种解析的区别</strong>  </p>
-<ol>
-<li>SAX 提供了一种流式的、事件驱动的XML处理方式<ul>
-<li>缺点：编写处理逻辑比较复杂  </li>
-<li>优势：适合处理大的XML文件</li>
-</ul>
-</li>
-<li>DOM 的工作方式是：  <ul>
-<li>首先一次性将XML文档加入内存</li>
-<li>然后在内存创建一个“树形结构”，也就是对象模型</li>
-<li>然后使用对象提供的接口访问文档，进而操作文档</li>
-</ul>
-</li>
-</ol>
-<h3><span id="configurable接口">Configurable接口</span></h3><blockquote>
-<p>Configurable是一个很简单的接口，位于org.apache.hadoop.conf包中</p>
-</blockquote>
-<p><strong>类图</strong><br><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191113182340.png" alt></p>
-<blockquote>
-<p>hadoop 代码中存在大量实现了该接口的类，可以通过setConf方法设置配置参数<br><strong>简化创建和setConf的两个步骤</strong><br>java反射机制实现，利用org.apache.hadoop.util.ReflectionUtils的newInstance方法</p>
-</blockquote>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; <span class="hljs-function">T <span class="hljs-title">newInstance</span><span class="hljs-params">(Class&lt;T&gt; theClass, Configuration conf)</span></span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>该方法调用了ReflectionUtils中的setConf方法</p>
-</blockquote>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setConf</span><span class="hljs-params">(Object theObject, Configuration conf)</span> </span>&#123;</span><br><span class="line">       <span class="hljs-keyword">if</span> (conf != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">           <span class="hljs-keyword">if</span> (theObject <span class="hljs-keyword">instanceof</span> Configurable) &#123;</span><br><span class="line">               ((Configurable)theObject).setConf(conf);</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           setJobConf(theObject, conf);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure> -->
                             </div>
                             
                                 <div class="level is-size-7 is-uppercase">
@@ -621,7 +474,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        12
+                        13
                     </p>
                 </div>
             </div>
@@ -631,7 +484,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -765,6 +618,14 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Kafka/">
+            <span class="level-start">
+                <span class="level-item">Kafka</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Python/">
             <span class="level-start">
                 <span class="level-item">Python</span>
@@ -799,7 +660,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a>
+        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a>
     </div>
 </div>
     
@@ -811,6 +672,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/post/df89d65f.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka初始">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time></div>
+                    <a href="/post/df89d65f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka初始</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -883,25 +763,6 @@
                     <a href="/post/a9423fcb.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop IPC 数据分帧和读写</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/22365c12.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BigData/Hadoop/Hadoop_Common/IPC/IPC建立">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T11:37:40.771Z">2019-11-20</time></div>
-                    <a href="/post/22365c12.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">BigData/Hadoop/Hadoop_Common/IPC/IPC建立</a>
-                    <p class="is-size-7 is-uppercase">
-                        
                     </p>
                 </div>
             </div>
@@ -1085,6 +946,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Java配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Kafka初识</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1183,6 +1051,25 @@
         
         <article class="media">
             
+            <a href="/post/df89d65f.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka初始">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time></div>
+                    <a href="/post/df89d65f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka初始</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/85ed9b6d.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="十大经典算法的优缺点">
@@ -1252,25 +1139,6 @@
                     <a href="/post/a9423fcb.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hadoop IPC 数据分帧和读写</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/22365c12.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="BigData/Hadoop/Hadoop_Common/IPC/IPC建立">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-20T11:37:40.771Z">2019-11-20</time></div>
-                    <a href="/post/22365c12.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">BigData/Hadoop/Hadoop_Common/IPC/IPC建立</a>
-                    <p class="is-size-7 is-uppercase">
-                        
                     </p>
                 </div>
             </div>
@@ -1454,6 +1322,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Java配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Kafka初识</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
