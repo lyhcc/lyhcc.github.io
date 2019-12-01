@@ -20,7 +20,7 @@
 <meta property="og:description" content="kafka的设计主要目标 为什么使用消息系统 Kafka架构 Kafka网络拓扑 Kafka的通信过程详解      kafka的设计主要目标 以复杂度O(1)的方式提供消息持久化能力，即使对TB级以上的数据也能保证常数的访问性能 高吞吐率，即使在非常廉价的商用机器也能做到单机支持秒100k条消息的传输 支持Kafka Server间消息分区，及分布式消费，同时保证分区内的消息顺序传输">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-12-01T02:18:59.206Z">
+<meta property="og:updated_time" content="2019-12-01T02:21:03.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -185,6 +185,7 @@
 <li>支持在线水平扩展</li>
 </ul>
 <a id="more"></a>
+
 <h2><span id="wei-shi-me-shi-yong-xiao-xi-xi-tong">为什么使用消息系统</span><a href="#wei-shi-me-shi-yong-xiao-xi-xi-tong" class="header-anchor">$</a></h2><ol>
 <li>解耦<blockquote>
 <p>允许你独立的扩展或修改两边的处理过程，只要确保它们遵守同样的接口约束。</p>
