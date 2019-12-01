@@ -155,7 +155,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 821 words)
+                    5 minutes read (About 822 words)
                 </span>
                                             
                                                 
@@ -172,30 +172,19 @@
                             <div class="content">
 
                                 <p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191201101726.png" alt></p>
-<ul>
-<li>ProducerRequest:生产者发送消息的请求，生产者将消息发送至Kafka集群中的某<br>个Broker, Broker 接收到此请求后持久化此消息并更新相关元数据信息。（发送消息）</li>
-<li>TopicMetadataRequest :获取Topic元数据信息的请求，无论是生产者还是消费者都<br>需要通过此请求来获取感兴趣的Topic的元数据。（获取感兴趣Topic元数据）</li>
-<li>FetchRequest:消费者获取感兴趣Topic的某个分区的消息的请求，除此之外，分<br>区状态为Follower的副本也需要利用此请求去同步分区状态为Leader的对应副本<br>数据。 （获取感兴趣Topic分区消息）</li>
-<li>OffsetRequest:消费者发送至Kafka集群来获取感兴趣Topic的分区偏移量的请求，<br>通过此请求可以获知当前Topic所有分区在不同时间段的偏移量详情。（获取消费者感兴趣的分区偏移量）</li>
-<li>OffsetCommitRequest:消费者提交Topic被消费的分区偏移量信息至Broker, Broker<br>接收到此请求后持久化相关偏移量信息。（提交消费了的分区偏移量）</li>
-<li>OffsetFetchRequest:消费者发送 获取 提交至Kafka集群的相关Topic被消费的 详细<br>信息，和OffsetCommitRequest相互对应。（获取被消费的消息）</li>
-<li>LeaderAndlsrRequest:当Topic的某个分区状态发生变化时，处于Leader状态的<br>KafkaController发送此请求至相关的Broker,通知其做出相应的处理。 （检测Topic分区变化状态）</li>
-<li>StopReplicaRequest:当Topic的某个分区被删除或者下线的时候，处于Leader状态<br>的KafkaController发送此请求至相关的Broker,通知其做出相应的处理。（检测分区是否在线）</li>
-<li>UpdateMetadataRequest:当Topic 的元数据信息发生变化时，处于Leader状态的<br>KafkaContoller发送此请求至相关的Broker,通知其做出相应的处理。（Topic元数据变化）</li>
-<li>BrokerContolledShutdownRequest:当Broker正常下线时，发生此请求至处于Leader<br>状态的KafnRaCotoller。（Broker下线）</li>
-<li>ConsumerMetadataRequest: 获取保存特定Consumer Group消费详情的分区信息。（获取CG信息）</li>
-</ul>
-<p><strong>交互过程</strong></p>
-<ul>
-<li>Producer和Kafka集群: Producer需要利用ProducerRequest和TopicMetadataRequest<br>米完成 Topic元数据的查询、消息的发送。</li>
-<li>Consumer和Kafka集群: Consumer需要利用TopicMetadataRequest请求，FetchRequest<br>请求。OffsetRequest 请求、OffsetCommitRequest 请求、fsetFechnRequest 请求和<br>ConsumerMetadataRequest请求来完成Topic元数据的查询、消息的订阅、历史偏移量<br>的查询、偏移量的提交、当前偏移量的查询。</li>
-<li>Kafkaontroller状态为Leader的Broker和KafkaController状态为Standby的Broker:<br>KafkaContoller 状态为Leader的Broker需要利用LeaderAndIsrRequest请求、Stop-<br>ReplicaRequest请求，UpdateMetadataRequest 请求来完成对Topic的管理; Kafka-<br>Controller状态为Standby 的Broker需要利用BrokerControlledShutdownRequest请求<br>来通知KafkaContoller状态为Leader的Broker自己的下线动作。</li>
-<li>Broker和Broker之间: Broker相互之间需要利用FetchRequest请求来同步Topic分<br>区的副本数据，这样才能使Topic分区各副本数据实时保持一致。</li>
-</ul>
-
                             </div>
                             
                                     
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/bc0600c8.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                             
                 </div>
     </div>
