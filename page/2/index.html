@@ -135,17 +135,17 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-17T04:52:38.134Z">2019-11-17</time>
+                                <time class="level-item has-text-grey" datetime="2019-12-05T14:22:39.843Z">2019-12-05</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/others/">others</a>
+                                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 703 words)
+                    2 minutes read (About 345 words)
                 </span>
                                             
                                                 
@@ -154,8 +154,8 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/55cde24e.html">
-                                        Java远程调用
+                                    <a class="has-link-black-ter" href="/post/31fca8c2.html">
+                                        Shell变量的替换和测试
                                     </a>
                                     
                             </h1>
@@ -166,435 +166,52 @@
 <!-- toc -->
 
 <ul>
-<li><a href="#gai-shu">概述</a></li>
-<li><a href="#yuan-cheng-fang-fa-diao-yong-shi-li">远程方法调用实例</a></li>
-<li><a href="#java-yuan-cheng-diao-yong-shi-li-lei-tu">Java远程调用实例类图</a></li>
-</ul>
-<!-- tocstop -->
-
-<div class="tocEnd"></div>
-## 概述
->Java远程方法调用(Remote Method Invocation, RMI)是Java的一个核心API和类库,
-允许一个Java虚拟机上运行的Java程序调用不同虚拟机上运行的对象中的方法，即使这两个
-虚拟机运行于物理隔离的不同主机上。在某种程度上，RMI可以看成RPC的Java升级版。
-
-<blockquote>
-<p>和RPC一样,存在服务端和客户端<br>典型服务器端应用程序 创建多个远程对象（Remote Object）,使这些对象能被客户端引用，并等待客户端调用远程对象的方法<br>典型的客户端程序 从服务器获得一个或多个远程对象的引用，然后调用远程对象的方法</p>
-</blockquote>
-                            </div>
-                            
-                                    
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/55cde24e.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.654Z">2019-11-16</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/others/">others</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    6 minutes read (About 927 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/e9fcf702.html">
-                                        DOM解析
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <div class="tocStart"></div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#dom-de-gong-zuo-fang-shi-shi">DOM 的工作方式是：</a></li>
-<li><a href="#chu-li-bu-zou">处理步骤</a></li>
-<li><a href="#hadoop-pei-zhi-wen-jian-jie-xi-de-te-bie-shuo-ming">hadoop配置文件解析的特别说明</a></li>
-<li><a href="#hadoop-pei-zhi-wen-jian-jie-xi-wan-zheng-dai-ma">hadoop 配置文件解析完整代码</a></li>
+<li><a href="#bian-liang-de-ti-huan">变量的替换</a></li>
+<li><a href="#bian-liang-de-ce-shi">变量的测试</a></li>
 </ul>
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
 
-<blockquote>
-<p><strong>说明：这里主要分析hadoop的DOM解析</strong></p>
-</blockquote>
-<h2 id="DOM-的工作方式是："><a href="#DOM-的工作方式是：" class="headerlink" title="DOM 的工作方式是："></a>DOM 的工作方式是：</h2><ul>
-<li>首先一次性将XML文档加入内存</li>
-<li>然后在内存创建一个“树形结构”，也就是对象模型</li>
-<li>然后使用对象提供的接口访问文档，进而操作文档<h2 id="处理步骤"><a href="#处理步骤" class="headerlink" title="处理步骤"></a>处理步骤</h2><ol>
-<li>获得用于创建DOM解析器的工厂对象<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();</span><br></pre></td></tr></table></figure></li></ol></li></ul>
-                            </div>
-                            
-                                    
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/e9fcf702.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.646Z">2019-11-16</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/MapReduce/">MapReduce</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    8 minutes read (About 1136 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/5429.html">
-                                        MapReduce介绍
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <div class="tocStart"></div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#mapreduce-de-ding-yi">MapReduce的定义</a></li>
-<li><a href="#mapreduce-you-que-dian">MapReduce优缺点</a><ul>
-<li><a href="#you-dian">优点</a></li>
-<li><a href="#que-dian">缺点</a></li>
-</ul>
-</li>
-<li><a href="#mapreduce-he-xin-si-xiang">MapReduce核心思想</a></li>
-<li><a href="#mapreduce-jin-cheng">MapReduce进程</a><ul>
-<li><a href="#mapreduce-bian-cheng-gui-fan">MapReduce编程规范</a></li>
-</ul>
-</li>
-<li><a href="#di-yi-dai-he-di-er-dai-mapreduce-de-qu-bie">第一代和第二代MapReduce的区别</a></li>
-</ul>
-<!-- tocstop -->
-
-<div class="tocEnd"></div>
-##  MapReduce的定义
-> &emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。  
-&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。
-                            </div>
-                            
-                                    
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/5429.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.637Z">2019-11-16</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/HDFS/">HDFS</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    5 minutes read (About 795 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/21534.html">
-                                        HDFS快照管理
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <h2 id="快照管理"><a href="#快照管理" class="headerlink" title="快照管理"></a>快照管理</h2><blockquote>
-<p>快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。</p>
-</blockquote>
-                            </div>
-                            
-                                    
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/21534.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.625Z">2019-11-16</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop_common</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    19 minutes read (About 2840 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/fa571a7.html">
-                                        配置文件
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <div class="tocStart"></div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#windows-cao-zuo-xi-tong-pei-zhi-wen-jian">Windows操作系统配置文件</a></li>
-<li><a href="#java-pei-zhi-wen-jian">Java配置文件</a></li>
-<li><a href="#hadoop-configuration-xiang-jie">Hadoop Configuration详解</a><ul>
-<li><a href="#hadoop-pei-zhi-wen-jian-ge-shi">hadoop 配置文件格式</a></li>
-<li><a href="#configuration-lei-jie-shao">Configuration类介绍</a></li>
-<li><a href="#configuration-lei-de-guo-cheng">Configuration类的过程</a></li>
-<li><a href="#configurable-jie-kou">Configurable接口</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<div class="tocEnd"></div>
-## Windows操作系统配置文件
->配置设置文件（INI）文件是windows操作系统中的一种特殊的ASCII文件，以ini为文件扩展名,作为它的主要文件配置文件标准。该文件也被称为初始化文件initialization file和概要文件profile。  
->应用程序可以拥有自己的配置文件，存储应用设置信息，也可以访问windows的基本系统配置文件win.ini中存储的配置信息  
-
-<p><strong>INI配置信息分为两部分</strong>  </p>
-<ul>
-<li>节，节标题放在方括号中, [section]</li>
-<li>项，一个等式，key=value <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">;注释</span><br><span class="line"></span><br><span class="line">;节 </span><br><span class="line">[section]  </span><br><span class="line"></span><br><span class="line">;参数（键=值） </span><br><span class="line">name=value</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p><strong>INI文件片段</strong></p>
-<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[0x0419]</span><br><span class="line">1100=Ошибка инициализации программы установки</span><br><span class="line">1101=%s</span><br><span class="line">1102=%1 Идет подготовка к запуску мастера %2, выполняющего установку программы.  Ждите.</span><br></pre></td></tr></table></figure>
-                            </div>
-                            
-                                    
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/fa571a7.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.609Z">2019-11-16</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop_common</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 551 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/13550.html">
-                                        Hadoop通信机制和内部协议之协议
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <div class="tocStart"></div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#gai-shu">概述</a></li>
-<li><a href="#clientprotocol-tong-xin-xie-yi">ClientProtocol通信协议</a></li>
-<li><a href="#refreshusermappingprotocol">RefreshUserMappingProtocol</a></li>
-<li><a href="#refreshauthorizationpolicyprotocol">RefreshAuthorizationPolicyProtocol</a><ul>
-<li><a href="#resourcemanageradministrationprotocol">ResourceManagerAdministrationProtocol</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<div class="tocEnd"></div>
-## 概述
-<center>MapReduce核心协议</center>
-
-<table>
+<h2 id="变量的替换"><a href="#变量的替换" class="headerlink" title="变量的替换"></a>变量的替换</h2><table>
 <thead>
 <tr>
-<th>名称</th>
-<th>描述</th>
+<th>语法</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>ClientProtocol</td>
-<td>继承于Version基类，查看作业情况监控当前集群等</td>
+<td>${变量名#匹配规则}</td>
+<td>从变量 开头 进行规则匹配，将符合 最短 的数据删除</td>
 </tr>
 <tr>
-<td>RefreshUserMappingProtocol</td>
-<td>刷新用户到用户组映射关系到超级用户代理组列表</td>
+<td>${变量名##匹配规则}</td>
+<td>从变量开头进行规则匹配,将符合最长的数据删除</td>
 </tr>
 <tr>
-<td>RefreshAuthorizationPolicyProtocol</td>
-<td>刷新HDFS和MapReduce服务几倍访问控制列表</td>
+<td>${变量名%匹配规则}</td>
+<td>从变量尾部进行规则匹配,将符合最短的数据删除</td>
 </tr>
 <tr>
-<td>ResourceManagerAdministrationProtocol</td>
-<td>继承于GetUserMappingProtocol基类，刷新队列列表，节点列表</td>
+<td>${变量名%%匹配规则}</td>
+<td>从变量尾部进行规则匹配,将符合最长的数据删除</td>
 </tr>
 <tr>
-<td></td></tr></tbody></table>
+<td>${变量名旧字符串/新字符串}</td>
+<td>变量内容符合旧字符串则,则第一个旧字符串会被新字符串取代</td>
+</tr>
+<tr>
+<td>${变量名旧字符串/新字符串}</td>
+<td>变量内容符合旧字符串则，则全部的旧字符串会被新字符串取代</td>
+</tr>
+</tbody></table>
                             </div>
                             
                                     
                                         <div class="level is-mobile">
                                             <div class="level-start">
                                                 <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/13550.html#more">
+                                                    <a class="button is-size-7 is-light" href="/post/31fca8c2.html#more">
                                                         Read More
                                                     </a>
                                                 </div>
@@ -619,17 +236,17 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.589Z">2019-11-16</time>
+                                <time class="level-item has-text-grey" datetime="2019-11-30T10:12:38.573Z">2019-11-30</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop_common</a>
+                                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    10 minutes read (About 1530 words)
+                    5 minutes read (About 822 words)
                 </span>
                                             
                                                 
@@ -638,8 +255,66 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/56192.html">
-                                        Hadoop通信机制和内部协议之RPC
+                                    <a class="has-link-black-ter" href="/post/bc0600c8.html">
+                                        Kafka通信详情
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191201101726.png" alt></p>
+                            </div>
+                            
+                                    
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/bc0600c8.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    12 minutes read (About 1777 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/df89d65f.html">
+                                        Kafka初始
                                     </a>
                                     
                             </h1>
@@ -650,44 +325,30 @@
 <!-- toc -->
 
 <ul>
-<li><a href="#hadoop-rpc">Hadoop RPC</a><ul>
-<li><a href="#rpc-jian-jie">RPC简介</a></li>
-<li><a href="#rpc-mo-xing">RPC模型</a></li>
-<li><a href="#rpc-te-xing">RPC特性</a></li>
-<li><a href="#rpc-li-zi">RPC例子</a></li>
-<li><a href="#qi-ta-kai-yuan-rpc-jia-gou">其他开源RPC架构</a></li>
-</ul>
-</li>
+<li><a href="#kafka-de-she-ji-zhu-yao-mu-biao">kafka的设计主要目标</a></li>
+<li><a href="#wei-shi-me-shi-yong-xiao-xi-xi-tong">为什么使用消息系统</a></li>
+<li><a href="#kafka-jia-gou">Kafka架构</a></li>
+<li><a href="#kafka-wang-luo-tuo-bu">Kafka网络拓扑</a></li>
+<li><a href="#kafka-de-tong-xin-guo-cheng-xiang-jie">Kafka的通信过程详解</a></li>
 </ul>
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
-## Hadoop RPC
-### RPC简介
->简要地说，RPC就是允许程序调用位于其他机器上的过程(也可以是同一台机器的不同进程)。  
->RPC调用过程是透明的  
 
-
-<blockquote>
-<p>传统过程调用：传统的过程调用中，主程序将参数压人栈内并调用过程，这时候主程序停止执行并开始执行相应的过程。被调用的过程从栈中获取参数，然后执行过程函数;执行完毕后，将返回参数入栈(或者保存在寄存器里)，并将控制权交还给调用方。调用方获取返回参数，并继续执行。  </p>
-</blockquote>
-<blockquote>
-<p>而RPC调用是进程间的过程调用  </p>
-</blockquote>
-<h3 id="RPC模型"><a href="#RPC模型" class="headerlink" title="RPC模型"></a>RPC模型</h3><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191031181948.png" alt></p>
-<ul>
-<li><strong>通行模块：</strong> 请求-响应</li>
-<li><strong>Stub程序：</strong> 用于保证RPC的透明性。在客户端，不在本地调用，而是将请求信息通过网络模块发送给法服务器端，服务器接收后进行解码。服务器中，Stub程序依次进行 解码（请求的参数）、调用相应的服务过程、编码返回结果等处理</li>
-<li><strong>调度程序：</strong> 调度来自通行模块的请求信息，根据其中标识选一个Stub程序运行</li>
-<li><strong>客户程序：</strong> 请求发出者</li>
-<li><strong>服务过程：</strong> 请求接收者</li></ul>
+<h2 id="kafka的设计主要目标"><a href="#kafka的设计主要目标" class="headerlink" title="kafka的设计主要目标"></a>kafka的设计主要目标</h2><ul>
+<li>以复杂度O(1)的方式提供消息持久化能力，即使对TB级以上的数据也能保证常数的访问性能</li>
+<li>高吞吐率，即使在非常廉价的商用机器也能做到单机支持秒100k条消息的传输</li>
+<li>支持Kafka Server间消息分区，及分布式消费，同时保证分区内的消息顺序传输</li>
+<li>支持离线的数据处理和实时数据处理</li>
+<li>支持在线水平扩展</li>
+</ul>
                             </div>
                             
                                     
                                         <div class="level is-mobile">
                                             <div class="level-start">
                                                 <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/56192.html#more">
+                                                    <a class="button is-size-7 is-light" href="/post/df89d65f.html#more">
                                                         Read More
                                                     </a>
                                                 </div>
@@ -712,17 +373,17 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.579Z">2019-11-16</time>
+                                <time class="level-item has-text-grey" datetime="2019-11-24T08:05:11.834Z">2019-11-24</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop_common</a>
+                                        <a class="has-link-grey -link" href="/categories/DataMining/">DataMining</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    16 minutes read (About 2447 words)
+                    10 minutes read (About 1446 words)
                 </span>
                                             
                                                 
@@ -731,8 +392,8 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/20979.html">
-                                        hadoop序列化
+                                    <a class="has-link-black-ter" href="/post/85ed9b6d.html">
+                                        十大经典算法的优缺点
                                     </a>
                                     
                             </h1>
@@ -743,40 +404,35 @@
 <!-- toc -->
 
 <ul>
-<li><a href="#xu-lie-hua-jie-shao">序列化介绍</a></li>
-<li><a href="#java-xu-lie-hua">Java序列化</a></li>
-<li><a href="#hadoop-bu-shi-yong-java-xu-lie-hua-yuan-yin">Hadoop 不使用Java序列化原因</a></li>
-<li><a href="#hadoop-xu-lie-hua">Hadoop 序列化</a><ul>
-<li><a href="#hadoop-xu-lie-hua-ji-zhi-de-te-zheng">Hadoop序列化机制的特征</a></li>
-<li><a href="#hadoop-writable-ji-zhi">Hadoop Writable机制</a></li>
-<li><a href="#hadoop-xu-lie-hua-de-qi-ta-ji-ge-jie-kou">Hadoop序列化的其它几个接口</a></li>
-<li><a href="#hadoop-xu-lie-hua-de-lei">Hadoop 序列化的类</a></li>
-</ul>
-</li>
+<li><a href="#knn">KNN</a></li>
+<li><a href="#apriori">Apriori</a></li>
+<li><a href="#jue-ce-shu">决策树</a></li>
+<li><a href="#cart">CART</a></li>
+<li><a href="#em-expectation-maximization">EM （Expectation Maximization）</a></li>
+<li><a href="#po-su-bei-xie-si">朴素贝叶斯</a></li>
+<li><a href="#k-means">K-means</a></li>
+<li><a href="#pagerank">PageRank</a></li>
 </ul>
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
 
-<h2 id="序列化介绍"><a href="#序列化介绍" class="headerlink" title="序列化介绍"></a>序列化介绍</h2><blockquote>
-<p>序列化是一种将对象的状态信息转化成可以存储或者传输的过程，与之相反的为反序列化<br>不是某一种编程语言所独有的特性<br><strong>序列化的用途</strong>  </p>
-</blockquote>
-<ul>
-<li>作为一种持久化格式。对象序列化后存盘</li>
-<li>作为一种通信的数据格式。如虚拟机之间通信</li>
-<li>作为一种拷贝、克隆机制。放缓存</li>
-</ul>
-<h2 id="Java序列化"><a href="#Java序列化" class="headerlink" title="Java序列化"></a>Java序列化</h2><blockquote>
-<p>Java通过实现Serializable接口<br>Java序列化后放入对象，通过对象流进行IO操作，ObjectInputStream/ObjectOutputStream</p>
-</blockquote>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> java. io.Serializable ;</span><br><span class="line"></span><br><span class="line">／＊＊定义一个可以序列化的 App 信息类. */</span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Appinfo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span></span>&#123;</span><br><span class="line">	／／序列化标识</span><br><span class="line">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">11</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="KNN"><a href="#KNN" class="headerlink" title="KNN"></a>KNN</h2><p><strong>优点：</strong>  </p>
+<ol>
+<li>理论成熟，实现简单</li>
+</ol>
+<p><strong>缺点：</strong>  </p>
+<ol>
+<li>当样本不平衡时，如一个类的样本容量很大，而其他类样本容量很小时，有可能导致当输入一个新样本时，该样本的K个邻居中大容量类的样本占多数</li>
+<li>计算量较大</li>
+</ol>
                             </div>
                             
                                     
                                         <div class="level is-mobile">
                                             <div class="level-start">
                                                 <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/20979.html#more">
+                                                    <a class="button is-size-7 is-light" href="/post/85ed9b6d.html#more">
                                                         Read More
                                                     </a>
                                                 </div>
@@ -801,17 +457,13 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.559Z">2019-11-16</time>
+                                <time class="level-item has-text-grey" datetime="2019-11-23T11:06:45.361Z">2019-11-23</time>
                                 
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop common</a>
-                                    </div>
-                                    
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    12 minutes read (About 1754 words)
+                    a few seconds read (About 0 words)
                 </span>
                                             
                                                 
@@ -820,54 +472,17 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/420bf138.html">
-                                        Hadoop 压缩
+                                    <a class="has-link-black-ter" href="/post/1620326b.html">
+                                        Python/python数据可视化/散点图
                                     </a>
                                     
                             </h1>
                             <div class="content">
 
-                                <div class="tocStart"></div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#ya-suo">压缩</a></li>
-<li><a href="#hadoop-wen-jian-qie-pian">Hadoop文件切片</a></li>
-<li><a href="#hadoop-ya-suo">Hadoop压缩</a><ul>
-<li><a href="#ya-suo-ge-shi-xuan-ze">压缩格式选择</a></li>
-<li><a href="#hadoop-ya-suo-an-li">Hadoop 压缩案例</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<div class="tocEnd"></div>
-## 压缩
->压缩是指将数据转换为比原来的格式占用空间更小的格式来存储，以达到减小存储空间  
->解压是压缩的反过程
-
-<h2 id="Hadoop文件切片"><a href="#Hadoop文件切片" class="headerlink" title="Hadoop文件切片"></a>Hadoop文件切片</h2><blockquote>
-<p>Hadoop MapReduce是通过划分切片来处理得，这样就使得支持分割的压缩格式更适合Hadoop</p>
-</blockquote>
-<p>针对ss.txt文件大小为300M</p>
-<ul>
-<li><strong>计算公式</strong><br>computeSliteSize(Math.max(minSize,Math.min(maxSize,blocksize)))=blocksize=128M（Hadoop 1.x中块大小为64M）  </li>
-<li>默认情况下，切片大小=blocksize</li>
-<li>开始切，形成第1个切片：ss.txt—0:128M 第2个切片ss.txt—128:256M 第3个切片ss.txt—256M:300M（每次切片时，都要判断切完剩下的部分是否大于块的1.1倍，不大于1.1倍就划分一块切片）</li></ul>
+                                
                             </div>
                             
                                     
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/420bf138.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
                                             
                 </div>
     </div>
@@ -886,17 +501,17 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.535Z">2019-11-16</time>
+                                <time class="level-item has-text-grey" datetime="2019-11-21T06:37:07.200Z">2019-11-21</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
+                                        <a class="has-link-grey -link" href="/categories/Python/">Python</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Python/Python%E5%8F%AF%E8%A7%86%E5%8C%96/">Python可视化</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 166 words)
+                    a few seconds read (About 0 words)
                 </span>
                                             
                                                 
@@ -905,8 +520,56 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/8a9ad9ba.html">
-                                        Hadoop介绍
+                                    <a class="has-link-black-ter" href="/post/c0163c11.html">
+                                        python可视化
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                
+                            </div>
+                            
+                                    
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2019-11-20T11:51:58.898Z">2019-11-20</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop common</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/IPC/">IPC</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 271 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/a9423fcb.html">
+                                        Hadoop IPC 数据分帧和读写
                                     </a>
                                     
                             </h1>
@@ -917,27 +580,277 @@
 <!-- toc -->
 
 <ul>
-<li><a href="#qi-yuan-google-zai-da-shu-ju-fang-mian-de-san-da-lun-wen-gu-ge-san-bao">起源 Google 在大数据方面的三大论文 （谷歌三宝）</a></li>
-<li><a href="#hadoop-san-da-fa-xing-ban-ben">Hadoop 三大发行版本</a></li>
-<li><a href="#ying-jian-yao-qiu">硬件要求</a></li>
+<li><a href="#shu-ju-tong-xin-zhong-ding-jie-de-fang-fa">数据通信中定界的方法</a></li>
 </ul>
 <!-- tocstop -->
 
 </div>
-##  起源 Google 在大数据方面的三大论文 （谷歌三宝）
-[在github大的当前目录下](https://github.com/lyhcc/NoteBook/tree/master/bigdata)
-[三宝的介绍](https://www.cnblogs.com/javhu/archive/2013/03/25/cyue_hadoop_google.html)
+## 数据通信中定界的方法  
+- 定长消息:通信双方发送的消息长度是固定的，接收者只需要简单地将数据读入对应的缓冲区中，就可以获得消息。
+- 基于定界符:消息的结束由唯一标记指出，消息发送者在传输完数据后，添加一-个特殊的字节序列。这个特殊的标记不能在传输的数据中出现，接收者简单地扫描输入信
+息并查找定界符，并将定位符前面的数据形成消息交给上层应用。
+- 显式长度:在具体消息前面附加一一个固定大小的字段，指示该消息包含多少字节。接
+收者首先以定长消息的方式接受长度字段，然后根据这个长度接收消息。
 
-<h2><span id="hadoop-san-da-fa-xing-ban-ben">Hadoop 三大发行版本</span><a href="#hadoop-san-da-fa-xing-ban-ben" class="header-anchor">$</a></h2><ol>
-<li>Apache、Cloudera、Hortonworks Apache版本最原始、最基础：适合零基础 大公司在用</li>
-<li>Cloudera Cloudera’s DistributionIncluding Apache Hadoop 简称CDH<br>中小型公司用、简单方便、自带可视化 </li>
-<li>Hortonworks  文档较好  注：Cloudera 和Hortonworks 在2018年10月，国庆期间宣布合并<h2><span id="ying-jian-yao-qiu">硬件要求</span><a href="#ying-jian-yao-qiu" class="header-anchor">$</a></h2><h4><span id="nei-cun">内存</span><a href="#nei-cun" class="header-anchor">$</a></h4></li>
-</ol>
-<p><strong>最大支持内存查询：</strong>win + R<br><strong>输入</strong>  wmic memphysical get maxcapacity<br><strong>计算</strong> MaxCapacity/1024/1024GB  </p>
-<h4><span id="ying-pan-500g">硬盘:500G+</span><a href="#ying-pan-500g" class="header-anchor">$</a></h4>
+<p><strong>Hadoop IPC通信的定界方法</strong>  </p>
+<ul>
+<li>客户端-&gt;服务器端：显式长度</li>
+<li>服务器-&gt;客户端：定长消息，通过Writable序列化</li>
+</ul>
+
                             </div>
                             
                                     
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2019-11-20T09:54:55.955Z">2019-11-20</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop common</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/IPC/">IPC</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 999 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/28a780a5.html">
+                                        Hadoop IPC 连接的建立
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#xiang-guan-can-shu-shuo-ming">相关参数说明</a></li>
+<li><a href="#xiang-guan-fang-fa-shuo-ming">相关方法说明</a><ul>
+<li><a href="#fu-wu-qi-duan">服务器端</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+****
+Hadoop 2.x
+****
+## 相关参数说明
+- connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中  
+    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> ConcurrentMap&lt;Client.ConnectionId, Client.Connection&gt; connections;</span><br></pre></td></tr></table></figure>
+- calls 当前正在处理的远程调用，位于org.apache.hadoop.ipc.Client.Connection中
+    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> Hashtable&lt;Integer, Client.Call&gt; calls = <span class="hljs-keyword">new</span> Hashtable();</span><br></pre></td></tr></table></figure>
+- shouldCloseConnection 连接关闭标志
+    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> AtomicBoolean shouldCloseConnection = <span class="hljs-keyword">new</span> AtomicBoolean();</span><br></pre></td></tr></table></figure>
+                            </div>
+                            
+                                    
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/28a780a5.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2019-11-18T03:12:40.209Z">2019-11-18</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/Java/">Java</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 1099 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/93c86522.html">
+                                        Java NIO实例
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p>回显服务器是指接收到客户端的数据，原封不动的返回给客户端</p>
+</blockquote>
+<hr>
+<p><strong>小提示</strong> &nbsp;<br>在阅读这里之前，希望先看一个视频和相关API的介绍，API的介绍不是很详细，当然也可以遇到不知道的API在百度/Google搜索<br>视频：<a href="https://www.bilibili.com/video/av57390893?t=5655" target="_blank" rel="noopener">https://www.bilibili.com/video/av57390893?t=5655</a><br>相关API: <a href="https://lyhcc.github.io/post/f2d80d11.html#more">https://lyhcc.github.io/post/f2d80d11.html#more</a></p>
+<hr>
+                            </div>
+                            
+                                    
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/93c86522.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2019-11-17T06:20:40.619Z">2019-11-17</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/others/">others</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    17 minutes read (About 2597 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/f2d80d11.html">
+                                        Java NIO
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#java-ji-ben-tao-jie-zi">Java基本套接字</a><ul>
+<li><a href="#ji-ben-cao-zuo">基本操作</a></li>
+</ul>
+</li>
+<li><a href="#java-nio-ji-chu">Java NIO基础</a><ul>
+<li><a href="#nio-yu-io-de-qu-bie">NIO与IO的区别</a></li>
+<li><a href="#huan-chong-qu">缓冲区</a></li>
+</ul>
+</li>
+<li><a href="#tong-dao">通道</a><ul>
+<li><a href="#dui-xiang-de-chuang-jian">对象的创建</a></li>
+<li><a href="#shu-ju-de-du-xie">数据的读写</a></li>
+<li><a href="#shi-fou-zhi-chi-gong-zuo-zai-fei-zu-sai-zhuang-tai">是否支持工作在非阻塞状态</a></li>
+</ul>
+</li>
+<li><a href="#xuan-ze-qi">选择器</a><ul>
+<li><a href="#xuan-ze-qi-de-da-kai-guan-bi">选择器的打开关闭</a></li>
+<li><a href="#huo-qu-she-zhi-biao-zhi-wei">获取/设置标志位</a></li>
+<li><a href="#seversocketchannel-socketchannel-pei-he-gong-zuo-de-api">SeverSocketChannel/SocketChannel配合工作的API</a></li>
+<li><a href="#zhu-xiao-huo-qu-xuan-ze-qi">注销/获取选择器</a></li>
+<li><a href="#select-fang-fa">select方法</a></li>
+<li><a href="#huo-qu-xiang-guan-jian-de-fang-fa">获取相关建的方法</a></li>
+<li><a href="#pan-duan-tong-dao-shang-deng-dai-cao-zuo-de-fang-fa">判断通道上等待操作的方法</a></li>
+<li><a href="#yu-fu-jian-you-guan-de-ling-wai-liang-ge-fang-fa">与附件有关的另外两个方法</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+>[Java NIO实例](https://lyhcc.github.io/post/93c86522.html)
+## Java基本套接字
+### 基本操作
+- 连接远程机器。
+- 发送数据。
+- 接收数据。
+- 关闭连接。
+- 绑定端口。
+- 监听入站数据。
+- 在所绑定端口.上接受来自远程机器的连接。
+
+<blockquote>
+<p>其中，前四项用于客户端，后六项用于服务器，最后三项只有服务器才需要，即等待客<br>户端的连接，这些操作通过ServerSocket类实现。</p>
+</blockquote>
+                            </div>
+                            
+                                    
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/f2d80d11.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                             
                 </div>
     </div>
@@ -966,6 +879,8 @@
             <li><a class="pagination-link is-current" href="/page/2/">2</a></li>
             
             <li><a class="pagination-link has-text-black-ter" href="/page/3/">3</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/4/">4</a></li>
             
         </ul>
     </nav>
@@ -1015,7 +930,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        22
+                        33
                     </p>
                 </div>
             </div>
@@ -1025,7 +940,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        13
+                        14
                     </p>
                 </div>
             </div>
@@ -1035,7 +950,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        44
                     </p>
                 </div>
             </div>
@@ -1193,12 +1108,20 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Shell/">
+            <span class="level-start">
+                <span class="level-item">Shell</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/others/">
             <span class="level-start">
                 <span class="level-item">others</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a></li>
             </ul>
@@ -1211,7 +1134,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/kafka%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">kafka通信</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a>
+        <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 10px;">Linux 工具包</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" style="font-size: 10px;">Shell 之Bash数学运算</a> <a href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">Shell 的函数的定义和使用</a> <a href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" style="font-size: 10px;">Shell 的字符串处理</a> <a href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell全局变量和局部变量</a> <a href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Shell变量的替换和测试</a> <a href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/" style="font-size: 10px;">Shell命令的替换</a> <a href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Shell文件查找find命令</a> <a href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell有类型变量</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/find%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" style="font-size: 10px;">find、which、locate、whereis命令总结</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/kafka%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">kafka通信</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a> <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/" style="font-size: 10px;">文本处理三剑客(grep/sed/awk)</a>
     </div>
 </div>
     
@@ -1226,18 +1149,18 @@
         
         <article class="media">
             
-            <a href="/post/bc0600c8.html" class="media-left">
+            <a href="/post/e4677a0d.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka通信详情">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="文本处理三剑客(grep/sed/awk)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-30T10:12:38.573Z">2019-11-30</time></div>
-                    <a href="/post/bc0600c8.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka通信详情</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T14:10:28.380Z">2019-12-08</time></div>
+                    <a href="/post/e4677a0d.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">文本处理三剑客(grep/sed/awk)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                     </p>
                 </div>
             </div>
@@ -1245,18 +1168,18 @@
         
         <article class="media">
             
-            <a href="/post/df89d65f.html" class="media-left">
+            <a href="/post/f7db85fb.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka初始">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="find、which、locate、whereis总结">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time></div>
-                    <a href="/post/df89d65f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka初始</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T13:12:04.240Z">2019-12-08</time></div>
+                    <a href="/post/f7db85fb.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">find、which、locate、whereis总结</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                     </p>
                 </div>
             </div>
@@ -1264,18 +1187,18 @@
         
         <article class="media">
             
-            <a href="/post/85ed9b6d.html" class="media-left">
+            <a href="/post/f449e7e2.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十大经典算法的优缺点">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Shell文件查找find命令">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-24T08:05:11.834Z">2019-11-24</time></div>
-                    <a href="/post/85ed9b6d.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">十大经典算法的优缺点</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T08:27:20.707Z">2019-12-08</time></div>
+                    <a href="/post/f449e7e2.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Shell文件查找find命令</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/DataMining/">DataMining</a>
+                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                     </p>
                 </div>
             </div>
@@ -1283,18 +1206,18 @@
         
         <article class="media">
             
-            <a href="/post/1620326b.html" class="media-left">
+            <a href="/post/e8089af9.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Python/python数据可视化/散点图">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Shell全局变量和局部变量&amp;函数库">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T11:06:45.361Z">2019-11-23</time></div>
-                    <a href="/post/1620326b.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Python/python数据可视化/散点图</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T07:45:43.723Z">2019-12-08</time></div>
+                    <a href="/post/e8089af9.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Shell全局变量和局部变量&amp;函数库</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                     </p>
                 </div>
             </div>
@@ -1302,18 +1225,18 @@
         
         <article class="media">
             
-            <a href="/post/c0163c11.html" class="media-left">
+            <a href="/post/fe24bc9e.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="python可视化">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Linux 工具">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-21T06:37:07.200Z">2019-11-21</time></div>
-                    <a href="/post/c0163c11.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">python可视化</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T06:46:13.221Z">2019-12-07</time></div>
+                    <a href="/post/fe24bc9e.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Linux 工具</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Python/">Python</a> / <a class="has-link-grey -link" href="/categories/Python/Python%E5%8F%AF%E8%A7%86%E5%8C%96/">Python可视化</a>
+                        <a class="has-link-grey -link" href="/categories/others/">others</a>
                     </p>
                 </div>
             </div>
@@ -1329,6 +1252,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/11/">
@@ -1509,6 +1443,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/">
+                        <span class="tag">Linux 工具包</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/">
                         <span class="tag">MapReduce 通信协议</span>
                         <span class="tag is-grey">1</span>
@@ -1537,8 +1478,71 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
+                        <span class="tag">Shell 之Bash数学运算</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/">
+                        <span class="tag">Shell 的函数的定义和使用</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/">
+                        <span class="tag">Shell 的字符串处理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/">
+                        <span class="tag">Shell全局变量和局部变量</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/">
+                        <span class="tag">Shell变量的替换和测试</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/">
+                        <span class="tag">Shell命令的替换</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/">
+                        <span class="tag">Shell文件查找find命令</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/">
+                        <span class="tag">Shell有类型变量</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Windows操作系统配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/find%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+                        <span class="tag">find、which、locate、whereis命令总结</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1581,6 +1585,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/">
                         <span class="tag">十大经典算法优缺点</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/">
+                        <span class="tag">文本处理三剑客(grep/sed/awk)</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1609,18 +1620,18 @@
         
         <article class="media">
             
-            <a href="/post/bc0600c8.html" class="media-left">
+            <a href="/post/e4677a0d.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka通信详情">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="文本处理三剑客(grep/sed/awk)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-30T10:12:38.573Z">2019-11-30</time></div>
-                    <a href="/post/bc0600c8.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka通信详情</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T14:10:28.380Z">2019-12-08</time></div>
+                    <a href="/post/e4677a0d.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">文本处理三剑客(grep/sed/awk)</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                     </p>
                 </div>
             </div>
@@ -1628,18 +1639,18 @@
         
         <article class="media">
             
-            <a href="/post/df89d65f.html" class="media-left">
+            <a href="/post/f7db85fb.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka初始">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="find、which、locate、whereis总结">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-29T09:23:21.262Z">2019-11-29</time></div>
-                    <a href="/post/df89d65f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka初始</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T13:12:04.240Z">2019-12-08</time></div>
+                    <a href="/post/f7db85fb.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">find、which、locate、whereis总结</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Kafka/">Kafka</a>
+                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                     </p>
                 </div>
             </div>
@@ -1647,18 +1658,18 @@
         
         <article class="media">
             
-            <a href="/post/85ed9b6d.html" class="media-left">
+            <a href="/post/f449e7e2.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="十大经典算法的优缺点">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Shell文件查找find命令">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-24T08:05:11.834Z">2019-11-24</time></div>
-                    <a href="/post/85ed9b6d.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">十大经典算法的优缺点</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T08:27:20.707Z">2019-12-08</time></div>
+                    <a href="/post/f449e7e2.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Shell文件查找find命令</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/DataMining/">DataMining</a>
+                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                     </p>
                 </div>
             </div>
@@ -1666,18 +1677,18 @@
         
         <article class="media">
             
-            <a href="/post/1620326b.html" class="media-left">
+            <a href="/post/e8089af9.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Python/python数据可视化/散点图">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Shell全局变量和局部变量&amp;函数库">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-23T11:06:45.361Z">2019-11-23</time></div>
-                    <a href="/post/1620326b.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Python/python数据可视化/散点图</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-08T07:45:43.723Z">2019-12-08</time></div>
+                    <a href="/post/e8089af9.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Shell全局变量和局部变量&amp;函数库</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                     </p>
                 </div>
             </div>
@@ -1685,18 +1696,18 @@
         
         <article class="media">
             
-            <a href="/post/c0163c11.html" class="media-left">
+            <a href="/post/fe24bc9e.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="python可视化">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Linux 工具">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-21T06:37:07.200Z">2019-11-21</time></div>
-                    <a href="/post/c0163c11.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">python可视化</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-07T06:46:13.221Z">2019-12-07</time></div>
+                    <a href="/post/fe24bc9e.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Linux 工具</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Python/">Python</a> / <a class="has-link-grey -link" href="/categories/Python/Python%E5%8F%AF%E8%A7%86%E5%8C%96/">Python可视化</a>
+                        <a class="has-link-grey -link" href="/categories/others/">others</a>
                     </p>
                 </div>
             </div>
@@ -1712,6 +1723,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/11/">
@@ -1892,6 +1914,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/">
+                        <span class="tag">Linux 工具包</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/">
                         <span class="tag">MapReduce 通信协议</span>
                         <span class="tag is-grey">1</span>
@@ -1920,8 +1949,71 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
+                        <span class="tag">Shell 之Bash数学运算</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/">
+                        <span class="tag">Shell 的函数的定义和使用</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/">
+                        <span class="tag">Shell 的字符串处理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/">
+                        <span class="tag">Shell全局变量和局部变量</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/">
+                        <span class="tag">Shell变量的替换和测试</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/">
+                        <span class="tag">Shell命令的替换</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/">
+                        <span class="tag">Shell文件查找find命令</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/">
+                        <span class="tag">Shell有类型变量</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Windows操作系统配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/find%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+                        <span class="tag">find、which、locate、whereis命令总结</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1964,6 +2056,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/">
                         <span class="tag">十大经典算法优缺点</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/">
+                        <span class="tag">文本处理三剑客(grep/sed/awk)</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
