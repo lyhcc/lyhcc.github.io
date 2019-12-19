@@ -11,16 +11,16 @@
 <title>Hadoop通信机制和内部协议之RPC - lyhcc博客</title>
 
 
-    <meta name="description" content="Hadoop RPC RPC简介 RPC模型 RPC特性 RPC例子 其他开源RPC架构       ## Hadoop RPC ### RPC简介 &amp;gt;简要地说，RPC就是允许程序调用位于其他机器上的过程(也可以是同一台机器的不同进程)。   &amp;gt;RPC调用过程是透明的      传统过程调用：传统的过程调用中，主程序将参数压人栈内并调用过程，这时候主程序停止执行并开始执行相应的过程。被调">
+    <meta name="description" content="Hadoop RPC RPC简介 RPC模型 RPC特性 RPC例子 其他开源RPC架构        Hadoop RPCRPC简介 简要地说，RPC就是允许程序调用位于其他机器上的过程(也可以是同一台机器的不同进程)。RPC调用过程是透明的     传统过程调用：传统的过程调用中，主程序将参数压人栈内并调用过程，这时候主程序停止执行并开始执行相应的过程。被调用的过程从栈中获取参数，然">
 <meta name="keywords" content="Hadoop IPC,Hadoop RPC,Hadoop 通信机制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop通信机制和内部协议之RPC">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;56192.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="Hadoop RPC RPC简介 RPC模型 RPC特性 RPC例子 其他开源RPC架构       ## Hadoop RPC ### RPC简介 &amp;gt;简要地说，RPC就是允许程序调用位于其他机器上的过程(也可以是同一台机器的不同进程)。   &amp;gt;RPC调用过程是透明的      传统过程调用：传统的过程调用中，主程序将参数压人栈内并调用过程，这时候主程序停止执行并开始执行相应的过程。被调">
+<meta property="og:description" content="Hadoop RPC RPC简介 RPC模型 RPC特性 RPC例子 其他开源RPC架构        Hadoop RPCRPC简介 简要地说，RPC就是允许程序调用位于其他机器上的过程(也可以是同一台机器的不同进程)。RPC调用过程是透明的     传统过程调用：传统的过程调用中，主程序将参数压人栈内并调用过程，这时候主程序停止执行并开始执行相应的过程。被调用的过程从栈中获取参数，然">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-29T09:51:07.541Z">
+<meta property="og:updated_time" content="2019-12-19T02:58:32.773Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -179,12 +179,10 @@
 <!-- tocstop -->
 
 </div>
-## Hadoop RPC
-### RPC简介
->简要地说，RPC就是允许程序调用位于其他机器上的过程(也可以是同一台机器的不同进程)。  
->RPC调用过程是透明的  
 
-
+<h2><span id="hadoop-rpc">Hadoop RPC</span><a href="#hadoop-rpc" class="header-anchor">$</a></h2><h3><span id="rpc-jian-jie">RPC简介</span><a href="#rpc-jian-jie" class="header-anchor">$</a></h3><blockquote>
+<p>简要地说，RPC就是允许程序调用位于其他机器上的过程(也可以是同一台机器的不同进程)。<br>RPC调用过程是透明的  </p>
+</blockquote>
 <blockquote>
 <p>传统过程调用：传统的过程调用中，主程序将参数压人栈内并调用过程，这时候主程序停止执行并开始执行相应的过程。被调用的过程从栈中获取参数，然后执行过程函数;执行完毕后，将返回参数入栈(或者保存在寄存器里)，并将控制权交还给调用方。调用方获取返回参数，并继续执行。  </p>
 </blockquote>

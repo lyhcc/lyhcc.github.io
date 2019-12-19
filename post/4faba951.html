@@ -11,16 +11,16 @@
 <title>分布式存储管理 - lyhcc博客</title>
 
 
-    <meta name="description" content="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ NoSQL 特点     ## 为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ 1. 规模效应所带来的压力     - 传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能     - 适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机">
+    <meta name="description" content="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ NoSQL 特点      为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ 规模效应所带来的压力  传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能 适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机">
 <meta name="keywords" content="分布式存储管理,NoSSQL特点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式存储管理">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;4faba951.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ NoSQL 特点     ## 为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ 1. 规模效应所带来的压力     - 传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能     - 适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机">
+<meta property="og:description" content="为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ NoSQL 特点      为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？ 规模效应所带来的压力  传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能 适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-29T09:51:40.977Z">
+<meta property="og:updated_time" content="2019-12-19T02:58:50.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -173,25 +173,30 @@
 <!-- tocstop -->
 
 </div>
-## 为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？
-1. 规模效应所带来的压力
-    - 传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能
-    - 适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机
-<a id="more"></a>
-2. 数据类型的多样化  
-    传统数据类型：
-    - 结构化数据
-    大数据时代的数据类型：
-    - 结构化数据
-    - 半结构化数据
-    - 非结构化数据
-3. 设计理念所带来的冲突
-    - 关系型数据库 One size fits all ,即面对不同问题不需要重新考虑数据管理问题  
-        简单来说就是，单一模式可以适应所有变化
-    - 新理念 "One size fits one" 和 "One size fits domain"
 
-<ol start="4">
-<li>数据库的事务特性<ul>
+<h2><span id="wei-shi-me-zhi-jie-cai-yong-guan-xi-mo-xing-de-fen-bu-shi-shu-ju-ku-bing-bu-neng-gua-ying-da-shu-ju-shi-dai-de">为什么直接采用关系模型的分布式数据库并不能适应大数据时代的？</span><a href="#wei-shi-me-zhi-jie-cai-yong-guan-xi-mo-xing-de-fen-bu-shi-shu-ju-ku-bing-bu-neng-gua-ying-da-shu-ju-shi-dai-de" class="header-anchor">$</a></h2><ol>
+<li><p>规模效应所带来的压力</p>
+<ul>
+<li>传统数据库倾向于纵向扩展(Scale-Up)，即增加单台计算机的性能</li>
+<li>适应大数据的数据库系统的应该具有良好的横向扩展(Scale-Out)，即为集群增加一台计算机<a id="more"></a></li>
+</ul>
+</li>
+<li><p>数据类型的多样化<br> 传统数据类型：</p>
+<ul>
+<li>结构化数据<br>大数据时代的数据类型：</li>
+<li>结构化数据</li>
+<li>半结构化数据</li>
+<li>非结构化数据</li>
+</ul>
+</li>
+<li><p>设计理念所带来的冲突</p>
+<ul>
+<li>关系型数据库 One size fits all ,即面对不同问题不需要重新考虑数据管理问题<br>  简单来说就是，单一模式可以适应所有变化</li>
+<li>新理念 “One size fits one” 和 “One size fits domain”</li>
+</ul>
+</li>
+<li><p>数据库的事务特性</p>
+<ul>
 <li>传统数据库ACID特性 A(Atom，原子性)，C(Consistency，一致性)，I(Isolation,隔离性)，D(Durability,持久性)</li>
 <li>大数据时代的数据库BASE。 Basically Available(基本可用)，Soft State(柔性状态)，Eventually Consistency(最终一致性)<br>根据分布式领域著名的CAP理论来看，ACID追求一致性C,而BASE更加关注A<br>一致性（Consistency）、可用性（Availability）、分区容错性（Partition tolerance）<br>新型数据库<a href="https://cloud.google.com/spanner/docs/?hl=zh-cn" target="_blank" rel="noopener">Spanner</a></li>
 </ul>

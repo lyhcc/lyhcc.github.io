@@ -585,13 +585,12 @@
 <!-- tocstop -->
 
 </div>
-## 数据通信中定界的方法  
-- 定长消息:通信双方发送的消息长度是固定的，接收者只需要简单地将数据读入对应的缓冲区中，就可以获得消息。
-- 基于定界符:消息的结束由唯一标记指出，消息发送者在传输完数据后，添加一-个特殊的字节序列。这个特殊的标记不能在传输的数据中出现，接收者简单地扫描输入信
-息并查找定界符，并将定位符前面的数据形成消息交给上层应用。
-- 显式长度:在具体消息前面附加一一个固定大小的字段，指示该消息包含多少字节。接
-收者首先以定长消息的方式接受长度字段，然后根据这个长度接收消息。
 
+<h2><span id="shu-ju-tong-xin-zhong-ding-jie-de-fang-fa">数据通信中定界的方法</span><a href="#shu-ju-tong-xin-zhong-ding-jie-de-fang-fa" class="header-anchor">$</a></h2><ul>
+<li>定长消息:通信双方发送的消息长度是固定的，接收者只需要简单地将数据读入对应的缓冲区中，就可以获得消息。</li>
+<li>基于定界符:消息的结束由唯一标记指出，消息发送者在传输完数据后，添加一-个特殊的字节序列。这个特殊的标记不能在传输的数据中出现，接收者简单地扫描输入信<br>息并查找定界符，并将定位符前面的数据形成消息交给上层应用。</li>
+<li>显式长度:在具体消息前面附加一一个固定大小的字段，指示该消息包含多少字节。接<br>收者首先以定长消息的方式接受长度字段，然后根据这个长度接收消息。</li>
+</ul>
 <p><strong>Hadoop IPC通信的定界方法</strong>  </p>
 <ul>
 <li>客户端-&gt;服务器端：显式长度</li>
@@ -659,16 +658,17 @@
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
-****
-Hadoop 2.x
-****
-## 相关参数说明
-- connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中  
-    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> ConcurrentMap&lt;Client.ConnectionId, Client.Connection&gt; connections;</span><br></pre></td></tr></table></figure>
-- calls 当前正在处理的远程调用，位于org.apache.hadoop.ipc.Client.Connection中
-    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> Hashtable&lt;Integer, Client.Call&gt; calls = <span class="hljs-keyword">new</span> Hashtable();</span><br></pre></td></tr></table></figure>
-- shouldCloseConnection 连接关闭标志
-    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> AtomicBoolean shouldCloseConnection = <span class="hljs-keyword">new</span> AtomicBoolean();</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>Hadoop 2.x</p>
+<hr>
+<h2 id="相关参数说明"><a href="#相关参数说明" class="headerlink" title="相关参数说明"></a>相关参数说明</h2><ul>
+<li>connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> ConcurrentMap&lt;Client.ConnectionId, Client.Connection&gt; connections;</span><br></pre></td></tr></table></figure></li>
+<li>calls 当前正在处理的远程调用，位于org.apache.hadoop.ipc.Client.Connection中  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> Hashtable&lt;Integer, Client.Call&gt; calls = <span class="hljs-keyword">new</span> Hashtable();</span><br></pre></td></tr></table></figure></li>
+<li>shouldCloseConnection 连接关闭标志  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> AtomicBoolean shouldCloseConnection = <span class="hljs-keyword">new</span> AtomicBoolean();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
                             </div>
                             
                                     
@@ -710,7 +710,7 @@ Hadoop 2.x
                                             <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1099 words)
+                    7 minutes read (About 1100 words)
                 </span>
                                             
                                                 
@@ -726,7 +726,21 @@ Hadoop 2.x
                             </h1>
                             <div class="content">
 
-                                <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#gai-shu">概述</a></li>
+<li><a href="#yuan-ma">源码</a></li>
+<li><a href="#selector-de-shi-yong-bu-zou">Selector的使用步骤</a></li>
+<li><a href="#cuo-wu-zong-jie">错误总结</a></li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
 <p>回显服务器是指接收到客户端的数据，原封不动的返回给客户端</p>
 </blockquote>
 <hr>
@@ -824,17 +838,19 @@ Hadoop 2.x
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
->[Java NIO实例](https://lyhcc.github.io/post/93c86522.html)
-## Java基本套接字
-### 基本操作
-- 连接远程机器。
-- 发送数据。
-- 接收数据。
-- 关闭连接。
-- 绑定端口。
-- 监听入站数据。
-- 在所绑定端口.上接受来自远程机器的连接。
 
+<blockquote>
+<p><a href="https://lyhcc.github.io/post/93c86522.html">Java NIO实例</a></p>
+</blockquote>
+<h2 id="Java基本套接字"><a href="#Java基本套接字" class="headerlink" title="Java基本套接字"></a>Java基本套接字</h2><h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><ul>
+<li>连接远程机器。</li>
+<li>发送数据。</li>
+<li>接收数据。</li>
+<li>关闭连接。</li>
+<li>绑定端口。</li>
+<li>监听入站数据。</li>
+<li>在所绑定端口.上接受来自远程机器的连接。</li>
+</ul>
 <blockquote>
 <p>其中，前四项用于客户端，后六项用于服务器，最后三项只有服务器才需要，即等待客<br>户端的连接，这些操作通过ServerSocket类实现。</p>
 </blockquote>

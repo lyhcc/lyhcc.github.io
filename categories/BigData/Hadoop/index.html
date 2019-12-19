@@ -184,13 +184,12 @@
 <!-- tocstop -->
 
 </div>
-## 数据通信中定界的方法  
-- 定长消息:通信双方发送的消息长度是固定的，接收者只需要简单地将数据读入对应的缓冲区中，就可以获得消息。
-- 基于定界符:消息的结束由唯一标记指出，消息发送者在传输完数据后，添加一-个特殊的字节序列。这个特殊的标记不能在传输的数据中出现，接收者简单地扫描输入信
-息并查找定界符，并将定位符前面的数据形成消息交给上层应用。
-- 显式长度:在具体消息前面附加一一个固定大小的字段，指示该消息包含多少字节。接
-收者首先以定长消息的方式接受长度字段，然后根据这个长度接收消息。
 
+<h2><span id="shu-ju-tong-xin-zhong-ding-jie-de-fang-fa">数据通信中定界的方法</span><a href="#shu-ju-tong-xin-zhong-ding-jie-de-fang-fa" class="header-anchor">$</a></h2><ul>
+<li>定长消息:通信双方发送的消息长度是固定的，接收者只需要简单地将数据读入对应的缓冲区中，就可以获得消息。</li>
+<li>基于定界符:消息的结束由唯一标记指出，消息发送者在传输完数据后，添加一-个特殊的字节序列。这个特殊的标记不能在传输的数据中出现，接收者简单地扫描输入信<br>息并查找定界符，并将定位符前面的数据形成消息交给上层应用。</li>
+<li>显式长度:在具体消息前面附加一一个固定大小的字段，指示该消息包含多少字节。接<br>收者首先以定长消息的方式接受长度字段，然后根据这个长度接收消息。</li>
+</ul>
 <p><strong>Hadoop IPC通信的定界方法</strong>  </p>
 <ul>
 <li>客户端-&gt;服务器端：显式长度</li>
@@ -258,16 +257,17 @@
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
-****
-Hadoop 2.x
-****
-## 相关参数说明
-- connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中  
-    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> ConcurrentMap&lt;Client.ConnectionId, Client.Connection&gt; connections;</span><br></pre></td></tr></table></figure>
-- calls 当前正在处理的远程调用，位于org.apache.hadoop.ipc.Client.Connection中
-    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> Hashtable&lt;Integer, Client.Call&gt; calls = <span class="hljs-keyword">new</span> Hashtable();</span><br></pre></td></tr></table></figure>
-- shouldCloseConnection 连接关闭标志
-    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> AtomicBoolean shouldCloseConnection = <span class="hljs-keyword">new</span> AtomicBoolean();</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>Hadoop 2.x</p>
+<hr>
+<h2 id="相关参数说明"><a href="#相关参数说明" class="headerlink" title="相关参数说明"></a>相关参数说明</h2><ul>
+<li>connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> ConcurrentMap&lt;Client.ConnectionId, Client.Connection&gt; connections;</span><br></pre></td></tr></table></figure></li>
+<li>calls 当前正在处理的远程调用，位于org.apache.hadoop.ipc.Client.Connection中  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> Hashtable&lt;Integer, Client.Call&gt; calls = <span class="hljs-keyword">new</span> Hashtable();</span><br></pre></td></tr></table></figure></li>
+<li>shouldCloseConnection 连接关闭标志  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> AtomicBoolean shouldCloseConnection = <span class="hljs-keyword">new</span> AtomicBoolean();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
                             </div>
                             
                                     
@@ -346,9 +346,10 @@ Hadoop 2.x
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
-##  MapReduce的定义
-> &emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。  
-&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。
+
+<h2 id="MapReduce的定义"><a href="#MapReduce的定义" class="headerlink" title="MapReduce的定义"></a>MapReduce的定义</h2><blockquote>
+<p>&emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。<br>&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。</p>
+</blockquote>
                             </div>
                             
                                     
@@ -390,7 +391,7 @@ Hadoop 2.x
                                             <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 795 words)
+                    5 minutes read (About 796 words)
                 </span>
                                             
                                                 
@@ -406,7 +407,23 @@ Hadoop 2.x
                             </h1>
                             <div class="content">
 
-                                <h2 id="快照管理"><a href="#快照管理" class="headerlink" title="快照管理"></a>快照管理</h2><blockquote>
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#kuai-zhao-guan-li">快照管理</a><ul>
+<li><a href="#kuai-zhao-ying-xiang">快照影响</a></li>
+<li><a href="#ji-ben-yu-fa">基本语法</a></li>
+<li><a href="#an-li-shi-cao">案例实操</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+
+<h2 id="快照管理"><a href="#快照管理" class="headerlink" title="快照管理"></a>快照管理</h2><blockquote>
 <p>快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。</p>
 </blockquote>
                             </div>
@@ -484,10 +501,10 @@ Hadoop 2.x
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
-## Windows操作系统配置文件
->配置设置文件（INI）文件是windows操作系统中的一种特殊的ASCII文件，以ini为文件扩展名,作为它的主要文件配置文件标准。该文件也被称为初始化文件initialization file和概要文件profile。  
->应用程序可以拥有自己的配置文件，存储应用设置信息，也可以访问windows的基本系统配置文件win.ini中存储的配置信息  
 
+<h2 id="Windows操作系统配置文件"><a href="#Windows操作系统配置文件" class="headerlink" title="Windows操作系统配置文件"></a>Windows操作系统配置文件</h2><blockquote>
+<p>配置设置文件（INI）文件是windows操作系统中的一种特殊的ASCII文件，以ini为文件扩展名,作为它的主要文件配置文件标准。该文件也被称为初始化文件initialization file和概要文件profile。<br>应用程序可以拥有自己的配置文件，存储应用设置信息，也可以访问windows的基本系统配置文件win.ini中存储的配置信息  </p>
+</blockquote>
 <p><strong>INI配置信息分为两部分</strong>  </p>
 <ul>
 <li>节，节标题放在方括号中, [section]</li>
@@ -568,8 +585,8 @@ Hadoop 2.x
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
-## 概述
-<center>MapReduce核心协议</center>
+
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><center>MapReduce核心协议</center>
 
 <table>
 <thead>
@@ -670,12 +687,10 @@ Hadoop 2.x
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
-## Hadoop RPC
-### RPC简介
->简要地说，RPC就是允许程序调用位于其他机器上的过程(也可以是同一台机器的不同进程)。  
->RPC调用过程是透明的  
 
-
+<h2 id="Hadoop-RPC"><a href="#Hadoop-RPC" class="headerlink" title="Hadoop RPC"></a>Hadoop RPC</h2><h3 id="RPC简介"><a href="#RPC简介" class="headerlink" title="RPC简介"></a>RPC简介</h3><blockquote>
+<p>简要地说，RPC就是允许程序调用位于其他机器上的过程(也可以是同一台机器的不同进程)。<br>RPC调用过程是透明的  </p>
+</blockquote>
 <blockquote>
 <p>传统过程调用：传统的过程调用中，主程序将参数压人栈内并调用过程，这时候主程序停止执行并开始执行相应的过程。被调用的过程从栈中获取参数，然后执行过程函数;执行完毕后，将返回参数入栈(或者保存在寄存器里)，并将控制权交还给调用方。调用方获取返回参数，并继续执行。  </p>
 </blockquote>
@@ -851,10 +866,10 @@ Hadoop 2.x
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
-## 压缩
->压缩是指将数据转换为比原来的格式占用空间更小的格式来存储，以达到减小存储空间  
->解压是压缩的反过程
 
+<h2 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h2><blockquote>
+<p>压缩是指将数据转换为比原来的格式占用空间更小的格式来存储，以达到减小存储空间<br>解压是压缩的反过程</p>
+</blockquote>
 <h2 id="Hadoop文件切片"><a href="#Hadoop文件切片" class="headerlink" title="Hadoop文件切片"></a>Hadoop文件切片</h2><blockquote>
 <p>Hadoop MapReduce是通过划分切片来处理得，这样就使得支持分割的压缩格式更适合Hadoop</p>
 </blockquote>
@@ -932,10 +947,8 @@ Hadoop 2.x
 <!-- tocstop -->
 
 </div>
-##  起源 Google 在大数据方面的三大论文 （谷歌三宝）
-[在github大的当前目录下](https://github.com/lyhcc/NoteBook/tree/master/bigdata)
-[三宝的介绍](https://www.cnblogs.com/javhu/archive/2013/03/25/cyue_hadoop_google.html)
 
+<h2><span id="qi-yuan-google-zai-da-shu-ju-fang-mian-de-san-da-lun-wen-gu-ge-san-bao">起源 Google 在大数据方面的三大论文 （谷歌三宝）</span><a href="#qi-yuan-google-zai-da-shu-ju-fang-mian-de-san-da-lun-wen-gu-ge-san-bao" class="header-anchor">$</a></h2><p><a href="https://github.com/lyhcc/NoteBook/tree/master/bigdata" target="_blank" rel="noopener">在github大的当前目录下</a><br><a href="https://www.cnblogs.com/javhu/archive/2013/03/25/cyue_hadoop_google.html" target="_blank" rel="noopener">三宝的介绍</a></p>
 <h2><span id="hadoop-san-da-fa-xing-ban-ben">Hadoop 三大发行版本</span><a href="#hadoop-san-da-fa-xing-ban-ben" class="header-anchor">$</a></h2><ol>
 <li>Apache、Cloudera、Hortonworks Apache版本最原始、最基础：适合零基础 大公司在用</li>
 <li>Cloudera Cloudera’s DistributionIncluding Apache Hadoop 简称CDH<br>中小型公司用、简单方便、自带可视化 </li>

@@ -11,16 +11,16 @@
 <title>文本处理三剑客(grep/sed/awk) - lyhcc博客</title>
 
 
-    <meta name="description" content="grep和egrep过滤器 grep   sed 流编辑器 awk报告生成器     ## grep和egrep过滤器 ### grep &amp;gt;1. 第一种形式: grep [option] [pattern] [file1,file..] &amp;gt;1. 第二种形式: command| grep [option] [pattern]  选项option$常用选项      选项 含义    -V">
+    <meta name="description" content="grep和egrep过滤器 grep 选项option   sed 流编辑器 sed选项 sed Pattern用法 sed 中的编辑命令详解   awk报告生成器      grep和egrep过滤器grep  第一种形式: grep [option] [pattern] [file1,file..] 第二种形式: command| grep [option] [pattern]">
 <meta name="keywords" content="文本处理三剑客(grep&#x2F;sed&#x2F;awk)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文本处理三剑客(grep&#x2F;sed&#x2F;awk)">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;e4677a0d.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="grep和egrep过滤器 grep   sed 流编辑器 awk报告生成器     ## grep和egrep过滤器 ### grep &amp;gt;1. 第一种形式: grep [option] [pattern] [file1,file..] &amp;gt;1. 第二种形式: command| grep [option] [pattern]  选项option$常用选项      选项 含义    -V">
+<meta property="og:description" content="grep和egrep过滤器 grep 选项option   sed 流编辑器 sed选项 sed Pattern用法 sed 中的编辑命令详解   awk报告生成器      grep和egrep过滤器grep  第一种形式: grep [option] [pattern] [file1,file..] 第二种形式: command| grep [option] [pattern]">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-12-08T15:07:23.713Z">
+<meta property="og:updated_time" content="2019-12-15T04:54:12.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -148,7 +148,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 263 words)
+                    12 minutes read (About 1739 words)
                 </span>
                                             
                                                 
@@ -169,20 +169,30 @@
 <ul>
 <li><a href="#grep-he-egrep-guo-lu-qi">grep和egrep过滤器</a><ul>
 <li><a href="#grep">grep</a></li>
+<li><a href="#xuan-xiang-option">选项option</a></li>
 </ul>
 </li>
-<li><a href="#sed-liu-bian-ji-qi">sed 流编辑器</a></li>
+<li><a href="#sed-liu-bian-ji-qi">sed 流编辑器</a><ul>
+<li><a href="#sed-xuan-xiang">sed选项</a></li>
+<li><a href="#sed-pattern-yong-fa">sed Pattern用法</a></li>
+<li><a href="#sed-zhong-de-bian-ji-ming-ling-xiang-jie">sed 中的编辑命令详解</a></li>
+</ul>
+</li>
 <li><a href="#awk-bao-gao-sheng-cheng-qi">awk报告生成器</a></li>
 </ul>
 <!-- tocstop -->
 
 </div>
-## grep和egrep过滤器
-### grep
->1. 第一种形式: grep [option] [pattern] [file1,file..]
->1. 第二种形式: command| grep [option] [pattern]
 
-<h4><span id="xuan-xiang-option">选项option</span><a href="#xuan-xiang-option" class="header-anchor">$</a></h4><p><strong>常用选项</strong>  </p>
+<h2><span id="grep-he-egrep-guo-lu-qi">grep和egrep过滤器</span><a href="#grep-he-egrep-guo-lu-qi" class="header-anchor">$</a></h2><h3><span id="grep">grep</span><a href="#grep" class="header-anchor">$</a></h3><blockquote>
+<ol>
+<li>第一种形式: grep [option] [pattern] [file1,file..]</li>
+<li>第二种形式: command| grep [option] [pattern]</li>
+</ol>
+</blockquote>
+<a id="more"></a>
+
+<h3><span id="xuan-xiang-option">选项option</span><a href="#xuan-xiang-option" class="header-anchor">$</a></h3><p><strong>常用选项</strong>  </p>
 <table>
 <thead>
 <tr>
@@ -256,9 +266,122 @@
 <p>sed(Stream Editor)，流编辑器。对标准输出或文件逐行进行处理<br><strong>格式</strong>  </p>
 </blockquote>
 <ul>
-<li>第一种形式: stdout | sed [option] “ppattern command”</li>
+<li>第一种形式: stdout | sed [option] “pattern command”</li>
 <li>第二种形式: sed [option] “pattern command” file</li>
 </ul>
+<h3><span id="sed-xuan-xiang">sed选项</span><a href="#sed-xuan-xiang" class="header-anchor">$</a></h3><table>
+<thead>
+<tr>
+<th>选项</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-n</td>
+<td>只打印模式匹配行</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>直接在命令行进行sed编辑,默认选项</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>编辑动作保存在文件中,指定文件执行</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>支持扩展正则表达式</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>直接修改文件内容</td>
+</tr>
+</tbody></table>
+<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">[root@master datas]<span class="hljs-comment"># cat sed.txt </span></span><br><span class="line">I love shell</span><br><span class="line">I love SHELL</span><br><span class="line">axcz</span><br><span class="line">caxa</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@master datas]<span class="hljs-comment"># sed -n '/Shell/p' sed.txt </span></span><br><span class="line">I love shell</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 多个comand时必须加-e</span></span><br><span class="line">[root@master datas]<span class="hljs-comment"># sed -n '/shell/p' sed.txt </span></span><br><span class="line">I love shell</span><br><span class="line"></span><br><span class="line">[root@master datas]<span class="hljs-comment"># sed -n -e '/shell/p' -e '/SHELL/p' sed.txt </span></span><br><span class="line">I love shell</span><br><span class="line">I love SHELL</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># -f</span></span><br><span class="line"><span class="hljs-comment"># edit.sed中有 /SHELL/p</span></span><br><span class="line">[root@master datas]<span class="hljs-comment"># sed -n '/SHELL/p' sed.txt </span></span><br><span class="line">I love SHELL</span><br><span class="line"></span><br><span class="line">[root@master datas]<span class="hljs-comment"># sed -n -f edit.sed sed.txt </span></span><br><span class="line">I love SHELL</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># -r</span></span><br><span class="line">[root@master datas]<span class="hljs-comment"># sed -n -r '/SHELL|shell/p' sed.txt </span></span><br><span class="line">I love shell</span><br><span class="line">I love SHELL</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># -i</span></span><br><span class="line">[root@master datas]<span class="hljs-comment"># sed -n 's/love/like/g;p' sed.txt </span></span><br><span class="line">I like shell</span><br><span class="line">I like SHELL</span><br><span class="line">axcz</span><br><span class="line">caxa</span><br><span class="line">[root@master datas]<span class="hljs-comment"># cat sed.txt </span></span><br><span class="line">I love shell</span><br><span class="line">I love SHELL</span><br><span class="line">axcz</span><br><span class="line">caxa</span><br><span class="line"><span class="hljs-comment"># 加-i直接将原文件修改</span></span><br><span class="line">[root@master datas]<span class="hljs-comment"># sed -n -i 's/love/like/g;p' sed.txt </span></span><br><span class="line">[root@master datas]<span class="hljs-comment"># cat sed.txt </span></span><br><span class="line">I like shell</span><br><span class="line">I like SHELL</span><br><span class="line">axcz</span><br><span class="line">caxa</span><br></pre></td></tr></table></figure>
+<h3><span id="sed-pattern-yong-fa">sed Pattern用法</span><a href="#sed-pattern-yong-fa" class="header-anchor">$</a></h3><table>
+<thead>
+<tr>
+<th>匹配模式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10command</td>
+<td>匹配到第10行</td>
+</tr>
+<tr>
+<td>10,20command</td>
+<td>匹配从第10行开始,到第20行结束</td>
+</tr>
+<tr>
+<td>10, +5command</td>
+<td>匹配从第10行开始,到第16行结束</td>
+</tr>
+<tr>
+<td>/pattern1/command</td>
+<td>匹配到pattern1的行</td>
+</tr>
+<tr>
+<td>/pattern1/,/pattern2/command</td>
+<td>匹配到pattern1的行开始,到匹配到pattern2的行结束</td>
+</tr>
+<tr>
+<td>10,/pattern1/command</td>
+<td>匹配从第10行开始,到匹配到pettern1的行结束</td>
+</tr>
+<tr>
+<td>/pattern1/,10command</td>
+<td>匹配到pattern1的行开始,到第10行匹配结束</td>
+</tr>
+</tbody></table>
+<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1、LineNumber   ---直接指定行号</span><br><span class="line">    sed -n <span class="hljs-string">"17p"</span> file   打印file文件的第17行</span><br><span class="line"></span><br><span class="line">2、StartLine , EndLine  --指定起始行号和结束行号</span><br><span class="line">    sed -n <span class="hljs-string">"10,20p"</span> file   打印file文件的10到20行</span><br><span class="line"></span><br><span class="line">3、Star tLine, +N   指定起始行号，然后后面N行</span><br><span class="line">    sed -n <span class="hljs-string">"10,+5p"</span> file    打印file文件中从第10行开始，往后面加5行的内容</span><br><span class="line"></span><br><span class="line">4、/pattern1/           ----------------正则表达式匹配的行</span><br><span class="line">    sed -n <span class="hljs-string">"/^root/p"</span> file  打印file文件中以root开头的行</span><br><span class="line"></span><br><span class="line">5、/pattern1/,/pattern2/   ---从匹配到pattern1的行，到匹配到pattern2</span><br><span class="line">    </span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<p><strong>案例–查找配置文件中配置项段名与段的个数</strong>  </p>
+<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">FILE_NAME=/opt/datas/openssl.cnf</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">function</span> get_all_segment</span><br><span class="line">&#123;</span><br><span class="line">	segments=<span class="hljs-string">"`sed -n '/\[ .* \]/p' <span class="hljs-variable">$FILE_NAME</span> | sed -n 's/\[ \(.*\) \]/\1/g;p'`"</span></span><br><span class="line">	<span class="hljs-built_in">echo</span> <span class="hljs-variable">$segments</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">function</span>  count_segment_num</span><br><span class="line">&#123;</span><br><span class="line">	<span class="hljs-built_in">echo</span> <span class="hljs-string">"`sed -n '/\[ '<span class="hljs-variable">$1</span>' \]/,/\[/p' <span class="hljs-variable">$FILE_NAME</span> | sed -n -e '/=/p' | grep -v ^\# -c`"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">number=1</span><br><span class="line"><span class="hljs-keyword">for</span> segment <span class="hljs-keyword">in</span> `get_all_segment`</span><br><span class="line"><span class="hljs-keyword">do</span></span><br><span class="line">	<span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$number</span>: <span class="hljs-variable">$segment</span>  `count_segment_num <span class="hljs-variable">$segment</span>`"</span></span><br><span class="line">	number=`expr <span class="hljs-variable">$number</span> + 1`</span><br><span class="line"><span class="hljs-keyword">done</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>案例</strong>  </p>
+<hr>
+<h3><span id="sed-zhong-de-bian-ji-ming-ling-xiang-jie">sed 中的编辑命令详解</span><a href="#sed-zhong-de-bian-ji-ming-ling-xiang-jie" class="header-anchor">$</a></h3><ol>
+<li><p>查询</p>
+<ol>
+<li>p 打印</li>
+</ol>
+</li>
+<li><p>增加</p>
+<ol>
+<li>a 行后追加    </li>
+<li>i 行前追加</li>
+<li>r 外部文件读入，行后追加</li>
+<li>w 匹配行写入外部文件</li>
+</ol>
+</li>
+<li><p>删除</p>
+<ol>
+<li>d 删除<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1、删除/etc/passwd中的第15行</span><br><span class="line">    sed -i <span class="hljs-string">'15d'</span> /etc/passwd</span><br><span class="line">2、删除/etc/passwd中的第8行到第14行的所有内容</span><br><span class="line">    sed -i <span class="hljs-string">'8,14d'</span> /etc/passwd</span><br><span class="line">3、删除/etc/passwd中的不能登录的用户(筛选条件: /sbin/nologin)</span><br><span class="line">    sed -i <span class="hljs-string">'/\/sbin\/nologin/d'</span> /etc/passwd</span><br><span class="line">4、删除/etc/passwd中以mai1开头的行，到以yarn开头的行的所有内容</span><br><span class="line">    sed -i <span class="hljs-string">'/^mai1/,/^yarn/d'</span> /etc/passwd</span><br><span class="line">5、删除/etc/passwd中第一个不能登录的用户，到第13行的所有内容(少用)</span><br><span class="line">    sed -i <span class="hljs-string">'/\/sbin\/nologin/,13d'</span> /etc/passwd</span><br><span class="line">6、删除/etc/passwd中 第5行到以ftp开头的所有行的内容</span><br><span class="line">    sed -i <span class="hljs-string">'5,/^ftp/d'</span> /etc/passwd</span><br><span class="line">7、删除/etc/passwd中以yarn开头的行到最后行的所有内容</span><br><span class="line">    sed -i <span class="hljs-string">'/^yarn/,$d'</span> /etc/passwd</span><br><span class="line">8、删除/etc/passwd中不能登录的所有用户</span><br><span class="line">     sed -i <span class="hljs-string">'/\/sbin\/nologin/d'</span> /etc/passwd</span><br><span class="line"></span><br><span class="line">典型需求</span><br><span class="line">    1、删除配置文件中的所有注释行和空行</span><br><span class="line">        sed -i <span class="hljs-string">'/^#/d;/^$/d'</span> openssl.cnf</span><br><span class="line">        sed -i <span class="hljs-string">'/[:blank:]*#/d'</span> openssl.cnf <span class="hljs-comment"># 删除空格行的注释，但对openssl.cnf无效</span></span><br><span class="line">    2、在配置文件中所有不以<span class="hljs-comment">#开头的行前面添加*符号，注意:以#开头的行不添加</span></span><br><span class="line">        sed -i <span class="hljs-string">'s/^[^#]/\*&amp;/g'</span> openssl.cnf</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>修改</p>
+<ol>
+<li>s/old/new 将行内第一个old替换为new</li>
+<li>s/old/new/g   将行内全部的old替换为new</li>
+<li>s/old/new/2g  将行内前2个old开始替换所有为new</li>
+<li>s/old/new/ig  将行内olg全部替换为new ,忽略大小写<br><strong>修改命令对照表</strong>  </li>
+</ol>
+<p>| 编辑命令                       | 含义                                                         |<br>| —————————— | ———————————————————— |  |<br>| 1s/old/new/                    | 替换第1行内容old为new                                        |<br>| 1,10s/old/new/                 | 替换1行到10行的内容old为new                                  |<br>| 1, +5s/old/newl                | 替换1行到6行的内容old为new                                   |<br>| /pattern1/s/old/new/           | 替换匹配到pattern1的行内容old为new                           |<br>| /pattrn1/,/pattern2/s/old/new/ | 替换匹配到pattern1的行直到匹配到pattern2的所有行内容old为new |<br>| /pattern1/, 10s/old/new/       | 替换匹配到pattern1的行到10行的所有行内容old为new             |<br>| 10,/pattern1/s/old/new/        | 替换第10行直到匹配到pattern1的所有行内容old为new             |</p>
+<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1、修改/etc/passwd中第1行中第1个root为ROOT</span><br><span class="line">    sed -i <span class="hljs-string">'1s/root/ROOT/'</span> /etc/passwd</span><br><span class="line">2、修改/etc/ passwd中第5行到第10行中所有的/ sbin/ nologin为/bin/bash</span><br><span class="line">3、修改/etc/ passwd中匹配到/ sbin/nologin的行， 将匹配到行中的login改为大写的LOGIN</span><br><span class="line">4、修改/etc/ passwd中从匹配到以root开头的行，到匹配到行中包含mai1的所有行。修改内为将这!</span><br><span class="line">5、修改/etc/passwd中从匹配到以root开头的行，到第15行中的所有行，修改内容为将这些行中的n</span><br><span class="line">6、修改/etc/passwd中从第15行开始，到匹配到以yarn开头的所有航，修改内容为将这些行中的bin</span><br></pre></td></tr></table></figure></li>
+<li><p>其他</p>
+<ol>
+<li>= 查看行号不显示内容</li>
+</ol>
+</li>
+</ol>
+<hr>
+<p>什么是反向引用？ </p>
+<p>使用&amp;或\1可以表示前面匹配到的,使用\1需要加括号，其中&amp;查找部分原封不动的取代</p>
+<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[root@master datas]<span class="hljs-comment"># cat test </span></span><br><span class="line">hadoop</span><br><span class="line">hadAAp</span><br><span class="line">hadBBp</span><br><span class="line">hadCCp</span><br><span class="line">hadDDp</span><br><span class="line"></span><br><span class="line">sed -i <span class="hljs-string">'s/had..p/&amp;s/g'</span> <span class="hljs-built_in">test</span></span><br><span class="line"></span><br><span class="line">[root@master datas]<span class="hljs-comment"># cat test </span></span><br><span class="line">hadoops</span><br><span class="line">hadAAps</span><br><span class="line">hadBBps</span><br><span class="line">hadCCps</span><br><span class="line">hadDDps</span><br><span class="line"></span><br><span class="line">[root@master datas]<span class="hljs-comment"># sed -i 's/\(had..p\)/\1S/g' test </span></span><br><span class="line">[root@master datas]<span class="hljs-comment"># cat test </span></span><br><span class="line">hadoopSs</span><br><span class="line">hadAApSs</span><br><span class="line">hadBBpSs</span><br><span class="line">hadCCpSs</span><br><span class="line">hadDDpSs</span><br><span class="line"><span class="hljs-comment"># 部分取代进行修改，用括号括住引用部分</span></span><br><span class="line">[root@master datas]<span class="hljs-comment"># sed -i 's/\(had\)...../\1oop/g' test </span></span><br><span class="line">[root@master datas]<span class="hljs-comment"># cat test </span></span><br><span class="line">hadoop</span><br><span class="line">hadoop</span><br><span class="line">hadoop</span><br><span class="line">hadoop</span><br><span class="line">hadoop</span><br></pre></td></tr></table></figure>
+<p><strong>有变量时使用双引号或将变量用单引号引起来</strong>  </p>
+<hr>
 <h2><span id="awk-bao-gao-sheng-cheng-qi">awk报告生成器</span><a href="#awk-bao-gao-sheng-cheng-qi" class="header-anchor">$</a></h2>
                             </div>
                             

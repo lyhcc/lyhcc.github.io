@@ -11,16 +11,16 @@
 <title>MapReduce介绍 - lyhcc博客</title>
 
 
-    <meta name="description" content="MapReduce的定义 MapReduce优缺点 优点 缺点   MapReduce核心思想 MapReduce进程 MapReduce编程规范   第一代和第二代MapReduce的区别     ##  MapReduce的定义 &amp;gt; &amp;emsp;&amp;emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。   &amp;emsp;&amp;e">
+    <meta name="description" content="MapReduce的定义 MapReduce优缺点 优点 缺点   MapReduce核心思想 MapReduce进程 MapReduce编程规范   第一代和第二代MapReduce的区别      MapReduce的定义 &amp;emsp;&amp;emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。&amp;emsp;&amp;emsp;Mapr">
 <meta name="keywords" content="MapReduce介绍">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MapReduce介绍">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;5429.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="MapReduce的定义 MapReduce优缺点 优点 缺点   MapReduce核心思想 MapReduce进程 MapReduce编程规范   第一代和第二代MapReduce的区别     ##  MapReduce的定义 &amp;gt; &amp;emsp;&amp;emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。   &amp;emsp;&amp;e">
+<meta property="og:description" content="MapReduce的定义 MapReduce优缺点 优点 缺点   MapReduce核心思想 MapReduce进程 MapReduce编程规范   第一代和第二代MapReduce的区别      MapReduce的定义 &amp;emsp;&amp;emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。&amp;emsp;&amp;emsp;Mapr">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-29T09:51:27.551Z">
+<meta property="og:updated_time" content="2019-12-19T02:58:46.315Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -183,19 +183,20 @@
 <!-- tocstop -->
 
 </div>
-##  MapReduce的定义
-> &emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。  
-&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。
-<a id="more"></a>
-##  MapReduce优缺点
-### 优点
-1. **MapReduce 易于编程**。它简单的实现一些接口，就可以完成一个分布式程序，这个分布式程序可以分布到大量廉价的PC机器上运行。也就是说你写一个分布式程序，跟写一个简单的串行程序是一模一样的。就是因为这个特点使得MapReduce编程变得非常流行。
-2. **良好的扩展性**。当你的计算资源不能得到满足的时候，你可以通过简单的增加机器来扩展它的计算能力。
-3. **高容错性**。MapReduce设计的初衷就是使程序能够部署在廉价的PC机器上，这就要求它具有很高的容错性。比如其中一台机器挂了，它可以把上面的计算任务转移到另外一个节点上运行，不至于这个任务运行失败，而且这个过程不需要人工参与，而完全是由 Hadoop内部完成的。
-4. **适合PB级以上海量数据的离线处理**。这里加红字体离线处理，说明它适合离线处理而不适合在线处理。比如像毫秒级别的返回一个结果，MapReduce很难做到。
-### 缺点
->MapReduce不擅长做实时计算、流式计算、DAG（有向图）计算。
 
+<h2><span id="mapreduce-de-ding-yi">MapReduce的定义</span><a href="#mapreduce-de-ding-yi" class="header-anchor">$</a></h2><blockquote>
+<p>&emsp;&emsp;Mapreduce是一个分布式运算程序的编程框架，是用户开发“基于hadoop的数据分析应用”的核心框架。<br>&emsp;&emsp;Mapreduce核心功能是将用户编写的业务逻辑代码和自带默认组件整合成一个完整的分布式运算程序，并发运行在一个hadoop集群上。</p>
+</blockquote>
+<a id="more"></a>
+<h2><span id="mapreduce-you-que-dian">MapReduce优缺点</span><a href="#mapreduce-you-que-dian" class="header-anchor">$</a></h2><h3><span id="you-dian">优点</span><a href="#you-dian" class="header-anchor">$</a></h3><ol>
+<li><strong>MapReduce 易于编程</strong>。它简单的实现一些接口，就可以完成一个分布式程序，这个分布式程序可以分布到大量廉价的PC机器上运行。也就是说你写一个分布式程序，跟写一个简单的串行程序是一模一样的。就是因为这个特点使得MapReduce编程变得非常流行。</li>
+<li><strong>良好的扩展性</strong>。当你的计算资源不能得到满足的时候，你可以通过简单的增加机器来扩展它的计算能力。</li>
+<li><strong>高容错性</strong>。MapReduce设计的初衷就是使程序能够部署在廉价的PC机器上，这就要求它具有很高的容错性。比如其中一台机器挂了，它可以把上面的计算任务转移到另外一个节点上运行，不至于这个任务运行失败，而且这个过程不需要人工参与，而完全是由 Hadoop内部完成的。</li>
+<li><strong>适合PB级以上海量数据的离线处理</strong>。这里加红字体离线处理，说明它适合离线处理而不适合在线处理。比如像毫秒级别的返回一个结果，MapReduce很难做到。<h3><span id="que-dian">缺点</span><a href="#que-dian" class="header-anchor">$</a></h3><blockquote>
+<p>MapReduce不擅长做实时计算、流式计算、DAG（有向图）计算。</p>
+</blockquote>
+</li>
+</ol>
 <ul>
 <li><strong>实时计算</strong>。MapReduce无法像Mysql一样，在毫秒或者秒级内返回结果。</li>
 <li><strong>流式计算</strong>。流式计算的输入数据是动态的，而MapReduce的输入数据集是静态的，不能动态变化。这是因为MapReduce自身的设计特点决定了数据源必须是静态的。</li>

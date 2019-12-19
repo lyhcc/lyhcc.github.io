@@ -11,16 +11,16 @@
 <title>Hadoop IPC 连接的建立 - lyhcc博客</title>
 
 
-    <meta name="description" content="相关参数说明 相关方法说明 服务器端       **** Hadoop 2.x **** ## 相关参数说明 - connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中       1private ConcurrentMap&amp;lt;Client.ConnectionId, Client.Co">
+    <meta name="description" content="相关参数说明 相关方法说明 服务器端         Hadoop 2.x  相关参数说明 connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中    1private ConcurrentMap&amp;lt;Client.ConnectionId, Client.Connection&amp;gt; co">
 <meta name="keywords" content="Hadoop 如何建立 IPC连接">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop IPC 连接的建立">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;28a780a5.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="相关参数说明 相关方法说明 服务器端       **** Hadoop 2.x **** ## 相关参数说明 - connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中       1private ConcurrentMap&amp;lt;Client.ConnectionId, Client.Co">
+<meta property="og:description" content="相关参数说明 相关方法说明 服务器端         Hadoop 2.x  相关参数说明 connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中    1private ConcurrentMap&amp;lt;Client.ConnectionId, Client.Connection&amp;gt; co">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-29T10:08:05.904Z">
+<meta property="og:updated_time" content="2019-12-19T02:58:23.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -176,17 +176,17 @@
 <!-- tocstop -->
 
 </div>
-****
-Hadoop 2.x
-****
-## 相关参数说明
-- connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中  
-    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> ConcurrentMap&lt;Client.ConnectionId, Client.Connection&gt; connections;</span><br></pre></td></tr></table></figure>
-- calls 当前正在处理的远程调用，位于org.apache.hadoop.ipc.Client.Connection中
-    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> Hashtable&lt;Integer, Client.Call&gt; calls = <span class="hljs-keyword">new</span> Hashtable();</span><br></pre></td></tr></table></figure>
-- shouldCloseConnection 连接关闭标志
-    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> AtomicBoolean shouldCloseConnection = <span class="hljs-keyword">new</span> AtomicBoolean();</span><br></pre></td></tr></table></figure>
 
+<hr>
+<p>Hadoop 2.x</p>
+<hr>
+<h2><span id="xiang-guan-can-shu-shuo-ming">相关参数说明</span><a href="#xiang-guan-can-shu-shuo-ming" class="header-anchor">$</a></h2><ul>
+<li>connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> ConcurrentMap&lt;Client.ConnectionId, Client.Connection&gt; connections;</span><br></pre></td></tr></table></figure></li>
+<li>calls 当前正在处理的远程调用，位于org.apache.hadoop.ipc.Client.Connection中  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> Hashtable&lt;Integer, Client.Call&gt; calls = <span class="hljs-keyword">new</span> Hashtable();</span><br></pre></td></tr></table></figure></li>
+<li>shouldCloseConnection 连接关闭标志  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> AtomicBoolean shouldCloseConnection = <span class="hljs-keyword">new</span> AtomicBoolean();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
 <a id="more"></a>
 
 <h2><span id="xiang-guan-fang-fa-shuo-ming">相关方法说明</span><a href="#xiang-guan-fang-fa-shuo-ming" class="header-anchor">$</a></h2><ul>

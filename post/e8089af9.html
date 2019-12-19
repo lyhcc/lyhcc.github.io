@@ -11,16 +11,16 @@
 <title>Shell全局变量和局部变量&amp;函数库 - lyhcc博客</title>
 
 
-    <meta name="description" content="全局变量 局部变量 函数库 为什么要定义函数库 案例–定义函数库 经验之谈       ## 全局变量 1. 不做特殊声明, Shell中变量都是全局变量 1. Tips: 大型脚本程序中函数中慎用全局变量   局部变量 定义变量时,使用local关键字 函数内和外若存在同名变量,则函数内部变量覆盖外部变量">
+    <meta name="description" content="全局变量 局部变量 函数库 为什么要定义函数库 案例–定义函数库 经验之谈        全局变量 不做特殊声明, Shell中变量都是全局变量 Tips: 大型脚本程序中函数中慎用全局变量  局部变量 定义变量时,使用local关键字 函数内和外若存在同名变量,则函数内部变量覆盖外部变量">
 <meta name="keywords" content="Shell全局变量和局部变量">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Shell全局变量和局部变量&amp;函数库">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;e8089af9.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="全局变量 局部变量 函数库 为什么要定义函数库 案例–定义函数库 经验之谈       ## 全局变量 1. 不做特殊声明, Shell中变量都是全局变量 1. Tips: 大型脚本程序中函数中慎用全局变量   局部变量 定义变量时,使用local关键字 函数内和外若存在同名变量,则函数内部变量覆盖外部变量">
+<meta property="og:description" content="全局变量 局部变量 函数库 为什么要定义函数库 案例–定义函数库 经验之谈        全局变量 不做特殊声明, Shell中变量都是全局变量 Tips: 大型脚本程序中函数中慎用全局变量  局部变量 定义变量时,使用local关键字 函数内和外若存在同名变量,则函数内部变量覆盖外部变量">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-12-08T08:26:50.616Z">
+<meta property="og:updated_time" content="2019-12-19T02:56:37.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -179,11 +179,11 @@
 <!-- tocstop -->
 
 </div>
-## 全局变量
-1. 不做特殊声明, Shell中变量都是全局变量
-1. Tips: 大型脚本程序中函数中慎用全局变量
 
-
+<h2><span id="quan-ju-bian-liang">全局变量</span><a href="#quan-ju-bian-liang" class="header-anchor">$</a></h2><ol>
+<li>不做特殊声明, Shell中变量都是全局变量</li>
+<li>Tips: 大型脚本程序中函数中慎用全局变量</li>
+</ol>
 <h2><span id="ju-bu-bian-liang">局部变量</span><a href="#ju-bu-bian-liang" class="header-anchor">$</a></h2><ol>
 <li>定义变量时,使用local关键字</li>
 <li>函数内和外若存在同名变量,则函数内部变量覆盖外部变量<a id="more"></a>

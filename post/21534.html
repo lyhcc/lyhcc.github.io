@@ -11,16 +11,16 @@
 <title>HDFS快照管理 - lyhcc博客</title>
 
 
-    <meta name="description" content="快照管理 快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。">
+    <meta name="description" content="快照管理 快照影响 基本语法 案例实操        快照管理 快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。">
 <meta name="keywords" content="HDFS快照">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HDFS快照管理">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;21534.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="快照管理 快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。">
+<meta property="og:description" content="快照管理 快照影响 基本语法 案例实操        快照管理 快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-07T11:14:35.239Z">
+<meta property="og:updated_time" content="2019-12-19T02:58:20.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -148,7 +148,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 795 words)
+                    5 minutes read (About 796 words)
                 </span>
                                             
                                                 
@@ -162,7 +162,23 @@
                             </h1>
                             <div class="content">
 
-                                <h2><span id="kuai-zhao-guan-li">快照管理</span><a href="#kuai-zhao-guan-li" class="header-anchor">$</a></h2><blockquote>
+                                <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#kuai-zhao-guan-li">快照管理</a><ul>
+<li><a href="#kuai-zhao-ying-xiang">快照影响</a></li>
+<li><a href="#ji-ben-yu-fa">基本语法</a></li>
+<li><a href="#an-li-shi-cao">案例实操</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h2><span id="kuai-zhao-guan-li">快照管理</span><a href="#kuai-zhao-guan-li" class="header-anchor">$</a></h2><blockquote>
 <p>快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。</p>
 </blockquote>
 <a id="more"></a>

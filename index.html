@@ -145,7 +145,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 263 words)
+                    12 minutes read (About 1739 words)
                 </span>
                                             
                                                 
@@ -161,107 +161,47 @@
                             </h1>
                             <div class="content">
 
-                                <div class="toc">
+                                <div class="tocStart"></div>
 
 <!-- toc -->
 
 <ul>
 <li><a href="#grep-he-egrep-guo-lu-qi">grep和egrep过滤器</a><ul>
 <li><a href="#grep">grep</a></li>
+<li><a href="#xuan-xiang-option">选项option</a></li>
 </ul>
 </li>
-<li><a href="#sed-liu-bian-ji-qi">sed 流编辑器</a></li>
+<li><a href="#sed-liu-bian-ji-qi">sed 流编辑器</a><ul>
+<li><a href="#sed-xuan-xiang">sed选项</a></li>
+<li><a href="#sed-pattern-yong-fa">sed Pattern用法</a></li>
+<li><a href="#sed-zhong-de-bian-ji-ming-ling-xiang-jie">sed 中的编辑命令详解</a></li>
+</ul>
+</li>
 <li><a href="#awk-bao-gao-sheng-cheng-qi">awk报告生成器</a></li>
 </ul>
 <!-- tocstop -->
 
-</div>
-## grep和egrep过滤器
-### grep
->1. 第一种形式: grep [option] [pattern] [file1,file..]
->1. 第二种形式: command| grep [option] [pattern]
+<div class="tocEnd"></div>
 
-<h4><span id="xuan-xiang-option">选项option</span><a href="#xuan-xiang-option" class="header-anchor">$</a></h4><p><strong>常用选项</strong>  </p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-V</td>
-<td>不显示匹配行信息</td>
-</tr>
-<tr>
-<td>-i</td>
-<td>搜索时忽略大小写</td>
-</tr>
-<tr>
-<td>-n</td>
-<td>显示行号</td>
-</tr>
-<tr>
-<td>-r</td>
-<td>递归搜索</td>
-</tr>
-<tr>
-<td>-E</td>
-<td>支持扩展正则表达式</td>
-</tr>
-<tr>
-<td>-F</td>
-<td>不按正则表达式匹配,按照字符串字面意思匹配</td>
-</tr>
-</tbody></table>
-<p><strong>不常用选项</strong>  </p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-c</td>
-<td>只显示匹配行总数</td>
-</tr>
-<tr>
-<td>-w</td>
-<td>匹配整词</td>
-</tr>
-<tr>
-<td>-x</td>
-<td>匹配整行</td>
-</tr>
-<tr>
-<td>-l</td>
-<td>只显示文件名,不显示内容</td>
-</tr>
-<tr>
-<td>-s</td>
-<td>不显示错误信息</td>
-</tr>
-</tbody></table>
-<hr>
-<p><strong>grep和egrep:</strong>  </p>
-<ul>
-<li>grep默认不支持扩展正则表达式，只支持基础正则表达式  </li>
-<li>使用grep-E可以支持扩展正则表达式  </li>
-<li>使用egreep可以支持扩展正则表达式，与grep -E等价</li>
-</ul>
-<hr>
-<h2><span id="sed-liu-bian-ji-qi">sed 流编辑器</span><a href="#sed-liu-bian-ji-qi" class="header-anchor">$</a></h2><blockquote>
-<p>sed(Stream Editor)，流编辑器。对标准输出或文件逐行进行处理<br><strong>格式</strong>  </p>
+<h2 id="grep和egrep过滤器"><a href="#grep和egrep过滤器" class="headerlink" title="grep和egrep过滤器"></a>grep和egrep过滤器</h2><h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><blockquote>
+<ol>
+<li>第一种形式: grep [option] [pattern] [file1,file..]</li>
+<li>第二种形式: command| grep [option] [pattern]</li>
+</ol>
 </blockquote>
-<ul>
-<li>第一种形式: stdout | sed [option] “ppattern command”</li>
-<li>第二种形式: sed [option] “pattern command” file</li>
-</ul>
-<h2><span id="awk-bao-gao-sheng-cheng-qi">awk报告生成器</span><a href="#awk-bao-gao-sheng-cheng-qi" class="header-anchor">$</a></h2>
                             </div>
                             
                                     
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/e4677a0d.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                             
                 </div>
     </div>
@@ -368,7 +308,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    8 minutes read (About 1138 words)
+                    8 minutes read (About 1154 words)
                 </span>
                                             
                                                 
@@ -400,9 +340,8 @@
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
-## 语法格式
 
-<table>
+<h2 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h2><table>
 <thead>
 <tr>
 <th>-</th>
@@ -488,11 +427,11 @@
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
-## 全局变量
-1. 不做特殊声明, Shell中变量都是全局变量
-1. Tips: 大型脚本程序中函数中慎用全局变量
 
-
+<h2 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h2><ol>
+<li>不做特殊声明, Shell中变量都是全局变量</li>
+<li>Tips: 大型脚本程序中函数中慎用全局变量</li>
+</ol>
 <h2 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h2><ol>
 <li>定义变量时,使用local关键字</li>
 <li>函数内和外若存在同名变量,则函数内部变量覆盖外部变量</li></ol>
@@ -909,9 +848,8 @@
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
-## 计算字符串的长度
 
-<table>
+<h2 id="计算字符串的长度"><a href="#计算字符串的长度" class="headerlink" title="计算字符串的长度"></a>计算字符串的长度</h2><table>
 <thead>
 <tr>
 <th>a</th>
