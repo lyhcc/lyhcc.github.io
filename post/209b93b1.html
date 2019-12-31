@@ -11,16 +11,16 @@
 <title>Shell文本三剑客之awk - lyhcc博客</title>
 
 
-    <meta name="description" content="简介 工作模式 语法格式 awk的内置变量 printf输出      简介 awk是一个文本处理工具,通常用于处理数据并生成结果报告awk的命名是它的创始人Alfred Aho、Peter Weinberger和Brian Kernighan姓氏的首个字母组成的  工作模式 类似sed，首先读取第一行，处理完后处理下一行，它可以在处理前面加一些数据，处理后面也可以加一些数据">
+    <meta name="description" content="简介 工作模式 语法格式 awk的内置变量 printf输出 模式匹配 动作表达式 awk条件语句 awk循环语句 awk字符函数 awk常用选项 awk数组与Shell数组        简介 awk是一个文本处理工具,通常用于处理数据并生成结果报告awk的命名是它的创始人Alfred Aho、Peter Weinberger和Brian Kernighan姓氏的首个字母组成的  工作">
 <meta name="keywords" content="Shell编程 awk">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Shell文本三剑客之awk">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;209b93b1.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="简介 工作模式 语法格式 awk的内置变量 printf输出      简介 awk是一个文本处理工具,通常用于处理数据并生成结果报告awk的命名是它的创始人Alfred Aho、Peter Weinberger和Brian Kernighan姓氏的首个字母组成的  工作模式 类似sed，首先读取第一行，处理完后处理下一行，它可以在处理前面加一些数据，处理后面也可以加一些数据">
+<meta property="og:description" content="简介 工作模式 语法格式 awk的内置变量 printf输出 模式匹配 动作表达式 awk条件语句 awk循环语句 awk字符函数 awk常用选项 awk数组与Shell数组        简介 awk是一个文本处理工具,通常用于处理数据并生成结果报告awk的命名是它的创始人Alfred Aho、Peter Weinberger和Brian Kernighan姓氏的首个字母组成的  工作">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-12-22T04:32:51.497Z">
+<meta property="og:updated_time" content="2019-12-31T03:34:59.180Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -148,7 +148,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 990 words)
+                    16 minutes read (About 2419 words)
                 </span>
                                             
                                                 
@@ -171,7 +171,16 @@
 <li><a href="#gong-zuo-mo-shi">工作模式</a></li>
 <li><a href="#yu-fa-ge-shi">语法格式</a></li>
 <li><a href="#awk-de-nei-zhi-bian-liang">awk的内置变量</a></li>
-<li><a href="#printf-shu-chu">printf输出</a></li>
+<li><a href="#printf-shu-chu">printf输出</a><ul>
+<li><a href="#mo-shi-pi-pei">模式匹配</a></li>
+<li><a href="#dong-zuo-biao-da-shi">动作表达式</a></li>
+<li><a href="#awk-tiao-jian-yu-ju">awk条件语句</a></li>
+<li><a href="#awk-xun-huan-yu-ju">awk循环语句</a></li>
+<li><a href="#awk-zi-fu-han-shu">awk字符函数</a></li>
+<li><a href="#awk-chang-yong-xuan-xiang">awk常用选项</a></li>
+<li><a href="#awk-shu-zu-yu-shell-shu-zu">awk数组与Shell数组</a></li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 
@@ -310,6 +319,146 @@
 </tr>
 </tbody></table>
 <figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">格式符示例:</span><br><span class="line">    1、以字符串格式打印/etc/passwd中的第7个字段，以<span class="hljs-string">":"</span>作 为分隔符</span><br><span class="line">        awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;&#123;printf "%s\n",$7&#125;'</span> /etc/passwd</span><br><span class="line">    2、以10进制格式打印/etc/passwd中的第3个字段，以<span class="hljs-string">":"</span>作 为分隔符</span><br><span class="line">        awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;&#123;printf "%d\n",$3&#125;'</span> /etc/passwd</span><br><span class="line">    3、以浮点数格式打印/etc/passwd中的第3个字段，以<span class="hljs-string">":"</span>作为分隔符</span><br><span class="line">        awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;&#123;printf "%f\n",$3&#125;'</span> /etc/passwd</span><br><span class="line">    4、以16进制数格式打印/etc/passwd中的第3个字段，以<span class="hljs-string">":"</span>作 为分隔符</span><br><span class="line">        awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;&#123;printf "%x\n",$3&#125;'</span> /etc/passwd</span><br><span class="line">    5、以8进制数格式打印/etc/passwd中的第3个字段，以<span class="hljs-string">":"</span>作为分隔符</span><br><span class="line">        awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;&#123;printf "%o\n",$3&#125;'</span> /etc/passwd</span><br><span class="line">    6、以科学计数法格式打印/etc/passwd中的第3个字段，以<span class="hljs-string">":"</span>作为分隔符</span><br><span class="line">        awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;&#123;printf "%e\n",$3&#125;'</span> /etc/passwd</span><br><span class="line">修饰符示例:</span><br><span class="line">    1、左对齐格式</span><br><span class="line">        awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;&#123;printf "%-20s %-20s\n",$1,$7&#125;'</span> /etc/passwd</span><br><span class="line">    2、右对齐格式</span><br><span class="line">        awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;&#123;printf "%20s %20s\n",$1,$7&#125;'</span> /etc/passwd</span><br><span class="line">    3、打印8进制或16进制数字是在前面加<span class="hljs-comment">#</span></span><br><span class="line">        awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;&#123;printf "%#o\n",$3&#125;'</span> /etc/passwd</span><br><span class="line">        awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;&#123;printf "%#x\n",$3&#125;'</span> /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<h3><span id="mo-shi-pi-pei">模式匹配</span><a href="#mo-shi-pi-pei" class="header-anchor">$</a></h3><ol>
+<li>RegExp(表示可以是一个敞亮字符串或者是一个正则表达式写法) <figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">匹配/etc/passwd文件行中含有root字符串的所有行</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;&#125;/^root/&#123;print $0&#125;'</span> /etc/passwd</span><br><span class="line">匹配/etc/passwd文件行中以yarn开头的所有行</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;&#125;/^yarn/&#123;print $0&#125;'</span> /etc/passwd</span><br></pre></td></tr></table></figure></li>
+<li>关系运算匹配 <figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">关系运算符匹配:</span><br><span class="line">&lt;       小于     </span><br><span class="line">&gt;       大于     </span><br><span class="line">&lt;=      小于等于     </span><br><span class="line">&gt;=      大于等于</span><br><span class="line">==      等于     </span><br><span class="line">!=      不等于     </span><br><span class="line">~       匹配正则表达式     </span><br><span class="line">!~      不匹配正则表达式     </span><br><span class="line"></span><br><span class="line">不匹配正则表达式</span><br><span class="line">(1)、以:为分隔符， 匹配/etc/passwd文件中第3个字段小于50的所有行信息</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;$3&lt;50'</span> /etc/passwd</span><br><span class="line">(2)、以:为分隔符，匹配/etc/passwd文件中 第3个字段大于50的所有行信息</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;$3&gt;50'</span> /etc/passwd</span><br><span class="line">(3)、以:为分隔符，匹配/etc/passwd文 件中第7个字段为/bin/bash的所有行信息</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;$7=="\/bin\/bash"'</span> /etc/passwd</span><br><span class="line">(4)、以:为分隔符，匹配/etc/passwd文件中 第7个字段不为/bin/bash的所有行信息</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;$7=="/bin/bash"'</span> /etc/passwd</span><br><span class="line">(5)、以:为分隔符，匹配/etc/passwd中第3个字段包含3个以上数字的所有行</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;$3~/[0,9]&#123;3,&#125;/'</span> /etc/passwd</span><br><span class="line">布尔运算符匹配:</span><br><span class="line">||          或</span><br><span class="line">&amp;&amp;          与</span><br><span class="line">!           非</span><br><span class="line"></span><br><span class="line">(1)、以:为分隔符，匹配/etc/passwd文 件中包含root或mysql的所有行信息</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;$1=="root" || $1=="mysql"'</span> /etc/passwd</span><br><span class="line">(2)、以:为分隔符，匹配/etc/passwd文件中第3个字段小于50并且第4个字段大于50的所有行信息</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;$3&lt;50 &amp;&amp; $4&gt;50'</span> /etc/passwd</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3><span id="dong-zuo-biao-da-shi">动作表达式</span><a href="#dong-zuo-biao-da-shi" class="header-anchor">$</a></h3><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>加</td>
+</tr>
+<tr>
+<td>-</td>
+<td>减</td>
+</tr>
+<tr>
+<td>*</td>
+<td>乘</td>
+</tr>
+<tr>
+<td>/</td>
+<td>除</td>
+</tr>
+<tr>
+<td>%</td>
+<td>模</td>
+</tr>
+<tr>
+<td>^或**</td>
+<td>乘方</td>
+</tr>
+<tr>
+<td>++x</td>
+<td>在返回x变量之前, x变量加1</td>
+</tr>
+<tr>
+<td>x++</td>
+<td>在返回变量之后，x变量加1</td>
+</tr>
+</tbody></table>
+<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1、使用awk计算/etc/services中的空白行数量)</span><br><span class="line">    <span class="hljs-comment"># 空白行的表示^$</span></span><br><span class="line">    awk <span class="hljs-string">'/^$/&#123;sum++&#125;END&#123;print sum&#125;'</span> /etc/services</span><br><span class="line">2、计算学生课程分数平均值，学生课程文件内容如下:</span><br><span class="line">    Allen   80  90  96  98</span><br><span class="line">    Mike    93  98  92  91</span><br><span class="line">    Zhang   78  76  87  92</span><br><span class="line">    Jerry   86  89  68  92</span><br><span class="line">    Han     85  95  75  90</span><br><span class="line">    Li  78  88  98  100 </span><br><span class="line">awk <span class="hljs-string">'&#123;sum=$2+$3+$4+$5; AVG=sum/4; printf "%-8s%-8d%-8d%-8d%-8d%0.2f\n",$1,$2,$3,$4,$5,AVG&#125;'</span> stu.txt</span><br><span class="line">    </span><br><span class="line">3、使用awk输出/etc/passwd文件的行数。分两种方式显示行数，一种是正序如1.2.3.4..</span><br><span class="line">    awk <span class="hljs-string">'&#123;line++; printf "%d:%s\n", line,$0&#125;'</span> /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<h3><span id="awk-tiao-jian-yu-ju">awk条件语句</span><a href="#awk-tiao-jian-yu-ju" class="header-anchor">$</a></h3><figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1、以:为分隔符，只打印/etc/passwd中第3个字段的数值在50-100范围内的行信息</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;FS=":"&#125;&#123;if(50&lt;$3 &amp;&amp; $3&lt;100) print $0&#125;'</span> /etc/passwd</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2、计算下列每个同学的平均分数，并且只打印平均分数大于90的同学姓名和分数信息</span><br><span class="line">    Allen   80  90  96  98</span><br><span class="line">    Mike    93  98  92  91</span><br><span class="line">    Zhang   78  76  87  92</span><br><span class="line">    Jerry   86  89  68  92</span><br><span class="line">    Han     85  95  75  90</span><br><span class="line">    Li  78  88  98  100 </span><br><span class="line">awk <span class="hljs-string">'&#123;sum=$2+$3+$4+$5; AVG=sum/4; if(AVG&gt;90)printf "%-8s%-8d%-8d%-8d%-8d%0.2f\n",$1,$2,$3,$4,$5,AVG&#125;'</span> stu.txt</span><br></pre></td></tr></table></figure>
+
+
+<h3><span id="awk-xun-huan-yu-ju">awk循环语句</span><a href="#awk-xun-huan-yu-ju" class="header-anchor">$</a></h3><figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># 三种循环</span></span><br><span class="line">awk <span class="hljs-string">'BEGIN &#123;i = 1; while (i &lt; 6) &#123; print i; ++i &#125; &#125;'</span></span><br><span class="line">awk <span class="hljs-string">'BEGIN &#123; for (i = 1; i &lt;= 5; ++i) print i &#125;'</span></span><br><span class="line">awk <span class="hljs-string">'BEGIN &#123;i = 1; do &#123; print i; ++i &#125; while (i &lt; 6) &#125;'</span></span><br></pre></td></tr></table></figure>
+
+<h3><span id="awk-zi-fu-han-shu">awk字符函数</span><a href="#awk-zi-fu-han-shu" class="header-anchor">$</a></h3><table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>解释</th>
+<th>函数返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>length(str)</td>
+<td>计算字符串长度</td>
+<td>整数长度值</td>
+</tr>
+<tr>
+<td>index(str1 ,str2)</td>
+<td>在str1中查找str2的位置</td>
+<td>返回值为位置索引,从1计数</td>
+</tr>
+<tr>
+<td>tolower(str)</td>
+<td>转换为小写</td>
+<td>转换后的小写字符串</td>
+</tr>
+<tr>
+<td>toupper(str)</td>
+<td>转换为大写</td>
+<td>转换后的大写字符串</td>
+</tr>
+<tr>
+<td>substr(str,m,n)</td>
+<td>从str的m个字符开始，截取n位</td>
+<td>截取后的子串</td>
+</tr>
+<tr>
+<td>split(str,arr,fs)</td>
+<td>按fs切割字符串,结果保存arr</td>
+<td>切割后的子串的个数</td>
+</tr>
+<tr>
+<td>match(str,RE)</td>
+<td>在str中按照RE查找，返回位置</td>
+<td>返回索引位置</td>
+</tr>
+<tr>
+<td>sub(RE,RepStr,str)</td>
+<td>在str中搜索符合RE的字串,将其替换为RepStr ;只替换第一个</td>
+<td>替换的个数</td>
+</tr>
+<tr>
+<td>gsub(RE,RepStr,str)</td>
+<td>在str中搜索符合RE的字串,将其替换为RepStr;替换所有</td>
+<td>替换的个数</td>
+</tr>
+</tbody></table>
+<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">1、以:为分隔符，返回/etc/passwd中每行中每个字段的长度</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;</span></span><br><span class="line"><span class="hljs-string">            FS=":"</span></span><br><span class="line"><span class="hljs-string">        &#125;&#123;</span></span><br><span class="line"><span class="hljs-string">            i=0;</span></span><br><span class="line"><span class="hljs-string">            while(i&lt;=NF)&#123;</span></span><br><span class="line"><span class="hljs-string">              printf "%d", length($i);</span></span><br><span class="line"><span class="hljs-string">              if(i!=NF)printf ":"; </span></span><br><span class="line"><span class="hljs-string">              i++; </span></span><br><span class="line"><span class="hljs-string">            &#125;</span></span><br><span class="line"><span class="hljs-string">            printf "\n"</span></span><br><span class="line"><span class="hljs-string">            </span></span><br><span class="line"><span class="hljs-string">        &#125;'</span> /etc/passwd</span><br><span class="line">2、搜索字符串<span class="hljs-string">"I have a dream"</span>中出现<span class="hljs-string">"ea"</span>字符串的位置</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;str="I have a dream"; print index(str,"ea")&#125;'</span></span><br><span class="line">3、将字符串<span class="hljs-string">"Hadoop is a bigdata Framawork"</span>全部转换为小写</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;str="Hadoop is a bigdata Framawork"; print tolower(str)&#125;'</span></span><br><span class="line">4、将字符串<span class="hljs-string">"Hadoop is a bigdata Framawork"</span> 全部转换为大写</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;str="Hadoop is a bigdata Framawork"; print toupper(str)&#125;'</span></span><br><span class="line">5、将字符串<span class="hljs-string">"Hadoop Kafka Spark Storm HDFS YARN Zookeeper"</span>， 按照空格为分隔符</span><br><span class="line">    <span class="hljs-comment"># 从1开始</span></span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;str="Hadoop Kafka Spark Storm HDFS YARN Zookeeper"; split(str, arr, " "); print arr[1]&#125;'</span></span><br><span class="line">6、搜索字符串<span class="hljs-string">"Tranction 2345 Start:Select * from master"</span>第一个数字出现的位置</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;str="Tranction 2345 Start:Select * from master"; print match(str, /[0-9]+/)&#125;'</span></span><br><span class="line"></span><br><span class="line">7、截取字符串<span class="hljs-string">" transaction start"</span>的子串，截取条件从第4个字符开始，截取5位</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;str=" transaction start"; print substr(str, 4,5)&#125;'</span></span><br><span class="line">8、替换字符串<span class="hljs-string">"Tranction 243 start, Event ID:9002"</span>中第一个匹配到的数字串为$符号</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;str="Tranction 243 start, Event ID:9002"; sub(/[0-9]+/, "$", str); print str&#125;'</span></span><br></pre></td></tr></table></figure>
+<h3><span id="awk-chang-yong-xuan-xiang">awk常用选项</span><a href="#awk-chang-yong-xuan-xiang" class="header-anchor">$</a></h3><table>
+<thead>
+<tr>
+<th>选项</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-v</td>
+<td>参数传递</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>指定脚本文件</td>
+</tr>
+<tr>
+<td>-F</td>
+<td>指定分隔符</td>
+</tr>
+<tr>
+<td>-V</td>
+<td>查看awk的版本号</td>
+</tr>
+</tbody></table>
+<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># -v</span></span><br><span class="line">[root@master ~]<span class="hljs-comment"># num1=100</span></span><br><span class="line">[root@master ~]<span class="hljs-comment"># var="You"</span></span><br><span class="line">[root@master ~]<span class="hljs-comment"># awk -v num2=$num1 -v var1=$var 'BEGIN&#123;print num2, var1&#125;'</span></span><br><span class="line">100 You</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 字符串有空格需要引号</span></span><br><span class="line">[root@master ~]<span class="hljs-comment"># var="Hello Shell"</span></span><br><span class="line">[root@master ~]<span class="hljs-comment"># awk -v num2=$num1 -v var1=$var 'BEGIN&#123;print num2, var1&#125;'</span></span><br><span class="line">awk: fatal: cannot open file `BEGIN&#123;<span class="hljs-built_in">print</span> num2, var1&#125;<span class="hljs-string">' for reading (No such file or directory)</span></span><br><span class="line"><span class="hljs-string">[root@master ~]# awk -v num2=$num1 -v var1="$var" '</span>BEGIN&#123;<span class="hljs-built_in">print</span> num2, var1&#125;<span class="hljs-string">'</span></span><br><span class="line"><span class="hljs-string">100 Hello Shell</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string"># -f awk后面的BEGIN放入test.awk后执行</span></span><br><span class="line"><span class="hljs-string">[root@master datas]# awk -v num2=$num1 -v var1="$var" -f test.awk </span></span><br><span class="line"><span class="hljs-string">100 Hello Shell</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string"># -F</span></span><br><span class="line"><span class="hljs-string">awk -F : '</span>BEGIN&#123;&#125;&#123;<span class="hljs-built_in">print</span> <span class="hljs-variable">$1</span>&#125;<span class="hljs-string">' /etc/passwd</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string"># -V</span></span><br><span class="line"><span class="hljs-string">[root@master ~]# awk -V</span></span><br><span class="line"><span class="hljs-string">GNU Awk 4.0.2</span></span><br></pre></td></tr></table></figure>
+
+<h3><span id="awk-shu-zu-yu-shell-shu-zu">awk数组与Shell数组</span><a href="#awk-shu-zu-yu-shell-shu-zu" class="header-anchor">$</a></h3><h4><span id="awk-shu-zu">awk数组</span><a href="#awk-shu-zu" class="header-anchor">$</a></h4><h4><span id="shell-shu-zu">Shell数组</span><a href="#shell-shu-zu" class="header-anchor">$</a></h4><figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">array=(<span class="hljs-string">"If"</span> <span class="hljs-string">"we"</span> <span class="hljs-string">"can"</span> <span class="hljs-string">"only"</span> <span class="hljs-string">"encounter"</span> <span class="hljs-string">"each"</span> <span class="hljs-string">"other"</span> <span class="hljs-string">"rather"</span> <span class="hljs-string">"than"</span> <span class="hljs-string">"stay"</span> <span class="hljs-string">"with"</span> <span class="hljs-string">"each"</span> <span class="hljs-string">"other,then"</span> <span class="hljs-string">"I"</span> <span class="hljs-string">"wish"</span> <span class="hljs-string">"we"</span> <span class="hljs-string">"had never encountered"</span>)</span><br><span class="line"></span><br><span class="line">打印元素:         <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;array[2] &#125;</span>       </span><br><span class="line">打印元素个数:     <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;#array[@] &#125;</span>           </span><br><span class="line">打印元素长度:     <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;#array[3] &#125;</span>           </span><br><span class="line">给元素赋值:       array[3]=<span class="hljs-string">"Li"</span>       </span><br><span class="line">删除元素:         <span class="hljs-built_in">unset</span> array[2] ;<span class="hljs-built_in">unset</span> array       </span><br><span class="line">分片访问:         <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;array[@] :1:3&#125;</span>       </span><br><span class="line">元素内容替换:     <span class="hljs-variable">$&#123;array[@]/e/E&#125;</span>只替换第-一个e;<span class="hljs-variable">$&#123;array[@]//e/E&#125;</span>替换所有的e      </span><br><span class="line"></span><br><span class="line">数组的遍历：</span><br><span class="line"><span class="hljs-keyword">for</span> a <span class="hljs-keyword">in</span> array</span><br><span class="line"><span class="hljs-keyword">do</span> </span><br><span class="line">    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$a</span></span><br><span class="line"><span class="hljs-keyword">done</span></span><br></pre></td></tr></table></figure>
+
+
+
+
                             </div>
                             
                                 <div class="level is-size-7 is-uppercase">
@@ -433,7 +582,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        38
+                        39
                     </p>
                 </div>
             </div>
@@ -453,7 +602,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        49
+                        50
                     </p>
                 </div>
             </div>
@@ -632,7 +781,7 @@
                 <span class="level-item">Spring</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/others/">
@@ -653,7 +802,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">AJAX 和JSON的使用</a> <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" style="font-size: 10px;">Java Web过滤器和监听器</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 10px;">Linux 工具包</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" style="font-size: 10px;">Shell 之Bash数学运算</a> <a href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">Shell 的函数的定义和使用</a> <a href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" style="font-size: 10px;">Shell 的字符串处理</a> <a href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell全局变量和局部变量</a> <a href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Shell变量的替换和测试</a> <a href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/" style="font-size: 10px;">Shell命令的替换</a> <a href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Shell文件查找find命令</a> <a href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell有类型变量</a> <a href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/" style="font-size: 10px;">Shell编程 awk</a> <a href="/tags/Spring%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Spring初识</a> <a href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Tomcat 的安装与配置</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/find%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" style="font-size: 10px;">find、which、locate、whereis命令总结</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/kafka%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">kafka通信</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a> <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/" style="font-size: 10px;">文本处理三剑客(grep/sed/awk)</a>
+        <a href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">AJAX 和JSON的使用</a> <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" style="font-size: 10px;">Java Web过滤器和监听器</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 10px;">Linux 工具包</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" style="font-size: 10px;">Shell 之Bash数学运算</a> <a href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">Shell 的函数的定义和使用</a> <a href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" style="font-size: 10px;">Shell 的字符串处理</a> <a href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell全局变量和局部变量</a> <a href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Shell变量的替换和测试</a> <a href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/" style="font-size: 10px;">Shell命令的替换</a> <a href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Shell文件查找find命令</a> <a href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell有类型变量</a> <a href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/" style="font-size: 10px;">Shell编程 awk</a> <a href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/" style="font-size: 10px;">Spring初始之HelloWorld</a> <a href="/tags/Spring%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Spring初识</a> <a href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Tomcat 的安装与配置</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/find%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" style="font-size: 10px;">find、which、locate、whereis命令总结</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/kafka%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">kafka通信</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a> <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/" style="font-size: 10px;">文本处理三剑客(grep/sed/awk)</a>
     </div>
 </div>
     
@@ -665,6 +814,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/post/f431a4c4.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring初始之HelloWorld">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-31T03:36:35.473Z">2019-12-31</time></div>
+                    <a href="/post/f431a4c4.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring初始之HelloWorld</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -742,25 +910,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/209b93b1.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Shell文本三剑客之awk">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T08:04:28.712Z">2019-12-21</time></div>
-                    <a href="/post/209b93b1.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Shell文本三剑客之awk</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -778,7 +927,7 @@
                     <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">16</span>
+                    <span class="level-item tag">17</span>
                 </span>
             </a>
         </li>
@@ -1069,6 +1218,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/">
                         <span class="tag">Shell编程 awk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/">
+                        <span class="tag">Spring初始之HelloWorld</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1174,6 +1330,25 @@
         
         <article class="media">
             
+            <a href="/post/f431a4c4.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring初始之HelloWorld">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-31T03:36:35.473Z">2019-12-31</time></div>
+                    <a href="/post/f431a4c4.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring初始之HelloWorld</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/e866659f.html" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring 初识">
@@ -1248,25 +1423,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/209b93b1.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Shell文本三剑客之awk">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-21T08:04:28.712Z">2019-12-21</time></div>
-                    <a href="/post/209b93b1.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Shell文本三剑客之awk</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1284,7 +1440,7 @@
                     <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">16</span>
+                    <span class="level-item tag">17</span>
                 </span>
             </a>
         </li>
@@ -1575,6 +1731,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/">
                         <span class="tag">Shell编程 awk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/">
+                        <span class="tag">Spring初始之HelloWorld</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
