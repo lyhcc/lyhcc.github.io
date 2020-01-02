@@ -8,12 +8,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Tag: RMI - lyhcc博客</title>
+<title>Tag: Spring IOC实验 - lyhcc博客</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="lyhcc博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;tags&#x2F;RMI&#x2F;index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;tags&#x2F;Spring-IOC%E5%AE%9E%E9%AA%8C&#x2F;index.html">
 <meta property="og:site_name" content="lyhcc博客">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
@@ -132,7 +132,7 @@
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="/tags">Tags</a></li>
-            <li class="is-active"><a href="#" aria-current="page">RMI</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Spring IOC实验</a></li>
         </ul>
         </nav>
     </div>
@@ -145,17 +145,17 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-17T04:52:38.134Z">2019-11-17</time>
+                                <time class="level-item has-text-grey" datetime="2019-12-31T09:24:31.153Z">2019-12-31</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/others/">others</a>
+                                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 703 words)
+                    17 minutes read (About 2494 words)
                 </span>
                                             
                                                 
@@ -164,8 +164,8 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/55cde24e.html">
-                                        Java远程调用
+                                    <a class="has-link-black-ter" href="/post/40588fed.html">
+                                        Spring IOC## 实验
                                     </a>
                                     
                             </h1>
@@ -176,27 +176,46 @@
 <!-- toc -->
 
 <ul>
-<li><a href="#gai-shu">概述</a></li>
-<li><a href="#yuan-cheng-fang-fa-diao-yong-shi-li">远程方法调用实例</a></li>
-<li><a href="#java-yuan-cheng-diao-yong-shi-li-lei-tu">Java远程调用实例类图</a></li>
+<li><a href="#shi-yan-1-tong-guo-ioc-rong-qi-chuang-jian-dui-xiang-bing-wei-shu-xing-fu-zhi">实验1：通过IOC容器创建对象，并为属性赋值★</a></li>
+<li><a href="#shi-yan-2-gen-ju-bean-de-lei-xing-cong-ioc-rong-qi-zhong-huo-qu-bean-de-shi-li">实验2：根据bean的类型从IOC容器中获取bean的实例★</a></li>
+<li><a href="#shi-yan-3">实验3：</a></li>
+<li><a href="#shi-yan-4-zheng-que-de-wei-ge-chong-shu-xing-fu-zhi">实验4：正确的为各种属性赋值</a></li>
+<li><a href="#shi-yan-5-pei-zhi-tong-guo-jing-tai-gong-han-fang-fa-chuang-jian-de-bean-shi-li-gong-han-fang-fa-chuang-jian-de-bean-factorybean">实验5：配置通过静态工厂方法创建的bean、实例工厂方法创建的bean、FactoryBean★</a></li>
+<li><a href="#shi-yan-6-tong-guo-ji-cheng-shi-xian-bean-pei-zhi-xin-xi-de-chong-yong">实验6：通过继承实现bean配置信息的重用</a></li>
+<li><a href="#shi-yan-7-tong-guo-abstract-shu-xing-chuang-jian-yi-ge-mo-ban-bean">实验7：通过abstract属性创建一个模板bean</a></li>
+<li><a href="#shi-yan-8-bean-zhi-jian-de-yi-lai">实验8：bean之间的依赖</a></li>
+<li><a href="#shi-yan-9-ce-shi-bean-de-zuo-yong-yu-fen-bie-chuang-jian-dan-shi-li-he-duo-shi-li-de-bean">实验9：测试bean的作用域，分别创建单实例和多实例的bean★</a></li>
+<li><a href="#shi-yan-10-chuang-jian-dai-you-sheng-ming-zhou-qi-fang-fa-de-bean">实验10：创建带有生命周期方法的bean</a></li>
+<li><a href="#shi-yan-11-ce-shi-bean-de-hou-zhi-chu-li-qi">实验11：测试bean的后置处理器</a></li>
+<li><a href="#shi-yan-12-yin-yong-wai-bu-shu-xing-wen-jian">实验12：引用外部属性文件★</a></li>
+<li><a href="#shi-yan-13-ji-yu-xml-de-zi-dong-zhuang-pei-zi-ding-yi-lei-xing-zi-dong-fu-zhi">实验13：基于XML的自动装配(自定义类型自动赋值)</a></li>
+<li><a href="#shi-yan-14-spel-spring-expression-language-ce-shi-i">实验14：[SpEL(Spring Expression Language)测试I]</a></li>
+<li><a href="#shi-yan-15-tong-guo-zhu-jie-fen-bie-chuang-jian-dao-service-controller-kong-zhi-qi-kong-zhi-wang-zhan-tiao-zhuan">实验15：通过注解分别创建Dao、Service、Controller（控制器，控制网站跳转）★</a></li>
+<li><a href="#shi-yan-16-shi-yong-context-include-filter-zhi-ding-sao-miao-bao-shi-yao-bao-han-de-lei">实验16：使用context:include-filter指定扫描包时要包含的类</a></li>
+<li><a href="#shi-yan-17-shi-yong-context-exclude-filter-zhi-ding-sao-miao-bao-shi-bu-bao-han-de-lei">实验17：使用context:exclude-filter指定扫描包时不包含的类</a></li>
+<li><a href="#shi-yan-18-shi-yong-autowired-zhu-jie-shi-xian-gen-ju-lei-xing-shi-xian-zi-dong-zhuang-pei">实验18：使用@Autowired注解实现根据类型实现自动装配★</a></li>
+<li><a href="#shi-yan-19-ru-guo-zi-yuan-lei-xing-de-bean-bu-zhi-yi-ge">实验19：如果资源类型的bean不止一个，</a></li>
+<li><a href="#shi-yan-20-ru-guo-gen-ju-cheng-yuan-bian-liang-ming-zuo-wei-id-huan-shi-zhao-bu-dao-bean">实验20：如果根据成员变量名作为id还是找不到bean，</a></li>
+<li><a href="#shi-yan-21-zai-fang-fa-de-xing-can-wei-zhi-shi-yong-qualifier-zhu-jie">实验21：在方法的形参位置使用@Qualifier注解</a></li>
+<li><a href="#shi-yan-22-autowired-zhu-jie-de-required-shu-xing-zhi-ding-mou-ge-shu-xing-yun-xu-bu-bei-she-zhi">实验22：@Autowired注解的required属性指定某个属性允许不被设置</a></li>
+<li><a href="#shi-yan-23-ce-shi-fan-xing-yi-lai-zhu-ru">实验23：测试泛型依赖注入★</a></li>
 </ul>
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
 
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
-<p>Java远程方法调用(Remote Method Invocation, RMI)是Java的一个核心API和类库,<br>允许一个Java虚拟机上运行的Java程序调用不同虚拟机上运行的对象中的方法，即使这两个<br>虚拟机运行于物理隔离的不同主机上。在某种程度上，RMI可以看成RPC的Java升级版。</p>
+<h2 id="实验1：通过IOC容器创建对象，并为属性赋值★"><a href="#实验1：通过IOC容器创建对象，并为属性赋值★" class="headerlink" title="实验1：通过IOC容器创建对象，并为属性赋值★"></a>实验1：通过IOC容器创建对象，并为属性赋值★</h2><p><a href="https://lyhcc.github.io/post/f431a4c4.html#more">HelloWorld 实现</a></p>
+<h2 id="实验2：根据bean的类型从IOC容器中获取bean的实例★"><a href="#实验2：根据bean的类型从IOC容器中获取bean的实例★" class="headerlink" title="实验2：根据bean的类型从IOC容器中获取bean的实例★"></a>实验2：根据bean的类型从IOC容器中获取bean的实例★</h2><blockquote>
+<p>如果IOC容器这个类型的bean有多个，查找会报错<br>报错org.springframework.beans.factory.NoUniqueBeanDefinitionException</p>
 </blockquote>
-<blockquote>
-<p>和RPC一样,存在服务端和客户端<br>典型服务器端应用程序 创建多个远程对象（Remote Object）,使这些对象能被客户端引用，并等待客户端调用远程对象的方法<br>典型的客户端程序 从服务器获得一个或多个远程对象的引用，然后调用远程对象的方法</p>
-</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">      <span class="hljs-comment">/*Person bean = ioc.getBean(Person.class);</span></span><br><span class="line"><span class="hljs-comment">System.out.println(bean);</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line"><span class="hljs-comment">// 指定类之后不需要强转</span></span><br><span class="line">Person bean = ioc.getBean(<span class="hljs-string">"person02"</span>, Person.class);</span><br><span class="line">System.out.println(bean);</span><br></pre></td></tr></table></figure>
                             </div>
                             
                                     
                                         <div class="level is-mobile">
                                             <div class="level-start">
                                                 <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/55cde24e.html#more">
+                                                    <a class="button is-size-7 is-light" href="/post/40588fed.html#more">
                                                         Read More
                                                     </a>
                                                 </div>
