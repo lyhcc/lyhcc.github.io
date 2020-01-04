@@ -8,7 +8,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Category: Hadoop common - lyhcc博客</title>
+<title>Category: Hadoop_common - lyhcc博客</title>
 
 
     <meta property="og:type" content="website">
@@ -137,7 +137,7 @@
             
             <li><a href="/categories/BigData/">BigData</a></li>
             
-            <li class="is-active"><a href="#" aria-current="page">Hadoop common</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Hadoop_common</a></li>
         </ul>
         </nav>
     </div>
@@ -150,17 +150,17 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-20T11:51:58.898Z">2019-11-20</time>
+                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.625Z">2019-11-16</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop common</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/IPC/">IPC</a>
+                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop_common</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 271 words)
+                    19 minutes read (About 2840 words)
                 </span>
                                             
                                                 
@@ -169,77 +169,8 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/a9423fcb.html">
-                                        Hadoop IPC 数据分帧和读写
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <div class="toc">
-
-<!-- toc -->
-
-<ul>
-<li><a href="#shu-ju-tong-xin-zhong-ding-jie-de-fang-fa">数据通信中定界的方法</a></li>
-</ul>
-<!-- tocstop -->
-
-</div>
-
-<h2><span id="shu-ju-tong-xin-zhong-ding-jie-de-fang-fa">数据通信中定界的方法</span><a href="#shu-ju-tong-xin-zhong-ding-jie-de-fang-fa" class="header-anchor">$</a></h2><ul>
-<li>定长消息:通信双方发送的消息长度是固定的，接收者只需要简单地将数据读入对应的缓冲区中，就可以获得消息。</li>
-<li>基于定界符:消息的结束由唯一标记指出，消息发送者在传输完数据后，添加一-个特殊的字节序列。这个特殊的标记不能在传输的数据中出现，接收者简单地扫描输入信<br>息并查找定界符，并将定位符前面的数据形成消息交给上层应用。</li>
-<li>显式长度:在具体消息前面附加一一个固定大小的字段，指示该消息包含多少字节。接<br>收者首先以定长消息的方式接受长度字段，然后根据这个长度接收消息。</li>
-</ul>
-<p><strong>Hadoop IPC通信的定界方法</strong>  </p>
-<ul>
-<li>客户端-&gt;服务器端：显式长度</li>
-<li>服务器-&gt;客户端：定长消息，通过Writable序列化</li>
-</ul>
-
-                            </div>
-                            
-                                    
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-20T09:54:55.955Z">2019-11-20</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop common</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/IPC/">IPC</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    7 minutes read (About 999 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/28a780a5.html">
-                                        Hadoop IPC 连接的建立
+                                    <a class="has-link-black-ter" href="/post/fa571a7.html">
+                                        配置文件
                                     </a>
                                     
                             </h1>
@@ -250,9 +181,13 @@
 <!-- toc -->
 
 <ul>
-<li><a href="#xiang-guan-can-shu-shuo-ming">相关参数说明</a></li>
-<li><a href="#xiang-guan-fang-fa-shuo-ming">相关方法说明</a><ul>
-<li><a href="#fu-wu-qi-duan">服务器端</a></li>
+<li><a href="#windows-cao-zuo-xi-tong-pei-zhi-wen-jian">Windows操作系统配置文件</a></li>
+<li><a href="#java-pei-zhi-wen-jian">Java配置文件</a></li>
+<li><a href="#hadoop-configuration-xiang-jie">Hadoop Configuration详解</a><ul>
+<li><a href="#hadoop-pei-zhi-wen-jian-ge-shi">hadoop 配置文件格式</a></li>
+<li><a href="#configuration-lei-jie-shao">Configuration类介绍</a></li>
+<li><a href="#configuration-lei-de-guo-cheng">Configuration类的过程</a></li>
+<li><a href="#configurable-jie-kou">Configurable接口</a></li>
 </ul>
 </li>
 </ul>
@@ -260,23 +195,23 @@
 
 <div class="tocEnd"></div>
 
-<hr>
-<p>Hadoop 2.x</p>
-<hr>
-<h2 id="相关参数说明"><a href="#相关参数说明" class="headerlink" title="相关参数说明"></a>相关参数说明</h2><ul>
-<li>connections 用于保存ConnectionId到Connection的映射，位于org.apache.hadoop.ipc.Client中    <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> ConcurrentMap&lt;Client.ConnectionId, Client.Connection&gt; connections;</span><br></pre></td></tr></table></figure></li>
-<li>calls 当前正在处理的远程调用，位于org.apache.hadoop.ipc.Client.Connection中  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> Hashtable&lt;Integer, Client.Call&gt; calls = <span class="hljs-keyword">new</span> Hashtable();</span><br></pre></td></tr></table></figure></li>
-<li>shouldCloseConnection 连接关闭标志  <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> AtomicBoolean shouldCloseConnection = <span class="hljs-keyword">new</span> AtomicBoolean();</span><br></pre></td></tr></table></figure>
-
-</li>
+<h2 id="Windows操作系统配置文件"><a href="#Windows操作系统配置文件" class="headerlink" title="Windows操作系统配置文件"></a>Windows操作系统配置文件</h2><blockquote>
+<p>配置设置文件（INI）文件是windows操作系统中的一种特殊的ASCII文件，以ini为文件扩展名,作为它的主要文件配置文件标准。该文件也被称为初始化文件initialization file和概要文件profile。<br>应用程序可以拥有自己的配置文件，存储应用设置信息，也可以访问windows的基本系统配置文件win.ini中存储的配置信息  </p>
+</blockquote>
+<p><strong>INI配置信息分为两部分</strong>  </p>
+<ul>
+<li>节，节标题放在方括号中, [section]</li>
+<li>项，一个等式，key=value <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">;注释</span><br><span class="line"></span><br><span class="line">;节 </span><br><span class="line">[section]  </span><br><span class="line"></span><br><span class="line">;参数（键=值） </span><br><span class="line">name=value</span><br></pre></td></tr></table></figure></li>
 </ul>
+<p><strong>INI文件片段</strong></p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[0x0419]</span><br><span class="line">1100=Ошибка инициализации программы установки</span><br><span class="line">1101=%s</span><br><span class="line">1102=%1 Идет подготовка к запуску мастера %2, выполняющего установку программы.  Ждите.</span><br></pre></td></tr></table></figure>
                             </div>
                             
                                     
                                         <div class="level is-mobile">
                                             <div class="level-start">
                                                 <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/28a780a5.html#more">
+                                                    <a class="button is-size-7 is-light" href="/post/fa571a7.html#more">
                                                         Read More
                                                     </a>
                                                 </div>
@@ -301,17 +236,17 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.559Z">2019-11-16</time>
+                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.609Z">2019-11-16</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop common</a>
+                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop_common</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    12 minutes read (About 1754 words)
+                    4 minutes read (About 551 words)
                 </span>
                                             
                                                 
@@ -320,8 +255,8 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/420bf138.html">
-                                        Hadoop 压缩
+                                    <a class="has-link-black-ter" href="/post/13550.html">
+                                        Hadoop通信机制和内部协议之协议
                                     </a>
                                     
                             </h1>
@@ -332,11 +267,11 @@
 <!-- toc -->
 
 <ul>
-<li><a href="#ya-suo">压缩</a></li>
-<li><a href="#hadoop-wen-jian-qie-pian">Hadoop文件切片</a></li>
-<li><a href="#hadoop-ya-suo">Hadoop压缩</a><ul>
-<li><a href="#ya-suo-ge-shi-xuan-ze">压缩格式选择</a></li>
-<li><a href="#hadoop-ya-suo-an-li">Hadoop 压缩案例</a></li>
+<li><a href="#gai-shu">概述</a></li>
+<li><a href="#clientprotocol-tong-xin-xie-yi">ClientProtocol通信协议</a></li>
+<li><a href="#refreshusermappingprotocol">RefreshUserMappingProtocol</a></li>
+<li><a href="#refreshauthorizationpolicyprotocol">RefreshAuthorizationPolicyProtocol</a><ul>
+<li><a href="#resourcemanageradministrationprotocol">ResourceManagerAdministrationProtocol</a></li>
 </ul>
 </li>
 </ul>
@@ -344,24 +279,220 @@
 
 <div class="tocEnd"></div>
 
-<h2 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h2><blockquote>
-<p>压缩是指将数据转换为比原来的格式占用空间更小的格式来存储，以达到减小存储空间<br>解压是压缩的反过程</p>
-</blockquote>
-<h2 id="Hadoop文件切片"><a href="#Hadoop文件切片" class="headerlink" title="Hadoop文件切片"></a>Hadoop文件切片</h2><blockquote>
-<p>Hadoop MapReduce是通过划分切片来处理得，这样就使得支持分割的压缩格式更适合Hadoop</p>
-</blockquote>
-<p>针对ss.txt文件大小为300M</p>
-<ul>
-<li><strong>计算公式</strong><br>computeSliteSize(Math.max(minSize,Math.min(maxSize,blocksize)))=blocksize=128M（Hadoop 1.x中块大小为64M）  </li>
-<li>默认情况下，切片大小=blocksize</li>
-<li>开始切，形成第1个切片：ss.txt—0:128M 第2个切片ss.txt—128:256M 第3个切片ss.txt—256M:300M（每次切片时，都要判断切完剩下的部分是否大于块的1.1倍，不大于1.1倍就划分一块切片）</li></ul>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><center>MapReduce核心协议</center>
+
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ClientProtocol</td>
+<td>继承于Version基类，查看作业情况监控当前集群等</td>
+</tr>
+<tr>
+<td>RefreshUserMappingProtocol</td>
+<td>刷新用户到用户组映射关系到超级用户代理组列表</td>
+</tr>
+<tr>
+<td>RefreshAuthorizationPolicyProtocol</td>
+<td>刷新HDFS和MapReduce服务几倍访问控制列表</td>
+</tr>
+<tr>
+<td>ResourceManagerAdministrationProtocol</td>
+<td>继承于GetUserMappingProtocol基类，刷新队列列表，节点列表</td>
+</tr>
+<tr>
+<td></td></tr></tbody></table>
                             </div>
                             
                                     
                                         <div class="level is-mobile">
                                             <div class="level-start">
                                                 <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/420bf138.html#more">
+                                                    <a class="button is-size-7 is-light" href="/post/13550.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.589Z">2019-11-16</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop_common</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    10 minutes read (About 1530 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/56192.html">
+                                        Hadoop通信机制和内部协议之RPC
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#hadoop-rpc">Hadoop RPC</a><ul>
+<li><a href="#rpc-jian-jie">RPC简介</a></li>
+<li><a href="#rpc-mo-xing">RPC模型</a></li>
+<li><a href="#rpc-te-xing">RPC特性</a></li>
+<li><a href="#rpc-li-zi">RPC例子</a></li>
+<li><a href="#qi-ta-kai-yuan-rpc-jia-gou">其他开源RPC架构</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+
+<h2 id="Hadoop-RPC"><a href="#Hadoop-RPC" class="headerlink" title="Hadoop RPC"></a>Hadoop RPC</h2><h3 id="RPC简介"><a href="#RPC简介" class="headerlink" title="RPC简介"></a>RPC简介</h3><blockquote>
+<p>简要地说，RPC就是允许程序调用位于其他机器上的过程(也可以是同一台机器的不同进程)。<br>RPC调用过程是透明的  </p>
+</blockquote>
+<blockquote>
+<p>传统过程调用：传统的过程调用中，主程序将参数压人栈内并调用过程，这时候主程序停止执行并开始执行相应的过程。被调用的过程从栈中获取参数，然后执行过程函数;执行完毕后，将返回参数入栈(或者保存在寄存器里)，并将控制权交还给调用方。调用方获取返回参数，并继续执行。  </p>
+</blockquote>
+<blockquote>
+<p>而RPC调用是进程间的过程调用  </p>
+</blockquote>
+<h3 id="RPC模型"><a href="#RPC模型" class="headerlink" title="RPC模型"></a>RPC模型</h3><p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191031181948.png" alt></p>
+<ul>
+<li><strong>通行模块：</strong> 请求-响应</li>
+<li><strong>Stub程序：</strong> 用于保证RPC的透明性。在客户端，不在本地调用，而是将请求信息通过网络模块发送给法服务器端，服务器接收后进行解码。服务器中，Stub程序依次进行 解码（请求的参数）、调用相应的服务过程、编码返回结果等处理</li>
+<li><strong>调度程序：</strong> 调度来自通行模块的请求信息，根据其中标识选一个Stub程序运行</li>
+<li><strong>客户程序：</strong> 请求发出者</li>
+<li><strong>服务过程：</strong> 请求接收者</li></ul>
+                            </div>
+                            
+                                    
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/56192.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.579Z">2019-11-16</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/Hadoop-common/">Hadoop_common</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    16 minutes read (About 2447 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/20979.html">
+                                        hadoop序列化
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#xu-lie-hua-jie-shao">序列化介绍</a></li>
+<li><a href="#java-xu-lie-hua">Java序列化</a></li>
+<li><a href="#hadoop-bu-shi-yong-java-xu-lie-hua-yuan-yin">Hadoop 不使用Java序列化原因</a></li>
+<li><a href="#hadoop-xu-lie-hua">Hadoop 序列化</a><ul>
+<li><a href="#hadoop-xu-lie-hua-ji-zhi-de-te-zheng">Hadoop序列化机制的特征</a></li>
+<li><a href="#hadoop-writable-ji-zhi">Hadoop Writable机制</a></li>
+<li><a href="#hadoop-xu-lie-hua-de-qi-ta-ji-ge-jie-kou">Hadoop序列化的其它几个接口</a></li>
+<li><a href="#hadoop-xu-lie-hua-de-lei">Hadoop 序列化的类</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+
+<h2 id="序列化介绍"><a href="#序列化介绍" class="headerlink" title="序列化介绍"></a>序列化介绍</h2><blockquote>
+<p>序列化是一种将对象的状态信息转化成可以存储或者传输的过程，与之相反的为反序列化<br>不是某一种编程语言所独有的特性<br><strong>序列化的用途</strong>  </p>
+</blockquote>
+<ul>
+<li>作为一种持久化格式。对象序列化后存盘</li>
+<li>作为一种通信的数据格式。如虚拟机之间通信</li>
+<li>作为一种拷贝、克隆机制。放缓存</li>
+</ul>
+<h2 id="Java序列化"><a href="#Java序列化" class="headerlink" title="Java序列化"></a>Java序列化</h2><blockquote>
+<p>Java通过实现Serializable接口<br>Java序列化后放入对象，通过对象流进行IO操作，ObjectInputStream/ObjectOutputStream</p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">import</span> java. io.Serializable ;</span><br><span class="line"></span><br><span class="line">／＊＊定义一个可以序列化的 App 信息类. */</span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Appinfo</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span></span>&#123;</span><br><span class="line">	／／序列化标识</span><br><span class="line">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">11</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                            </div>
+                            
+                                    
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/20979.html#more">
                                                         Read More
                                                     </a>
                                                 </div>
@@ -424,7 +555,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        40
+                        43
                     </p>
                 </div>
             </div>
@@ -434,7 +565,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        16
+                        17
                     </p>
                 </div>
             </div>
@@ -444,7 +575,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        51
+                        52
                     </p>
                 </div>
             </div>
@@ -594,6 +725,14 @@
                 <span class="level-item tag">2</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Leetcode/">
+            <span class="level-start">
+                <span class="level-item">Leetcode</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Python/">
             <span class="level-start">
                 <span class="level-item">Python</span>
@@ -623,7 +762,7 @@
                 <span class="level-item">Spring</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/others/">
@@ -644,7 +783,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">AJAX 和JSON的使用</a> <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" style="font-size: 10px;">Java Web过滤器和监听器</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 10px;">Linux 工具包</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" style="font-size: 10px;">Shell 之Bash数学运算</a> <a href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">Shell 的函数的定义和使用</a> <a href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" style="font-size: 10px;">Shell 的字符串处理</a> <a href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell全局变量和局部变量</a> <a href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Shell变量的替换和测试</a> <a href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/" style="font-size: 10px;">Shell命令的替换</a> <a href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Shell文件查找find命令</a> <a href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell有类型变量</a> <a href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/" style="font-size: 10px;">Shell编程 awk</a> <a href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">Spring IOC实验</a> <a href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/" style="font-size: 10px;">Spring初始之HelloWorld</a> <a href="/tags/Spring%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Spring初识</a> <a href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Tomcat 的安装与配置</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/find%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" style="font-size: 10px;">find、which、locate、whereis命令总结</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/kafka%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">kafka通信</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a> <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/" style="font-size: 10px;">文本处理三剑客(grep/sed/awk)</a>
+        <a href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">AJAX 和JSON的使用</a> <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" style="font-size: 10px;">Java Web过滤器和监听器</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 10px;">Linux 工具包</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" style="font-size: 10px;">Shell 之Bash数学运算</a> <a href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">Shell 的函数的定义和使用</a> <a href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" style="font-size: 10px;">Shell 的字符串处理</a> <a href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell全局变量和局部变量</a> <a href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Shell变量的替换和测试</a> <a href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/" style="font-size: 10px;">Shell命令的替换</a> <a href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Shell文件查找find命令</a> <a href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell有类型变量</a> <a href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/" style="font-size: 10px;">Shell编程 awk</a> <a href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">Spring IOC实验</a> <a href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/" style="font-size: 10px;">Spring初始之HelloWorld</a> <a href="/tags/Spring%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Spring初识</a> <a href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Spring的单元测试</a> <a href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Tomcat 的安装与配置</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/find%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" style="font-size: 10px;">find、which、locate、whereis命令总结</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/kafka%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">kafka通信</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a> <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/" style="font-size: 10px;">文本处理三剑客(grep/sed/awk)</a>
     </div>
 </div>
     
@@ -659,16 +798,73 @@
         
         <article class="media">
             
+            <a href="/post/c62ee385.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring/Spring的单元测试">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T06:46:55.012Z">2020-01-04</time></div>
+                    <a href="/post/c62ee385.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring/Spring的单元测试</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/c29c61c7.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="41. First Missing Positive">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T11:09:22.136Z">2020-01-03</time></div>
+                    <a href="/post/c29c61c7.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">41. First Missing Positive</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/b59b5151.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="40. Combination Sum II">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T09:59:21.750Z">2020-01-03</time></div>
+                    <a href="/post/b59b5151.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">40. Combination Sum II</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/40588fed.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring IOC## 实验">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring IOC实验">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-31T09:24:31.153Z">2019-12-31</time></div>
-                    <a href="/post/40588fed.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring IOC## 实验</a>
+                    <a href="/post/40588fed.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring IOC实验</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
                     </p>
@@ -695,63 +891,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/e866659f.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring 初识">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T12:05:28.178Z">2019-12-26</time></div>
-                    <a href="/post/e866659f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring 初识</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/3450b53b.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="AJAX和JSON使用">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-24T11:16:15.432Z">2019-12-24</time></div>
-                    <a href="/post/3450b53b.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">AJAX和JSON使用</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/9f166c45.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Tomcat 的安装配置">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-24T10:34:01.363Z">2019-12-24</time></div>
-                    <a href="/post/9f166c45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Tomcat 的安装配置</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -762,6 +901,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/12/">
@@ -1081,6 +1231,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Spring%E5%88%9D%E8%AF%86/">
                         <span class="tag">Spring初识</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
+                        <span class="tag">Spring的单元测试</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1179,16 +1336,73 @@
         
         <article class="media">
             
+            <a href="/post/c62ee385.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring/Spring的单元测试">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T06:46:55.012Z">2020-01-04</time></div>
+                    <a href="/post/c62ee385.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring/Spring的单元测试</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/c29c61c7.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="41. First Missing Positive">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T11:09:22.136Z">2020-01-03</time></div>
+                    <a href="/post/c29c61c7.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">41. First Missing Positive</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/b59b5151.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="40. Combination Sum II">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T09:59:21.750Z">2020-01-03</time></div>
+                    <a href="/post/b59b5151.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">40. Combination Sum II</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/post/40588fed.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring IOC## 实验">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring IOC实验">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-31T09:24:31.153Z">2019-12-31</time></div>
-                    <a href="/post/40588fed.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring IOC## 实验</a>
+                    <a href="/post/40588fed.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring IOC实验</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
                     </p>
@@ -1215,63 +1429,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/e866659f.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring 初识">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-26T12:05:28.178Z">2019-12-26</time></div>
-                    <a href="/post/e866659f.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring 初识</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/3450b53b.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="AJAX和JSON使用">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-24T11:16:15.432Z">2019-12-24</time></div>
-                    <a href="/post/3450b53b.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">AJAX和JSON使用</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/9f166c45.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Tomcat 的安装配置">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-24T10:34:01.363Z">2019-12-24</time></div>
-                    <a href="/post/9f166c45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Tomcat 的安装配置</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1282,6 +1439,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2019/12/">
@@ -1601,6 +1769,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Spring%E5%88%9D%E8%AF%86/">
                         <span class="tag">Spring初识</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
+                        <span class="tag">Spring的单元测试</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
