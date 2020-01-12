@@ -11,16 +11,16 @@
 <title>Shell文本三剑客之awk - lyhcc博客</title>
 
 
-    <meta name="description" content="简介 工作模式 语法格式 awk的内置变量 printf输出 模式匹配 动作表达式 awk条件语句 awk循环语句 awk字符函数 awk常用选项 awk数组与Shell数组        简介 awk是一个文本处理工具,通常用于处理数据并生成结果报告awk的命名是它的创始人Alfred Aho、Peter Weinberger和Brian Kernighan姓氏的首个字母组成的  工作">
+    <meta name="description" content="简介 工作模式 语法格式 awk的内置变量 printf输出 模式匹配 动作表达式 awk条件语句 awk循环语句 awk字符函数 awk常用选项 awk数组与Shell数组   awk小案例 利用awk处理日志，并生成结果报告 Shell进行数据库操作        简介 awk是一个文本处理工具,通常用于处理数据并生成结果报告awk的命名是它的创始人Alfred Aho、Peter">
 <meta name="keywords" content="Shell编程 awk">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Shell文本三剑客之awk">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;209b93b1.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="简介 工作模式 语法格式 awk的内置变量 printf输出 模式匹配 动作表达式 awk条件语句 awk循环语句 awk字符函数 awk常用选项 awk数组与Shell数组        简介 awk是一个文本处理工具,通常用于处理数据并生成结果报告awk的命名是它的创始人Alfred Aho、Peter Weinberger和Brian Kernighan姓氏的首个字母组成的  工作">
+<meta property="og:description" content="简介 工作模式 语法格式 awk的内置变量 printf输出 模式匹配 动作表达式 awk条件语句 awk循环语句 awk字符函数 awk常用选项 awk数组与Shell数组   awk小案例 利用awk处理日志，并生成结果报告 Shell进行数据库操作        简介 awk是一个文本处理工具,通常用于处理数据并生成结果报告awk的命名是它的创始人Alfred Aho、Peter">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-12-31T03:34:59.180Z">
+<meta property="og:updated_time" content="2020-01-05T05:38:52.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -148,7 +148,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    16 minutes read (About 2419 words)
+                    24 minutes read (About 3660 words)
                 </span>
                                             
                                                 
@@ -179,6 +179,11 @@
 <li><a href="#awk-zi-fu-han-shu">awk字符函数</a></li>
 <li><a href="#awk-chang-yong-xuan-xiang">awk常用选项</a></li>
 <li><a href="#awk-shu-zu-yu-shell-shu-zu">awk数组与Shell数组</a></li>
+</ul>
+</li>
+<li><a href="#awk-xiao-an-li">awk小案例</a><ul>
+<li><a href="#li-yong-awk-chu-li-ri-zhi-bing-sheng-cheng-jie-guo-bao-gao">利用awk处理日志，并生成结果报告</a></li>
+<li><a href="#shell-jin-xing-shu-ju-ku-cao-zuo">Shell进行数据库操作</a></li>
 </ul>
 </li>
 </ul>
@@ -454,10 +459,34 @@
 </tbody></table>
 <figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># -v</span></span><br><span class="line">[root@master ~]<span class="hljs-comment"># num1=100</span></span><br><span class="line">[root@master ~]<span class="hljs-comment"># var="You"</span></span><br><span class="line">[root@master ~]<span class="hljs-comment"># awk -v num2=$num1 -v var1=$var 'BEGIN&#123;print num2, var1&#125;'</span></span><br><span class="line">100 You</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># 字符串有空格需要引号</span></span><br><span class="line">[root@master ~]<span class="hljs-comment"># var="Hello Shell"</span></span><br><span class="line">[root@master ~]<span class="hljs-comment"># awk -v num2=$num1 -v var1=$var 'BEGIN&#123;print num2, var1&#125;'</span></span><br><span class="line">awk: fatal: cannot open file `BEGIN&#123;<span class="hljs-built_in">print</span> num2, var1&#125;<span class="hljs-string">' for reading (No such file or directory)</span></span><br><span class="line"><span class="hljs-string">[root@master ~]# awk -v num2=$num1 -v var1="$var" '</span>BEGIN&#123;<span class="hljs-built_in">print</span> num2, var1&#125;<span class="hljs-string">'</span></span><br><span class="line"><span class="hljs-string">100 Hello Shell</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string"># -f awk后面的BEGIN放入test.awk后执行</span></span><br><span class="line"><span class="hljs-string">[root@master datas]# awk -v num2=$num1 -v var1="$var" -f test.awk </span></span><br><span class="line"><span class="hljs-string">100 Hello Shell</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string"># -F</span></span><br><span class="line"><span class="hljs-string">awk -F : '</span>BEGIN&#123;&#125;&#123;<span class="hljs-built_in">print</span> <span class="hljs-variable">$1</span>&#125;<span class="hljs-string">' /etc/passwd</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string"># -V</span></span><br><span class="line"><span class="hljs-string">[root@master ~]# awk -V</span></span><br><span class="line"><span class="hljs-string">GNU Awk 4.0.2</span></span><br></pre></td></tr></table></figure>
 
-<h3><span id="awk-shu-zu-yu-shell-shu-zu">awk数组与Shell数组</span><a href="#awk-shu-zu-yu-shell-shu-zu" class="header-anchor">$</a></h3><h4><span id="awk-shu-zu">awk数组</span><a href="#awk-shu-zu" class="header-anchor">$</a></h4><h4><span id="shell-shu-zu">Shell数组</span><a href="#shell-shu-zu" class="header-anchor">$</a></h4><figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">array=(<span class="hljs-string">"If"</span> <span class="hljs-string">"we"</span> <span class="hljs-string">"can"</span> <span class="hljs-string">"only"</span> <span class="hljs-string">"encounter"</span> <span class="hljs-string">"each"</span> <span class="hljs-string">"other"</span> <span class="hljs-string">"rather"</span> <span class="hljs-string">"than"</span> <span class="hljs-string">"stay"</span> <span class="hljs-string">"with"</span> <span class="hljs-string">"each"</span> <span class="hljs-string">"other,then"</span> <span class="hljs-string">"I"</span> <span class="hljs-string">"wish"</span> <span class="hljs-string">"we"</span> <span class="hljs-string">"had never encountered"</span>)</span><br><span class="line"></span><br><span class="line">打印元素:         <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;array[2] &#125;</span>       </span><br><span class="line">打印元素个数:     <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;#array[@] &#125;</span>           </span><br><span class="line">打印元素长度:     <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;#array[3] &#125;</span>           </span><br><span class="line">给元素赋值:       array[3]=<span class="hljs-string">"Li"</span>       </span><br><span class="line">删除元素:         <span class="hljs-built_in">unset</span> array[2] ;<span class="hljs-built_in">unset</span> array       </span><br><span class="line">分片访问:         <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;array[@] :1:3&#125;</span>       </span><br><span class="line">元素内容替换:     <span class="hljs-variable">$&#123;array[@]/e/E&#125;</span>只替换第-一个e;<span class="hljs-variable">$&#123;array[@]//e/E&#125;</span>替换所有的e      </span><br><span class="line"></span><br><span class="line">数组的遍历：</span><br><span class="line"><span class="hljs-keyword">for</span> a <span class="hljs-keyword">in</span> array</span><br><span class="line"><span class="hljs-keyword">do</span> </span><br><span class="line">    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$a</span></span><br><span class="line"><span class="hljs-keyword">done</span></span><br></pre></td></tr></table></figure>
+<h3><span id="awk-shu-zu-yu-shell-shu-zu">awk数组与Shell数组</span><a href="#awk-shu-zu-yu-shell-shu-zu" class="header-anchor">$</a></h3><blockquote>
+<p>awk数组与Shell数组的区别<br>前者从0开始，后者从1开始索引</p>
+</blockquote>
+<h4><span id="awk-shu-zu">awk数组</span><a href="#awk-shu-zu" class="header-anchor">$</a></h4><p><strong>格式</strong>  </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">array_name[index]=value</span><br><span class="line">array_name：数组的名称</span><br><span class="line">index：数组索引</span><br><span class="line">value：数组中元素所赋予的值</span><br></pre></td></tr></table></figure>
+<p><strong>操作</strong>    </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">创建数组            array_name[index]=value</span><br><span class="line">删除数组中的元素    delete array_name[index]</span><br><span class="line">多维数组           array_name[rowIndex, colIndex]=value</span><br></pre></td></tr></table></figure>
+<p><strong>应用</strong>  </p>
+<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1. 统计主机上所有的TCP连接状态数，按照每个TCP状态分类</span><br><span class="line">    netstat -an | grep tcp | awk <span class="hljs-string">'&#123;array[$6]++&#125;END&#123;for(a in array) print a, array[a]&#125;'</span></span><br><span class="line">2. 计算横向数据总和，计算纵向数据总和</span><br><span class="line">Allen   80  90  96  98</span><br><span class="line">Mike    93  98  92  91</span><br><span class="line">Zhang   78  76  87  92</span><br><span class="line">Jerry   86  89  68  92</span><br><span class="line">Han     85  95  75  90</span><br><span class="line">Li  78  88  98  100 </span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;printf "%-10s%-10s%-10s%-10s%-10s%-10s\n", "Name","Chinese","English","Math","Physical","Total" &#125;&#123;</span></span><br><span class="line"><span class="hljs-string">        array["Chinese"]+=$2</span></span><br><span class="line"><span class="hljs-string">        array["English"]+=$3</span></span><br><span class="line"><span class="hljs-string">        array["Math"]+=$4</span></span><br><span class="line"><span class="hljs-string">        array["Physical"]+=$5</span></span><br><span class="line"><span class="hljs-string">        total = $2+$3+$4+$5</span></span><br><span class="line"><span class="hljs-string">        printf "%-10s%-10d%-10d%-10d%-10d%-10d\n", $1,$2,$3,$4,$5,total</span></span><br><span class="line"><span class="hljs-string">    &#125;END&#123;</span></span><br><span class="line"><span class="hljs-string">        printf "%-10s", ""</span></span><br><span class="line"><span class="hljs-string">        for(a in array) printf "%-10d",array[a]</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">        printf "\n"</span></span><br><span class="line"><span class="hljs-string">    &#125;'</span> student.txt</span><br></pre></td></tr></table></figure>
+
+<h4><span id="shell-shu-zu">Shell数组</span><a href="#shell-shu-zu" class="header-anchor">$</a></h4><figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">array=(<span class="hljs-string">"If"</span> <span class="hljs-string">"we"</span> <span class="hljs-string">"can"</span> <span class="hljs-string">"only"</span> <span class="hljs-string">"encounter"</span> <span class="hljs-string">"each"</span> <span class="hljs-string">"other"</span> <span class="hljs-string">"rather"</span> <span class="hljs-string">"than"</span> <span class="hljs-string">"stay"</span> <span class="hljs-string">"with"</span> <span class="hljs-string">"each"</span> <span class="hljs-string">"other,then"</span> <span class="hljs-string">"I"</span> <span class="hljs-string">"wish"</span> <span class="hljs-string">"we"</span> <span class="hljs-string">"had never encountered"</span>)</span><br><span class="line"></span><br><span class="line">打印元素:         <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;array[2] &#125;</span>       </span><br><span class="line">打印元素个数:     <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;#array[@] &#125;</span>           </span><br><span class="line">打印元素长度:     <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;#array[3] &#125;</span>           </span><br><span class="line">给元素赋值:       array[3]=<span class="hljs-string">"Li"</span>       </span><br><span class="line">删除元素:         <span class="hljs-built_in">unset</span> array[2] ;<span class="hljs-built_in">unset</span> array       </span><br><span class="line">分片访问:         <span class="hljs-built_in">echo</span> <span class="hljs-variable">$&#123;array[@] :1:3&#125;</span>       </span><br><span class="line">元素内容替换:     <span class="hljs-variable">$&#123;array[@]/e/E&#125;</span>只替换第-一个e;<span class="hljs-variable">$&#123;array[@]//e/E&#125;</span>替换所有的e      </span><br><span class="line"></span><br><span class="line">数组的遍历：</span><br><span class="line"><span class="hljs-keyword">for</span> a <span class="hljs-keyword">in</span> array</span><br><span class="line"><span class="hljs-keyword">do</span> </span><br><span class="line">    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$a</span></span><br><span class="line"><span class="hljs-keyword">done</span></span><br></pre></td></tr></table></figure>
+<p><strong>操作</strong>  </p>
+<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu:~<span class="hljs-comment"># array=("If" "we" "can" "only" "encounter" "each" "other" "rather" "than" "stay" "with" "each" "other,then" "I" "wish" "we" "had never encountered")</span></span><br><span class="line">root@ubuntu:~<span class="hljs-comment"># echo $&#123;array[2]&#125;</span></span><br><span class="line">can</span><br><span class="line">root@ubuntu:~<span class="hljs-comment"># echo $&#123;array[*]&#125;</span></span><br><span class="line">If we can only encounter each other rather than stay with each other,<span class="hljs-keyword">then</span> I wish we had never encountered</span><br><span class="line">root@ubuntu:~<span class="hljs-comment"># echo $&#123;#array[*]&#125;</span></span><br><span class="line">17</span><br><span class="line">root@ubuntu:~<span class="hljs-comment"># echo $&#123;#array[@]&#125;</span></span><br><span class="line">17</span><br><span class="line">root@ubuntu:~<span class="hljs-comment"># echo $&#123;array[@]&#125;</span></span><br><span class="line">If we can only encounter each other rather than stay with each other,<span class="hljs-keyword">then</span> I wish we had never encountered</span><br><span class="line">root@ubuntu:~<span class="hljs-comment"># unset array[2]</span></span><br><span class="line">root@ubuntu:~<span class="hljs-comment"># echo $&#123;array[@]&#125;</span></span><br><span class="line">If we only encounter each other rather than stay with each other,<span class="hljs-keyword">then</span> I wish we had never encountered</span><br><span class="line">root@ubuntu:~<span class="hljs-comment"># echo $&#123;array[@]:1:3&#125;</span></span><br><span class="line">we only encounter</span><br><span class="line">root@ubuntu:~<span class="hljs-comment"># echo $&#123;array[@]/we/we and you&#125;</span></span><br><span class="line">If we and you only encounter each other rather than stay with each other,<span class="hljs-keyword">then</span> I wish we and you had never encountered</span><br></pre></td></tr></table></figure>
+
+<h2><span id="awk-xiao-an-li">awk小案例</span><a href="#awk-xiao-an-li" class="header-anchor">$</a></h2><h3><span id="li-yong-awk-chu-li-ri-zhi-bing-sheng-cheng-jie-guo-bao-gao">利用awk处理日志，并生成结果报告</span><a href="#li-yong-awk-chu-li-ri-zhi-bing-sheng-cheng-jie-guo-bao-gao" class="header-anchor">$</a></h3><p><strong>insert.sh生成数据</strong></p>
+<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">#!/bin/absh</span></span><br><span class="line"><span class="hljs-comment"># </span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">create_random</span></span>()&#123;</span><br><span class="line">    min=<span class="hljs-variable">$1</span></span><br><span class="line">    max=$((<span class="hljs-variable">$2</span>-<span class="hljs-variable">$min</span>+1))</span><br><span class="line">    num=$(date+%s%N)</span><br><span class="line">    <span class="hljs-built_in">echo</span> $((<span class="hljs-variable">$num</span>%<span class="hljs-variable">$max</span>+<span class="hljs-variable">$min</span>))</span><br><span class="line">&#125;</span><br><span class="line">INDEX=1</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">while</span> <span class="hljs-literal">true</span></span><br><span class="line"><span class="hljs-keyword">do</span></span><br><span class="line">    <span class="hljs-keyword">for</span> user <span class="hljs-keyword">in</span> A B C D E F G H I J K L</span><br><span class="line">    <span class="hljs-keyword">do</span></span><br><span class="line">        COUNT=<span class="hljs-variable">$RANDOM</span></span><br><span class="line">        NUM1=`create_random 1 <span class="hljs-variable">$COUNT</span>`</span><br><span class="line">        NUM2=`expr <span class="hljs-variable">$COUNT</span> - <span class="hljs-variable">$NUM1</span>`</span><br><span class="line">        <span class="hljs-built_in">echo</span> <span class="hljs-string">"`date '+%Y-%m-%d %H:%M:%S'` <span class="hljs-variable">$INDEX</span> Batches:<span class="hljs-variable">$user</span> INSERT <span class="hljs-variable">$COUNT</span> DATA INTO DATABASE:mydb table log, INSERT <span class="hljs-variable">$NUM1</span> records successfully, failed <span class="hljs-variable">$NUM2</span> records"</span> &gt;&gt; 123.txt </span><br><span class="line">        INDEX=`expr <span class="hljs-variable">$INDEX</span> + 1`</span><br><span class="line">    <span class="hljs-keyword">done</span></span><br><span class="line"><span class="hljs-keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>需求</strong>  </p>
+<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">(1)、统计每个人员分别插入了多少条record进数据库</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;</span></span><br><span class="line"><span class="hljs-string">        FS=" "</span></span><br><span class="line"><span class="hljs-string">    &#125;&#123;</span></span><br><span class="line"><span class="hljs-string">        array[substr($4, 9, 1)]++</span></span><br><span class="line"><span class="hljs-string">    &#125;END&#123;</span></span><br><span class="line"><span class="hljs-string">        for(a in array) print a, array[a]</span></span><br><span class="line"><span class="hljs-string">    &#125;'</span> 123.txt</span><br><span class="line">(2)、统计每个人分别插入成功了多少record,失败了多少record</span><br><span class="line">13 17</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;</span></span><br><span class="line"><span class="hljs-string">        FS=" "</span></span><br><span class="line"><span class="hljs-string">    &#125;&#123;</span></span><br><span class="line"><span class="hljs-string">        str=substr($4, 9, 1)</span></span><br><span class="line"><span class="hljs-string">        success[str]+=$13</span></span><br><span class="line"><span class="hljs-string">        fail[str]+=$17</span></span><br><span class="line"><span class="hljs-string">    &#125;END&#123;</span></span><br><span class="line"><span class="hljs-string">        for(a in success) print a, success[a],fail[a]</span></span><br><span class="line"><span class="hljs-string">    &#125;'</span> 123.txt</span><br><span class="line">(3)、 将例子1和例子2结合起来，一起输出，输出每个人分别插入多少数据，多少成功,多少条失败</span><br><span class="line">    awk <span class="hljs-string">'BEGIN&#123;</span></span><br><span class="line"><span class="hljs-string">        FS=" "</span></span><br><span class="line"><span class="hljs-string">        printf "%-10s%-10s%-10s%-10s\n","Name","Number","Success","Failure"</span></span><br><span class="line"><span class="hljs-string">    &#125;&#123;</span></span><br><span class="line"><span class="hljs-string">        str=substr($4, 9, 1)</span></span><br><span class="line"><span class="hljs-string">        array[str]++</span></span><br><span class="line"><span class="hljs-string">        success[str]+=$13</span></span><br><span class="line"><span class="hljs-string">        fail[str]+=$17</span></span><br><span class="line"><span class="hljs-string">    &#125;END&#123;</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">        for(a in success)&#123;</span></span><br><span class="line"><span class="hljs-string">            printf "%-10s%-10d%-10d%-10d\n",a, array[a],success[a],fail[a]</span></span><br><span class="line"><span class="hljs-string">        &#125; </span></span><br><span class="line"><span class="hljs-string">    &#125;'</span> 123.txt</span><br><span class="line">(4)、在例子3的基础上，加上结尾，统计全部插入记录数，成功记录数，失败记录数</span><br><span class="line">awk <span class="hljs-string">'BEGIN&#123;</span></span><br><span class="line"><span class="hljs-string">        FS=" "</span></span><br><span class="line"><span class="hljs-string">        printf "%-10s%-10s%-10s%-10s\n","Name","Number","Success","Failure"</span></span><br><span class="line"><span class="hljs-string">    &#125;&#123;</span></span><br><span class="line"><span class="hljs-string">        str=substr($4, 9, 1)</span></span><br><span class="line"><span class="hljs-string">        array[str]++</span></span><br><span class="line"><span class="hljs-string">        success[str]+=$13</span></span><br><span class="line"><span class="hljs-string">        fail[str]+=$17</span></span><br><span class="line"><span class="hljs-string">    &#125;END&#123;</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">        for(a in success)&#123;</span></span><br><span class="line"><span class="hljs-string">            Total+=array[a]</span></span><br><span class="line"><span class="hljs-string">            sTotal+=success[a]</span></span><br><span class="line"><span class="hljs-string">            fTotal+=fail[a]</span></span><br><span class="line"><span class="hljs-string">            printf "%-10s%-10d%-10d%-10d\n",a, array[a],success[a],fail[a]</span></span><br><span class="line"><span class="hljs-string">        &#125; </span></span><br><span class="line"><span class="hljs-string">        printf "%-10s%-10d%-10d%-10d\n","TOTAL", Total,sTotal,fTotal</span></span><br><span class="line"><span class="hljs-string">    &#125;'</span> 123.txt</span><br><span class="line">(5)、查找丢失数据的现象，也就是成功+失败的记录数，不等于一共插入的记录数。找出这些数据并显示行号和对应日志信息</span><br><span class="line">    修改123.txt文件的数据进行测试</span><br><span class="line">    awk <span class="hljs-string">'&#123;if($6!=$13+$17) printf "%d:%s\n", NR,$0 &#125;'</span> 123.txt</span><br></pre></td></tr></table></figure>
+
+<h3><span id="shell-jin-xing-shu-ju-ku-cao-zuo">Shell进行数据库操作</span><a href="#shell-jin-xing-shu-ju-ku-cao-zuo" class="header-anchor">$</a></h3><ul>
+<li>学生数据库创建，定义在school.sql<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DROP TABLE IF EXISTS `db_school`.`Student`;</span><br><span class="line">create table Student</span><br><span class="line">(</span><br><span class="line">	Sno varchar(20),</span><br><span class="line">	Sname varchar(50),	</span><br><span class="line">	primary key (Sno)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br><span class="line"> </span><br><span class="line">DROP TABLE IF EXISTS `db_school`.`Course`;</span><br><span class="line">create table Course</span><br><span class="line">(</span><br><span class="line">	Cno varchar(20),</span><br><span class="line">	Cname varchar(50),	</span><br><span class="line">	Tno varchar(20),</span><br><span class="line">	primary key (Cno)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br><span class="line"> </span><br><span class="line">DROP TABLE IF EXISTS `db_school`.`SC`;</span><br><span class="line">create table SC</span><br><span class="line">(</span><br><span class="line">	Sno varchar(20),</span><br><span class="line">	Cno varchar(20),	</span><br><span class="line">	score int,</span><br><span class="line">	primary key (Sno,Cno)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br><span class="line"> </span><br><span class="line">DROP TABLE IF EXISTS `db_school`.`Teacher`;</span><br><span class="line">create table Teacher</span><br><span class="line">(</span><br><span class="line">	Tno varchar(20),</span><br><span class="line">	Tname varchar(50),	</span><br><span class="line">	primary key (Tno)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8;</span><br><span class="line"> </span><br><span class="line">INSERT INTO `Student`(Sno,Sname) VALUES (<span class="hljs-string">'001'</span>,<span class="hljs-string">'陈一'</span>);</span><br><span class="line">INSERT INTO `Student`(Sno,Sname) VALUES (<span class="hljs-string">'002'</span>,<span class="hljs-string">'郭二'</span>);</span><br><span class="line">INSERT INTO `Student`(Sno,Sname) VALUES (<span class="hljs-string">'003'</span>,<span class="hljs-string">'张三'</span>);</span><br><span class="line">INSERT INTO `Student`(Sno,Sname) VALUES (<span class="hljs-string">'004'</span>,<span class="hljs-string">'李四'</span>);</span><br><span class="line">INSERT INTO `Student`(Sno,Sname) VALUES (<span class="hljs-string">'005'</span>,<span class="hljs-string">'王五'</span>);</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">INSERT INTO `Teacher`(Tno,Tname) VALUES (<span class="hljs-string">'001'</span>,<span class="hljs-string">'张老师'</span>);</span><br><span class="line">INSERT INTO `Teacher`(Tno,Tname) VALUES (<span class="hljs-string">'002'</span>,<span class="hljs-string">'王老师'</span>);</span><br><span class="line">INSERT INTO `Teacher`(Tno,Tname) VALUES (<span class="hljs-string">'003'</span>,<span class="hljs-string">'钱老师'</span>);</span><br><span class="line">INSERT INTO `Teacher`(Tno,Tname) VALUES (<span class="hljs-string">'004'</span>,<span class="hljs-string">'刘老师'</span>);</span><br><span class="line">INSERT INTO `Teacher`(Tno,Tname) VALUES (<span class="hljs-string">'005'</span>,<span class="hljs-string">'胡老师'</span>);</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">INSERT INTO `Course`(Cno,Cname,Tno) VALUES (<span class="hljs-string">'001'</span>,<span class="hljs-string">'语文'</span>,<span class="hljs-string">'张老师'</span>);</span><br><span class="line">INSERT INTO `Course`(Cno,Cname,Tno) VALUES (<span class="hljs-string">'002'</span>,<span class="hljs-string">'数学'</span>,<span class="hljs-string">'王老师'</span>);</span><br><span class="line">INSERT INTO `Course`(Cno,Cname,Tno) VALUES (<span class="hljs-string">'003'</span>,<span class="hljs-string">'英语'</span>,<span class="hljs-string">'钱老师'</span>);</span><br><span class="line">INSERT INTO `Course`(Cno,Cname,Tno) VALUES (<span class="hljs-string">'004'</span>,<span class="hljs-string">'物理'</span>,<span class="hljs-string">'刘老师'</span>);</span><br><span class="line">INSERT INTO `Course`(Cno,Cname,Tno) VALUES (<span class="hljs-string">'005'</span>,<span class="hljs-string">'政治'</span>,<span class="hljs-string">'胡老师'</span>);</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'001'</span>,<span class="hljs-string">'001'</span>,50);</span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'001'</span>,<span class="hljs-string">'002'</span>,60);</span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'001'</span>,<span class="hljs-string">'003'</span>,70);</span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'001'</span>,<span class="hljs-string">'004'</span>,80);</span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'001'</span>,<span class="hljs-string">'005'</span>,90);</span><br><span class="line"> </span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'002'</span>,<span class="hljs-string">'001'</span>,90);</span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'002'</span>,<span class="hljs-string">'002'</span>,80);</span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'002'</span>,<span class="hljs-string">'003'</span>,70);</span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'002'</span>,<span class="hljs-string">'004'</span>,60);</span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'002'</span>,<span class="hljs-string">'005'</span>,50);</span><br><span class="line"> </span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'003'</span>,<span class="hljs-string">'001'</span>,81);</span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'003'</span>,<span class="hljs-string">'002'</span>,82);</span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'003'</span>,<span class="hljs-string">'003'</span>,83);</span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'003'</span>,<span class="hljs-string">'004'</span>,84);</span><br><span class="line">INSERT INTO `SC`(Sno,Cno,score) VALUES (<span class="hljs-string">'003'</span>,<span class="hljs-string">'005'</span>,85);</span><br></pre></td></tr></table></figure></li>
+<li>引入数据库的命令<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@node1 datasets]# mysql -uroot -proot school &lt; school.sql</span><br></pre></td></tr></table></figure></li>
+<li>在建立数据库之后可以先进行用户授权<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">grant all on school.* to dbuser@&apos;%&apos; identified by &apos;123456&apos;</span><br><span class="line">all 表示授权所有操作，增删改查</span><br><span class="line">on 后面的school.* 表示school数据库的所有表</span><br><span class="line">dbuser 表示授权用户名</span><br><span class="line">后面的@&apos;%&apos;表示授权所有网段， 如&apos;192.168.37.%&apos;</span><br></pre></td></tr></table></figure>
 
 
-
+</li>
+</ul>
 
                             </div>
                             
@@ -582,7 +611,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        43
+                        48
                     </p>
                 </div>
             </div>
@@ -602,7 +631,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        52
+                        56
                     </p>
                 </div>
             </div>
@@ -781,7 +810,7 @@
                 <span class="level-item">Shell</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">11</span>
+                <span class="level-item tag">14</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Spring/">
@@ -797,7 +826,7 @@
                 <span class="level-item">others</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">5</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li>
             </ul>
@@ -810,7 +839,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">AJAX 和JSON的使用</a> <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" style="font-size: 10px;">Java Web过滤器和监听器</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 10px;">Linux 工具包</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" style="font-size: 10px;">Shell 之Bash数学运算</a> <a href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">Shell 的函数的定义和使用</a> <a href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" style="font-size: 10px;">Shell 的字符串处理</a> <a href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell全局变量和局部变量</a> <a href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Shell变量的替换和测试</a> <a href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/" style="font-size: 10px;">Shell命令的替换</a> <a href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Shell文件查找find命令</a> <a href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell有类型变量</a> <a href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/" style="font-size: 10px;">Shell编程 awk</a> <a href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">Spring IOC实验</a> <a href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/" style="font-size: 10px;">Spring初始之HelloWorld</a> <a href="/tags/Spring%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Spring初识</a> <a href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Spring的单元测试</a> <a href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Tomcat 的安装与配置</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/find%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" style="font-size: 10px;">find、which、locate、whereis命令总结</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/kafka%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">kafka通信</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a> <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/" style="font-size: 10px;">文本处理三剑客(grep/sed/awk)</a>
+        <a href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">AJAX 和JSON的使用</a> <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" style="font-size: 10px;">Java Web过滤器和监听器</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 10px;">Linux 工具包</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/MySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/" style="font-size: 10px;">MySQL数据备份</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" style="font-size: 10px;">Shell 之Bash数学运算</a> <a href="/tags/Shell-%E4%B9%8Bfind%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" style="font-size: 10px;">Shell 之find、which、locate、whereis命令总结</a> <a href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">Shell 的函数的定义和使用</a> <a href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" style="font-size: 10px;">Shell 的字符串处理</a> <a href="/tags/Shell%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">Shell之脚本功能概述</a> <a href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell全局变量和局部变量</a> <a href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Shell变量的替换和测试</a> <a href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/" style="font-size: 10px;">Shell命令的替换</a> <a href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Shell文件查找find命令</a> <a href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell有类型变量</a> <a href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/" style="font-size: 10px;">Shell编程 awk</a> <a href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">Spring IOC实验</a> <a href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/" style="font-size: 10px;">Spring初始之HelloWorld</a> <a href="/tags/Spring%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Spring初识</a> <a href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Spring的单元测试</a> <a href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Tomcat 的安装与配置</a> <a href="/tags/Vim%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/" style="font-size: 10px;">Vim多行注释</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/kafka%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">kafka通信</a> <a href="/tags/mysql%E5%91%BD%E4%BB%A4%E8%AF%A6%E6%83%85/" style="font-size: 10px;">mysql命令详情</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a> <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/" style="font-size: 10px;">文本处理三剑客(grep/sed/awk)</a>
     </div>
 </div>
     
@@ -825,18 +854,18 @@
         
         <article class="media">
             
-            <a href="/post/c62ee385.html" class="media-left">
+            <a href="/post/e9a730c6.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring/Spring的单元测试">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Vim多行注释">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T06:46:55.012Z">2020-01-04</time></div>
-                    <a href="/post/c62ee385.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring/Spring的单元测试</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T10:05:25.951Z">2020-01-11</time></div>
+                    <a href="/post/e9a730c6.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Vim多行注释</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                        <a class="has-link-grey -link" href="/categories/others/">others</a>
                     </p>
                 </div>
             </div>
@@ -844,18 +873,18 @@
         
         <article class="media">
             
-            <a href="/post/c29c61c7.html" class="media-left">
+            <a href="/post/cfaf6679.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="41. First Missing Positive">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Shell之脚本功能概述">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T11:09:22.136Z">2020-01-03</time></div>
-                    <a href="/post/c29c61c7.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">41. First Missing Positive</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T01:00:34.390Z">2020-01-11</time></div>
+                    <a href="/post/cfaf6679.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Shell之脚本功能概述</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
+                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                     </p>
                 </div>
             </div>
@@ -863,18 +892,18 @@
         
         <article class="media">
             
-            <a href="/post/b59b5151.html" class="media-left">
+            <a href="/post/3e2b1b8c.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="40. Combination Sum II">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MySQL数据备份">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T09:59:21.750Z">2020-01-03</time></div>
-                    <a href="/post/b59b5151.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">40. Combination Sum II</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-05T05:39:16.613Z">2020-01-05</time></div>
+                    <a href="/post/3e2b1b8c.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">MySQL数据备份</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
+                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                     </p>
                 </div>
             </div>
@@ -882,18 +911,18 @@
         
         <article class="media">
             
-            <a href="/post/40588fed.html" class="media-left">
+            <a href="/post/f21319aa.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring IOC实验">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="mysql命令详情">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-31T09:24:31.153Z">2019-12-31</time></div>
-                    <a href="/post/40588fed.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring IOC实验</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T13:09:32.734Z">2020-01-04</time></div>
+                    <a href="/post/f21319aa.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">mysql命令详情</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                     </p>
                 </div>
             </div>
@@ -901,18 +930,18 @@
         
         <article class="media">
             
-            <a href="/post/f431a4c4.html" class="media-left">
+            <a href="/post/393fa9a5.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring初始之HelloWorld">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Xshell连接Ubuntu">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-31T03:36:35.473Z">2019-12-31</time></div>
-                    <a href="/post/f431a4c4.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring初始之HelloWorld</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T07:47:27.852Z">2020-01-04</time></div>
+                    <a href="/post/393fa9a5.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Xshell连接Ubuntu</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                        <a class="has-link-grey -link" href="/categories/others/">others</a>
                     </p>
                 </div>
             </div>
@@ -935,7 +964,7 @@
                     <span class="level-item">January 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1165,6 +1194,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/MySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/">
+                        <span class="tag">MySQL数据备份</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/NoSSQL%E7%89%B9%E7%82%B9/">
                         <span class="tag">NoSSQL特点</span>
                         <span class="tag is-grey">1</span>
@@ -1186,6 +1222,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E4%B9%8Bfind%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+                        <span class="tag">Shell 之find、which、locate、whereis命令总结</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/">
                         <span class="tag">Shell 的函数的定义和使用</span>
                         <span class="tag is-grey">1</span>
@@ -1195,6 +1238,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/">
                         <span class="tag">Shell 的字符串处理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0/">
+                        <span class="tag">Shell之脚本功能概述</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1277,15 +1327,15 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
-                        <span class="tag">Windows操作系统配置文件</span>
+                    <a class="tags has-addons" href="/tags/Vim%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/">
+                        <span class="tag">Vim多行注释</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/find%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
-                        <span class="tag">find、which、locate、whereis命令总结</span>
+                    <a class="tags has-addons" href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                        <span class="tag">Windows操作系统配置文件</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1307,6 +1357,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/kafka%E9%80%9A%E4%BF%A1/">
                         <span class="tag">kafka通信</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/mysql%E5%91%BD%E4%BB%A4%E8%AF%A6%E6%83%85/">
+                        <span class="tag">mysql命令详情</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1363,18 +1420,18 @@
         
         <article class="media">
             
-            <a href="/post/c62ee385.html" class="media-left">
+            <a href="/post/e9a730c6.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring/Spring的单元测试">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Vim多行注释">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T06:46:55.012Z">2020-01-04</time></div>
-                    <a href="/post/c62ee385.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring/Spring的单元测试</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T10:05:25.951Z">2020-01-11</time></div>
+                    <a href="/post/e9a730c6.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Vim多行注释</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                        <a class="has-link-grey -link" href="/categories/others/">others</a>
                     </p>
                 </div>
             </div>
@@ -1382,18 +1439,18 @@
         
         <article class="media">
             
-            <a href="/post/c29c61c7.html" class="media-left">
+            <a href="/post/cfaf6679.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="41. First Missing Positive">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Shell之脚本功能概述">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T11:09:22.136Z">2020-01-03</time></div>
-                    <a href="/post/c29c61c7.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">41. First Missing Positive</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-11T01:00:34.390Z">2020-01-11</time></div>
+                    <a href="/post/cfaf6679.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Shell之脚本功能概述</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
+                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                     </p>
                 </div>
             </div>
@@ -1401,18 +1458,18 @@
         
         <article class="media">
             
-            <a href="/post/b59b5151.html" class="media-left">
+            <a href="/post/3e2b1b8c.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="40. Combination Sum II">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="MySQL数据备份">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-03T09:59:21.750Z">2020-01-03</time></div>
-                    <a href="/post/b59b5151.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">40. Combination Sum II</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-05T05:39:16.613Z">2020-01-05</time></div>
+                    <a href="/post/3e2b1b8c.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">MySQL数据备份</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
+                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                     </p>
                 </div>
             </div>
@@ -1420,18 +1477,18 @@
         
         <article class="media">
             
-            <a href="/post/40588fed.html" class="media-left">
+            <a href="/post/f21319aa.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring IOC实验">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="mysql命令详情">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-31T09:24:31.153Z">2019-12-31</time></div>
-                    <a href="/post/40588fed.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring IOC实验</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T13:09:32.734Z">2020-01-04</time></div>
+                    <a href="/post/f21319aa.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">mysql命令详情</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
                     </p>
                 </div>
             </div>
@@ -1439,18 +1496,18 @@
         
         <article class="media">
             
-            <a href="/post/f431a4c4.html" class="media-left">
+            <a href="/post/393fa9a5.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring初始之HelloWorld">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Xshell连接Ubuntu">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-31T03:36:35.473Z">2019-12-31</time></div>
-                    <a href="/post/f431a4c4.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring初始之HelloWorld</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-04T07:47:27.852Z">2020-01-04</time></div>
+                    <a href="/post/393fa9a5.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Xshell连接Ubuntu</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                        <a class="has-link-grey -link" href="/categories/others/">others</a>
                     </p>
                 </div>
             </div>
@@ -1473,7 +1530,7 @@
                     <span class="level-item">January 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1703,6 +1760,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/MySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/">
+                        <span class="tag">MySQL数据备份</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/NoSSQL%E7%89%B9%E7%82%B9/">
                         <span class="tag">NoSSQL特点</span>
                         <span class="tag is-grey">1</span>
@@ -1724,6 +1788,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E4%B9%8Bfind%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+                        <span class="tag">Shell 之find、which、locate、whereis命令总结</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/">
                         <span class="tag">Shell 的函数的定义和使用</span>
                         <span class="tag is-grey">1</span>
@@ -1733,6 +1804,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/">
                         <span class="tag">Shell 的字符串处理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0/">
+                        <span class="tag">Shell之脚本功能概述</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1815,15 +1893,15 @@
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
-                        <span class="tag">Windows操作系统配置文件</span>
+                    <a class="tags has-addons" href="/tags/Vim%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/">
+                        <span class="tag">Vim多行注释</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/tags/find%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
-                        <span class="tag">find、which、locate、whereis命令总结</span>
+                    <a class="tags has-addons" href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                        <span class="tag">Windows操作系统配置文件</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1845,6 +1923,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/kafka%E9%80%9A%E4%BF%A1/">
                         <span class="tag">kafka通信</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/mysql%E5%91%BD%E4%BB%A4%E8%AF%A6%E6%83%85/">
+                        <span class="tag">mysql命令详情</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
