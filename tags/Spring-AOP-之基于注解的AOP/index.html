@@ -8,12 +8,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Category: HDFS - lyhcc博客</title>
+<title>Tag: Spring AOP 之基于注解的AOP - lyhcc博客</title>
 
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="lyhcc博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;categories&#x2F;BigData&#x2F;Hadoop&#x2F;HDFS&#x2F;index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;tags&#x2F;Spring-AOP-%E4%B9%8B%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84AOP&#x2F;index.html">
 <meta property="og:site_name" content="lyhcc博客">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
@@ -131,13 +131,8 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/categories">Categories</a></li>
-            
-            <li><a href="/categories/BigData/Hadoop/">Hadoop</a></li>
-            
-            <li><a href="/categories/BigData/">BigData</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">HDFS</a></li>
+            <li><a href="/tags">Tags</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Spring AOP 之基于注解的AOP</a></li>
         </ul>
         </nav>
     </div>
@@ -150,17 +145,17 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.637Z">2019-11-16</time>
+                                <time class="level-item has-text-grey" datetime="2020-01-15T12:59:47.610Z">2020-01-15</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/HDFS/">HDFS</a>
+                                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 796 words)
+                    a few seconds read (About 71 words)
                 </span>
                                             
                                                 
@@ -169,45 +164,35 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/21534.html">
-                                        HDFS快照管理
+                                    <a class="has-link-black-ter" href="/post/2e488ab5.html">
+                                        Spring AOP之基于注解的AOP
                                     </a>
                                     
                             </h1>
                             <div class="content">
 
-                                <div class="tocStart"></div>
+                                <div class="toc">
 
 <!-- toc -->
 
 <ul>
-<li><a href="#kuai-zhao-guan-li">快照管理</a><ul>
-<li><a href="#kuai-zhao-ying-xiang">快照影响</a></li>
-<li><a href="#ji-ben-yu-fa">基本语法</a></li>
-<li><a href="#an-li-shi-cao">案例实操</a></li>
-</ul>
-</li>
+<li><a href="#ji-yu-zhu-jie-aop-bu-zou">基于注解AOP步骤</a></li>
 </ul>
 <!-- tocstop -->
 
-<div class="tocEnd"></div>
+</div>
 
-<h2 id="快照管理"><a href="#快照管理" class="headerlink" title="快照管理"></a>快照管理</h2><blockquote>
-<p>快照相当于对目录做一个备份。并不会立即复制所有文件，而是指向同一个文件。当写入发生时，才会产生新文件。</p>
-</blockquote>
+
+<h2><span id="ji-yu-zhu-jie-aop-bu-zou">基于注解AOP步骤</span><a href="#ji-yu-zhu-jie-aop-bu-zou" class="header-anchor">$</a></h2><ol>
+<li>将目标类和切面类加到IOC容器中。@Component</li>
+<li>告诉Spring哪个是切面类。@Aspect</li>
+<li>在切面类中使用五个通知注解中的这些通知方法都何时运行</li>
+<li>开启基于AOP注解功能</li>
+</ol>
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"mathCalculator"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"xyz.lyhcc.calculate.MathCalculator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"loggerUtils"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"xyz.lyhcc.logger.LoggerUtils"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"validAspect"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"xyz.lyhcc.logger.ValidAspect"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">aop:config</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">aop:pointcut</span> <span class="hljs-attr">expression</span>=<span class="hljs-string">"execution(* xyz.lyhcc.calculate.MathCalculator.*(int,int))"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"glabalPointcut"</span>/&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">aop:aspect</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"loggerUtils"</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:before</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logStart"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span>/&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:after-returning</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logFinished"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span> <span class="hljs-attr">returning</span>=<span class="hljs-string">"result"</span>/&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:after-throwing</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logError"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span> <span class="hljs-attr">throwing</span>=<span class="hljs-string">"exception"</span>/&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:after</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logFinal"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span>/&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:around</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"aroundMethod"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span>/&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">aop:aspect</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">aop:aspect</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"validAspect"</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:before</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logStart"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span>/&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:after-returning</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logFinished"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span> <span class="hljs-attr">returning</span>=<span class="hljs-string">"result"</span>/&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:after-throwing</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logError"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span> <span class="hljs-attr">throwing</span>=<span class="hljs-string">"exception"</span>/&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:after</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logFinal"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span>/&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">aop:aspect</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
                             </div>
                             
                                     
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/21534.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
                                             
                 </div>
     </div>
