@@ -126,7 +126,7 @@
             <section class="section">
                 <div class="container">
                     <div class="columns">
-                        <div class="column is-8-tablet is-8-desktop is-7-widescreen has-order-2 column-main">
+                        <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
                             
     
     <div class="card">
@@ -135,17 +135,17 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-12-23T11:25:21.562Z">2019-12-23</time>
+                                <time class="level-item has-text-grey" datetime="2020-01-12T12:31:17.973Z">2020-01-12</time>
                                 
                                     <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/Java-Web/">Java Web</a>
+                                        <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
                                     </div>
                                     
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 413 words)
+                    2 minutes read (About 241 words)
                 </span>
                                             
                                                 
@@ -154,35 +154,15 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/4585d600.html">
-                                        Java Web过滤器和监听器
+                                    <a class="has-link-black-ter" href="/post/5b95307d.html">
+                                        42. Trapping Rain Water
                                     </a>
                                     
                             </h1>
                             <div class="content">
 
-                                <div class="tocStart"></div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#guo-lu-qi">过滤器</a><ul>
-<li><a href="#guo-lu-qi-de-shi-yong-bu-zou">过滤器的使用步骤</a></li>
-<li><a href="#filter-pei-zhi">Filter配置</a></li>
-</ul>
-</li>
-<li><a href="#jian-ting-qi">监听器</a><ul>
-<li><a href="#shi-yong">使用</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<div class="tocEnd"></div>
-
-<hr>
-<p>Java Web 三大基本组件（Servlet、Filter、Listener）<br>Servlet： 处理请求<br>Filter: 过滤拦截请求<br>Listener：监听器</p>
-<p>三大组件中基本都需要在web.xml中进行注册：除了Listener的两个（活化钝化监听器、绑定监听器）需要JavaBean实现不需要注册外</p>
+                                <h2 id="42-Trapping-Rain-Water"><a href="#42-Trapping-Rain-Water" class="headerlink" title="42. Trapping Rain Water"></a>42. Trapping Rain Water</h2><hr>
+<p><a href="https://leetcode.com/problems/trapping-rain-water/" target="_blank" rel="noopener">题目地址</a></p>
 <hr>
                             </div>
                             
@@ -190,7 +170,7 @@
                                         <div class="level is-mobile">
                                             <div class="level-start">
                                                 <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/4585d600.html#more">
+                                                    <a class="button is-size-7 is-light" href="/post/5b95307d.html#more">
                                                         Read More
                                                     </a>
                                                 </div>
@@ -215,430 +195,7 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-12-21T08:04:28.712Z">2019-12-21</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    24 minutes read (About 3660 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/209b93b1.html">
-                                        Shell文本三剑客之awk
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <div class="tocStart"></div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#jian-jie">简介</a></li>
-<li><a href="#gong-zuo-mo-shi">工作模式</a></li>
-<li><a href="#yu-fa-ge-shi">语法格式</a></li>
-<li><a href="#awk-de-nei-zhi-bian-liang">awk的内置变量</a></li>
-<li><a href="#printf-shu-chu">printf输出</a><ul>
-<li><a href="#mo-shi-pi-pei">模式匹配</a></li>
-<li><a href="#dong-zuo-biao-da-shi">动作表达式</a></li>
-<li><a href="#awk-tiao-jian-yu-ju">awk条件语句</a></li>
-<li><a href="#awk-xun-huan-yu-ju">awk循环语句</a></li>
-<li><a href="#awk-zi-fu-han-shu">awk字符函数</a></li>
-<li><a href="#awk-chang-yong-xuan-xiang">awk常用选项</a></li>
-<li><a href="#awk-shu-zu-yu-shell-shu-zu">awk数组与Shell数组</a></li>
-</ul>
-</li>
-<li><a href="#awk-xiao-an-li">awk小案例</a><ul>
-<li><a href="#li-yong-awk-chu-li-ri-zhi-bing-sheng-cheng-jie-guo-bao-gao">利用awk处理日志，并生成结果报告</a></li>
-<li><a href="#shell-jin-xing-shu-ju-ku-cao-zuo">Shell进行数据库操作</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<div class="tocEnd"></div>
-
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
-<p>awk是一个文本处理工具,通常用于处理数据并生成结果报告<br>awk的命名是它的创始人Alfred Aho、Peter Weinberger和Brian Kernighan姓氏的首个字母组成的</p>
-</blockquote>
-<h2 id="工作模式"><a href="#工作模式" class="headerlink" title="工作模式"></a>工作模式</h2><blockquote>
-<p>类似sed，首先读取第一行，处理完后处理下一行，它可以在处理前面加一些数据，处理后面也可以加一些数据</p>
-</blockquote>
-                            </div>
-                            
-                                    
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/209b93b1.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-12-08T14:10:28.380Z">2019-12-08</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    14 minutes read (About 2141 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/e4677a0d.html">
-                                        文本处理三剑客(grep/sed/awk)
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <div class="tocStart"></div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#grep-he-egrep-guo-lu-qi">grep和egrep过滤器</a><ul>
-<li><a href="#grep">grep</a></li>
-<li><a href="#xuan-xiang-option">选项option</a></li>
-</ul>
-</li>
-<li><a href="#sed-liu-bian-ji-qi">sed 流编辑器</a><ul>
-<li><a href="#sed-xuan-xiang">sed选项</a></li>
-<li><a href="#sed-pattern-yong-fa">sed Pattern用法</a></li>
-<li><a href="#sed-zhong-de-bian-ji-ming-ling-xiang-jie">sed 中的编辑命令详解</a></li>
-</ul>
-</li>
-<li><a href="#awk-bao-gao-sheng-cheng-qi">awk报告生成器</a></li>
-</ul>
-<!-- tocstop -->
-
-<div class="tocEnd"></div>
-
-<h2 id="grep和egrep过滤器"><a href="#grep和egrep过滤器" class="headerlink" title="grep和egrep过滤器"></a>grep和egrep过滤器</h2><h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><blockquote>
-<ol>
-<li>第一种形式: grep [option] [pattern] [file1,file..]</li>
-<li>第二种形式: command| grep [option] [pattern]</li>
-</ol>
-</blockquote>
-                            </div>
-                            
-                                    
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/e4677a0d.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-12-08T13:12:04.240Z">2019-12-08</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 295 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/f7db85fb.html">
-                                        find、which、locate、whereis总结
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <div class="tocStart"></div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#locate-ming-ling-jie-shao">locate命令介绍</a></li>
-<li><a href="#whereis-ming-ling">whereis命令</a></li>
-<li><a href="#which-ming-ling">which 命令</a></li>
-<li><a href="#zong-jie">总结</a></li>
-</ul>
-<!-- tocstop -->
-
-<div class="tocEnd"></div>
-
-<h2 id="locate命令介绍"><a href="#locate命令介绍" class="headerlink" title="locate命令介绍"></a>locate命令介绍</h2><blockquote>
-<ol>
-<li>文件查找命令，所属软件包mlocate</li>
-<li>不同于find命令是在整块磁盘中搜索, locate命令在数据库文件中查找</li>
-<li>find是默认全部匹配, locate则是默认部分匹配</li>
-</ol>
-</blockquote>
-                            </div>
-                            
-                                    
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/f7db85fb.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-12-08T08:27:20.707Z">2019-12-08</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    8 minutes read (About 1154 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/f449e7e2.html">
-                                        Shell文件查找find命令
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <div class="tocStart"></div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#yu-fa-ge-shi">语法格式</a></li>
-<li><a href="#xuan-xiang-can-shu">选项参数</a></li>
-<li><a href="#shi-yong">使用</a><ul>
-<li><a href="#xuan-xiang">选项</a></li>
-<li><a href="#cao-zuo">操作</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<div class="tocEnd"></div>
-
-<h2 id="语法格式"><a href="#语法格式" class="headerlink" title="语法格式"></a>语法格式</h2><table>
-<thead>
-<tr>
-<th>-</th>
-<th>格式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>语法格式1</td>
-<td>find [路径] [选项] [操作]</td>
-</tr>
-</tbody></table>
-                            </div>
-                            
-                                    
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/f449e7e2.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-12-08T07:45:43.723Z">2019-12-08</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 342 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/e8089af9.html">
-                                        Shell全局变量和局部变量&amp;函数库
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <div class="tocStart"></div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#quan-ju-bian-liang">全局变量</a></li>
-<li><a href="#ju-bu-bian-liang">局部变量</a></li>
-<li><a href="#han-shu-ku">函数库</a><ul>
-<li><a href="#wei-shi-me-yao-ding-yi-han-shu-ku">为什么要定义函数库</a></li>
-<li><a href="#an-li-ding-yi-han-shu-ku">案例–定义函数库</a></li>
-<li><a href="#jing-yan-zhi-tan">经验之谈</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<div class="tocEnd"></div>
-
-<h2 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h2><ol>
-<li>不做特殊声明, Shell中变量都是全局变量</li>
-<li>Tips: 大型脚本程序中函数中慎用全局变量</li>
-</ol>
-<h2 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h2><ol>
-<li>定义变量时,使用local关键字</li>
-<li>函数内和外若存在同名变量,则函数内部变量覆盖外部变量</li></ol>
-                            </div>
-                            
-                                    
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/e8089af9.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-12-07T06:46:13.221Z">2019-12-07</time>
+                                <time class="level-item has-text-grey" datetime="2020-01-11T10:05:25.951Z">2020-01-11</time>
                                 
                                     <div class="level-item">
                                         <a class="has-link-grey -link" href="/categories/others/">others</a>
@@ -648,7 +205,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 50 words)
+                    a minute read (About 114 words)
                 </span>
                                             
                                                 
@@ -657,110 +214,25 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/fe24bc9e.html">
-                                        Linux的一些笔记
+                                    <a class="has-link-black-ter" href="/post/e9a730c6.html">
+                                        Vim多行注释
                                     </a>
                                     
                             </h1>
                             <div class="content">
 
-                                <ul>
-<li>coreutils nohub命令使用需要<a href="https://blog.csdn.net/weixin_43926604/article/details/96001694" target="_blank" rel="noopener">安装</a></li>
-<li>mlocate   locate命令使用需要<a href="https://blog.csdn.net/oops_qu/article/details/78068551" target="_blank" rel="noopener">安装</a></li>
-<li><a href="https://blog.csdn.net/xiajun07061225/article/details/8488210" target="_blank" rel="noopener">vim 下如何批量注释</a></li>
-</ul>
-
-                            </div>
-                            
-                                    
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-12-07T03:57:11.560Z">2019-12-07</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 566 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/dc0c80f8.html">
-                                        Shell 函数的定义和使用
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <div class="tocStart"></div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#han-shu-de-jie-shao">函数的介绍</a></li>
-<li><a href="#yu-fa-ge-shi">语法格式</a></li>
-<li><a href="#ru-he-shi-yong-han-shu">如何使用函数</a></li>
-<li><a href="#an-li-mysql-shou-hu-jin-cheng">案例–MySQL守护进程</a></li>
-<li><a href="#han-shu-de-chuan-di-can-shu">函数的传递参数</a><ul>
-<li><a href="#shell-han-shu-chuan-can">Shell函数传参</a></li>
-<li><a href="#shell-han-shu-diao-yong">Shell 函数调用</a></li>
-</ul>
-</li>
-<li><a href="#han-shu-fan-hui-zhi">函数返回值</a><ul>
-<li><a href="#fan-hui-zhi-fang-shi">返回值方式</a></li>
-<li><a href="#shi-yong-return-fan-hui-zhi">使用return返回值</a></li>
-<li><a href="#shi-yong-echo-fan-hui-zhi">使用echo返回值</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<div class="tocEnd"></div>
-
-<h2 id="函数的介绍"><a href="#函数的介绍" class="headerlink" title="函数的介绍"></a>函数的介绍</h2><blockquote>
-<ol>
-<li>Linux Shell中的函数和大多数编程语言中的函数一样</li>
-<li>将相似的任务或代码封装到函数中,供其他地方调用</li>
+                                <h2><span id="fang-fa-yi">方法一</span><a href="#fang-fa-yi" class="header-anchor">$</a></h2><ol>
+<li>首先按 esc 进入命令行模式下，按下 Ctrl + v ，进入列（也叫区块）模式;</li>
+<li>在行首使用上下键选择需要注释的多行;</li>
+<li>按下键盘（大写） “I” 键，进入插入模式；</li>
+<li>然后输入注释符（ “//”、“#” 等）;</li>
+<li>最后按下 “Esc” 键。</li>
 </ol>
-</blockquote>
+<h2><span id="fang-fa-2">方法2</span><a href="#fang-fa-2" class="header-anchor">$</a></h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在指令模式下，使用.,$s/^/^# (从指定行到最后一行)</span><br></pre></td></tr></table></figure>
+
                             </div>
                             
                                     
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/dc0c80f8.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
                                             
                 </div>
     </div>
@@ -779,7 +251,7 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-12-07T02:46:18.592Z">2019-12-07</time>
+                                <time class="level-item has-text-grey" datetime="2020-01-11T01:00:34.390Z">2020-01-11</time>
                                 
                                     <div class="level-item">
                                         <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
@@ -789,7 +261,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 372 words)
+                    8 minutes read (About 1226 words)
                 </span>
                                             
                                                 
@@ -798,8 +270,8 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/7b00cacb.html">
-                                        Shell 之Bash数学运算
+                                    <a class="has-link-black-ter" href="/post/cfaf6679.html">
+                                        Shell之脚本功能概述
                                     </a>
                                     
                             </h1>
@@ -810,24 +282,30 @@
 <!-- toc -->
 
 <ul>
-<li><a href="#expr">expr</a></li>
-<li><a href="#qiu-he-an-li">求和案例</a></li>
-<li><a href="#bc">bc</a></li>
+<li><a href="#jiao-ben-chai-fen-han-shu">脚本拆分–函数</a></li>
+<li><a href="#shi-xian">实现</a></li>
+<li><a href="#cheng-xu-she-ji-zhu-liu-cheng">程序设计主流程</a></li>
+<li><a href="#s-ce-shi">s测试</a></li>
+<li><a href="#wan-zheng-dai-ma">完整代码</a></li>
 </ul>
 <!-- tocstop -->
 
 <div class="tocEnd"></div>
-## expr
-**语法格式**  
 
-<p><img src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191207105604.png" alt></p>
+<p>需求描述:</p>
+<ol>
+<li>实现一个脚本工具，该脚本提供类似supervisor功能， 可以对进程进行管理;</li>
+<li>一键查看所有进程运行状态</li>
+<li>单个或批量启动进程，单个或批量停止进程</li>
+<li>提供进程分组功能，可以按组查看进行运行状态，可以按组启动或停止该组内所有进程</li>
+</ol>
                             </div>
                             
                                     
                                         <div class="level is-mobile">
                                             <div class="level-start">
                                                 <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/7b00cacb.html#more">
+                                                    <a class="button is-size-7 is-light" href="/post/cfaf6679.html#more">
                                                         Read More
                                                     </a>
                                                 </div>
@@ -852,7 +330,7 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-12-07T02:24:36.000Z">2019-12-07</time>
+                                <time class="level-item has-text-grey" datetime="2020-01-05T05:39:16.613Z">2020-01-05</time>
                                 
                                     <div class="level-item">
                                         <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
@@ -862,7 +340,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 109 words)
+                    2 minutes read (About 323 words)
                 </span>
                                             
                                                 
@@ -871,21 +349,419 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                    <a class="has-link-black-ter" href="/post/96cd4f46.html">
-                                        Shell有类型变量
+                                    <a class="has-link-black-ter" href="/post/3e2b1b8c.html">
+                                        MySQL数据备份
                                     </a>
                                     
                             </h1>
                             <div class="content">
 
-                                <p><strong>declare和typeset命令</strong><br>◆ declare命令 和typeset命令两者等价<br>◆ declare、 typeset命令 都是用来定义变量类型的  </p>
+                                <h2 id="备份mysql数据库或表"><a href="#备份mysql数据库或表" class="headerlink" title="备份mysql数据库或表"></a>备份mysql数据库或表</h2><blockquote>
+<p>命令 mysqldump</p>
+</blockquote>
+<p><strong>常用参数详解</strong>  </p>
+<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-u  用户名</span><br><span class="line">-p  密码  </span><br><span class="line">-h  服务器IP地址  </span><br><span class="line">-d  等价于--no-datab    只导出表结构  </span><br><span class="line">-t  等价于--no-create- info只 导出数据，不导出建表语句  </span><br><span class="line">-A  等价于--all-databases  </span><br><span class="line">-B  等价于--databases导 出一个或多个数据库</span><br></pre></td></tr></table></figure>
                             </div>
                             
                                     
                                         <div class="level is-mobile">
                                             <div class="level-start">
                                                 <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/96cd4f46.html#more">
+                                                    <a class="button is-size-7 is-light" href="/post/3e2b1b8c.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2020-01-04T13:09:32.734Z">2020-01-04</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    5 minutes read (About 720 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/f21319aa.html">
+                                        mysql命令详情
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <h2 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-u 用户名</span><br><span class="line">-p 用户密码</span><br><span class="line">-h 服务器ip</span><br><span class="line">-D 连接的数据库</span><br><span class="line">-N 不输出列信息</span><br><span class="line">-B 使用tab键代替默认的交互分隔符</span><br><span class="line">-e 执行sql语句</span><br><span class="line"></span><br><span class="line">其他选项</span><br><span class="line">-E 垂直输出</span><br><span class="line">-H 以HTML格式输出</span><br><span class="line">-X 以XML格式输出</span><br></pre></td></tr></table></figure>
+                            </div>
+                            
+                                    
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/f21319aa.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2020-01-04T07:47:27.852Z">2020-01-04</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/others/">others</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 287 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/393fa9a5.html">
+                                        Xshell连接Ubuntu
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <h2><span id="lian-jie-cao-zuo">连接操作</span><a href="#lian-jie-cao-zuo" class="header-anchor">$</a></h2><p><a href="https://blog.csdn.net/lianghe_work/article/details/47340141" target="_blank" rel="noopener">https://blog.csdn.net/lianghe_work/article/details/47340141</a></p>
+<h2><span id="yu-dao-de-wen-ti">遇到的问题</span><a href="#yu-dao-de-wen-ti" class="header-anchor">$</a></h2><ol>
+<li>sudo apt-get install openssh-server报错<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ll@ubuntu:~$ sudo apt-get install openssh-server</span><br><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line">Some packages could not be installed. This may mean that you have</span><br><span class="line">requested an impossible situation or if you are using the unstable</span><br><span class="line">distribution that some required packages have not yet been created</span><br><span class="line">or been moved out of Incoming.</span><br><span class="line">The following information may help to resolve the situation:</span><br><span class="line"></span><br><span class="line">The following packages have unmet dependencies:</span><br><span class="line"> openssh-server : Depends: openssh-client (= 1:7.2p2-4ubuntu2.8)</span><br><span class="line">                  Depends: openssh-sftp-server but it is not going to be installed</span><br><span class="line">                  Recommends: ssh-import-id but it is not going to be installed</span><br><span class="line">E: Unable to correct problems, you have held broken packages.</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>解决办法</strong>  sudo apt-get install  openssh-client=1:7.2p2-4ubuntu2.8<br>执行以上命令后在执行安装就可以了， <strong>不过要和以上报错的版本对应</strong></p>
+<ol start="2">
+<li>root用户无法登陆</li>
+</ol>
+<ul>
+<li>在其他用户下切换sudo su root切换到root用户</li>
+<li>vi /etc/ssh/sshd_config  <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 加一句去一句 --&gt;</span><br><span class="line">PermitRootLogin yes</span><br><span class="line"># PermitRootLogin prohibit-password</span><br></pre></td></tr></table></figure></li>
+<li>/etc/init.d/ssh restart  来重启ssh服务</li>
+</ul>
+<ol start="3">
+<li>/usr/bin/xauth:  file /root/.Xauthority does not exist<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"></span><br><span class="line">添加 AllowAgentForwarding yes</span><br><span class="line">/etc/init.d/ssh restart  来重启ssh服务</span><br></pre></td></tr></table></figure></li>
+<li><a href="https://www.cnblogs.com/kaituorensheng/p/3376094.html" target="_blank" rel="noopener">Ubuntu 输入正确的密码后重新返回到登陆界面</a></li>
+</ol>
+
+                            </div>
+                            
+                                    
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2020-01-04T06:46:55.012Z">2020-01-04</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 107 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/c62ee385.html">
+                                        Spring/Spring的单元测试
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <h2><span id="shi-yong-bu-zou">使用步骤</span><a href="#shi-yong-bu-zou" class="header-anchor">$</a></h2><ol>
+<li>导包： Spring单元测试包spring-test-4.0.0.RELEASE.jar</li>
+<li>@ContextConfiguration(locations=””)来指定Spring的配置文件</li>
+<li>@RunWith指定用哪种驱动进行单元测试，默认JUnit<blockquote>
+<p>@RunWith(SpringJUnit4ClassRunner.class)<br>使用Spring的单元测试模块来执行标了@Test的测试方法<br>好处是不需要获取Bean</p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@ContextConfiguration</span>(locations=<span class="hljs-string">"classpath:ioc.xml"</span>)</span><br><span class="line"><span class="hljs-meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</span><br><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringIOCTest</span> </span>&#123;</span><br><span class="line">	ApplicationContext ioc = <span class="hljs-keyword">null</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="hljs-meta">@Autowired</span></span><br><span class="line">	BookServlet bookServlet;</span><br><span class="line">	</span><br><span class="line">	<span class="hljs-meta">@Test</span></span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="hljs-string">"--"</span>+bookServlet);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+                            </div>
+                            
+                                    
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2020-01-03T11:09:22.136Z">2020-01-03</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 104 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/c29c61c7.html">
+                                        41. First Missing Positive
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <hr>
+<p><a href="https://leetcode.com/problems/first-missing-positive/" target="_blank" rel="noopener">https://leetcode.com/problems/first-missing-positive/</a></p>
+<hr>
+                            </div>
+                            
+                                    
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/c29c61c7.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2020-01-03T09:59:21.750Z">2020-01-03</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 203 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/b59b5151.html">
+                                        40. Combination Sum II
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <h2 id="40-Combination-Sum-II"><a href="#40-Combination-Sum-II" class="headerlink" title="40. Combination Sum II"></a>40. Combination Sum II</h2><hr>
+<p><a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank" rel="noopener">题目地址</a></p>
+<hr>
+                            </div>
+                            
+                                    
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/b59b5151.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2019-12-31T09:24:31.153Z">2019-12-31</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    22 minutes read (About 3363 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/40588fed.html">
+                                        Spring IOC实验
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#shi-yan-1-tong-guo-ioc-rong-qi-chuang-jian-dui-xiang-bing-wei-shu-xing-fu-zhi">实验1：通过IOC容器创建对象，并为属性赋值★</a></li>
+<li><a href="#shi-yan-2-gen-ju-bean-de-lei-xing-cong-ioc-rong-qi-zhong-huo-qu-bean-de-shi-li">实验2：根据bean的类型从IOC容器中获取bean的实例★</a></li>
+<li><a href="#shi-yan-3">实验3：</a></li>
+<li><a href="#shi-yan-4-zheng-que-de-wei-ge-chong-shu-xing-fu-zhi">实验4：正确的为各种属性赋值</a></li>
+<li><a href="#shi-yan-5-pei-zhi-tong-guo-jing-tai-gong-han-fang-fa-chuang-jian-de-bean-shi-li-gong-han-fang-fa-chuang-jian-de-bean-factorybean">实验5：配置通过静态工厂方法创建的bean、实例工厂方法创建的bean、FactoryBean★</a></li>
+<li><a href="#shi-yan-6-tong-guo-ji-cheng-shi-xian-bean-pei-zhi-xin-xi-de-chong-yong">实验6：通过继承实现bean配置信息的重用</a></li>
+<li><a href="#shi-yan-7-tong-guo-abstract-shu-xing-chuang-jian-yi-ge-mo-ban-bean">实验7：通过abstract属性创建一个模板bean</a></li>
+<li><a href="#shi-yan-8-bean-zhi-jian-de-yi-lai">实验8：bean之间的依赖</a></li>
+<li><a href="#shi-yan-9-ce-shi-bean-de-zuo-yong-yu-fen-bie-chuang-jian-dan-shi-li-he-duo-shi-li-de-bean">实验9：测试bean的作用域，分别创建单实例和多实例的bean★</a></li>
+<li><a href="#shi-yan-10-chuang-jian-dai-you-sheng-ming-zhou-qi-fang-fa-de-bean">实验10：创建带有生命周期方法的bean</a></li>
+<li><a href="#shi-yan-11-ce-shi-bean-de-hou-zhi-chu-li-qi">实验11：测试bean的后置处理器</a></li>
+<li><a href="#shi-yan-12-yin-yong-wai-bu-shu-xing-wen-jian">实验12：引用外部属性文件★</a></li>
+<li><a href="#shi-yan-13-ji-yu-xml-de-zi-dong-zhuang-pei-zi-ding-yi-lei-xing-zi-dong-fu-zhi">实验13：基于XML的自动装配(自定义类型自动赋值)</a></li>
+<li><a href="#shi-yan-14-spel-spring-expression-language-ce-shi-i">实验14：[SpEL(Spring Expression Language)测试I]</a></li>
+<li><a href="#shi-yan-15-tong-guo-zhu-jie-fen-bie-chuang-jian-dao-service-controller-kong-zhi-qi-kong-zhi-wang-zhan-tiao-zhuan-luo-ji-servlet">实验15：通过注解分别创建Dao、Service、Controller（控制器，控制网站跳转逻辑Servlet）★</a></li>
+<li><a href="#shi-yan-16-shi-yong-context-include-filter-zhi-ding-sao-miao-bao-shi-yao-bao-han-de-lei">实验16：使用context:include-filter指定扫描包时要包含的类</a></li>
+<li><a href="#shi-yan-17-shi-yong-context-exclude-filter-zhi-ding-sao-miao-bao-shi-bu-bao-han-de-lei">实验17：使用context:exclude-filter指定扫描包时不包含的类</a></li>
+<li><a href="#shi-yan-18-shi-yong-autowired-zhu-jie-shi-xian-gen-ju-lei-xing-shi-xian-zi-dong-zhuang-pei">实验18：使用@Autowired注解实现根据类型实现自动装配★</a></li>
+<li><a href="#shi-yan-19-ru-guo-zi-yuan-lei-xing-de-bean-bu-zhi-yi-ge">实验19：如果资源类型的bean不止一个，</a></li>
+<li><a href="#shi-yan-20-ru-guo-gen-ju-cheng-yuan-bian-liang-ming-zuo-wei-id-huan-shi-zhao-bu-dao-bean">实验20：如果根据成员变量名作为id还是找不到bean，</a></li>
+<li><a href="#shi-yan-21-zai-fang-fa-de-xing-can-wei-zhi-shi-yong-qualifier-zhu-jie">实验21：在方法的形参位置使用@Qualifier注解</a></li>
+<li><a href="#shi-yan-22-autowired-zhu-jie-de-required-shu-xing-zhi-ding-mou-ge-shu-xing-yun-xu-bu-bei-she-zhi">实验22：@Autowired注解的required属性指定某个属性允许不被设置</a></li>
+<li><a href="#shi-yan-23-ce-shi-fan-xing-yi-lai-zhu-ru">实验23：测试泛型依赖注入★</a></li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+
+<h2 id="实验1：通过IOC容器创建对象，并为属性赋值★"><a href="#实验1：通过IOC容器创建对象，并为属性赋值★" class="headerlink" title="实验1：通过IOC容器创建对象，并为属性赋值★"></a>实验1：通过IOC容器创建对象，并为属性赋值★</h2><p><a href="https://lyhcc.github.io/post/f431a4c4.html#more">HelloWorld 实现</a></p>
+<h2 id="实验2：根据bean的类型从IOC容器中获取bean的实例★"><a href="#实验2：根据bean的类型从IOC容器中获取bean的实例★" class="headerlink" title="实验2：根据bean的类型从IOC容器中获取bean的实例★"></a>实验2：根据bean的类型从IOC容器中获取bean的实例★</h2><blockquote>
+<p>如果IOC容器这个类型的bean有多个，查找会报错<br>报错org.springframework.beans.factory.NoUniqueBeanDefinitionException</p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">      <span class="hljs-comment">/*Person bean = ioc.getBean(Person.class);</span></span><br><span class="line"><span class="hljs-comment">System.out.println(bean);</span></span><br><span class="line"><span class="hljs-comment">*/</span></span><br><span class="line"><span class="hljs-comment">// 指定类之后不需要强转</span></span><br><span class="line">Person bean = ioc.getBean(<span class="hljs-string">"person02"</span>, Person.class);</span><br><span class="line">System.out.println(bean);</span><br></pre></td></tr></table></figure>
+                            </div>
+                            
+                                    
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/40588fed.html#more">
                                                         Read More
                                                     </a>
                                                 </div>
@@ -923,9 +799,9 @@
             
             <li><a class="pagination-link has-text-black-ter" href="/page/4/">4</a></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/5/">5</a></li>
+            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/6/">6</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/7/">7</a></li>
             
         </ul>
     </nav>
@@ -933,13 +809,13 @@
 
                         </div>
                         
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
     
         
+            
+                
+                    <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+                        
+                            
 <div class="card widget">
     <div class="card-content">
         <nav class="level">
@@ -975,7 +851,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        55
+                        69
                     </p>
                 </div>
             </div>
@@ -985,7 +861,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        20
                     </p>
                 </div>
             </div>
@@ -995,7 +871,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        62
+                        73
                     </p>
                 </div>
             </div>
@@ -1049,10 +925,10 @@
         
     </div>
 </div>
-    
-        
-    
-        <div class="card widget">
+                                
+                            
+                                
+                            <div class="card widget">
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
@@ -1087,8 +963,8 @@
     </div>
 </div>
 
-    
-        
+                                
+                            
 <div class="card widget">
     <div class="card-content">
         <div class="menu">
@@ -1145,12 +1021,20 @@
                 <span class="level-item tag">3</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Leecode/">
+            <span class="level-start">
+                <span class="level-item">Leecode</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Leetcode/">
             <span class="level-start">
                 <span class="level-item">Leetcode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Python/">
@@ -1177,12 +1061,28 @@
                 <span class="level-item tag">14</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Sprig-MVC/">
+            <span class="level-start">
+                <span class="level-item">Sprig MVC</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Spring/">
             <span class="level-start">
                 <span class="level-item">Spring</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Spring-MVC/">
+            <span class="level-start">
+                <span class="level-item">Spring MVC</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/others/">
@@ -1197,20 +1097,20 @@
         </div>
     </div>
 </div>
-    
-        <div class="card widget">
+                                
+                            <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">AJAX 和JSON的使用</a> <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" style="font-size: 10px;">Java Web过滤器和监听器</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E4%B9%8Bbroker/" style="font-size: 10px;">Kafka之broker</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/" style="font-size: 10px;">Kafka生产与消费</a> <a href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 10px;">Linux 工具包</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/MySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/" style="font-size: 10px;">MySQL数据备份</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" style="font-size: 10px;">Shell 之Bash数学运算</a> <a href="/tags/Shell-%E4%B9%8Bfind%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" style="font-size: 10px;">Shell 之find、which、locate、whereis命令总结</a> <a href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">Shell 的函数的定义和使用</a> <a href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" style="font-size: 10px;">Shell 的字符串处理</a> <a href="/tags/Shell%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">Shell之脚本功能概述</a> <a href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell全局变量和局部变量</a> <a href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Shell变量的替换和测试</a> <a href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/" style="font-size: 10px;">Shell命令的替换</a> <a href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Shell文件查找find命令</a> <a href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell有类型变量</a> <a href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/" style="font-size: 10px;">Shell编程 awk</a> <a href="/tags/Spring-AOP/" style="font-size: 10px;">Spring AOP</a> <a href="/tags/Spring-AOP-%E4%B9%8B%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84AOP/" style="font-size: 10px;">Spring AOP 之基于注解的AOP</a> <a href="/tags/Spring-AOP%E5%BC%95%E5%85%A5%E4%B9%8BJava%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97/" style="font-size: 10px;">Spring AOP引入之Java动态代理打印日志</a> <a href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">Spring IOC实验</a> <a href="/tags/SpringIOC%E6%80%BB%E7%BB%93/" style="font-size: 10px;">SpringIOC总结</a> <a href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/" style="font-size: 10px;">Spring初始之HelloWorld</a> <a href="/tags/Spring%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Spring初识</a> <a href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Spring的单元测试</a> <a href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Tomcat 的安装与配置</a> <a href="/tags/Vim%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/" style="font-size: 10px;">Vim多行注释</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/kafka%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">kafka通信</a> <a href="/tags/mysql%E5%91%BD%E4%BB%A4%E8%AF%A6%E6%83%85/" style="font-size: 10px;">mysql命令详情</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a> <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/" style="font-size: 10px;">文本处理三剑客(grep/sed/awk)</a>
+        <a href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">AJAX 和JSON的使用</a> <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/HiddenHttpMethodFilter-REST/" style="font-size: 10px;">HiddenHttpMethodFilter (REST)</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" style="font-size: 10px;">Java Web过滤器和监听器</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E4%B9%8Bbroker/" style="font-size: 10px;">Kafka之broker</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/" style="font-size: 10px;">Kafka生产与消费</a> <a href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 10px;">Linux 工具包</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/MySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/" style="font-size: 10px;">MySQL数据备份</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" style="font-size: 10px;">Shell 之Bash数学运算</a> <a href="/tags/Shell-%E4%B9%8Bfind%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" style="font-size: 10px;">Shell 之find、which、locate、whereis命令总结</a> <a href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">Shell 的函数的定义和使用</a> <a href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" style="font-size: 10px;">Shell 的字符串处理</a> <a href="/tags/Shell%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">Shell之脚本功能概述</a> <a href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell全局变量和局部变量</a> <a href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Shell变量的替换和测试</a> <a href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/" style="font-size: 10px;">Shell命令的替换</a> <a href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Shell文件查找find命令</a> <a href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell有类型变量</a> <a href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/" style="font-size: 10px;">Shell编程 awk</a> <a href="/tags/Sping%E4%B8%8EJava-Web/" style="font-size: 10px;">Sping与Java Web</a> <a href="/tags/Spring-AOP/" style="font-size: 10px;">Spring AOP</a> <a href="/tags/Spring-AOP-%E4%B9%8B%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84AOP/" style="font-size: 10px;">Spring AOP 之基于注解的AOP</a> <a href="/tags/Spring-AOP%E5%BC%95%E5%85%A5%E4%B9%8BJava%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97/" style="font-size: 10px;">Spring AOP引入之Java动态代理打印日志</a> <a href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">Spring IOC实验</a> <a href="/tags/Spring-JDBCTemplate/" style="font-size: 10px;">Spring JDBCTemplate</a> <a href="/tags/Spring-%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">Spring 声明式事务</a> <a href="/tags/Spring-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">Spring 源码</a> <a href="/tags/SpringIOC%E6%80%BB%E7%BB%93/" style="font-size: 10px;">SpringIOC总结</a> <a href="/tags/SpringMVC-%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%85%A5/" style="font-size: 10px;">SpringMVC 请求数据传入</a> <a href="/tags/SpringMVC%E4%B9%8B-RequestMapping/" style="font-size: 10px;">SpringMVC之@RequestMapping</a> <a href="/tags/SpringMVC%E4%B9%8BHelloWorld/" style="font-size: 10px;">SpringMVC之HelloWorld</a> <a href="/tags/SpringMVC%E4%B9%8BModelAttribute/" style="font-size: 10px;">SpringMVC之ModelAttribute</a> <a href="/tags/SpringMVC%E4%B9%8B%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%87%BA/" style="font-size: 10px;">SpringMVC之响应数据传出</a> <a href="/tags/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 10px;">SpringMVC源码分析</a> <a href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/" style="font-size: 10px;">Spring初始之HelloWorld</a> <a href="/tags/Spring%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Spring初识</a> <a href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Spring的单元测试</a> <a href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Tomcat 的安装与配置</a> <a href="/tags/Vim%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/" style="font-size: 10px;">Vim多行注释</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/kafka%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">kafka通信</a> <a href="/tags/mysql%E5%91%BD%E4%BB%A4%E8%AF%A6%E6%83%85/" style="font-size: 10px;">mysql命令详情</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a> <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/" style="font-size: 10px;">文本处理三剑客(grep/sed/awk)</a>
     </div>
 </div>
-    
-    
-        <div class="column-right-shadow is-hidden-widescreen ">
-        
-            <div class="card widget">
+                                
+                                    
+                                        <div class="column-right-shadow is-hidden-widescreen ">
+                                            
+                                                <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
             Recent
@@ -1218,18 +1118,18 @@
         
         <article class="media">
             
-            <a href="/post/2e488ab5.html" class="media-left">
+            <a href="/post/548d7f45.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring AOP之基于注解的AOP">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC之ModelAttribute">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-15T12:59:47.610Z">2020-01-15</time></div>
-                    <a href="/post/2e488ab5.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring AOP之基于注解的AOP</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-20T08:34:13.329Z">2020-02-20</time></div>
+                    <a href="/post/548d7f45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC之ModelAttribute</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                        <a class="has-link-grey -link" href="/categories/Sprig-MVC/">Sprig MVC</a>
                     </p>
                 </div>
             </div>
@@ -1237,18 +1137,18 @@
         
         <article class="media">
             
-            <a href="/post/68c47b7a.html" class="media-left">
+            <a href="/post/eaa9b691.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring AOP引入之Java动态代理打印日志">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC源码分析">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-14T09:35:33.655Z">2020-01-14</time></div>
-                    <a href="/post/68c47b7a.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring AOP引入之Java动态代理打印日志</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T11:04:57.382Z">2020-02-19</time></div>
+                    <a href="/post/eaa9b691.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC源码分析</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
                     </p>
                 </div>
             </div>
@@ -1256,18 +1156,18 @@
         
         <article class="media">
             
-            <a href="/post/b8393840.html" class="media-left">
+            <a href="/post/4c7891d3.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring AOP">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC 请求数据传入">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-14T08:38:45.054Z">2020-01-14</time></div>
-                    <a href="/post/b8393840.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring AOP</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T04:29:43.643Z">2020-02-19</time></div>
+                    <a href="/post/4c7891d3.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC 请求数据传入</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
                     </p>
                 </div>
             </div>
@@ -1275,18 +1175,18 @@
         
         <article class="media">
             
-            <a href="/post/fb9e30c5.html" class="media-left">
+            <a href="/post/f51ba3e7.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringIOC总结">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC之响应数据传出">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-14T05:58:26.143Z">2020-01-14</time></div>
-                    <a href="/post/fb9e30c5.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringIOC总结</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-18T12:09:07.754Z">2020-02-18</time></div>
+                    <a href="/post/f51ba3e7.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC之响应数据传出</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
                     </p>
                 </div>
             </div>
@@ -1294,18 +1194,18 @@
         
         <article class="media">
             
-            <a href="/post/18c3cd0d.html" class="media-left">
+            <a href="/post/fdd838d6.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka生产与消费">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HiddenHttpMethodFilter (REST)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T13:37:56.334Z">2020-01-13</time></div>
-                    <a href="/post/18c3cd0d.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka生产与消费</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T08:38:51.893Z">2020-02-16</time></div>
+                    <a href="/post/fdd838d6.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">HiddenHttpMethodFilter (REST)</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
                     </p>
                 </div>
             </div>
@@ -1313,8 +1213,8 @@
         
     </div>
 </div>
-        
-            <div class="card widget">
+                                                    
+                                                <div class="card widget">
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
@@ -1323,12 +1223,23 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/01/">
                 <span class="level-start">
                     <span class="level-item">January 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">15</span>
+                    <span class="level-item tag">23</span>
                 </span>
             </a>
         </li>
@@ -1359,8 +1270,8 @@
         </div>
     </div>
 </div>
-        
-            <div class="card widget">
+                                                    
+                                                <div class="card widget">
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
@@ -1469,6 +1380,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Hadoop配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HiddenHttpMethodFilter-REST/">
+                        <span class="tag">HiddenHttpMethodFilter (REST)</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1670,6 +1588,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Sping%E4%B8%8EJava-Web/">
+                        <span class="tag">Sping与Java Web</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Spring-AOP/">
                         <span class="tag">Spring AOP</span>
                         <span class="tag is-grey">1</span>
@@ -1698,8 +1623,71 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-JDBCTemplate/">
+                        <span class="tag">Spring JDBCTemplate</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+                        <span class="tag">Spring 声明式事务</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-%E6%BA%90%E7%A0%81/">
+                        <span class="tag">Spring 源码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/SpringIOC%E6%80%BB%E7%BB%93/">
                         <span class="tag">SpringIOC总结</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC-%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%85%A5/">
+                        <span class="tag">SpringMVC 请求数据传入</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B-RequestMapping/">
+                        <span class="tag">SpringMVC之@RequestMapping</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BHelloWorld/">
+                        <span class="tag">SpringMVC之HelloWorld</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BModelAttribute/">
+                        <span class="tag">SpringMVC之ModelAttribute</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%87%BA/">
+                        <span class="tag">SpringMVC之响应数据传出</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+                        <span class="tag">SpringMVC源码分析</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1806,19 +1794,19 @@
         </div>
     </div>
 </div>
-        
-        </div>
-    
-</div>
-
+                                                    
+                                        </div>
+                                        
+                    </div>
+                    
                             
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
     
-        <div class="card widget">
+        
+            
+                
+                    <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+                        
+                            <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
             Recent
@@ -1826,18 +1814,18 @@
         
         <article class="media">
             
-            <a href="/post/2e488ab5.html" class="media-left">
+            <a href="/post/548d7f45.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring AOP之基于注解的AOP">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC之ModelAttribute">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-15T12:59:47.610Z">2020-01-15</time></div>
-                    <a href="/post/2e488ab5.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring AOP之基于注解的AOP</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-20T08:34:13.329Z">2020-02-20</time></div>
+                    <a href="/post/548d7f45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC之ModelAttribute</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                        <a class="has-link-grey -link" href="/categories/Sprig-MVC/">Sprig MVC</a>
                     </p>
                 </div>
             </div>
@@ -1845,18 +1833,18 @@
         
         <article class="media">
             
-            <a href="/post/68c47b7a.html" class="media-left">
+            <a href="/post/eaa9b691.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring AOP引入之Java动态代理打印日志">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC源码分析">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-14T09:35:33.655Z">2020-01-14</time></div>
-                    <a href="/post/68c47b7a.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring AOP引入之Java动态代理打印日志</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T11:04:57.382Z">2020-02-19</time></div>
+                    <a href="/post/eaa9b691.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC源码分析</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
                     </p>
                 </div>
             </div>
@@ -1864,18 +1852,18 @@
         
         <article class="media">
             
-            <a href="/post/b8393840.html" class="media-left">
+            <a href="/post/4c7891d3.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Spring AOP">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC 请求数据传入">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-14T08:38:45.054Z">2020-01-14</time></div>
-                    <a href="/post/b8393840.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spring AOP</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T04:29:43.643Z">2020-02-19</time></div>
+                    <a href="/post/4c7891d3.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC 请求数据传入</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
                     </p>
                 </div>
             </div>
@@ -1883,18 +1871,18 @@
         
         <article class="media">
             
-            <a href="/post/fb9e30c5.html" class="media-left">
+            <a href="/post/f51ba3e7.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringIOC总结">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC之响应数据传出">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-14T05:58:26.143Z">2020-01-14</time></div>
-                    <a href="/post/fb9e30c5.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringIOC总结</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-18T12:09:07.754Z">2020-02-18</time></div>
+                    <a href="/post/f51ba3e7.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC之响应数据传出</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
                     </p>
                 </div>
             </div>
@@ -1902,18 +1890,18 @@
         
         <article class="media">
             
-            <a href="/post/18c3cd0d.html" class="media-left">
+            <a href="/post/fdd838d6.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kafka生产与消费">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HiddenHttpMethodFilter (REST)">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-01-13T13:37:56.334Z">2020-01-13</time></div>
-                    <a href="/post/18c3cd0d.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kafka生产与消费</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T08:38:51.893Z">2020-02-16</time></div>
+                    <a href="/post/fdd838d6.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">HiddenHttpMethodFilter (REST)</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
                     </p>
                 </div>
             </div>
@@ -1921,8 +1909,8 @@
         
     </div>
 </div>
-    
-        <div class="card widget">
+                                
+                            <div class="card widget">
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
@@ -1931,12 +1919,23 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/01/">
                 <span class="level-start">
                     <span class="level-item">January 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">15</span>
+                    <span class="level-item tag">23</span>
                 </span>
             </a>
         </li>
@@ -1967,8 +1966,8 @@
         </div>
     </div>
 </div>
-    
-        <div class="card widget">
+                                
+                            <div class="card widget">
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
@@ -2077,6 +2076,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
                         <span class="tag">Hadoop配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HiddenHttpMethodFilter-REST/">
+                        <span class="tag">HiddenHttpMethodFilter (REST)</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -2278,6 +2284,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Sping%E4%B8%8EJava-Web/">
+                        <span class="tag">Sping与Java Web</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Spring-AOP/">
                         <span class="tag">Spring AOP</span>
                         <span class="tag is-grey">1</span>
@@ -2306,8 +2319,71 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-JDBCTemplate/">
+                        <span class="tag">Spring JDBCTemplate</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+                        <span class="tag">Spring 声明式事务</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-%E6%BA%90%E7%A0%81/">
+                        <span class="tag">Spring 源码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/SpringIOC%E6%80%BB%E7%BB%93/">
                         <span class="tag">SpringIOC总结</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC-%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%85%A5/">
+                        <span class="tag">SpringMVC 请求数据传入</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B-RequestMapping/">
+                        <span class="tag">SpringMVC之@RequestMapping</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BHelloWorld/">
+                        <span class="tag">SpringMVC之HelloWorld</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BModelAttribute/">
+                        <span class="tag">SpringMVC之ModelAttribute</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%87%BA/">
+                        <span class="tag">SpringMVC之响应数据传出</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+                        <span class="tag">SpringMVC源码分析</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -2414,10 +2490,10 @@
         </div>
     </div>
 </div>
-    
-    
-</div>
-
+                                
+                                    
+                    </div>
+                    
                     </div>
                 </div>
             </section>

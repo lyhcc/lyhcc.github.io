@@ -1,0 +1,2115 @@
+<!DOCTYPE html>
+<html  lang="en">
+
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.0.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Tag: Spring 源码 - lyhcc博客</title>
+
+
+    <meta property="og:type" content="website">
+<meta property="og:title" content="lyhcc博客">
+<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;tags&#x2F;Spring-%E6%BA%90%E7%A0%81&#x2F;index.html">
+<meta property="og:site_name" content="lyhcc博客">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="lyhcc博客" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+        
+            <section class="section">
+                <div class="container">
+                    <div class="columns">
+                        <div class="column is-8-tablet is-8-desktop is-9-widescreen has-order-2 column-main">
+                            <div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">Tags</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Spring 源码</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2020-01-18T11:12:03.992Z">2020-01-18</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    11 minutes read (About 1621 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/eb698fbd.html">
+                                        Spring 源码
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#spring-aop">Spring AOP</a></li>
+<li><a href="#spring-ioc">Spring IOC</a></li>
+<li><a href="#diao-shi">调试</a></li>
+<li><a href="#beanfacory-zong-jie">BeanFacory总结</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h2><span id="spring-aop">Spring AOP</span><a href="#spring-aop" class="header-anchor">$</a></h2><blockquote>
+<p>动态代理<br>多层切面在环绕通知，内部切面的返回值会影响外部的返回值</p>
+</blockquote>
+<h2><span id="spring-ioc">Spring IOC</span><a href="#spring-ioc" class="header-anchor">$</a></h2><ol>
+<li>IOC是一个容器</li>
+<li>容器启动的时候创建所有单实例对象</li>
+<li>可以直接从容器中获取到这个对象</li>
+</ol>
+<p><strong>问题</strong>  </p>
+<p>1) ioc容器的启动过程？启动时间都做了什么？什么时候创建所有单实例bean<br>2) ioc是如何创建单实例bean，并如何管理，这些Bean保存在哪里</p>
+<h2><span id="diao-shi">调试</span><a href="#diao-shi" class="header-anchor">$</a></h2><ol>
+<li>ioc = new ClassPathXmlApplicationContext(“application.xml”);<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-number">1</span>. <span class="hljs-keyword">this</span>(<span class="hljs-keyword">new</span> String[] &#123;configLocation&#125;, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">null</span>);</span><br><span class="line"><span class="hljs-number">2</span>. </span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ClassPathXmlApplicationContext</span><span class="hljs-params">(String[] configLocations, <span class="hljs-keyword">boolean</span> refresh, ApplicationContext parent)</span></span></span><br><span class="line"><span class="hljs-function">			<span class="hljs-keyword">throws</span> BeansException </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="hljs-keyword">super</span>(parent);</span><br><span class="line">		setConfigLocations(configLocations);</span><br><span class="line">		<span class="hljs-keyword">if</span> (refresh) &#123;</span><br><span class="line">			refresh();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>refresh();运行后所有Bean创建完成</strong>   </p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Override</span></span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">refresh</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> BeansException, IllegalStateException </span>&#123;</span><br><span class="line">		<span class="hljs-keyword">synchronized</span> (<span class="hljs-keyword">this</span>.startupShutdownMonitor) &#123;</span><br><span class="line">			<span class="hljs-comment">// Prepare this context for refreshing.</span></span><br><span class="line">			prepareRefresh();</span><br><span class="line"></span><br><span class="line">			<span class="hljs-comment">// Tell the subclass to refresh the internal bean factory.</span></span><br><span class="line">			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();</span><br><span class="line"></span><br><span class="line">			<span class="hljs-comment">// Prepare the bean factory for use in this context.</span></span><br><span class="line">			prepareBeanFactory(beanFactory);</span><br><span class="line"></span><br><span class="line">			<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">				<span class="hljs-comment">// Allows post-processing of the bean factory in context subclasses.</span></span><br><span class="line">				postProcessBeanFactory(beanFactory);</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">// Invoke factory processors registered as beans in the context.</span></span><br><span class="line">				invokeBeanFactoryPostProcessors(beanFactory);</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">// Register bean processors that intercept bean creation.</span></span><br><span class="line">				registerBeanPostProcessors(beanFactory);</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">// Initialize message source for this context.</span></span><br><span class="line">				initMessageSource();</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">// Initialize event multicaster for this context.</span></span><br><span class="line">				initApplicationEventMulticaster();</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">// Initialize other special beans in specific context subclasses.</span></span><br><span class="line">				onRefresh();</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">// Check for listener beans and register them.</span></span><br><span class="line">				registerListeners();</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">// Instantiate all remaining (non-lazy-init) singletons.</span></span><br><span class="line">				finishBeanFactoryInitialization(beanFactory);</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">// Last step: publish corresponding event.</span></span><br><span class="line">				finishRefresh();</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="hljs-keyword">catch</span> (BeansException ex) &#123;</span><br><span class="line">				<span class="hljs-comment">// Destroy already created singletons to avoid dangling resources.</span></span><br><span class="line">				destroyBeans();</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">// Reset 'active' flag.</span></span><br><span class="line">				cancelRefresh(ex);</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">// Propagate exception to caller.</span></span><br><span class="line">				<span class="hljs-keyword">throw</span> ex;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>解析xml配置文件并创建所有配置文件下创建的Bean，将这些信息保存起来     ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();</strong><br>initMessageSource(); 支持国际化<br>initApplicationEventMulticaster(); 初始化事件转换器<br>onRefresh(); 留给子类的方法，方便自定义容器<br>finishBeanFactoryInitialization(beanFactory); 初始化单实例Bean<br>调用上一个方法后进入， AbstractApplicationContext类中</p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">finishBeanFactoryInitialization</span><span class="hljs-params">(ConfigurableListableBeanFactory beanFactory)</span> </span>&#123;</span><br><span class="line">		<span class="hljs-comment">// Initialize conversion service for this context.</span></span><br><span class="line">		<span class="hljs-keyword">if</span> (beanFactory.containsBean(CONVERSION_SERVICE_BEAN_NAME) &amp;&amp;</span><br><span class="line">				beanFactory.isTypeMatch(CONVERSION_SERVICE_BEAN_NAME, ConversionService.class)) &#123;</span><br><span class="line">			beanFactory.setConversionService(</span><br><span class="line">					beanFactory.getBean(CONVERSION_SERVICE_BEAN_NAME, ConversionService.class));</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="hljs-comment">// Initialize LoadTimeWeaverAware beans early to allow for registering their transformers early.</span></span><br><span class="line">		String[] weaverAwareNames = beanFactory.getBeanNamesForType(LoadTimeWeaverAware.class, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">false</span>);</span><br><span class="line">		<span class="hljs-keyword">for</span> (String weaverAwareName : weaverAwareNames) &#123;</span><br><span class="line">			getBean(weaverAwareName);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="hljs-comment">// Stop using the temporary ClassLoader for type matching.</span></span><br><span class="line">		beanFactory.setTempClassLoader(<span class="hljs-keyword">null</span>);</span><br><span class="line"></span><br><span class="line">		<span class="hljs-comment">// Allow for caching all bean definition metadata, not expecting further changes.</span></span><br><span class="line">		beanFactory.freezeConfiguration();</span><br><span class="line"></span><br><span class="line">		<span class="hljs-comment">// Instantiate all remaining (non-lazy-init) singletons.</span></span><br><span class="line">		beanFactory.preInstantiateSingletons();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>beanFactory.preInstantiateSingletons(); 初始化单实例<br>DefaultListableBeanFactory</p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Override</span></span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">preInstantiateSingletons</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">		<span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.logger.isDebugEnabled()) &#123;</span><br><span class="line">			<span class="hljs-keyword">this</span>.logger.debug(<span class="hljs-string">"Pre-instantiating singletons in "</span> + <span class="hljs-keyword">this</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//拿到所有Bean创建的名字</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		List&lt;String&gt; beanNames;</span><br><span class="line">		<span class="hljs-keyword">synchronized</span> (<span class="hljs-keyword">this</span>.beanDefinitionMap) &#123;</span><br><span class="line">			<span class="hljs-comment">// Iterate over a copy to allow for init methods which in turn register new bean definitions.</span></span><br><span class="line">			<span class="hljs-comment">// While this may not be part of the regular factory bootstrap, it does otherwise work fine.</span></span><br><span class="line">			beanNames = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;(<span class="hljs-keyword">this</span>.beanDefinitionNames);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">//按顺序创建Bean</span></span><br><span class="line">		<span class="hljs-keyword">for</span> (String beanName : beanNames) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-comment">//根据BeanId获取Bean的定义信息</span></span><br><span class="line">			RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName);</span><br><span class="line">            <span class="hljs-comment">//如果Bean是单实例并且不是懒加载</span></span><br><span class="line">			<span class="hljs-keyword">if</span> (!bd.isAbstract() &amp;&amp; bd.isSingleton() &amp;&amp; !bd.isLazyInit()) &#123;</span><br><span class="line">                <span class="hljs-comment">//是否工厂bean（即是否实现FactoryBean）</span></span><br><span class="line">				<span class="hljs-keyword">if</span> (isFactoryBean(beanName)) &#123;</span><br><span class="line">					<span class="hljs-keyword">final</span> FactoryBean&lt;?&gt; factory = (FactoryBean&lt;?&gt;) getBean(FACTORY_BEAN_PREFIX + beanName);</span><br><span class="line">					<span class="hljs-keyword">boolean</span> isEagerInit;</span><br><span class="line">					<span class="hljs-keyword">if</span> (System.getSecurityManager() != <span class="hljs-keyword">null</span> &amp;&amp; factory <span class="hljs-keyword">instanceof</span> SmartFactoryBean) &#123;</span><br><span class="line">						isEagerInit = AccessController.doPrivileged(<span class="hljs-keyword">new</span> PrivilegedAction&lt;Boolean&gt;() &#123;</span><br><span class="line">							<span class="hljs-meta">@Override</span></span><br><span class="line">							<span class="hljs-function"><span class="hljs-keyword">public</span> Boolean <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">								<span class="hljs-keyword">return</span> ((SmartFactoryBean&lt;?&gt;) factory).isEagerInit();</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;, getAccessControlContext());</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">						isEagerInit = (factory <span class="hljs-keyword">instanceof</span> SmartFactoryBean &amp;&amp;</span><br><span class="line">								((SmartFactoryBean&lt;?&gt;) factory).isEagerInit());</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="hljs-keyword">if</span> (isEagerInit) &#123;</span><br><span class="line">                        <span class="hljs-comment">//创建Bean的细节</span></span><br><span class="line">						getBean(beanName);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">					getBean(beanName);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>getBean调用的是doGetBean(name, null, null, false);（位于AbstractBeanFactory）</p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">protected</span> &lt;T&gt; <span class="hljs-function">T <span class="hljs-title">doGetBean</span><span class="hljs-params">(</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">			<span class="hljs-keyword">final</span> String name, <span class="hljs-keyword">final</span> Class&lt;T&gt; requiredType, <span class="hljs-keyword">final</span> Object[] args, <span class="hljs-keyword">boolean</span> typeCheckOnly)</span></span></span><br><span class="line"><span class="hljs-function">			<span class="hljs-keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">        <span class="hljs-comment">//先获取Bean名</span></span><br><span class="line">		<span class="hljs-keyword">final</span> String beanName = transformedBeanName(name);</span><br><span class="line">		Object bean;</span><br><span class="line"></span><br><span class="line">		<span class="hljs-comment">// Eagerly check singleton cache for manually registered singletons.</span></span><br><span class="line">        <span class="hljs-comment">//先从已经创建的Bean中是否已存在</span></span><br><span class="line">		Object sharedInstance = getSingleton(beanName);</span><br><span class="line">		<span class="hljs-keyword">if</span> (sharedInstance != <span class="hljs-keyword">null</span> &amp;&amp; args == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">			<span class="hljs-keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">				<span class="hljs-keyword">if</span> (isSingletonCurrentlyInCreation(beanName)) &#123;</span><br><span class="line">					logger.debug(<span class="hljs-string">"Returning eagerly cached instance of singleton bean '"</span> + beanName +</span><br><span class="line">							<span class="hljs-string">"' that is not fully initialized yet - a consequence of a circular reference"</span>);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">					logger.debug(<span class="hljs-string">"Returning cached instance of singleton bean '"</span> + beanName + <span class="hljs-string">"'"</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			bean = getObjectForBeanInstance(sharedInstance, name, beanName, <span class="hljs-keyword">null</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">			<span class="hljs-comment">// Fail if we're already creating this bean instance:</span></span><br><span class="line">			<span class="hljs-comment">// We're assumably within a circular reference.</span></span><br><span class="line">			<span class="hljs-keyword">if</span> (isPrototypeCurrentlyInCreation(beanName)) &#123;</span><br><span class="line">				<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> BeanCurrentlyInCreationException(beanName);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="hljs-comment">// Check if bean definition exists in this factory.</span></span><br><span class="line">			BeanFactory parentBeanFactory = getParentBeanFactory();</span><br><span class="line">			<span class="hljs-keyword">if</span> (parentBeanFactory != <span class="hljs-keyword">null</span> &amp;&amp; !containsBeanDefinition(beanName)) &#123;</span><br><span class="line">				<span class="hljs-comment">// Not found -&gt; check parent.</span></span><br><span class="line">				String nameToLookup = originalBeanName(name);</span><br><span class="line">				<span class="hljs-keyword">if</span> (args != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">					<span class="hljs-comment">// Delegation to parent with explicit args.</span></span><br><span class="line">					<span class="hljs-keyword">return</span> (T) parentBeanFactory.getBean(nameToLookup, args);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">					<span class="hljs-comment">// No args -&gt; delegate to standard getBean method.</span></span><br><span class="line">					<span class="hljs-keyword">return</span> parentBeanFactory.getBean(nameToLookup, requiredType);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="hljs-keyword">if</span> (!typeCheckOnly) &#123;</span><br><span class="line">				markBeanAsCreated(beanName);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">				<span class="hljs-keyword">final</span> RootBeanDefinition mbd = getMergedLocalBeanDefinition(beanName);</span><br><span class="line">				checkMergedBeanDefinition(mbd, beanName, args);</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">// Guarantee initialization of beans that the current bean depends on.</span></span><br><span class="line">                <span class="hljs-comment">//拿到 才创建当前Bean之前需要提前创建的Bean,depends-on,有就循环创建</span></span><br><span class="line">				String[] dependsOn = mbd.getDependsOn();</span><br><span class="line">				<span class="hljs-keyword">if</span> (dependsOn != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">					<span class="hljs-keyword">for</span> (String dependsOnBean : dependsOn) &#123;</span><br><span class="line">						<span class="hljs-keyword">if</span> (isDependent(beanName, dependsOnBean)) &#123;</span><br><span class="line">							<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> BeanCreationException(<span class="hljs-string">"Circular depends-on relationship between '"</span> +</span><br><span class="line">									beanName + <span class="hljs-string">"' and '"</span> + dependsOnBean + <span class="hljs-string">"'"</span>);</span><br><span class="line">						&#125;</span><br><span class="line">						registerDependentBean(dependsOnBean, beanName);</span><br><span class="line">						getBean(dependsOnBean);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">// Create bean instance.</span></span><br><span class="line">				<span class="hljs-keyword">if</span> (mbd.isSingleton()) &#123;</span><br><span class="line">					sharedInstance = getSingleton(beanName, <span class="hljs-keyword">new</span> ObjectFactory&lt;Object&gt;() &#123;</span><br><span class="line">						<span class="hljs-meta">@Override</span></span><br><span class="line">						<span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getObject</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">							<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">								<span class="hljs-keyword">return</span> createBean(beanName, mbd, args);</span><br><span class="line">							&#125;</span><br><span class="line">							<span class="hljs-keyword">catch</span> (BeansException ex) &#123;</span><br><span class="line">								<span class="hljs-comment">// Explicitly remove instance from singleton cache: It might have been put there</span></span><br><span class="line">								<span class="hljs-comment">// eagerly by the creation process, to allow for circular reference resolution.</span></span><br><span class="line">								<span class="hljs-comment">// Also remove any beans that received a temporary reference to the bean.</span></span><br><span class="line">								destroySingleton(beanName);</span><br><span class="line">								<span class="hljs-keyword">throw</span> ex;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;);</span><br><span class="line">					bean = getObjectForBeanInstance(sharedInstance, name, beanName, mbd);</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (mbd.isPrototype()) &#123;</span><br><span class="line">					<span class="hljs-comment">// It's a prototype -&gt; create a new instance.</span></span><br><span class="line">					Object prototypeInstance = <span class="hljs-keyword">null</span>;</span><br><span class="line">					<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">						beforePrototypeCreation(beanName);</span><br><span class="line">						prototypeInstance = createBean(beanName, mbd, args);</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="hljs-keyword">finally</span> &#123;</span><br><span class="line">						afterPrototypeCreation(beanName);</span><br><span class="line">					&#125;</span><br><span class="line">					bean = getObjectForBeanInstance(prototypeInstance, name, beanName, mbd);</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">					String scopeName = mbd.getScope();</span><br><span class="line">					<span class="hljs-keyword">final</span> Scope scope = <span class="hljs-keyword">this</span>.scopes.get(scopeName);</span><br><span class="line">					<span class="hljs-keyword">if</span> (scope == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">						<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(<span class="hljs-string">"No Scope registered for scope '"</span> + scopeName + <span class="hljs-string">"'"</span>);</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">						Object scopedInstance = scope.get(beanName, <span class="hljs-keyword">new</span> ObjectFactory&lt;Object&gt;() &#123;</span><br><span class="line">							<span class="hljs-meta">@Override</span></span><br><span class="line">							<span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getObject</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">								beforePrototypeCreation(beanName);</span><br><span class="line">								<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">									<span class="hljs-keyword">return</span> createBean(beanName, mbd, args);</span><br><span class="line">								&#125;</span><br><span class="line">								<span class="hljs-keyword">finally</span> &#123;</span><br><span class="line">									afterPrototypeCreation(beanName);</span><br><span class="line">								&#125;</span><br><span class="line">							&#125;</span><br><span class="line">						&#125;);</span><br><span class="line">						bean = getObjectForBeanInstance(scopedInstance, name, beanName, mbd);</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="hljs-keyword">catch</span> (IllegalStateException ex) &#123;</span><br><span class="line">						<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> BeanCreationException(beanName,</span><br><span class="line">								<span class="hljs-string">"Scope '"</span> + scopeName + <span class="hljs-string">"' is not active for the current thread; "</span> +</span><br><span class="line">								<span class="hljs-string">"consider defining a scoped proxy for this bean if you intend to refer to it from a singleton"</span>,</span><br><span class="line">								ex);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">catch</span> (BeansException ex) &#123;</span><br><span class="line">				cleanupAfterBeanCreationFailure(beanName);</span><br><span class="line">				<span class="hljs-keyword">throw</span> ex;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="hljs-comment">// Check if required type matches the type of the actual bean instance.</span></span><br><span class="line">		<span class="hljs-keyword">if</span> (requiredType != <span class="hljs-keyword">null</span> &amp;&amp; bean != <span class="hljs-keyword">null</span> &amp;&amp; !requiredType.isAssignableFrom(bean.getClass())) &#123;</span><br><span class="line">			<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">				<span class="hljs-keyword">return</span> getTypeConverter().convertIfNecessary(bean, requiredType);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">catch</span> (TypeMismatchException ex) &#123;</span><br><span class="line">				<span class="hljs-keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">					logger.debug(<span class="hljs-string">"Failed to convert bean '"</span> + name + <span class="hljs-string">"' to required type ["</span> +</span><br><span class="line">							ClassUtils.getQualifiedName(requiredType) + <span class="hljs-string">"]"</span>, ex);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> BeanNotOfRequiredTypeException(name, requiredType, bean.getClass());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">return</span> (T) bean;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>DefaultSingletonBeanRegistry类<br>getSingleton 方法</p>
+</blockquote>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * Return the (raw) singleton object registered under the given name,</span></span><br><span class="line"><span class="hljs-comment"> * creating and registering a new one if none registered yet.</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> beanName the name of the bean</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> singletonFactory the ObjectFactory to lazily create the singleton</span></span><br><span class="line"><span class="hljs-comment"> * with, if necessary</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@return</span> the registered singleton object</span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getSingleton</span><span class="hljs-params">(String beanName, ObjectFactory&lt;?&gt; singletonFactory)</span> </span>&#123;</span><br><span class="line">	Assert.notNull(beanName, <span class="hljs-string">"'beanName' must not be null"</span>);</span><br><span class="line">	<span class="hljs-keyword">synchronized</span> (<span class="hljs-keyword">this</span>.singletonObjects) &#123;</span><br><span class="line">           <span class="hljs-comment">//先将Bean get出来</span></span><br><span class="line">		Object singletonObject = <span class="hljs-keyword">this</span>.singletonObjects.get(beanName);</span><br><span class="line">		<span class="hljs-keyword">if</span> (singletonObject == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">			<span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.singletonsCurrentlyInDestruction) &#123;</span><br><span class="line">				<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> BeanCreationNotAllowedException(beanName,</span><br><span class="line">						<span class="hljs-string">"Singleton bean creation not allowed while the singletons of this factory are in destruction "</span> +</span><br><span class="line">						<span class="hljs-string">"(Do not request a bean from a BeanFactory in a destroy method implementation!)"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">				logger.debug(<span class="hljs-string">"Creating shared instance of singleton bean '"</span> + beanName + <span class="hljs-string">"'"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			beforeSingletonCreation(beanName);</span><br><span class="line">			<span class="hljs-keyword">boolean</span> recordSuppressedExceptions = (<span class="hljs-keyword">this</span>.suppressedExceptions == <span class="hljs-keyword">null</span>);</span><br><span class="line">			<span class="hljs-keyword">if</span> (recordSuppressedExceptions) &#123;</span><br><span class="line">				<span class="hljs-keyword">this</span>.suppressedExceptions = <span class="hljs-keyword">new</span> LinkedHashSet&lt;Exception&gt;();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">				singletonObject = singletonFactory.getObject();</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">catch</span> (BeanCreationException ex) &#123;</span><br><span class="line">				<span class="hljs-keyword">if</span> (recordSuppressedExceptions) &#123;</span><br><span class="line">					<span class="hljs-keyword">for</span> (Exception suppressedException : <span class="hljs-keyword">this</span>.suppressedExceptions) &#123;</span><br><span class="line">						ex.addRelatedCause(suppressedException);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">throw</span> ex;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">finally</span> &#123;</span><br><span class="line">				<span class="hljs-keyword">if</span> (recordSuppressedExceptions) &#123;</span><br><span class="line">					<span class="hljs-keyword">this</span>.suppressedExceptions = <span class="hljs-keyword">null</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				afterSingletonCreation(beanName);</span><br><span class="line">			&#125;</span><br><span class="line">               <span class="hljs-comment">//添加创建的bean</span></span><br><span class="line">			addSingleton(beanName, singletonObject);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">return</span> (singletonObject != NULL_OBJECT ? singletonObject : <span class="hljs-keyword">null</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+</blockquote>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/** Cache of singleton objects: bean name --&gt; bean instance */</span><br><span class="line">private final Map&lt;String, Object&gt; singletonObjects = new ConcurrentHashMap&lt;String, Object&gt;(64);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>addSingleton方法(创建的Bean最终保存)<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addSingleton</span><span class="hljs-params">(String beanName, Object singletonObject)</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">synchronized</span> (<span class="hljs-keyword">this</span>.singletonObjects) &#123;</span><br><span class="line">		<span class="hljs-keyword">this</span>.singletonObjects.put(beanName, (singletonObject != <span class="hljs-keyword">null</span> ? singletonObject : NULL_OBJECT));</span><br><span class="line">		<span class="hljs-keyword">this</span>.singletonFactories.remove(beanName);</span><br><span class="line">		<span class="hljs-keyword">this</span>.earlySingletonObjects.remove(beanName);</span><br><span class="line">		<span class="hljs-keyword">this</span>.registeredSingletons.add(beanName);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2><span id="beanfacory-zong-jie">BeanFacory总结</span><a href="#beanfacory-zong-jie" class="header-anchor">$</a></h2><blockquote>
+<p>BeanFactory和ApplicationContext的区别？<br>ApplicationContext是BeanFactory的子接口<br>BeanFactory ： Bean工厂，赋值Bean的创建，容器中保存的单例Bean其实是一个map<br>ApplicationContext：容器接口，负责容器容器功能的实现(可以基于BeanFactory创建好的对象之上完成强大的容器)<br>容器可以从map获取这个Bean，并且aop，DI(依赖注入)这些功能是在ApplicationContext接口下的这些类里面<br><strong>BeanFactory最底层的接口，ApplicationContext留给程序员使用的ioc容器接口</strong><br><strong>Spring最大的模式就是工厂模式</strong></p>
+</blockquote>
+
+                            </div>
+                            
+                                    
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+
+                        </div>
+                        
+    
+        
+            
+                
+                    <div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+                        
+                            
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191026160026.png" alt="lyhcc">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        lyhcc
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        DT Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Hunan,China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        69
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        20
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        73
+                    </p>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/lyhcc" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/lyhcc">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+                                
+                            
+                                
+                            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/lyhcc" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">lyhcc</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+                                
+                            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/BigData/">
+            <span class="level-start">
+                <span class="level-item">BigData</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">15</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/BigData/Hadoop/">
+            <span class="level-start">
+                <span class="level-item">Hadoop</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/BigData/Kafka/">
+            <span class="level-start">
+                <span class="level-item">Kafka</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/DataMining/">
+            <span class="level-start">
+                <span class="level-item">DataMining</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java-Web/">
+            <span class="level-start">
+                <span class="level-item">Java Web</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Leecode/">
+            <span class="level-start">
+                <span class="level-item">Leecode</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Leetcode/">
+            <span class="level-start">
+                <span class="level-item">Leetcode</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Python/Python%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            <span class="level-start">
+                <span class="level-item">Python可视化</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Shell/">
+            <span class="level-start">
+                <span class="level-item">Shell</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">14</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Sprig-MVC/">
+            <span class="level-start">
+                <span class="level-item">Sprig MVC</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Spring/">
+            <span class="level-start">
+                <span class="level-item">Spring</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Spring-MVC/">
+            <span class="level-start">
+                <span class="level-item">Spring MVC</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/others/">
+            <span class="level-start">
+                <span class="level-item">others</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+                                
+                            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">AJAX 和JSON的使用</a> <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/HiddenHttpMethodFilter-REST/" style="font-size: 10px;">HiddenHttpMethodFilter (REST)</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" style="font-size: 10px;">Java Web过滤器和监听器</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E4%B9%8Bbroker/" style="font-size: 10px;">Kafka之broker</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/" style="font-size: 10px;">Kafka生产与消费</a> <a href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 10px;">Linux 工具包</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/MySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/" style="font-size: 10px;">MySQL数据备份</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" style="font-size: 10px;">Shell 之Bash数学运算</a> <a href="/tags/Shell-%E4%B9%8Bfind%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" style="font-size: 10px;">Shell 之find、which、locate、whereis命令总结</a> <a href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">Shell 的函数的定义和使用</a> <a href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" style="font-size: 10px;">Shell 的字符串处理</a> <a href="/tags/Shell%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">Shell之脚本功能概述</a> <a href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell全局变量和局部变量</a> <a href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Shell变量的替换和测试</a> <a href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/" style="font-size: 10px;">Shell命令的替换</a> <a href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Shell文件查找find命令</a> <a href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell有类型变量</a> <a href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/" style="font-size: 10px;">Shell编程 awk</a> <a href="/tags/Sping%E4%B8%8EJava-Web/" style="font-size: 10px;">Sping与Java Web</a> <a href="/tags/Spring-AOP/" style="font-size: 10px;">Spring AOP</a> <a href="/tags/Spring-AOP-%E4%B9%8B%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84AOP/" style="font-size: 10px;">Spring AOP 之基于注解的AOP</a> <a href="/tags/Spring-AOP%E5%BC%95%E5%85%A5%E4%B9%8BJava%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97/" style="font-size: 10px;">Spring AOP引入之Java动态代理打印日志</a> <a href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">Spring IOC实验</a> <a href="/tags/Spring-JDBCTemplate/" style="font-size: 10px;">Spring JDBCTemplate</a> <a href="/tags/Spring-%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">Spring 声明式事务</a> <a href="/tags/Spring-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">Spring 源码</a> <a href="/tags/SpringIOC%E6%80%BB%E7%BB%93/" style="font-size: 10px;">SpringIOC总结</a> <a href="/tags/SpringMVC-%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%85%A5/" style="font-size: 10px;">SpringMVC 请求数据传入</a> <a href="/tags/SpringMVC%E4%B9%8B-RequestMapping/" style="font-size: 10px;">SpringMVC之@RequestMapping</a> <a href="/tags/SpringMVC%E4%B9%8BHelloWorld/" style="font-size: 10px;">SpringMVC之HelloWorld</a> <a href="/tags/SpringMVC%E4%B9%8BModelAttribute/" style="font-size: 10px;">SpringMVC之ModelAttribute</a> <a href="/tags/SpringMVC%E4%B9%8B%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%87%BA/" style="font-size: 10px;">SpringMVC之响应数据传出</a> <a href="/tags/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 10px;">SpringMVC源码分析</a> <a href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/" style="font-size: 10px;">Spring初始之HelloWorld</a> <a href="/tags/Spring%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Spring初识</a> <a href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Spring的单元测试</a> <a href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Tomcat 的安装与配置</a> <a href="/tags/Vim%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/" style="font-size: 10px;">Vim多行注释</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/kafka%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">kafka通信</a> <a href="/tags/mysql%E5%91%BD%E4%BB%A4%E8%AF%A6%E6%83%85/" style="font-size: 10px;">mysql命令详情</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a> <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/" style="font-size: 10px;">文本处理三剑客(grep/sed/awk)</a>
+    </div>
+</div>
+                                
+                                    
+                                        <div class="column-right-shadow is-hidden-widescreen ">
+                                            
+                                                <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/post/548d7f45.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC之ModelAttribute">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-20T08:34:13.329Z">2020-02-20</time></div>
+                    <a href="/post/548d7f45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC之ModelAttribute</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Sprig-MVC/">Sprig MVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/eaa9b691.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC源码分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T11:04:57.382Z">2020-02-19</time></div>
+                    <a href="/post/eaa9b691.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC源码分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/4c7891d3.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC 请求数据传入">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T04:29:43.643Z">2020-02-19</time></div>
+                    <a href="/post/4c7891d3.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC 请求数据传入</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/f51ba3e7.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC之响应数据传出">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-18T12:09:07.754Z">2020-02-18</time></div>
+                    <a href="/post/f51ba3e7.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC之响应数据传出</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/fdd838d6.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HiddenHttpMethodFilter (REST)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T08:38:51.893Z">2020-02-16</time></div>
+                    <a href="/post/fdd838d6.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">HiddenHttpMethodFilter (REST)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+                                                    
+                                                <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">23</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">18</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">22</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+                                                    
+                                                <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                        <span class="tag">AJAX 和JSON的使用</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DOM%E8%A7%A3%E6%9E%90/">
+                        <span class="tag">DOM解析</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google%E4%B8%89%E5%AE%9D/">
+                        <span class="tag">Google三宝</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HDFS%E5%BF%AB%E7%85%A7/">
+                        <span class="tag">HDFS快照</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/">
+                        <span class="tag">Hadooop介绍</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-IPC/">
+                        <span class="tag">Hadoop IPC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/">
+                        <span class="tag">Hadoop IPC 数据分帧和读写</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/">
+                        <span class="tag">Hadoop IPC通信中是如何知道数据长度的</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-RPC/">
+                        <span class="tag">Hadoop RPC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/">
+                        <span class="tag">Hadoop 协议</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/">
+                        <span class="tag">Hadoop 压缩</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/">
+                        <span class="tag">Hadoop 如何建立 IPC连接</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/">
+                        <span class="tag">Hadoop 文件分片</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/">
+                        <span class="tag">Hadoop 通信机制</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                        <span class="tag">Hadoop配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HiddenHttpMethodFilter-REST/">
+                        <span class="tag">HiddenHttpMethodFilter (REST)</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java-NIO/">
+                        <span class="tag">Java NIO</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                        <span class="tag">Java NIO实例：回显服务器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java-Proxy/">
+                        <span class="tag">Java Proxy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/">
+                        <span class="tag">Java Web过滤器和监听器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86/">
+                        <span class="tag">Java代理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/">
+                        <span class="tag">Java代理机制</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/">
+                        <span class="tag">Java远程调用</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                        <span class="tag">Java配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E4%B9%8Bbroker/">
+                        <span class="tag">Kafka之broker</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Kafka初识</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/">
+                        <span class="tag">Kafka生产与消费</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/">
+                        <span class="tag">Linux 工具包</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/">
+                        <span class="tag">MapReduce 通信协议</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/">
+                        <span class="tag">MapReduce介绍</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/">
+                        <span class="tag">MySQL数据备份</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NoSSQL%E7%89%B9%E7%82%B9/">
+                        <span class="tag">NoSSQL特点</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RMI/">
+                        <span class="tag">RMI</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
+                        <span class="tag">Shell 之Bash数学运算</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E4%B9%8Bfind%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+                        <span class="tag">Shell 之find、which、locate、whereis命令总结</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/">
+                        <span class="tag">Shell 的函数的定义和使用</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/">
+                        <span class="tag">Shell 的字符串处理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0/">
+                        <span class="tag">Shell之脚本功能概述</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/">
+                        <span class="tag">Shell全局变量和局部变量</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/">
+                        <span class="tag">Shell变量的替换和测试</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/">
+                        <span class="tag">Shell命令的替换</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/">
+                        <span class="tag">Shell文件查找find命令</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/">
+                        <span class="tag">Shell有类型变量</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/">
+                        <span class="tag">Shell编程 awk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Sping%E4%B8%8EJava-Web/">
+                        <span class="tag">Sping与Java Web</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-AOP/">
+                        <span class="tag">Spring AOP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-AOP-%E4%B9%8B%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84AOP/">
+                        <span class="tag">Spring AOP 之基于注解的AOP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-AOP%E5%BC%95%E5%85%A5%E4%B9%8BJava%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97/">
+                        <span class="tag">Spring AOP引入之Java动态代理打印日志</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/">
+                        <span class="tag">Spring IOC实验</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-JDBCTemplate/">
+                        <span class="tag">Spring JDBCTemplate</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+                        <span class="tag">Spring 声明式事务</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-%E6%BA%90%E7%A0%81/">
+                        <span class="tag">Spring 源码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringIOC%E6%80%BB%E7%BB%93/">
+                        <span class="tag">SpringIOC总结</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC-%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%85%A5/">
+                        <span class="tag">SpringMVC 请求数据传入</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B-RequestMapping/">
+                        <span class="tag">SpringMVC之@RequestMapping</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BHelloWorld/">
+                        <span class="tag">SpringMVC之HelloWorld</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BModelAttribute/">
+                        <span class="tag">SpringMVC之ModelAttribute</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%87%BA/">
+                        <span class="tag">SpringMVC之响应数据传出</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+                        <span class="tag">SpringMVC源码分析</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/">
+                        <span class="tag">Spring初始之HelloWorld</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Spring初识</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
+                        <span class="tag">Spring的单元测试</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">
+                        <span class="tag">Tomcat 的安装与配置</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Vim%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/">
+                        <span class="tag">Vim多行注释</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                        <span class="tag">Windows操作系统配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/">
+                        <span class="tag">hadoop序列化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/">
+                        <span class="tag">hadoop配置文件解析</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/kafka%E9%80%9A%E4%BF%A1/">
+                        <span class="tag">kafka通信</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/mysql%E5%91%BD%E4%BB%A4%E8%AF%A6%E6%83%85/">
+                        <span class="tag">mysql命令详情</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/">
+                        <span class="tag">什么是大数据</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/">
+                        <span class="tag">分布式存储管理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/">
+                        <span class="tag">十大经典算法优缺点</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/">
+                        <span class="tag">文本处理三剑客(grep/sed/awk)</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+                                                    
+                                        </div>
+                                        
+                    </div>
+                    
+                            
+    
+        
+            
+                
+                    <div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+                        
+                            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/post/548d7f45.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC之ModelAttribute">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-20T08:34:13.329Z">2020-02-20</time></div>
+                    <a href="/post/548d7f45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC之ModelAttribute</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Sprig-MVC/">Sprig MVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/eaa9b691.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC源码分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T11:04:57.382Z">2020-02-19</time></div>
+                    <a href="/post/eaa9b691.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC源码分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/4c7891d3.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC 请求数据传入">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T04:29:43.643Z">2020-02-19</time></div>
+                    <a href="/post/4c7891d3.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC 请求数据传入</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/f51ba3e7.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC之响应数据传出">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-18T12:09:07.754Z">2020-02-18</time></div>
+                    <a href="/post/f51ba3e7.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC之响应数据传出</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/fdd838d6.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HiddenHttpMethodFilter (REST)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T08:38:51.893Z">2020-02-16</time></div>
+                    <a href="/post/fdd838d6.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">HiddenHttpMethodFilter (REST)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+                                
+                            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">23</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">18</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">22</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+                                
+                            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                        <span class="tag">AJAX 和JSON的使用</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DOM%E8%A7%A3%E6%9E%90/">
+                        <span class="tag">DOM解析</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google%E4%B8%89%E5%AE%9D/">
+                        <span class="tag">Google三宝</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HDFS%E5%BF%AB%E7%85%A7/">
+                        <span class="tag">HDFS快照</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/">
+                        <span class="tag">Hadooop介绍</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-IPC/">
+                        <span class="tag">Hadoop IPC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/">
+                        <span class="tag">Hadoop IPC 数据分帧和读写</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/">
+                        <span class="tag">Hadoop IPC通信中是如何知道数据长度的</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-RPC/">
+                        <span class="tag">Hadoop RPC</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/">
+                        <span class="tag">Hadoop 协议</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/">
+                        <span class="tag">Hadoop 压缩</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/">
+                        <span class="tag">Hadoop 如何建立 IPC连接</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/">
+                        <span class="tag">Hadoop 文件分片</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/">
+                        <span class="tag">Hadoop 通信机制</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                        <span class="tag">Hadoop配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/HiddenHttpMethodFilter-REST/">
+                        <span class="tag">HiddenHttpMethodFilter (REST)</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java-NIO/">
+                        <span class="tag">Java NIO</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                        <span class="tag">Java NIO实例：回显服务器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java-Proxy/">
+                        <span class="tag">Java Proxy</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/">
+                        <span class="tag">Java Web过滤器和监听器</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86/">
+                        <span class="tag">Java代理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/">
+                        <span class="tag">Java代理机制</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/">
+                        <span class="tag">Java远程调用</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                        <span class="tag">Java配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E4%B9%8Bbroker/">
+                        <span class="tag">Kafka之broker</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Kafka初识</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/">
+                        <span class="tag">Kafka生产与消费</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/">
+                        <span class="tag">Linux 工具包</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/">
+                        <span class="tag">MapReduce 通信协议</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/">
+                        <span class="tag">MapReduce介绍</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/">
+                        <span class="tag">MySQL数据备份</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NoSSQL%E7%89%B9%E7%82%B9/">
+                        <span class="tag">NoSSQL特点</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RMI/">
+                        <span class="tag">RMI</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
+                        <span class="tag">Shell 之Bash数学运算</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E4%B9%8Bfind%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+                        <span class="tag">Shell 之find、which、locate、whereis命令总结</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/">
+                        <span class="tag">Shell 的函数的定义和使用</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/">
+                        <span class="tag">Shell 的字符串处理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0/">
+                        <span class="tag">Shell之脚本功能概述</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/">
+                        <span class="tag">Shell全局变量和局部变量</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/">
+                        <span class="tag">Shell变量的替换和测试</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/">
+                        <span class="tag">Shell命令的替换</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/">
+                        <span class="tag">Shell文件查找find命令</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/">
+                        <span class="tag">Shell有类型变量</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/">
+                        <span class="tag">Shell编程 awk</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Sping%E4%B8%8EJava-Web/">
+                        <span class="tag">Sping与Java Web</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-AOP/">
+                        <span class="tag">Spring AOP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-AOP-%E4%B9%8B%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84AOP/">
+                        <span class="tag">Spring AOP 之基于注解的AOP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-AOP%E5%BC%95%E5%85%A5%E4%B9%8BJava%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97/">
+                        <span class="tag">Spring AOP引入之Java动态代理打印日志</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/">
+                        <span class="tag">Spring IOC实验</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-JDBCTemplate/">
+                        <span class="tag">Spring JDBCTemplate</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+                        <span class="tag">Spring 声明式事务</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring-%E6%BA%90%E7%A0%81/">
+                        <span class="tag">Spring 源码</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringIOC%E6%80%BB%E7%BB%93/">
+                        <span class="tag">SpringIOC总结</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC-%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%85%A5/">
+                        <span class="tag">SpringMVC 请求数据传入</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B-RequestMapping/">
+                        <span class="tag">SpringMVC之@RequestMapping</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BHelloWorld/">
+                        <span class="tag">SpringMVC之HelloWorld</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BModelAttribute/">
+                        <span class="tag">SpringMVC之ModelAttribute</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%87%BA/">
+                        <span class="tag">SpringMVC之响应数据传出</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+                        <span class="tag">SpringMVC源码分析</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/">
+                        <span class="tag">Spring初始之HelloWorld</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring%E5%88%9D%E8%AF%86/">
+                        <span class="tag">Spring初识</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
+                        <span class="tag">Spring的单元测试</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">
+                        <span class="tag">Tomcat 的安装与配置</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Vim%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/">
+                        <span class="tag">Vim多行注释</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                        <span class="tag">Windows操作系统配置文件</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/">
+                        <span class="tag">hadoop序列化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/">
+                        <span class="tag">hadoop配置文件解析</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/kafka%E9%80%9A%E4%BF%A1/">
+                        <span class="tag">kafka通信</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/mysql%E5%91%BD%E4%BB%A4%E8%AF%A6%E6%83%85/">
+                        <span class="tag">mysql命令详情</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/">
+                        <span class="tag">什么是大数据</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/">
+                        <span class="tag">分布式存储管理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/">
+                        <span class="tag">十大经典算法优缺点</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/">
+                        <span class="tag">文本处理三剑客(grep/sed/awk)</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+                                
+                                    
+                    </div>
+                    
+                    </div>
+                </div>
+            </section>
+            <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="lyhcc博客" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 John Doe&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+<script src="/js/animation.js"></script>
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+    
+    
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+    
+    
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+                    
+                        <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+                            
+</body>
+
+</html>
