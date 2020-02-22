@@ -126,8 +126,122 @@
             <section class="section">
                 <div class="container">
                     <div class="columns">
-                        <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                        <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main">
                             
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2020-01-17T14:00:49.348Z">2020-01-17</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    20 minutes read (About 2926 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/e8c12e4b.html">
+                                        Spring 声明式事务
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <div class="tocStart"></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#shi-wu-gai-shu">事务概述</a></li>
+<li><a href="#spring-zhong-de-shu-ju-ku-guan-li">Spring 中的数据库管理</a></li>
+<li><a href="#sheng-ming-shi-shi-wu">声明式事务</a></li>
+<li><a href="#spring-ti-gong-de-shi-wu-guan-li-qi">Spring 提供的事务管理器</a></li>
+<li><a href="#ce-shi">测试</a><ul>
+<li><a href="#ce-shi-shu-ju-ku">测试数据库</a></li>
+<li><a href="#pei-zhi-wen-jian">配置文件</a></li>
+</ul>
+</li>
+<li><a href="#spring-shi-wu-can-shu">Spring事务参数</a></li>
+<li><a href="#shu-ju-ku-shi-wu-bing-fa-wen-ti">数据库事务并发问题</a><ul>
+<li><a href="#zang-du">脏读</a></li>
+<li><a href="#bu-ke-chong-fu-du">不可重复读</a></li>
+<li><a href="#huan-du">幻读</a></li>
+</ul>
+</li>
+<li><a href="#shi-wu-ge-chi-ji-bie">事务隔离级别</a><ul>
+<li><a href="#du-wei-ti-jiao-read-uncommitted">读未提交：READ UNCOMMITTED</a></li>
+<li><a href="#du-yi-ti-jiao-read-committed">读已提交：READ COMMITTED</a></li>
+<li><a href="#ke-chong-fu-du-repeatable-read">可重复读：REPEATABLE READ</a></li>
+<li><a href="#chuan-xing-hua-serializable">串行化：SERIALIZABLE</a></li>
+<li><a href="#ge-ge-ge-chi-ji-bie-jie-jue-bing-fa-wen-ti-de-neng-li-jian-xia-biao">各个隔离级别解决并发问题的能力见下表</a></li>
+<li><a href="#ge-chong-shu-ju-ku-chan-pin-dui-shi-wu-ge-chi-ji-bie-de-zhi-chi-cheng-du">各种数据库产品对事务隔离级别的支持程度</a></li>
+<li><a href="#spring-ji-yu-xml-shi-xian-shi-wu-ge-chi-ji-bie-she-zhi">Spring 基于XML实现事务隔离级别设置</a></li>
+</ul>
+</li>
+<li><a href="#spring-shi-wu-de-chuan-bo-xing-wei">Spring事务的传播行为</a><ul>
+<li><a href="#jian-jie">简介</a></li>
+<li><a href="#ce-shi-1">测试</a></li>
+<li><a href="#shuo-ming">说明</a></li>
+</ul>
+</li>
+<li><a href="#shi-wu-kong-zhi-xml-shi-xian">事务控制（XML实现）</a></li>
+</ul>
+<!-- tocstop -->
+
+<div class="tocEnd"></div>
+
+<h2 id="事务概述"><a href="#事务概述" class="headerlink" title="事务概述"></a>事务概述</h2><ul>
+<li>在JavaEE企业级开发的应用领域，为了保证数据的 <strong>完整性和一致性</strong> ，必须引入数据库事务的概念，所以事务管理是企业级应用程序开发中必不可少的技术。</li>
+<li>事务就是一组由于逻辑上紧密关联而合并成一个整体(工作单元)的多个数据库操作，这些操作 <strong>要么都执行，要么都不执行</strong> 。</li>
+<li>事务的四个关键属性(ACID)<ul>
+<li><strong>原子性</strong> (atomicity)：“原子”的本意是“不可再分”，事务的原子性表现为一个事务中涉及到的多个操作在逻辑上缺一不可。事务的原子性要求事务中的所有操作要么都执行，要么都不执行。</li>
+<li><strong>一致性</strong> (consistency)：“一致”指的是数据的一致，具体是指：所有数据都处于满足业务规则的一致性状态。一致性原则要求：一个事务中不管涉及到多少个操作，都必须保证事务执行之前数据是正确的，事务执行之后数据仍然是正确的。如果一个事务在执行的过程中，其中某一个或某几个操作失败了，则必须将其他所有操作撤销，将数据恢复到事务执行之前的状态，这就是回滚。</li>
+<li><strong>隔离性</strong> (isolation)：在应用程序实际运行过程中，事务往往是并发执行的，所以很有可能有许多事务同时处理相同的数据，因此每个事务都应该与其他事务隔离开来，防止数据损坏。隔离性原则要求多个事务在并发执行过程中不会互相干扰。</li>
+<li>持久性(durability)：持久性原则要求事务执行完成后，对数据的修改永久的保存下来，不会因各种系统错误或其他意外情况而受到影响。通常情况下，事务对数据的修改应该被写入到持久化存储器中。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>拓展：</strong> 在大数据中的新型数据库中存在严格一致性</p>
+<hr>
+                            </div>
+                            
+                                    
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/e8c12e4b.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
     
     <div class="card">
         
@@ -743,68 +857,6 @@
 
                         
 
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2020-01-13T12:39:28.196Z">2020-01-13</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Kafka/">Kafka</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    a few seconds read (About 81 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/b56fd6c4.html">
-                                        BigData/Kafka/Kafka之broker
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <div class="toc">
-
-<!-- toc -->
-
-<ul>
-<li><a href="#kafka-qi-dong-guo-cheng">Kafka启动过程</a></li>
-</ul>
-<!-- tocstop -->
-
-</div>
-
-<h2><span id="kafka-qi-dong-guo-cheng">Kafka启动过程</span><a href="#kafka-qi-dong-guo-cheng" class="header-anchor">$</a></h2><blockquote>
-<p>首先执行 ./bin/kafka-server-start.sh ./config/server.properties &amp;<br>里面的最后一句 exec $base_dir/kafka-run-class.sh $EXTRA_ARGS kafka.Kafka “$@”执行kafka.Kafka类，从里面可以发现，它使用了KafkaServerStartable，里面封装有KafkaServer，最终startup执行的是KafkaServer，KafkaServer里面的参数说明</p>
-</blockquote>
-<figure class="highlight scala hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-                            </div>
-                            
-                                    
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
 
     
 <div class="card card-transparent">
@@ -875,7 +927,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        69
+                        70
                     </p>
                 </div>
             </div>
@@ -1132,6 +1184,7 @@
 </div>
                                 
                                     
+                                        <!-- <div class="column-right-shadow is-hidden-widescreen "> -->
                                         <div class="column-right-shadow is-hidden-widescreen ">
                                             
                                                 <div class="card widget">
@@ -1139,6 +1192,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/post/652cd08.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC/SpringMVC之视图解析器">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-22T04:19:24.133Z">2020-02-22</time></div>
+                    <a href="/post/652cd08.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC/SpringMVC之视图解析器</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1216,25 +1288,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/fdd838d6.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HiddenHttpMethodFilter (REST)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T08:38:51.893Z">2020-02-16</time></div>
-                    <a href="/post/fdd838d6.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">HiddenHttpMethodFilter (REST)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
                                                     
@@ -1252,7 +1305,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -1824,6 +1877,7 @@
                     </div>
                     
                             
+                                
     
         
             
@@ -1835,6 +1889,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/post/652cd08.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC/SpringMVC之视图解析器">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-22T04:19:24.133Z">2020-02-22</time></div>
+                    <a href="/post/652cd08.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC/SpringMVC之视图解析器</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1912,25 +1985,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/fdd838d6.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HiddenHttpMethodFilter (REST)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T08:38:51.893Z">2020-02-16</time></div>
-                    <a href="/post/fdd838d6.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">HiddenHttpMethodFilter (REST)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
                                 
@@ -1948,7 +2002,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -2518,6 +2572,8 @@
                                     
                     </div>
                     
+
+                                    
                     </div>
                 </div>
             </section>

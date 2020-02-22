@@ -126,8 +126,52 @@
             <section class="section">
                 <div class="container">
                     <div class="columns">
-                        <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                        <div class="column is-8-tablet is-8-desktop is-8-widescreen has-order-2 column-main">
                             
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2020-02-22T04:19:24.133Z">2020-02-22</time>
+                                
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 0 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/652cd08.html">
+                                        SpringMVC/SpringMVC之视图解析器
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                
+                            </div>
+                            
+                                    
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
     
     <div class="card">
         
@@ -222,7 +266,7 @@
                                             <span class="level-item has-text-grey">
                     
                     
-                    16 minutes read (About 2350 words)
+                    26 minutes read (About 3843 words)
                 </span>
                                             
                                                 
@@ -238,7 +282,7 @@
                             </h1>
                             <div class="content">
 
-                                <div class="toc">
+                                <div class="tocStart"></div>
 
 <!-- toc -->
 
@@ -248,118 +292,23 @@
 </ul>
 <!-- tocstop -->
 
-</div>
+<div class="tocEnd"></div>
 
-<h2><span id="spring-mvc-zhong-dispatchservlet-yun-xing-liu-cheng">Spring MVC中DispatchServlet运行流程</span><a href="#spring-mvc-zhong-dispatchservlet-yun-xing-liu-cheng" class="header-anchor">$</a></h2><p><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200219190425.png" alt></p>
-<ol>
-<li><p>doDispatch()详细细节</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doDispatch</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		HttpServletRequest processedRequest = request;</span><br><span class="line">		HandlerExecutionChain mappedHandler = <span class="hljs-keyword">null</span>;</span><br><span class="line">		<span class="hljs-keyword">boolean</span> multipartRequestParsed = <span class="hljs-keyword">false</span>;</span><br><span class="line"></span><br><span class="line">		WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);</span><br><span class="line"></span><br><span class="line">		<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">			ModelAndView mv = <span class="hljs-keyword">null</span>;</span><br><span class="line">			Exception dispatchException = <span class="hljs-keyword">null</span>;</span><br><span class="line"></span><br><span class="line">			<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">                <span class="hljs-comment">//1、 检查是否文件上传请求</span></span><br><span class="line">				processedRequest = checkMultipart(request);</span><br><span class="line">				multipartRequestParsed = processedRequest != request;</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">/****** Determine handler for the current request.*/</span></span><br><span class="line">                <span class="hljs-comment">//2、根据当前的请求地址找到那个类能来处理</span></span><br><span class="line">				mappedHandler = getHandler(processedRequest);</span><br><span class="line">				<span class="hljs-keyword">if</span> (mappedHandler == <span class="hljs-keyword">null</span> || mappedHandler.getHandler() == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">                    <span class="hljs-comment">//3、如果没有找到处理器可以处理当前请求，抛出异常</span></span><br><span class="line">					noHandlerFound(processedRequest, response);</span><br><span class="line">					<span class="hljs-keyword">return</span>;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">// Determine handler adapter for the current request.</span></span><br><span class="line">                <span class="hljs-comment">//4、拿到可以执行这个处理器类的所有方法的适配器（反射工具）</span></span><br><span class="line">				HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());</span><br><span class="line"></span><br><span class="line">				<span class="hljs-comment">// Process last-modified header, if supported by the handler.</span></span><br><span class="line">				String method = request.getMethod();</span><br><span class="line">				<span class="hljs-keyword">boolean</span> isGet = <span class="hljs-string">"GET"</span>.equals(method);</span><br><span class="line">				<span class="hljs-keyword">if</span> (isGet || <span class="hljs-string">"HEAD"</span>.equals(method)) &#123;</span><br><span class="line">					<span class="hljs-keyword">long</span> lastModified = ha.getLastModified(request, mappedHandler.getHandler());</span><br><span class="line">					<span class="hljs-keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">						String requestUri = urlPathHelper.getRequestUri(request);</span><br><span class="line">						logger.debug(<span class="hljs-string">"Last-Modified value for ["</span> + requestUri + <span class="hljs-string">"] is: "</span> + lastModified);</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span> ServletWebRequest(request, response).checkNotModified(lastModified) &amp;&amp; isGet) &#123;</span><br><span class="line">						<span class="hljs-keyword">return</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				<span class="hljs-keyword">if</span> (!mappedHandler.applyPreHandle(processedRequest, response)) &#123;</span><br><span class="line">					<span class="hljs-keyword">return</span>;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">                    </span><br><span class="line">                    </span><br><span class="line">                    </span><br><span class="line">                    <span class="hljs-comment">/************</span></span><br><span class="line"><span class="hljs-comment">                    ***注意：控制器执行*******</span></span><br><span class="line"><span class="hljs-comment">                    *************</span></span><br><span class="line"><span class="hljs-comment">                    */</span></span><br><span class="line">                    <span class="hljs-comment">//5、适配器来回显目标方法：将目标方法执行完成后的返回值作为视图名，设置保存到ModelAndView</span></span><br><span class="line">                    <span class="hljs-comment">//目标方法无论怎么写，最终适配器执行完后，都会封装为ModelAndView</span></span><br><span class="line">					<span class="hljs-comment">// Actually invoke the handler.</span></span><br><span class="line">					mv = ha.handle(processedRequest, response, mappedHandler.getHandler());</span><br><span class="line">                    </span><br><span class="line">                    </span><br><span class="line">                    </span><br><span class="line">                    </span><br><span class="line">                    </span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">finally</span> &#123;</span><br><span class="line">					<span class="hljs-keyword">if</span> (asyncManager.isConcurrentHandlingStarted()) &#123;</span><br><span class="line">						<span class="hljs-keyword">return</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				applyDefaultViewName(request, mv);<span class="hljs-comment">//如果没有视图名，取默认</span></span><br><span class="line">				mappedHandler.applyPostHandle(processedRequest, response, mv);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">				dispatchException = ex;</span><br><span class="line">			&#125;</span><br><span class="line">             <span class="hljs-comment">/************</span></span><br><span class="line"><span class="hljs-comment">              ***注意：转发目标页面执行*******</span></span><br><span class="line"><span class="hljs-comment">              *************</span></span><br><span class="line"><span class="hljs-comment">             */</span></span><br><span class="line">            <span class="hljs-comment">//6、根据方法最终执行完成后封装的ModelAndView，转发到对应页面，而且ModelAndView中的数据可以从请求域中获取</span></span><br><span class="line">			processDispatchResult(processedRequest, response, mappedHandler, mv, dispatchException);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">			triggerAfterCompletion(processedRequest, response, mappedHandler, ex);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">catch</span> (Error err) &#123;</span><br><span class="line">			triggerAfterCompletionWithError(processedRequest, response, mappedHandler, err);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">finally</span> &#123;</span><br><span class="line">			<span class="hljs-keyword">if</span> (asyncManager.isConcurrentHandlingStarted()) &#123;</span><br><span class="line">				<span class="hljs-comment">// Instead of postHandle and afterCompletion</span></span><br><span class="line">				mappedHandler.applyAfterConcurrentHandlingStarted(processedRequest, response);</span><br><span class="line">				<span class="hljs-keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-comment">// Clean up any resources used by a multipart request.</span></span><br><span class="line">			<span class="hljs-keyword">if</span> (multipartRequestParsed) &#123;</span><br><span class="line">				cleanupMultipart(processedRequest);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<ol>
-<li><p>所有请求过来DispatchServlet收到请求</p>
-</li>
-<li><p>调用doDispatch() 方法进行处理</p>
-<ol>
-<li><p>getHandler():  根据当前请求地址找到能处理这个请求的的目标的类（处理器）</p>
-<p>​    根据当前请求在HandlerMapping中找到这个请求的映射信息，获取到目标处理器类</p>
-</li>
-<li><p>getHandlerAdapter(）：根据当前处理器获取到能执行这个处理器方法的适配器</p>
-<p>根据当前处理器类，找到当前类的HandlerAdapter</p>
-</li>
-<li><p>使用当前获取到的适配器（RequestMappingHandlerAdapter）执行目标方法</p>
-</li>
-<li><p>目标方法执行后会返回一个ModelAndView对象</p>
-</li>
-<li><p>根据ModelAndView的信息转发到具体的页面，并可以在请求域中取出ModelAndView中的模型数据</p>
-</li>
-</ol>
-</li>
-</ol>
-<hr>
-</li>
-</ol>
-<ol start="2">
-<li><p>getHandler()细节：怎么根据当前请求就能找到哪个类能处理</p>
-<blockquote>
-<p>getHandler() 会返回目标处理器类的执行链</p>
-</blockquote>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">protected</span> HandlerExecutionChain <span class="hljs-title">getHandler</span><span class="hljs-params">(HttpServletRequest request)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="hljs-comment">//HandlerMappings处理器映射：他里面保存了每一个处理器能处理那些方法的映射信息</span></span><br><span class="line">		<span class="hljs-keyword">for</span> (HandlerMapping hm : <span class="hljs-keyword">this</span>.handlerMappings) &#123;</span><br><span class="line">			<span class="hljs-keyword">if</span> (logger.isTraceEnabled()) &#123;</span><br><span class="line">				logger.trace(</span><br><span class="line">						<span class="hljs-string">"Testing handler map ["</span> + hm + <span class="hljs-string">"] in DispatcherServlet with name '"</span> + getServletName() + <span class="hljs-string">"'"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			HandlerExecutionChain handler = hm.getHandler(request);</span><br><span class="line">			<span class="hljs-keyword">if</span> (handler != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">				<span class="hljs-keyword">return</span> handler;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200221140852.png" alt></p>
-<blockquote>
-<p>handlerMap: ioc容器自动创建Controller对象的时候扫描每个处理器都能处理什么请求，保存在HandlerMapping的handlerMap属性中：下一次请求过来就来查看那个handlerMapping中有相应的请求映射信息</p>
-</blockquote>
-</li>
-<li><p>getHandlerAdapter() 细节(如何找到目标处理器类的适配器？)</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">protected</span> HandlerAdapter <span class="hljs-title">getHandlerAdapter</span><span class="hljs-params">(Object handler)</span> <span class="hljs-keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">		<span class="hljs-keyword">for</span> (HandlerAdapter ha : <span class="hljs-keyword">this</span>.handlerAdapters) &#123;</span><br><span class="line">			<span class="hljs-keyword">if</span> (logger.isTraceEnabled()) &#123;</span><br><span class="line">				logger.trace(<span class="hljs-string">"Testing handler adapter ["</span> + ha + <span class="hljs-string">"]"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">if</span> (ha.supports(handler)) &#123;</span><br><span class="line">				<span class="hljs-keyword">return</span> ha;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ServletException(<span class="hljs-string">"No adapter for handler ["</span> + handler +</span><br><span class="line">				<span class="hljs-string">"]: The DispatcherServlet configuration needs to include a HandlerAdapter that supports this handler"</span>);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200221141931.png" alt></p>
-</li>
-</ol>
-<ol start="4">
-<li><p>研究HandlerMappings和HandlerAdapters如何获取值，</p>
-<blockquote>
-<p>可以在web.xml中修改DispatchServlet某些属性的默认配置</p>
-</blockquote>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initHandlerMappings</span><span class="hljs-params">(ApplicationContext context)</span> </span>&#123;</span><br><span class="line">		<span class="hljs-keyword">this</span>.handlerMappings = <span class="hljs-keyword">null</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.detectAllHandlerMappings) &#123;</span><br><span class="line">			<span class="hljs-comment">// Find all HandlerMappings in the ApplicationContext, including ancestor contexts.</span></span><br><span class="line">			Map&lt;String, HandlerMapping&gt; matchingBeans =</span><br><span class="line">					BeanFactoryUtils.beansOfTypeIncludingAncestors(context, HandlerMapping.class, <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span>);</span><br><span class="line">			<span class="hljs-keyword">if</span> (!matchingBeans.isEmpty()) &#123;</span><br><span class="line">				<span class="hljs-keyword">this</span>.handlerMappings = <span class="hljs-keyword">new</span> ArrayList&lt;HandlerMapping&gt;(matchingBeans.values());</span><br><span class="line">				<span class="hljs-comment">// We keep HandlerMappings in sorted order.</span></span><br><span class="line">				OrderComparator.sort(<span class="hljs-keyword">this</span>.handlerMappings);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">			<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">				HandlerMapping hm = context.getBean(HANDLER_MAPPING_BEAN_NAME, HandlerMapping.class);</span><br><span class="line">				<span class="hljs-keyword">this</span>.handlerMappings = Collections.singletonList(hm);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">catch</span> (NoSuchBeanDefinitionException ex) &#123;</span><br><span class="line">				<span class="hljs-comment">// Ignore, we'll add a default HandlerMapping later.</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="hljs-comment">// Ensure we have at least one HandlerMapping, by registering</span></span><br><span class="line">		<span class="hljs-comment">// a default HandlerMapping if no other mappings are found.</span></span><br><span class="line">		<span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.handlerMappings == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">			<span class="hljs-keyword">this</span>.handlerMappings = getDefaultStrategies(context, HandlerMapping.class);</span><br><span class="line">			<span class="hljs-keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">				logger.debug(<span class="hljs-string">"No HandlerMappings found in servlet '"</span> + getServletName() + <span class="hljs-string">"': using default"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>组件的初始化：</p>
-<p>​    有些组件是通过类型找，有些是通过id</p>
-<p>​    去容器中找这个组件，如果没有找到就用默认配置</p>
-</blockquote>
-</li>
-<li><p>如何调用目标方法？</p>
-<ol>
-<li>DispatcherServlet.doDispatch(HttpServletRequest, HttpServletResponse) line: 945    </li>
-<li>AnnotationMethodHandlerAdapter.handle(HttpServletRequest, HttpServletResponse, Object) line: 406    </li>
-<li></li>
-</ol>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">protected</span> ModelAndView <span class="hljs-title">invokeHandlerMethod</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span></span></span><br><span class="line"><span class="hljs-function">			<span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="hljs-comment">//拿到方法解析器</span></span><br><span class="line">		ServletHandlerMethodResolver methodResolver = getMethodResolver(handler);</span><br><span class="line">    	<span class="hljs-comment">//方法解析器根据当前请求地址找到真正的方法</span></span><br><span class="line">		Method handlerMethod = methodResolver.resolveHandlerMethod(request);</span><br><span class="line">    	<span class="hljs-comment">//创建方法执行器</span></span><br><span class="line">		ServletHandlerMethodInvoker methodInvoker = <span class="hljs-keyword">new</span> ServletHandlerMethodInvoker(methodResolver);</span><br><span class="line">    	<span class="hljs-comment">//包装原生的response和request</span></span><br><span class="line">		ServletWebRequest webRequest = <span class="hljs-keyword">new</span> ServletWebRequest(request, response);</span><br><span class="line">    	<span class="hljs-comment">//创建隐含模型</span></span><br><span class="line">		ExtendedModelMap implicitModel = <span class="hljs-keyword">new</span> BindingAwareModelMap();</span><br><span class="line">		<span class="hljs-comment">//真正执行目标方法</span></span><br><span class="line">    	<span class="hljs-comment">//目标方法执行期间利用反射执行期间确定参数值</span></span><br><span class="line">		Object result = methodInvoker.invokeHandlerMethod(handlerMethod, handler, webRequest, implicitModel);</span><br><span class="line">		ModelAndView mav =</span><br><span class="line">				methodInvoker.getModelAndView(handlerMethod, handler.getClass(), result, implicitModel, webRequest);</span><br><span class="line">		methodInvoker.updateModelAttributes(handler, (mav != <span class="hljs-keyword">null</span> ? mav.getModel() : <span class="hljs-keyword">null</span>), implicitModel, webRequest);</span><br><span class="line">		<span class="hljs-keyword">return</span> mav;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li><p>AnnotationMethodHandlerAdapter$ServletHandlerMethodInvoker(HandlerMethodInvoker).invokeHandlerMethod</p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> Object <span class="hljs-title">invokeHandlerMethod</span><span class="hljs-params">(Method handlerMethod, Object handler,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">			NativeWebRequest webRequest, ExtendedModelMap implicitModel)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">		Method handlerMethodToInvoke = BridgeMethodResolver.findBridgedMethod(handlerMethod);</span><br><span class="line">		<span class="hljs-keyword">try</span> &#123;</span><br><span class="line">			<span class="hljs-keyword">boolean</span> debug = logger.isDebugEnabled();</span><br><span class="line">			<span class="hljs-keyword">for</span> (String attrName : <span class="hljs-keyword">this</span>.methodResolver.getActualSessionAttributeNames()) &#123;</span><br><span class="line">				Object attrValue = <span class="hljs-keyword">this</span>.sessionAttributeStore.retrieveAttribute(webRequest, attrName);</span><br><span class="line">				<span class="hljs-keyword">if</span> (attrValue != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">					implicitModel.addAttribute(attrName, attrValue);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">            <span class="hljs-comment">/*************/</span></span><br><span class="line">            <span class="hljs-comment">/*     获取Modelattribute标注的方法    */</span></span><br><span class="line">            <span class="hljs-comment">/*           */</span></span><br><span class="line">            <span class="hljs-comment">/*************/</span></span><br><span class="line">			<span class="hljs-keyword">for</span> (Method attributeMethod : <span class="hljs-keyword">this</span>.methodResolver.getModelAttributeMethods()) &#123;</span><br><span class="line">                <span class="hljs-comment">//先确定modelattribute方法执行是要使用的每一个参数的值</span></span><br><span class="line">				Method attributeMethodToInvoke = BridgeMethodResolver.findBridgedMethod(attributeMethod);</span><br><span class="line">                <span class="hljs-comment">//args</span></span><br><span class="line">				Object[] args = resolveHandlerArguments(attributeMethodToInvoke, handler, webRequest, implicitModel);</span><br><span class="line">				<span class="hljs-keyword">if</span> (debug) &#123;</span><br><span class="line">					logger.debug(<span class="hljs-string">"Invoking model attribute method: "</span> + attributeMethodToInvoke);</span><br><span class="line">				&#125;</span><br><span class="line">				String attrName = AnnotationUtils.findAnnotation(attributeMethod, ModelAttribute.class).value();</span><br><span class="line">				<span class="hljs-keyword">if</span> (!<span class="hljs-string">""</span>.equals(attrName) &amp;&amp; implicitModel.containsAttribute(attrName)) &#123;</span><br><span class="line">					<span class="hljs-keyword">continue</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				ReflectionUtils.makeAccessible(attributeMethodToInvoke);</span><br><span class="line">				Object attrValue = attributeMethodToInvoke.invoke(handler, args);</span><br><span class="line">				<span class="hljs-keyword">if</span> (<span class="hljs-string">""</span>.equals(attrName)) &#123;</span><br><span class="line">					Class&lt;?&gt; resolvedType = GenericTypeResolver.resolveReturnType(attributeMethodToInvoke, handler.getClass());</span><br><span class="line">					attrName = Conventions.getVariableNameForReturnType(attributeMethodToInvoke, resolvedType, attrValue);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">if</span> (!implicitModel.containsAttribute(attrName)) &#123;</span><br><span class="line">					implicitModel.addAttribute(attrName, attrValue);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			Object[] args = resolveHandlerArguments(handlerMethodToInvoke, handler, webRequest, implicitModel);</span><br><span class="line">			<span class="hljs-keyword">if</span> (debug) &#123;</span><br><span class="line">				logger.debug(<span class="hljs-string">"Invoking request handler method: "</span> + handlerMethodToInvoke);</span><br><span class="line">			&#125;</span><br><span class="line">			ReflectionUtils.makeAccessible(handlerMethodToInvoke);</span><br><span class="line">			<span class="hljs-keyword">return</span> handlerMethodToInvoke.invoke(handler, args);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">catch</span> (IllegalStateException ex) &#123;</span><br><span class="line">			<span class="hljs-comment">// Internal assertion failed (e.g. invalid signature):</span></span><br><span class="line">			<span class="hljs-comment">// throw exception with full handler method context...</span></span><br><span class="line">			<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> HandlerMethodInvocationException(handlerMethodToInvoke, ex);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">catch</span> (InvocationTargetException ex) &#123;</span><br><span class="line">			<span class="hljs-comment">// User-defined @ModelAttribute/@InitBinder/@RequestMapping method threw an exception...</span></span><br><span class="line">			ReflectionUtils.rethrowException(ex.getTargetException());</span><br><span class="line">			<span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>确定方法运行时使用的每一个参数值</li>
-</ol>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">private</span> Object[] resolveHandlerArguments(Method handlerMethod, Object handler,</span><br><span class="line">			NativeWebRequest webRequest, ExtendedModelMap implicitModel) <span class="hljs-keyword">throws</span> Exception &#123;</span><br><span class="line"></span><br><span class="line">		Class&lt;?&gt;[] paramTypes = handlerMethod.getParameterTypes();</span><br><span class="line">    <span class="hljs-comment">//创建了一个和参数个数一样多的数组，用来保存每一个参数的值</span></span><br><span class="line">		Object[] args = <span class="hljs-keyword">new</span> Object[paramTypes.length];</span><br><span class="line"></span><br><span class="line">		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; args.length; i++) &#123;</span><br><span class="line">			MethodParameter methodParam = <span class="hljs-keyword">new</span> MethodParameter(handlerMethod, i);</span><br><span class="line">			methodParam.initParameterNameDiscovery(<span class="hljs-keyword">this</span>.parameterNameDiscoverer);</span><br><span class="line">			GenericTypeResolver.resolveParameterType(methodParam, handler.getClass());</span><br><span class="line">			String paramName = <span class="hljs-keyword">null</span>;</span><br><span class="line">			String headerName = <span class="hljs-keyword">null</span>;</span><br><span class="line">			<span class="hljs-keyword">boolean</span> requestBodyFound = <span class="hljs-keyword">false</span>;</span><br><span class="line">			String cookieName = <span class="hljs-keyword">null</span>;</span><br><span class="line">			String pathVarName = <span class="hljs-keyword">null</span>;</span><br><span class="line">			String attrName = <span class="hljs-keyword">null</span>;</span><br><span class="line">			<span class="hljs-keyword">boolean</span> required = <span class="hljs-keyword">false</span>;</span><br><span class="line">			String defaultValue = <span class="hljs-keyword">null</span>;</span><br><span class="line">			<span class="hljs-keyword">boolean</span> validate = <span class="hljs-keyword">false</span>;</span><br><span class="line">			Object[] validationHints = <span class="hljs-keyword">null</span>;</span><br><span class="line">			<span class="hljs-keyword">int</span> annotationsFound = <span class="hljs-number">0</span>;</span><br><span class="line">			Annotation[] paramAnns = methodParam.getParameterAnnotations();</span><br><span class="line">			<span class="hljs-comment">//拿到所有注解，解析注解</span></span><br><span class="line">			<span class="hljs-keyword">for</span> (Annotation paramAnn : paramAnns) &#123;</span><br><span class="line">				<span class="hljs-keyword">if</span> (RequestParam.class.isInstance(paramAnn)) &#123;</span><br><span class="line">					RequestParam requestParam = (RequestParam) paramAnn;</span><br><span class="line">					paramName = requestParam.value();</span><br><span class="line">					required = requestParam.required();</span><br><span class="line">					defaultValue = parseDefaultValueAttribute(requestParam.defaultValue());</span><br><span class="line">					annotationsFound++;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (RequestHeader.class.isInstance(paramAnn)) &#123;</span><br><span class="line">					RequestHeader requestHeader = (RequestHeader) paramAnn;</span><br><span class="line">					headerName = requestHeader.value();</span><br><span class="line">					required = requestHeader.required();</span><br><span class="line">					defaultValue = parseDefaultValueAttribute(requestHeader.defaultValue());</span><br><span class="line">					annotationsFound++;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (RequestBody.class.isInstance(paramAnn)) &#123;</span><br><span class="line">					requestBodyFound = <span class="hljs-keyword">true</span>;</span><br><span class="line">					annotationsFound++;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (CookieValue.class.isInstance(paramAnn)) &#123;</span><br><span class="line">					CookieValue cookieValue = (CookieValue) paramAnn;</span><br><span class="line">					cookieName = cookieValue.value();</span><br><span class="line">					required = cookieValue.required();</span><br><span class="line">					defaultValue = parseDefaultValueAttribute(cookieValue.defaultValue());</span><br><span class="line">					annotationsFound++;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (PathVariable.class.isInstance(paramAnn)) &#123;</span><br><span class="line">					PathVariable pathVar = (PathVariable) paramAnn;</span><br><span class="line">					pathVarName = pathVar.value();</span><br><span class="line">					annotationsFound++;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (ModelAttribute.class.isInstance(paramAnn)) &#123;</span><br><span class="line">					ModelAttribute attr = (ModelAttribute) paramAnn;</span><br><span class="line">					attrName = attr.value();</span><br><span class="line">					annotationsFound++;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (Value.class.isInstance(paramAnn)) &#123;</span><br><span class="line">					defaultValue = ((Value) paramAnn).value();</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (paramAnn.annotationType().getSimpleName().startsWith(<span class="hljs-string">"Valid"</span>)) &#123;</span><br><span class="line">					validate = <span class="hljs-keyword">true</span>;</span><br><span class="line">					Object value = AnnotationUtils.getValue(paramAnn);</span><br><span class="line">					validationHints = (value <span class="hljs-keyword">instanceof</span> Object[] ? (Object[]) value : <span class="hljs-keyword">new</span> Object[] &#123;value&#125;);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="hljs-keyword">if</span> (annotationsFound &gt; <span class="hljs-number">1</span>) &#123;</span><br><span class="line">				<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(<span class="hljs-string">"Handler parameter annotations are exclusive choices - "</span> +</span><br><span class="line">						<span class="hljs-string">"do not specify more than one such annotation on the same parameter: "</span> + handlerMethod);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-comment">//没有找到注解的情况</span></span><br><span class="line">			<span class="hljs-keyword">if</span> (annotationsFound == <span class="hljs-number">0</span>) &#123;</span><br><span class="line">                <span class="hljs-comment">//解析普通参数</span></span><br><span class="line">				Object argValue = resolveCommonArgument(methodParam, webRequest);--&gt;解析标准参数</span><br><span class="line">				<span class="hljs-keyword">if</span> (argValue != WebArgumentResolver.UNRESOLVED) &#123;</span><br><span class="line">					args[i] = argValue;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (defaultValue != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">					args[i] = resolveDefaultValue(defaultValue);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">					Class&lt;?&gt; paramType = methodParam.getParameterType();</span><br><span class="line">					<span class="hljs-keyword">if</span> (Model.class.isAssignableFrom(paramType) || Map.class.isAssignableFrom(paramType)) &#123;</span><br><span class="line">						<span class="hljs-keyword">if</span> (!paramType.isAssignableFrom(implicitModel.getClass())) &#123;</span><br><span class="line">							<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(<span class="hljs-string">"Argument ["</span> + paramType.getSimpleName() + <span class="hljs-string">"] is of type "</span> +</span><br><span class="line">									<span class="hljs-string">"Model or Map but is not assignable from the actual model. You may need to switch "</span> +</span><br><span class="line">									<span class="hljs-string">"newer MVC infrastructure classes to use this argument."</span>);</span><br><span class="line">						&#125;</span><br><span class="line">						args[i] = implicitModel;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (SessionStatus.class.isAssignableFrom(paramType)) &#123;</span><br><span class="line">						args[i] = <span class="hljs-keyword">this</span>.sessionStatus;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (HttpEntity.class.isAssignableFrom(paramType)) &#123;</span><br><span class="line">						args[i] = resolveHttpEntityRequest(methodParam, webRequest);</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (Errors.class.isAssignableFrom(paramType)) &#123;</span><br><span class="line">						<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException(<span class="hljs-string">"Errors/BindingResult argument declared "</span> +</span><br><span class="line">								<span class="hljs-string">"without preceding model attribute. Check your handler method signature!"</span>);</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (BeanUtils.isSimpleProperty(paramType)) &#123;</span><br><span class="line">						paramName = <span class="hljs-string">""</span>;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">						attrName = <span class="hljs-string">""</span>;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="hljs-keyword">if</span> (paramName != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">				args[i] = resolveRequestParam(paramName, required, defaultValue, methodParam, webRequest, handler);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (headerName != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">				args[i] = resolveRequestHeader(headerName, required, defaultValue, methodParam, webRequest, handler);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (requestBodyFound) &#123;</span><br><span class="line">				args[i] = resolveRequestBody(methodParam, webRequest, handler);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cookieName != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">				args[i] = resolveCookieValue(cookieName, required, defaultValue, methodParam, webRequest, handler);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pathVarName != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">				args[i] = resolvePathVariable(pathVarName, methodParam, webRequest, handler);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (attrName != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">				WebDataBinder binder =</span><br><span class="line">						resolveModelAttribute(attrName, methodParam, implicitModel, webRequest, handler);</span><br><span class="line">				<span class="hljs-keyword">boolean</span> assignBindingResult = (args.length &gt; i + <span class="hljs-number">1</span> &amp;&amp; Errors.class.isAssignableFrom(paramTypes[i + <span class="hljs-number">1</span>]));</span><br><span class="line">				<span class="hljs-keyword">if</span> (binder.getTarget() != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">					doBind(binder, webRequest, validate, validationHints, !assignBindingResult);</span><br><span class="line">				&#125;</span><br><span class="line">				args[i] = binder.getTarget();</span><br><span class="line">				<span class="hljs-keyword">if</span> (assignBindingResult) &#123;</span><br><span class="line">					args[i + <span class="hljs-number">1</span>] = binder.getBindingResult();</span><br><span class="line">					i++;</span><br><span class="line">				&#125;</span><br><span class="line">				implicitModel.putAll(binder.getBindingResult().getModel());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="hljs-keyword">return</span> args;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p><strong>如果没有注解：</strong> </p>
-<ol>
-<li>resolveCommonArgument)先看是否普通参数，确定当前的参数是否是原生API</li>
-<li>如果是Map或者Map子类，将之前创建的隐含模型赋值过去</li>
-</ol>
-<hr>
-<hr>
-<p>方法上标注的ModelAttribute注解如果有value值</p>
-<p>@ModelAttribute(value=”as”)</p>
-<p>attrName=value标注值</p>
-</li>
-</ol>
-</li>
-</ol>
-<ol start="6">
-<li></li>
-<li><p>c</p>
-</li>
-</ol>
-<h2><span id="springmvc-jiu-da-zu-jian">SpringMVC九大组件</span><a href="#springmvc-jiu-da-zu-jian" class="header-anchor">$</a></h2><blockquote>
-<p>在DispatchServlet中有几个引用类型属性。关键位置都是由这些组件完成的</p>
-<p><strong>共同点：</strong> 九大组件都是接口：接口就是规范，提供了强大的扩展性</p>
-</blockquote>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/** MultipartResolver used by this servlet */</span></span><br><span class="line">	<span class="hljs-comment">//文件上传解析器</span></span><br><span class="line">	<span class="hljs-keyword">private</span> MultipartResolver multipartResolver;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">/** LocaleResolver used by this servlet */</span></span><br><span class="line">	<span class="hljs-comment">//区域信息析器与国际化有关</span></span><br><span class="line">	<span class="hljs-keyword">private</span> LocaleResolver localeResolver;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">/** ThemeResolver used by this servlet */</span></span><br><span class="line">	<span class="hljs-comment">//主题解析器：主题效果更换</span></span><br><span class="line">	<span class="hljs-keyword">private</span> ThemeResolver themeResolver;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">/** List of HandlerMappings used by this servlet */</span></span><br><span class="line">	<span class="hljs-comment">//Handler映射信息：HandlerMapping</span></span><br><span class="line">	<span class="hljs-keyword">private</span> List&lt;HandlerMapping&gt; handlerMappings;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">/** List of HandlerAdapters used by this servlet */</span></span><br><span class="line">	<span class="hljs-comment">//Handler适配器</span></span><br><span class="line">	<span class="hljs-keyword">private</span> List&lt;HandlerAdapter&gt; handlerAdapters;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">/** List of HandlerExceptionResolvers used by this servlet */</span></span><br><span class="line">	<span class="hljs-comment">//SpringMVC强大的异常解析功能</span></span><br><span class="line">	<span class="hljs-keyword">private</span> List&lt;HandlerExceptionResolver&gt; handlerExceptionResolvers;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">/** RequestToViewNameTranslator used by this servlet */</span></span><br><span class="line">	<span class="hljs-comment">//</span></span><br><span class="line">	<span class="hljs-keyword">private</span> RequestToViewNameTranslator viewNameTranslator;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">/** FlashMapManager used by this servlet */</span></span><br><span class="line">	<span class="hljs-comment">//SpringMVC中运行重定向携带数据的功能</span></span><br><span class="line">	<span class="hljs-keyword">private</span> FlashMapManager flashMapManager;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">/** List of ViewResolvers used by this servlet */</span></span><br><span class="line">	<span class="hljs-comment">//视图解析器</span></span><br><span class="line">	<span class="hljs-keyword">private</span> List&lt;ViewResolver&gt; viewResolvers;</span><br></pre></td></tr></table></figure>
-
-<p><strong>DispatchServlet中onRefresh方法</strong></p>
-<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Override</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onRefresh</span><span class="hljs-params">(ApplicationContext context)</span> </span>&#123;</span><br><span class="line">	initStrategies(context);</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initStrategies</span><span class="hljs-params">(ApplicationContext context)</span> </span>&#123;</span><br><span class="line">	initMultipartResolver(context);</span><br><span class="line">	initLocaleResolver(context);</span><br><span class="line">	initThemeResolver(context);</span><br><span class="line">	initHandlerMappings(context);</span><br><span class="line">	initHandlerAdapters(context);</span><br><span class="line">	initHandlerExceptionResolvers(context);</span><br><span class="line">	initRequestToViewNameTranslator(context);</span><br><span class="line">	initViewResolvers(context);</span><br><span class="line">	initFlashMapManager(context);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<h2 id="Spring-MVC中DispatchServlet运行流程"><a href="#Spring-MVC中DispatchServlet运行流程" class="headerlink" title="Spring MVC中DispatchServlet运行流程"></a>Spring MVC中DispatchServlet运行流程</h2><p><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200219190425.png" alt></p>
+<p>​</p>
                             </div>
                             
                                     
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/eaa9b691.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                             
                 </div>
     </div>
@@ -981,120 +930,6 @@
 
                         
 
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2020-01-17T14:00:49.348Z">2020-01-17</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    20 minutes read (About 2926 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/e8c12e4b.html">
-                                        Spring 声明式事务
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <div class="tocStart"></div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#shi-wu-gai-shu">事务概述</a></li>
-<li><a href="#spring-zhong-de-shu-ju-ku-guan-li">Spring 中的数据库管理</a></li>
-<li><a href="#sheng-ming-shi-shi-wu">声明式事务</a></li>
-<li><a href="#spring-ti-gong-de-shi-wu-guan-li-qi">Spring 提供的事务管理器</a></li>
-<li><a href="#ce-shi">测试</a><ul>
-<li><a href="#ce-shi-shu-ju-ku">测试数据库</a></li>
-<li><a href="#pei-zhi-wen-jian">配置文件</a></li>
-</ul>
-</li>
-<li><a href="#spring-shi-wu-can-shu">Spring事务参数</a></li>
-<li><a href="#shu-ju-ku-shi-wu-bing-fa-wen-ti">数据库事务并发问题</a><ul>
-<li><a href="#zang-du">脏读</a></li>
-<li><a href="#bu-ke-chong-fu-du">不可重复读</a></li>
-<li><a href="#huan-du">幻读</a></li>
-</ul>
-</li>
-<li><a href="#shi-wu-ge-chi-ji-bie">事务隔离级别</a><ul>
-<li><a href="#du-wei-ti-jiao-read-uncommitted">读未提交：READ UNCOMMITTED</a></li>
-<li><a href="#du-yi-ti-jiao-read-committed">读已提交：READ COMMITTED</a></li>
-<li><a href="#ke-chong-fu-du-repeatable-read">可重复读：REPEATABLE READ</a></li>
-<li><a href="#chuan-xing-hua-serializable">串行化：SERIALIZABLE</a></li>
-<li><a href="#ge-ge-ge-chi-ji-bie-jie-jue-bing-fa-wen-ti-de-neng-li-jian-xia-biao">各个隔离级别解决并发问题的能力见下表</a></li>
-<li><a href="#ge-chong-shu-ju-ku-chan-pin-dui-shi-wu-ge-chi-ji-bie-de-zhi-chi-cheng-du">各种数据库产品对事务隔离级别的支持程度</a></li>
-<li><a href="#spring-ji-yu-xml-shi-xian-shi-wu-ge-chi-ji-bie-she-zhi">Spring 基于XML实现事务隔离级别设置</a></li>
-</ul>
-</li>
-<li><a href="#spring-shi-wu-de-chuan-bo-xing-wei">Spring事务的传播行为</a><ul>
-<li><a href="#jian-jie">简介</a></li>
-<li><a href="#ce-shi-1">测试</a></li>
-<li><a href="#shuo-ming">说明</a></li>
-</ul>
-</li>
-<li><a href="#shi-wu-kong-zhi-xml-shi-xian">事务控制（XML实现）</a></li>
-</ul>
-<!-- tocstop -->
-
-<div class="tocEnd"></div>
-
-<h2 id="事务概述"><a href="#事务概述" class="headerlink" title="事务概述"></a>事务概述</h2><ul>
-<li>在JavaEE企业级开发的应用领域，为了保证数据的 <strong>完整性和一致性</strong> ，必须引入数据库事务的概念，所以事务管理是企业级应用程序开发中必不可少的技术。</li>
-<li>事务就是一组由于逻辑上紧密关联而合并成一个整体(工作单元)的多个数据库操作，这些操作 <strong>要么都执行，要么都不执行</strong> 。</li>
-<li>事务的四个关键属性(ACID)<ul>
-<li><strong>原子性</strong> (atomicity)：“原子”的本意是“不可再分”，事务的原子性表现为一个事务中涉及到的多个操作在逻辑上缺一不可。事务的原子性要求事务中的所有操作要么都执行，要么都不执行。</li>
-<li><strong>一致性</strong> (consistency)：“一致”指的是数据的一致，具体是指：所有数据都处于满足业务规则的一致性状态。一致性原则要求：一个事务中不管涉及到多少个操作，都必须保证事务执行之前数据是正确的，事务执行之后数据仍然是正确的。如果一个事务在执行的过程中，其中某一个或某几个操作失败了，则必须将其他所有操作撤销，将数据恢复到事务执行之前的状态，这就是回滚。</li>
-<li><strong>隔离性</strong> (isolation)：在应用程序实际运行过程中，事务往往是并发执行的，所以很有可能有许多事务同时处理相同的数据，因此每个事务都应该与其他事务隔离开来，防止数据损坏。隔离性原则要求多个事务在并发执行过程中不会互相干扰。</li>
-<li>持久性(durability)：持久性原则要求事务执行完成后，对数据的修改永久的保存下来，不会因各种系统错误或其他意外情况而受到影响。通常情况下，事务对数据的修改应该被写入到持久化存储器中。</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p><strong>拓展：</strong> 在大数据中的新型数据库中存在严格一致性</p>
-<hr>
-                            </div>
-                            
-                                    
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/e8c12e4b.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
 
     
 <div class="card card-transparent">
@@ -1163,7 +998,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        69
+                        70
                     </p>
                 </div>
             </div>
@@ -1420,6 +1255,7 @@
 </div>
                                 
                                     
+                                        <!-- <div class="column-right-shadow is-hidden-widescreen "> -->
                                         <div class="column-right-shadow is-hidden-widescreen ">
                                             
                                                 <div class="card widget">
@@ -1427,6 +1263,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/post/652cd08.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC/SpringMVC之视图解析器">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-22T04:19:24.133Z">2020-02-22</time></div>
+                    <a href="/post/652cd08.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC/SpringMVC之视图解析器</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1504,25 +1359,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/fdd838d6.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HiddenHttpMethodFilter (REST)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T08:38:51.893Z">2020-02-16</time></div>
-                    <a href="/post/fdd838d6.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">HiddenHttpMethodFilter (REST)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
                                                     
@@ -1540,7 +1376,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -2112,6 +1948,7 @@
                     </div>
                     
                             
+                                
     
         
             
@@ -2123,6 +1960,25 @@
         <h3 class="menu-label">
             Recent
         </h3>
+        
+        <article class="media">
+            
+            <a href="/post/652cd08.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC/SpringMVC之视图解析器">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-22T04:19:24.133Z">2020-02-22</time></div>
+                    <a href="/post/652cd08.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC/SpringMVC之视图解析器</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -2200,25 +2056,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/post/fdd838d6.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HiddenHttpMethodFilter (REST)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-16T08:38:51.893Z">2020-02-16</time></div>
-                    <a href="/post/fdd838d6.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">HiddenHttpMethodFilter (REST)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
                                 
@@ -2236,7 +2073,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -2806,6 +2643,8 @@
                                     
                     </div>
                     
+
+                                    
                     </div>
                 </div>
             </section>
