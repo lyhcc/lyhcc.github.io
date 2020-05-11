@@ -8,16 +8,19 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>SpringMVC/SpringMVC之视图解析器 - lyhcc博客</title>
+<title>SpringMVC之视图解析器 - lyhcc博客</title>
 
 
-    <meta property="og:type" content="article">
-<meta property="og:title" content="SpringMVC&#x2F;SpringMVC之视图解析器">
+    <meta name="description" content="SpringMVC如何解析视图概述 视图和视图解析器 视图 常用的视图实现类 视图解析器 常用的视图解析类实现类 Spring MVC视图解析器之前缀 forward 重定向redirect   JstlView 实验代码 mvc:view-controller标签 自定义视图 实验代码 视图解析器源码解析      SpringMVC如何解析视图概述$  不论控制器返回一个String">
+<meta name="keywords" content="SpringMVC之视图解析器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC之视图解析器">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;652cd08.html">
 <meta property="og:site_name" content="lyhcc博客">
+<meta property="og:description" content="SpringMVC如何解析视图概述 视图和视图解析器 视图 常用的视图实现类 视图解析器 常用的视图解析类实现类 Spring MVC视图解析器之前缀 forward 重定向redirect   JstlView 实验代码 mvc:view-controller标签 自定义视图 实验代码 视图解析器源码解析      SpringMVC如何解析视图概述$  不论控制器返回一个String">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2020-02-22T04:19:24.499Z">
+<meta property="og:updated_time" content="2020-02-23T15:12:49.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 
@@ -70,6 +73,7 @@
 
 
 <link rel="stylesheet" href="/css/style.css">
+<link rel="alternate" href="/atom.xml" title="lyhcc博客" type="application/atom+xml">
 </head>
 
 <body class="is-2-column">
@@ -78,7 +82,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="SpringMVC/SpringMVC之视图解析器" height="28">
+                <img src="/images/logo.svg" alt="SpringMVC之视图解析器" height="28">
             
             </a>
         </div>
@@ -137,11 +141,15 @@
                             <div class="level-left">
                                 <time class="level-item has-text-grey" datetime="2020-02-22T04:19:24.133Z">2020-02-22</time>
                                 
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
+                                    </div>
+                                    
                                         
                                             <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 0 words)
+                    18 minutes read (About 2659 words)
                 </span>
                                             
                                                 
@@ -150,14 +158,359 @@
                         
                             <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
                                 
-                                        SpringMVC/SpringMVC之视图解析器
+                                        SpringMVC之视图解析器
                                             
                             </h1>
                             <div class="content">
 
-                                
+                                <div class="toc">
+
+<!-- toc -->
+
+<ul>
+<li><a href="#springmvc-ru-he-jie-xi-shi-tu-gai-shu">SpringMVC如何解析视图概述</a></li>
+<li><a href="#shi-tu-he-shi-tu-jie-xi-qi">视图和视图解析器</a></li>
+<li><a href="#shi-tu">视图</a></li>
+<li><a href="#chang-yong-de-shi-tu-shi-xian-lei">常用的视图实现类</a></li>
+<li><a href="#shi-tu-jie-xi-qi">视图解析器</a></li>
+<li><a href="#chang-yong-de-shi-tu-jie-xi-lei-shi-xian-lei">常用的视图解析类实现类</a></li>
+<li><a href="#spring-mvc-shi-tu-jie-xi-qi-zhi-qian-zhui">Spring MVC视图解析器之前缀</a><ul>
+<li><a href="#forward">forward</a></li>
+<li><a href="#chong-ding-xiang-redirect">重定向redirect</a></li>
+</ul>
+</li>
+<li><a href="#jstlview">JstlView</a></li>
+<li><a href="#shi-yan-dai-ma">实验代码</a></li>
+<li><a href="#mvc-view-controller-biao-qian">mvc:view-controller标签</a></li>
+<li><a href="#zi-ding-yi-shi-tu">自定义视图</a></li>
+<li><a href="#shi-yan-dai-ma-1">实验代码</a></li>
+<li><a href="#shi-tu-jie-xi-qi-yuan-ma-jie-xi">视图解析器源码解析</a></li>
+</ul>
+<!-- tocstop -->
+
+</div>
+
+<h2><span id="springmvc-ru-he-jie-xi-shi-tu-gai-shu">SpringMVC如何解析视图概述</span><a href="#springmvc-ru-he-jie-xi-shi-tu-gai-shu" class="header-anchor">$</a></h2><blockquote>
+<ol>
+<li>不论控制器返回一个String,ModelAndView,View都会转换为ModelAndView对象，由视图解析器解析视图，然后，进行页面的跳转。<br><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200223165150.png" alt>  </li>
+<li>视图解析源码分析：重要的两个接口<br><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200223165245.png" alt><br><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200223165318.png" alt></li>
+<li>断点调式<br><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200223165414.png" alt><br>流程图<br><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200223165500.png" alt></li>
+</ol>
+</blockquote>
+<h2><span id="shi-tu-he-shi-tu-jie-xi-qi">视图和视图解析器</span><a href="#shi-tu-he-shi-tu-jie-xi-qi" class="header-anchor">$</a></h2><ul>
+<li>请求处理方法执行完成后，最终返回一个 ModelAndView 对象。对于那些返回 String，View 或 ModeMap 等类型的处理方法，<strong>Spring MVC 也会在内部将它们装配成一个 ModelAndView 对象</strong> ，它包含了逻辑名和模型对象的视图</li>
+<li>Spring MVC 借助 <strong>视图解析器（ViewResolver）</strong> 得到最终的视图对象（View），最终的视图可以是 JSP ，也可能是 Excel、JFreeChart等各种表现形式的视图</li>
+<li>对于最终究竟采取何种视图对象对模型数据进行渲染，处理器并不关心，处理器工作重点聚焦在生产模型数据的工作上，从而实现 MVC 的充分解耦</li>
+</ul>
+<h2><span id="shi-tu">视图</span><a href="#shi-tu" class="header-anchor">$</a></h2><ul>
+<li><p>视图的作用是渲染模型数据，将模型里的数据以某种形式呈现给客户。</p>
+</li>
+<li><p>为了实现视图模型和具体实现技术的解耦，Spring 在 org.springframework.web.servlet 包中定义了一个高度抽象的 View 接口：<br>  <img src="https://gitee.com//lyhcc/Images/raw/master/img/20200223165837.png" alt></p>
+</li>
+<li><p>视图对象由视图解析器负责实例化。由于视图是无状态的，所以他们不会有线程安全的问题</p>
+</li>
+</ul>
+<h2><span id="chang-yong-de-shi-tu-shi-xian-lei">常用的视图实现类</span><a href="#chang-yong-de-shi-tu-shi-xian-lei" class="header-anchor">$</a></h2><p><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200223165950.png" alt></p>
+<h2><span id="shi-tu-jie-xi-qi">视图解析器</span><a href="#shi-tu-jie-xi-qi" class="header-anchor">$</a></h2><ul>
+<li>SpringMVC 为逻辑视图名的解析提供了不同的策略，可以在 Spring WEB 上下文中配置一种或多种解析策略，并指定他们之间的先后顺序。每一种映射策略对应一个具体的视图解析器实现类。</li>
+<li>视图解析器的作用比较单一：将逻辑视图解析为一个具体的视图对象。</li>
+<li>所有的视图解析器都必须实现 ViewResolver 接口：<br>  <img src="https://gitee.com//lyhcc/Images/raw/master/img/20200223170057.png" alt></li>
+</ul>
+<h2><span id="chang-yong-de-shi-tu-jie-xi-lei-shi-xian-lei">常用的视图解析类实现类</span><a href="#chang-yong-de-shi-tu-jie-xi-lei-shi-xian-lei" class="header-anchor">$</a></h2><p><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200223170146.png" alt></p>
+<ul>
+<li>程序员可以选择一种视图解析器或混用多种视图解析器</li>
+<li>每个视图解析器都实现了 Ordered 接口并开放出一个 order 属性，可以通过 order 属性指定解析器的优先顺序，order  越小优先级越高。</li>
+<li>SpringMVC 会按视图解析器顺序的优先顺序对逻辑视图名进行解析，直到解析成功并返回视图对象，否则将抛出 ServletException 异常</li>
+<li>InternalResourceViewResolver<ul>
+<li>JSP 是最常见的视图技术，可以使用 InternalResourceViewResolve作为视图解析器：<br><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200223171501.png" alt></li>
+</ul>
+</li>
+</ul>
+<h2><span id="spring-mvc-shi-tu-jie-xi-qi-zhi-qian-zhui">Spring MVC视图解析器之前缀</span><a href="#spring-mvc-shi-tu-jie-xi-qi-zhi-qian-zhui" class="header-anchor">$</a></h2><h3><span id="forward">forward</span><a href="#forward" class="header-anchor">$</a></h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"hello"</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">hello</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	System.out.println(<span class="hljs-string">"---------------------"</span>);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-string">"./success"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * 转发到页面</span></span><br><span class="line"><span class="hljs-comment"> * /success.jsp转发到当前项目的success</span></span><br><span class="line"><span class="hljs-comment"> * 一定要加上/，如果不加就是相对路径</span></span><br><span class="line"><span class="hljs-comment"> * forward:/hello.jsp</span></span><br><span class="line"><span class="hljs-comment"> forward前缀不会有配置的前缀后缀拼接</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"handle01"</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">handle01</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	System.out.println(<span class="hljs-string">"handle01"</span>);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-string">"forward:/success.jsp"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"handle02"</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">handle02</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	System.out.println(<span class="hljs-string">"handle02"</span>);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-string">"forward:/handle01"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3><span id="chong-ding-xiang-redirect">重定向redirect</span><a href="#chong-ding-xiang-redirect" class="header-anchor">$</a></h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment"> * 重定向到success.jsp页面</span></span><br><span class="line"><span class="hljs-comment"> * 转发 forward: 转发的路径</span></span><br><span class="line"><span class="hljs-comment"> * 重定向 redirect： 重定向的路径</span></span><br><span class="line"><span class="hljs-comment"> * 	/success.jsp代表就是从当前项目下开始，SpringMVC会为路径自动的拼接上项目名</span></span><br><span class="line"><span class="hljs-comment"> * </span></span><br><span class="line"><span class="hljs-comment"> *  原生的servlet重定向需要添加项目名</span></span><br><span class="line"><span class="hljs-comment"> * 	response.sendRedirect("/success.jsp")</span></span><br><span class="line"><span class="hljs-comment"> * <span class="hljs-doctag">@return</span></span></span><br><span class="line"><span class="hljs-comment"> */</span></span><br><span class="line"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/handle03"</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">handle03</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	System.out.println(<span class="hljs-string">"handle03"</span>);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:/success.jsp"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/handle04"</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">handle04</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	System.out.println(<span class="hljs-string">"handle04"</span>);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:/handle03"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2><span id="jstlview">JstlView</span><a href="#jstlview" class="header-anchor">$</a></h2><ul>
+<li>导包导入jstl的时候自动创建为一个jstlView，可以快速方便支持国际化<ul>
+<li>JavaWeb国际化步骤</li>
+<li>得到一个Locale对象</li>
+<li>使用ResourceBundle绑定国际化资源文件</li>
+<li>使用ResourceBundle.getString(key);获取到国际化配置文件中的值</li>
+<li>Web页面国际化，fmt标签来做<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt; fmt:setLocale&gt;</span><br><span class="line">&lt; fmt:setBundle &gt;</span><br><span class="line">&lt;fmt:message&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>使用jstlView<ul>
+<li>让Spring管理国际化资源</li>
+<li>去页面取值</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>若项目中使用了JSTL，则SpringMVC 会自动把视图由InternalResourceView转为 JstlView  （断点调试，将JSTL的jar包增加到项目中，视图解析器会自动修改为JstlView）</li>
+<li>若使用 JSTL 的 fmt 标签则需要在 SpringMVC 的配置文件中配置国际化资源文件</li>
+<li>若希望直接响应通过 SpringMVC 渲染的页面，可以使用 mvc:view-controller 标签实现</li>
+</ul>
+<p>*<em>注意：使用jstl国际化是，页面映射不能带前缀 *</em>  </p>
+<h2><span id="shi-yan-dai-ma">实验代码</span><a href="#shi-yan-dai-ma" class="header-anchor">$</a></h2><table>
+<thead>
+<tr>
+<th align="center">i18n.properties</th>
+<th align="center">i18n_en_US.properties</th>
+<th align="center">i18n_zh_CN.properties</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">i18n.username=username</td>
+<td align="center">i18n.password=password</td>
+<td align="center">i18n.username=Username</td>
+</tr>
+<tr>
+<td align="center">i18n.password=Password</td>
+<td align="center">i18n.username=\u7528\u6237\u540D</td>
+<td align="center">i18n.password=\u5BC6\u7801</td>
+</tr>
+<tr>
+<td align="center">1. 增加jstl标签 jar包（断点调试，这时的View对象就是JstlView）</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200223172451.png" alt></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">2. 设置国际化资源文件</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"messageSource"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"org.springframework.context.support.ResourceBundleMessageSource"</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"basename"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"i18n"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">3. 控制器代码</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/login"</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">login</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-string">"login"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">4. 成功页面(/success.jsp)使用fmt标签库</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   &lt;form action=<span class="hljs-string">""</span>&gt;</span><br><span class="line">	&lt;fmt:message key="i18n.username"&gt;&lt;/fmt:message&gt;：&lt;input /&gt;</span><br><span class="line">	&lt;fmt:message key="i18n.password"&gt;&lt;/fmt:message&gt;： &lt;input /&gt;</span><br><span class="line">	&lt;input type=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">'&lt;fmt:message key='</span>i18n.login<span class="hljs-string">'&gt;&lt;/fmt:message&gt;'</span> /&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">## mvc:view-controller标签</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">- 若希望直接响应通过 SpringMVC 渲染的页面，可以使用 mvc:view-controller 标签实现</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!-- 直接配置响应的页面：无需经过控制器来执行结果 --&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">mvc:view-controller</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"/success"</span> <span class="hljs-attr">view-name</span>=<span class="hljs-string">"success"</span>/&gt;</span></span><br></pre></td></tr></table></figure></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">- 请求的路径：</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080/SpringMVC_02_View/success</span><br></pre></td></tr></table></figure></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">- 配置<a href="mvc:view-controller" target="_blank" rel="noopener">mvc:view-controller</a>会导致其他请求路径失效</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">- 解决办法：</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!-- 在实际开发过程中都需要配置mvc:annotation-driven标签，后面讲，这里先配置上 --&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">mvc:annotation-driven</span>/&gt;</span></span><br></pre></td></tr></table></figure></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">##  自定义视图</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">- 自定义视图（需要加入SpringMVC，那么，一定需要实现框架的接口）</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">- 若希望使用 Excel 展示数据列表，仅需要扩展 SpringMVC 提供的 AbstractExcelView 或 AbstractJExcelView 即可。</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">- 实现 buildExcelDocument() 方法，在方法中使用模型数据对象构建 Excel 文档就可以了。</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">- AbstractExcelView 基于 POI API，而 AbstractJExcelView 是基于 JExcelAPI 的。</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">- 视图对象需要配置 IOC 容器中的一个 Bean，使用 BeanNameViewResolver 作为视图解析器即可</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">- 若希望直接在浏览器中直接下载 Excel 文档，则可以设置响应头 Content-Disposition 的值为 attachment;filename=xxx.xls</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200223224845.png" alt></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">## 实验代码</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">1. 测试链接</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8200/SpringMVC_voewResolver/definitionView</span><br></pre></td></tr></table></figure></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">2. 控制方法</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@RequestMapping</span>(<span class="hljs-string">"/definitionView"</span>)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">	System.out.println(<span class="hljs-string">"definitionView"</span>);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-string">"hello:time"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">3. 自定义视图</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyView</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">View</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-meta">@Override</span></span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getContentType</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">		<span class="hljs-keyword">return</span> <span class="hljs-string">"text/html"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-meta">@Override</span></span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">render</span><span class="hljs-params">(Map&lt;String, ?&gt; model, HttpServletRequest request, HttpServletResponse response)</span></span></span><br><span class="line"><span class="hljs-function">			<span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		response.getWriter().write(<span class="hljs-string">"This is MyView, And Time is "</span> + <span class="hljs-keyword">new</span> Date().toString());</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">4. 自定义视图解析器</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyResourceResolver</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ViewResolver</span>, <span class="hljs-title">Ordered</span> </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> order;</span><br><span class="line">	<span class="hljs-meta">@Override</span></span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> View <span class="hljs-title">resolveViewName</span><span class="hljs-params">(String viewName, Locale locale)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="hljs-keyword">if</span> (viewName.startsWith(<span class="hljs-string">"hello:"</span>)) &#123;</span><br><span class="line">			<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MyView();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-meta">@Override</span></span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getOrder</span><span class="hljs-params">()</span> </span>&#123;</span><br><span class="line">		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.order;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setOrder</span><span class="hljs-params">(<span class="hljs-keyword">int</span> order)</span> </span>&#123;</span><br><span class="line">		<span class="hljs-keyword">this</span>.order = order;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">5. 声明视图解析器</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"xyz.lyhcc.MyResourceResolver"</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"order"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"10"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">——</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><strong>注意：InternalResourceViewResolver默认的优先级：private int order = Integer.MAX_VALUE;</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2><span id="shi-tu-jie-xi-qi-yuan-ma-jie-xi">视图解析器源码解析</span><a href="#shi-tu-jie-xi-qi-yuan-ma-jie-xi" class="header-anchor">$</a></h2><ol>
+<li>方法执行后的返回值会作为页面地址参考，转发或者重定向到页面</li>
+<li>视图解析器可能会进行页面地址拼串</li>
+</ol>
+<hr>
+<ol>
+<li><p>任何方法的返回值，最终都会被包装成ModelAndView对象</p>
+</li>
+<li><p>processDispatchResult(HttpServletRequest request, HttpServletResponse response,HandlerExecutionChain mappedHandler, ModelAndView mv, Exception exception)</p>
+<blockquote>
+<p>视图渲染流程：将域中的数据页面显示，页面就是渲染模型数据</p>
+</blockquote>
+</li>
+<li><p>render(mv, request, response);</p>
+</li>
+<li><p>View与ViewResolver:</p>
+<blockquote>
+<p>ViewResolver对象就是根据视图名返回View对象<br><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200223124301.png" alt></p>
+</blockquote>
+</li>
+<li><p>怎么能根据方法的返回值得到View对象？</p>
+ <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">      	<span class="hljs-function"><span class="hljs-keyword">protected</span> View <span class="hljs-title">resolveViewName</span><span class="hljs-params">(String viewName, Map&lt;String, Object&gt; model, Locale locale,</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">		HttpServletRequest request)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="hljs-comment">//遍历所有resolver</span></span><br><span class="line">	<span class="hljs-keyword">for</span> (ViewResolver viewResolver : <span class="hljs-keyword">this</span>.viewResolvers) &#123;</span><br><span class="line">	    <span class="hljs-comment">//ViewResolver视图解析器根据方法的返回值，得到一个View对象</span></span><br><span class="line">		View view = viewResolver.resolveViewName(viewName, locale);</span><br><span class="line">		<span class="hljs-keyword">if</span> (view != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">			<span class="hljs-keyword">return</span> view;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>viewResolver.resolveViewName细节 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">   <span class="hljs-meta">@Override</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> View <span class="hljs-title">resolveViewName</span><span class="hljs-params">(String viewName, Locale locale)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span> (!isCache()) &#123;</span><br><span class="line">		<span class="hljs-keyword">return</span> createView(viewName, locale);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">		Object cacheKey = getCacheKey(viewName, locale);</span><br><span class="line">		View view = <span class="hljs-keyword">this</span>.viewAccessCache.get(cacheKey);</span><br><span class="line">		<span class="hljs-keyword">if</span> (view == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">			<span class="hljs-keyword">synchronized</span> (<span class="hljs-keyword">this</span>.viewCreationCache) &#123;</span><br><span class="line">				view = <span class="hljs-keyword">this</span>.viewCreationCache.get(cacheKey);</span><br><span class="line">				<span class="hljs-keyword">if</span> (view == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">					<span class="hljs-comment">// Ask the subclass to create the View object.</span></span><br><span class="line">					<span class="hljs-comment">/*****创建******/</span></span><br><span class="line">					view = createView(viewName, locale);</span><br><span class="line">					<span class="hljs-keyword">if</span> (view == <span class="hljs-keyword">null</span> &amp;&amp; <span class="hljs-keyword">this</span>.cacheUnresolved) &#123;</span><br><span class="line">						view = UNRESOLVED_VIEW;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="hljs-keyword">if</span> (view != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">						<span class="hljs-keyword">this</span>.viewAccessCache.put(cacheKey, view);</span><br><span class="line">						<span class="hljs-keyword">this</span>.viewCreationCache.put(cacheKey, view);</span><br><span class="line">						<span class="hljs-keyword">if</span> (logger.isTraceEnabled()) &#123;</span><br><span class="line">							logger.trace(<span class="hljs-string">"Cached view ["</span> + cacheKey + <span class="hljs-string">"]"</span>);</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">return</span> (view != UNRESOLVED_VIEW ? view : <span class="hljs-keyword">null</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建View的细节 <figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">       <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">protected</span> View <span class="hljs-title">createView</span><span class="hljs-params">(String viewName, Locale locale)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	<span class="hljs-comment">// If this resolver is not supposed to handle the given view,</span></span><br><span class="line">	<span class="hljs-comment">// return null to pass on to the next resolver in the chain.</span></span><br><span class="line">	<span class="hljs-keyword">if</span> (!canHandle(viewName, locale)) &#123;</span><br><span class="line">		<span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-comment">// Check for special "redirect:" prefix.</span></span><br><span class="line">	<span class="hljs-comment">/********/</span></span><br><span class="line">	<span class="hljs-keyword">if</span> (viewName.startsWith(REDIRECT_URL_PREFIX)) &#123;</span><br><span class="line">		String redirectUrl = viewName.substring(REDIRECT_URL_PREFIX.length());</span><br><span class="line">		RedirectView view = <span class="hljs-keyword">new</span> RedirectView(redirectUrl, isRedirectContextRelative(), isRedirectHttp10Compatible());</span><br><span class="line">		<span class="hljs-keyword">return</span> applyLifecycleMethods(viewName, view);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-comment">// Check for special "forward:" prefix.</span></span><br><span class="line">	<span class="hljs-keyword">if</span> (viewName.startsWith(FORWARD_URL_PREFIX)) &#123;</span><br><span class="line">		String forwardUrl = viewName.substring(FORWARD_URL_PREFIX.length());</span><br><span class="line">		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> InternalResourceView(forwardUrl);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="hljs-comment">// Else fall back to superclass implementation: calling loadView.</span></span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.createView(viewName, locale);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>**视图解析器得到View的流程**
+    &gt; 所有配置的视图解析器都来尝试根据视图名（返回值）得到View对象  
+    &gt; 如果能得到就返回，得不到就换下一个视图解析器  
+    &gt; 再调用View对象的Render,</code></pre></li>
+</ol>
+</li>
+<li><p>View中的render得到</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  <span class="hljs-meta">@Override</span></span><br><span class="line">  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">render</span><span class="hljs-params">(Map&lt;String, ?&gt; model, HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line">   		<span class="hljs-keyword">if</span> (logger.isTraceEnabled()) &#123;</span><br><span class="line">   			logger.trace(<span class="hljs-string">"Rendering view with name '"</span> + <span class="hljs-keyword">this</span>.beanName + <span class="hljs-string">"' with model "</span> + model +</span><br><span class="line">   				<span class="hljs-string">" and static attributes "</span> + <span class="hljs-keyword">this</span>.staticAttributes);</span><br><span class="line">   		&#125;</span><br><span class="line"></span><br><span class="line">   		Map&lt;String, Object&gt; mergedModel = createMergedOutputModel(model, request, response);</span><br><span class="line"></span><br><span class="line">   		prepareResponse(request, response);</span><br><span class="line">   		<span class="hljs-comment">//渲染页面输出的所有数据</span></span><br><span class="line">   		renderMergedOutputModel(mergedModel, request, response);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>renderMergedOutputModel位于InternalResourceView</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">       	<span class="hljs-meta">@Override</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">renderMergedOutputModel</span><span class="hljs-params">(</span></span></span><br><span class="line"><span class="hljs-function"><span class="hljs-params">		Map&lt;String, Object&gt; model, HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// Determine which request handle to expose to the RequestDispatcher.</span></span><br><span class="line">	HttpServletRequest requestToExpose = getRequestToExpose(request);</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// *** Expose the model object as request attributes.</span></span><br><span class="line">	<span class="hljs-comment">//将模型的数据放到request域中</span></span><br><span class="line">	exposeModelAsRequestAttributes(model, requestToExpose);</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// Expose helpers as request attributes, if any.</span></span><br><span class="line">	exposeHelpers(requestToExpose);</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// Determine the path for the request dispatcher.</span></span><br><span class="line">	String dispatcherPath = prepareForRendering(requestToExpose, response);</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// Obtain a RequestDispatcher for the target resource (typically a JSP).</span></span><br><span class="line">	RequestDispatcher rd = getRequestDispatcher(requestToExpose, dispatcherPath);</span><br><span class="line">	<span class="hljs-keyword">if</span> (rd == <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">		<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ServletException(<span class="hljs-string">"Could not get RequestDispatcher for ["</span> + getUrl() +</span><br><span class="line">				<span class="hljs-string">"]: Check that the corresponding file exists within your web application archive!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-comment">// If already included or response already committed, perform include, else forward.</span></span><br><span class="line">	<span class="hljs-keyword">if</span> (useInclude(requestToExpose, response)) &#123;</span><br><span class="line">		response.setContentType(getContentType());</span><br><span class="line">		<span class="hljs-keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">			logger.debug(<span class="hljs-string">"Including resource ["</span> + getUrl() + <span class="hljs-string">"] in InternalResourceView '"</span> + getBeanName() + <span class="hljs-string">"'"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		rd.include(requestToExpose, response);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">		<span class="hljs-comment">// Note: The forwarded resource is supposed to determine the content type itself.</span></span><br><span class="line">		<span class="hljs-keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">			logger.debug(<span class="hljs-string">"Forwarding to resource ["</span> + getUrl() + <span class="hljs-string">"] in InternalResourceView '"</span> + getBeanName() + <span class="hljs-string">"'"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		rd.forward(requestToExpose, response);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>为什么数据可以在请求域中获得</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">   <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">exposeModelAsRequestAttributes</span><span class="hljs-params">(Map&lt;String, Object&gt; model, HttpServletRequest request)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">for</span> (Map.Entry&lt;String, Object&gt; entry : model.entrySet()) &#123;</span><br><span class="line">		String modelName = entry.getKey();</span><br><span class="line">		Object modelValue = entry.getValue();</span><br><span class="line">		<span class="hljs-keyword">if</span> (modelValue != <span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">			request.setAttribute(modelName, modelValue);</span><br><span class="line">			<span class="hljs-keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">				logger.debug(<span class="hljs-string">"Added model object '"</span> + modelName + <span class="hljs-string">"' of type ["</span> + modelValue.getClass().getName() +</span><br><span class="line">						<span class="hljs-string">"] to request in view with name '"</span> + getBeanName() + <span class="hljs-string">"'"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="hljs-keyword">else</span> &#123;</span><br><span class="line">			request.removeAttribute(modelName);</span><br><span class="line">			<span class="hljs-keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">				logger.debug(<span class="hljs-string">"Removed model object '"</span> + modelName +</span><br><span class="line">						<span class="hljs-string">"' from request in view with name '"</span> + getBeanName() + <span class="hljs-string">"'"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<p>视图解析器只是为了获得视图对象；视图对象才能真正的转发(将模型数据全部放在请求域中)或者重定向到页面<br>视图对象才能真正渲染视图<br>源码执行流程<br><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200223132633.png" alt></p>
+<hr>
+
                             </div>
                             
+                                <div class="level is-size-7 is-uppercase">
+                                    <div class="level-start">
+                                        <div class="level-item">
+                                            <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                                            <a class="has-link-grey -link" href="/tags/SpringMVC%E4%B9%8B%E8%A7%86%E5%9B%BE%E8%A7%A3%E6%9E%90%E5%99%A8/" rel="tag">SpringMVC之视图解析器</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                     
                                             
                 </div>
@@ -206,6 +559,13 @@
                     <div class="card card-transparent">
                         <div class="level post-navigation is-flex-wrap is-mobile">
                             
+                                <div class="level-start">
+                                    <a class="level level-item has-link-grey  article-nav-prev" href="/post/14dd2a73.html">
+                                        <i class="level-item fas fa-chevron-left"></i>
+                                        <span class="level-item">SpringMVC之RESTful实现CRUD</span>
+                                    </a>
+                                </div>
+                                
                                     
                                         <div class="level-end">
                                             <a class="level level-item has-link-grey  article-nav-next" href="/post/548d7f45.html">
@@ -263,7 +623,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        70
+                        82
                     </p>
                 </div>
             </div>
@@ -273,7 +633,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        20
+                        21
                     </p>
                 </div>
             </div>
@@ -283,7 +643,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        73
+                        78
                     </p>
                 </div>
             </div>
@@ -433,6 +793,14 @@
                 <span class="level-item tag">3</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            <span class="level-start">
+                <span class="level-item">Java设计模式</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Leecode/">
             <span class="level-start">
                 <span class="level-item">Leecode</span>
@@ -446,7 +814,7 @@
                 <span class="level-item">Leetcode</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Python/">
@@ -494,7 +862,7 @@
                 <span class="level-item">Spring MVC</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/others/">
@@ -515,7 +883,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">AJAX 和JSON的使用</a> <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/HiddenHttpMethodFilter-REST/" style="font-size: 10px;">HiddenHttpMethodFilter (REST)</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" style="font-size: 10px;">Java Web过滤器和监听器</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E4%B9%8Bbroker/" style="font-size: 10px;">Kafka之broker</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/" style="font-size: 10px;">Kafka生产与消费</a> <a href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 10px;">Linux 工具包</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/MySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/" style="font-size: 10px;">MySQL数据备份</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" style="font-size: 10px;">Shell 之Bash数学运算</a> <a href="/tags/Shell-%E4%B9%8Bfind%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" style="font-size: 10px;">Shell 之find、which、locate、whereis命令总结</a> <a href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">Shell 的函数的定义和使用</a> <a href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" style="font-size: 10px;">Shell 的字符串处理</a> <a href="/tags/Shell%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">Shell之脚本功能概述</a> <a href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell全局变量和局部变量</a> <a href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Shell变量的替换和测试</a> <a href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/" style="font-size: 10px;">Shell命令的替换</a> <a href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Shell文件查找find命令</a> <a href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell有类型变量</a> <a href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/" style="font-size: 10px;">Shell编程 awk</a> <a href="/tags/Sping%E4%B8%8EJava-Web/" style="font-size: 10px;">Sping与Java Web</a> <a href="/tags/Spring-AOP/" style="font-size: 10px;">Spring AOP</a> <a href="/tags/Spring-AOP-%E4%B9%8B%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84AOP/" style="font-size: 10px;">Spring AOP 之基于注解的AOP</a> <a href="/tags/Spring-AOP%E5%BC%95%E5%85%A5%E4%B9%8BJava%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97/" style="font-size: 10px;">Spring AOP引入之Java动态代理打印日志</a> <a href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">Spring IOC实验</a> <a href="/tags/Spring-JDBCTemplate/" style="font-size: 10px;">Spring JDBCTemplate</a> <a href="/tags/Spring-%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">Spring 声明式事务</a> <a href="/tags/Spring-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">Spring 源码</a> <a href="/tags/SpringIOC%E6%80%BB%E7%BB%93/" style="font-size: 10px;">SpringIOC总结</a> <a href="/tags/SpringMVC-%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%85%A5/" style="font-size: 10px;">SpringMVC 请求数据传入</a> <a href="/tags/SpringMVC%E4%B9%8B-RequestMapping/" style="font-size: 10px;">SpringMVC之@RequestMapping</a> <a href="/tags/SpringMVC%E4%B9%8BHelloWorld/" style="font-size: 10px;">SpringMVC之HelloWorld</a> <a href="/tags/SpringMVC%E4%B9%8BModelAttribute/" style="font-size: 10px;">SpringMVC之ModelAttribute</a> <a href="/tags/SpringMVC%E4%B9%8B%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%87%BA/" style="font-size: 10px;">SpringMVC之响应数据传出</a> <a href="/tags/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 10px;">SpringMVC源码分析</a> <a href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/" style="font-size: 10px;">Spring初始之HelloWorld</a> <a href="/tags/Spring%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Spring初识</a> <a href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Spring的单元测试</a> <a href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Tomcat 的安装与配置</a> <a href="/tags/Vim%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/" style="font-size: 10px;">Vim多行注释</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/kafka%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">kafka通信</a> <a href="/tags/mysql%E5%91%BD%E4%BB%A4%E8%AF%A6%E6%83%85/" style="font-size: 10px;">mysql命令详情</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a> <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/" style="font-size: 10px;">文本处理三剑客(grep/sed/awk)</a>
+        <a href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">AJAX 和JSON的使用</a> <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/HiddenHttpMethodFilter-REST/" style="font-size: 10px;">HiddenHttpMethodFilter (REST)</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" style="font-size: 10px;">Java Web过滤器和监听器</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/" style="font-size: 10px;">Java设计模式之设计模式七大原则</a> <a href="/tags/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 10px;">Java设计模式面试题</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E4%B9%8Bbroker/" style="font-size: 10px;">Kafka之broker</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/" style="font-size: 10px;">Kafka生产与消费</a> <a href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 10px;">Linux 工具包</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/MySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/" style="font-size: 10px;">MySQL数据备份</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" style="font-size: 10px;">Shell 之Bash数学运算</a> <a href="/tags/Shell-%E4%B9%8Bfind%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" style="font-size: 10px;">Shell 之find、which、locate、whereis命令总结</a> <a href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">Shell 的函数的定义和使用</a> <a href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" style="font-size: 10px;">Shell 的字符串处理</a> <a href="/tags/Shell%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">Shell之脚本功能概述</a> <a href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell全局变量和局部变量</a> <a href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Shell变量的替换和测试</a> <a href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/" style="font-size: 10px;">Shell命令的替换</a> <a href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Shell文件查找find命令</a> <a href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell有类型变量</a> <a href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/" style="font-size: 10px;">Shell编程 awk</a> <a href="/tags/Sping%E4%B8%8EJava-Web/" style="font-size: 10px;">Sping与Java Web</a> <a href="/tags/Spring-AOP/" style="font-size: 10px;">Spring AOP</a> <a href="/tags/Spring-AOP-%E4%B9%8B%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84AOP/" style="font-size: 10px;">Spring AOP 之基于注解的AOP</a> <a href="/tags/Spring-AOP%E5%BC%95%E5%85%A5%E4%B9%8BJava%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97/" style="font-size: 10px;">Spring AOP引入之Java动态代理打印日志</a> <a href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">Spring IOC实验</a> <a href="/tags/Spring-JDBCTemplate/" style="font-size: 10px;">Spring JDBCTemplate</a> <a href="/tags/Spring-%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">Spring 声明式事务</a> <a href="/tags/Spring-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">Spring 源码</a> <a href="/tags/SpringIOC%E6%80%BB%E7%BB%93/" style="font-size: 10px;">SpringIOC总结</a> <a href="/tags/SpringMVC-%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%85%A5/" style="font-size: 10px;">SpringMVC 请求数据传入</a> <a href="/tags/SpringMVC%E4%B9%8B-RequestMapping/" style="font-size: 10px;">SpringMVC之@RequestMapping</a> <a href="/tags/SpringMVC%E4%B9%8BHelloWorld/" style="font-size: 10px;">SpringMVC之HelloWorld</a> <a href="/tags/SpringMVC%E4%B9%8BModelAttribute/" style="font-size: 10px;">SpringMVC之ModelAttribute</a> <a href="/tags/SpringMVC%E4%B9%8BRESTful%E5%AE%9E%E7%8E%B0CRUD/" style="font-size: 10px;">SpringMVC之RESTful实现CRUD</a> <a href="/tags/SpringMVC%E4%B9%8B%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%87%BA/" style="font-size: 10px;">SpringMVC之响应数据传出</a> <a href="/tags/SpringMVC%E4%B9%8B%E8%A7%86%E5%9B%BE%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">SpringMVC之视图解析器</a> <a href="/tags/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 10px;">SpringMVC源码分析</a> <a href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/" style="font-size: 10px;">Spring初始之HelloWorld</a> <a href="/tags/Spring%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Spring初识</a> <a href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Spring的单元测试</a> <a href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Tomcat 的安装与配置</a> <a href="/tags/Vim%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/" style="font-size: 10px;">Vim多行注释</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/kafka%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">kafka通信</a> <a href="/tags/mysql%E5%91%BD%E4%BB%A4%E8%AF%A6%E6%83%85/" style="font-size: 10px;">mysql命令详情</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">创建型设计模式</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a> <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/" style="font-size: 10px;">文本处理三剑客(grep/sed/awk)</a>
     </div>
 </div>
                                 
@@ -531,16 +899,35 @@
         
         <article class="media">
             
-            <a href="/post/652cd08.html" class="media-left">
+            <a href="/post/fcd38b5a.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC/SpringMVC之视图解析器">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="创建型设计模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-22T04:19:24.133Z">2020-02-22</time></div>
-                    <a href="/post/652cd08.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC/SpringMVC之视图解析器</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-02T04:06:50.257Z">2020-04-02</time></div>
+                    <a href="/post/fcd38b5a.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">创建型设计模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Java设计模式</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/post/7e3cde45.html" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java设计模式之设计模式七大原则">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-20T01:35:36.311Z">2020-03-20</time></div>
+                    <a href="/post/7e3cde45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java设计模式之设计模式七大原则</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -550,18 +937,18 @@
         
         <article class="media">
             
-            <a href="/post/548d7f45.html" class="media-left">
+            <a href="/post/9174d842.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC之ModelAttribute">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java设计模式面试题">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-20T08:34:13.329Z">2020-02-20</time></div>
-                    <a href="/post/548d7f45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC之ModelAttribute</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-18T02:25:27.268Z">2020-03-18</time></div>
+                    <a href="/post/9174d842.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java设计模式面试题</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Sprig-MVC/">Sprig MVC</a>
+                        <a class="has-link-grey -link" href="/categories/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Java设计模式</a>
                     </p>
                 </div>
             </div>
@@ -569,18 +956,18 @@
         
         <article class="media">
             
-            <a href="/post/eaa9b691.html" class="media-left">
+            <a href="/post/15fe401e.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="56. Merge Intervals">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T11:04:57.382Z">2020-02-19</time></div>
-                    <a href="/post/eaa9b691.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC源码分析</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T15:20:47.250Z">2020-03-09</time></div>
+                    <a href="/post/15fe401e.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">56. Merge Intervals</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
+                        <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
                     </p>
                 </div>
             </div>
@@ -588,37 +975,18 @@
         
         <article class="media">
             
-            <a href="/post/4c7891d3.html" class="media-left">
+            <a href="/post/630c2358.html" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC 请求数据传入">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Leetcode/55. Jump Game">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-19T04:29:43.643Z">2020-02-19</time></div>
-                    <a href="/post/4c7891d3.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC 请求数据传入</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-03T14:33:20.937Z">2020-03-03</time></div>
+                    <a href="/post/630c2358.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode/55. Jump Game</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/f51ba3e7.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SpringMVC之响应数据传出">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-18T12:09:07.754Z">2020-02-18</time></div>
-                    <a href="/post/f51ba3e7.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">SpringMVC之响应数据传出</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Spring-MVC/">Spring MVC</a>
+                        
                     </p>
                 </div>
             </div>
@@ -636,12 +1004,34 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/02/">
                 <span class="level-start">
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">13</span>
                 </span>
             </a>
         </li>
@@ -842,6 +1232,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/">
                         <span class="tag">Java代理机制</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/">
+                        <span class="tag">Java设计模式之设计模式七大原则</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                        <span class="tag">Java设计模式面试题</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1092,8 +1496,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BRESTful%E5%AE%9E%E7%8E%B0CRUD/">
+                        <span class="tag">SpringMVC之RESTful实现CRUD</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%87%BA/">
                         <span class="tag">SpringMVC之响应数据传出</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B%E8%A7%86%E5%9B%BE%E8%A7%A3%E6%9E%90%E5%99%A8/">
+                        <span class="tag">SpringMVC之视图解析器</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1190,6 +1608,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="tag">创建型设计模式</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/">
                         <span class="tag">十大经典算法优缺点</span>
                         <span class="tag is-grey">1</span>
@@ -1222,7 +1647,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                     
-                                <img src="/images/logo.svg" alt="SpringMVC/SpringMVC之视图解析器" height="28">
+                                <img src="/images/logo.svg" alt="SpringMVC之视图解析器" height="28">
                                 
                 </a>
                 <p class="is-size-7">
