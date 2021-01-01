@@ -11,13 +11,13 @@
 <title>SpringMVC之RESTful实现CRUD - lyhcc博客</title>
 
 
-    <meta name="description" content="RESTRUL_CRUD_需求 显示所有员工信息 添加员工信息 删除操作 修改操作：lastName 不可修改！ 相关的类 相关页面   RESTRUL_CRUD_显示所有员工信息 搭建开发环境 显示所有员工信息   使用 Spring的表单标签 RESTRUL_CRUD_添加操作&amp;amp;表单标签 RESTRUL_CRUD_删除操作&amp;amp;处理静态资源 RESTRUL_CRUD_修改">
+    <meta name="description" content="RESTRUL_CRUD_需求显示所有员工信息 URI: emps 请求方式：GET 显示效果">
 <meta name="keywords" content="SpringMVC之RESTful实现CRUD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringMVC之RESTful实现CRUD">
 <meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;14dd2a73.html">
 <meta property="og:site_name" content="lyhcc博客">
-<meta property="og:description" content="RESTRUL_CRUD_需求 显示所有员工信息 添加员工信息 删除操作 修改操作：lastName 不可修改！ 相关的类 相关页面   RESTRUL_CRUD_显示所有员工信息 搭建开发环境 显示所有员工信息   使用 Spring的表单标签 RESTRUL_CRUD_添加操作&amp;amp;表单标签 RESTRUL_CRUD_删除操作&amp;amp;处理静态资源 RESTRUL_CRUD_修改">
+<meta property="og:description" content="RESTRUL_CRUD_需求显示所有员工信息 URI: emps 请求方式：GET 显示效果">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
 <meta property="og:updated_time" content="2020-03-18T02:18:04.835Z">
@@ -34,7 +34,7 @@
 
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
 
@@ -70,6 +70,12 @@
     
     
     
+    
+    
+        <script type="text/javascript" src="//js.users.51.la/21033593.js"></script>
+        
+            
+    
 
 
 <link rel="stylesheet" href="/css/style.css">
@@ -81,49 +87,58 @@
     <div class="container">
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
-            
-                <img src="/images/logo.svg" alt="SpringMVC之RESTful实现CRUD" height="28">
-            
+                
+                            <img src="/images/logo.svg" alt="SpringMVC之RESTful实现CRUD" height="28">
+                            
             </a>
         </div>
         <div class="navbar-menu">
             
-            <div class="navbar-start">
-                
-                <a class="navbar-item"
-                href="/">Home</a>
-                
-                <a class="navbar-item"
-                href="/archives">Archives</a>
-                
-                <a class="navbar-item"
-                href="/categories">Categories</a>
-                
-                <a class="navbar-item"
-                href="/tags">Tags</a>
-                
-                <a class="navbar-item"
-                href="/about">About</a>
-                
-            </div>
-            
-            <div class="navbar-end">
-                
+                <div class="navbar-start">
                     
-                    <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        <a class="navbar-item" href="/">
+                            首页
+                        </a>
                         
-                        <i class="fab fa-github"></i>
+                        <a class="navbar-item" href="/archives">
+                            归档
+                        </a>
                         
-                    </a>
-                    
+                        <a class="navbar-item" href="/categories">
+                            分类
+                        </a>
+                        
+                        <a class="navbar-item" href="/tags">
+                            标签
+                        </a>
+                        
+                        <a class="navbar-item" href="/album">
+                            相册
+                        </a>
+                        
+                        <a class="navbar-item" href="/about">
+                            关于
+                        </a>
+                        
+                </div>
                 
-                
-                
-                <a class="navbar-item search" title="Search" href="javascript:;">
-                    <i class="fas fa-search"></i>
-                </a>
-                
-            </div>
+                    <div class="navbar-end">
+                        
+                            
+                                <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                                    
+                                                <i class="fa fa-github"></i>
+                                                
+                                </a>
+                                
+                                    
+                                        
+                                                
+                                                    <a class="navbar-item search" title="Search" href="javascript:;">
+                                                        <i class="fa fa-search"></i>
+                                                    </a>
+                                                    
+                    </div>
         </div>
     </div>
 </nav>
@@ -163,54 +178,16 @@
                             </h1>
                             <div class="content">
 
-                                <div class="toc">
+                                <!-- toc -->
 
-<!-- toc -->
-
-<ul>
-<li><a href="#restrul-crud-xu-qiu">RESTRUL_CRUD_需求</a><ul>
-<li><a href="#xian-shi-suo-you-yuan-gong-xin-xi">显示所有员工信息</a></li>
-<li><a href="#tian-jia-yuan-gong-xin-xi">添加员工信息</a></li>
-<li><a href="#shan-chu-cao-zuo">删除操作</a></li>
-<li><a href="#xiu-gai-cao-zuo-lastname-bu-ke-xiu-gai">修改操作：lastName 不可修改！</a></li>
-<li><a href="#xiang-guan-de-lei">相关的类</a></li>
-<li><a href="#xiang-guan-ye-mian">相关页面</a></li>
-</ul>
-</li>
-<li><a href="#restrul-crud-xian-shi-suo-you-yuan-gong-xin-xi">RESTRUL_CRUD_显示所有员工信息</a><ul>
-<li><a href="#da-jian-kai-fa-huan-jing">搭建开发环境</a></li>
-<li><a href="#xian-shi-suo-you-yuan-gong-xin-xi-1">显示所有员工信息</a></li>
-</ul>
-</li>
-<li><a href="#shi-yong-spring-de-biao-dan-biao-qian">使用 Spring的表单标签</a></li>
-<li><a href="#restrul-crud-tian-jia-cao-zuo-biao-dan-biao-qian">RESTRUL_CRUD_添加操作&amp;表单标签</a></li>
-<li><a href="#restrul-crud-shan-chu-cao-zuo-chu-li-jing-tai-zi-yuan">RESTRUL_CRUD_删除操作&amp;处理静态资源</a></li>
-<li><a href="#restrul-crud-xiu-gai-cao-zuo">RESTRUL_CRUD_修改操作</a><ul>
-<li><a href="#gen-ju-id-cha-xun-yuan-gong-dui-xiang-biao-dan-hui-xian">根据id查询员工对象，表单回显</a></li>
-<li><a href="#ti-jiao-biao-dan-xiu-gai-shu-ju">提交表单，修改数据</a></li>
-</ul>
-</li>
-<li><a href="#restrul-crud-shan-chu-cao-zuo-chu-li-jing-tai-zi-yuan-1">RESTRUL_CRUD_删除操作&amp;处理静态资源</a><ul>
-<li><a href="#shan-chu-shi-yan-dai-ma">删除实验代码</a></li>
-<li><a href="#hiddenhttpmethodfilter-guo-lu-qi">HiddenHttpMethodFilter过滤器</a></li>
-<li><a href="#xu-yao-shi-yong-jquery-lai-zhuan-huan-qing-qiu-fang-shi">需要使用jQuery来转换请求方式</a></li>
-<li><a href="#guan-yu-mvc-default-servlet-handler-zuo-yong">关于<a href="mvc:default-servlet-handler/" target="_blank" rel="noopener">mvc:default-servlet-handler/</a>作用</a></li>
-<li><a href="#tong-guo-jquery-zhuan-huan-wei-delete-qing-qiu">通过jQuery转换为DELETE请求</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-</div>
-
-<h2><span id="restrul-crud-xu-qiu">RESTRUL_CRUD_需求</span><a href="#restrul-crud-xu-qiu" class="header-anchor">$</a></h2><h3><span id="xian-shi-suo-you-yuan-gong-xin-xi">显示所有员工信息</span><a href="#xian-shi-suo-you-yuan-gong-xin-xi" class="header-anchor">$</a></h3><ul>
+<h2 id="RESTRUL-CRUD-需求"><a href="#RESTRUL-CRUD-需求" class="headerlink" title="RESTRUL_CRUD_需求"></a>RESTRUL_CRUD_需求</h2><h3 id="显示所有员工信息"><a href="#显示所有员工信息" class="headerlink" title="显示所有员工信息"></a>显示所有员工信息</h3><ul>
 <li>URI: emps</li>
 <li>请求方式：GET</li>
 <li>显示效果<br>  <img src="https://gitee.com//lyhcc/Images/raw/master/img/20200225160721.png" alt></li>
 </ul>
 <a id="more"></a>
 
-<h3><span id="tian-jia-yuan-gong-xin-xi">添加员工信息</span><a href="#tian-jia-yuan-gong-xin-xi" class="header-anchor">$</a></h3><ul>
+<h3 id="添加员工信息"><a href="#添加员工信息" class="headerlink" title="添加员工信息"></a>添加员工信息</h3><ul>
 <li><p>显示添加页面：</p>
 </li>
 <li><p>URI：emp</p>
@@ -228,12 +205,12 @@
 <li><p>显示效果：完成添加，重定向到 list 页面。<br>  <img src="https://gitee.com//lyhcc/Images/raw/master/img/20200225161024.png" alt></p>
 </li>
 </ul>
-<h3><span id="shan-chu-cao-zuo">删除操作</span><a href="#shan-chu-cao-zuo" class="header-anchor">$</a></h3><ul>
+<h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3><ul>
 <li>URL：emp/{id}</li>
 <li>请求方式：DELETE</li>
 <li>删除后效果：对应记录从数据表中删除</li>
 </ul>
-<h3><span id="xiu-gai-cao-zuo-lastname-bu-ke-xiu-gai">修改操作：lastName 不可修改！</span><a href="#xiu-gai-cao-zuo-lastname-bu-ke-xiu-gai" class="header-anchor">$</a></h3><ol>
+<h3 id="修改操作：lastName-不可修改！"><a href="#修改操作：lastName-不可修改！" class="headerlink" title="修改操作：lastName 不可修改！"></a>修改操作：lastName 不可修改！</h3><ol>
 <li>显示修改页面<ul>
 <li>URI：emp/{id}</li>
 <li>请求方式：GET</li>
@@ -247,18 +224,18 @@
 <li>请求方式：PUT</li>
 <li>显示效果：完成修改，重定向到 list 页面。<br>  <img src="https://gitee.com//lyhcc/Images/raw/master/img/20200225161311.png" alt></li>
 </ul>
-<h3><span id="xiang-guan-de-lei">相关的类</span><a href="#xiang-guan-de-lei" class="header-anchor">$</a></h3><ul>
+<h3 id="相关的类"><a href="#相关的类" class="headerlink" title="相关的类"></a>相关的类</h3><ul>
 <li>省略了Service层</li>
 <li>实体类：Employee、Department</li>
 <li>Controller：EmployeeController</li>
 <li>Dao：EmployeeDao、DepartmentDao<br>  <img src="https://gitee.com//lyhcc/Images/raw/master/img/20200225161532.png" alt></li>
 </ul>
-<h3><span id="xiang-guan-ye-mian">相关页面</span><a href="#xiang-guan-ye-mian" class="header-anchor">$</a></h3><ul>
+<h3 id="相关页面"><a href="#相关页面" class="headerlink" title="相关页面"></a>相关页面</h3><ul>
 <li>list.jsp</li>
 <li>input.jsp</li>
 <li>edit.jsp</li>
 </ul>
-<h2><span id="restrul-crud-xian-shi-suo-you-yuan-gong-xin-xi">RESTRUL_CRUD_显示所有员工信息</span><a href="#restrul-crud-xian-shi-suo-you-yuan-gong-xin-xi" class="header-anchor">$</a></h2><h3><span id="da-jian-kai-fa-huan-jing">搭建开发环境</span><a href="#da-jian-kai-fa-huan-jing" class="header-anchor">$</a></h3><ol>
+<h2 id="RESTRUL-CRUD-显示所有员工信息"><a href="#RESTRUL-CRUD-显示所有员工信息" class="headerlink" title="RESTRUL_CRUD_显示所有员工信息"></a>RESTRUL_CRUD_显示所有员工信息</h2><h3 id="搭建开发环境"><a href="#搭建开发环境" class="headerlink" title="搭建开发环境"></a>搭建开发环境</h3><ol>
 <li><p>导包</p>
 <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">com.springsource.net.sf.cglib-2.2.0.jar</span><br><span class="line">com.springsource.org.aopalliance-1.0.0.jar</span><br><span class="line">com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar</span><br><span class="line">spring-aop-4.0.0.RELEASE.jar</span><br><span class="line">spring-aspects-4.0.0.RELEASE.jar</span><br><span class="line">commons-logging-1.1.3.jar</span><br><span class="line">spring-beans-4.0.0.RELEASE.jar</span><br><span class="line">spring-context-4.0.0.RELEASE.jar</span><br><span class="line">spring-core-4.0.0.RELEASE.jar</span><br><span class="line">spring-expression-4.0.0.RELEASE.jar</span><br><span class="line">spring-jdbc-4.0.0.RELEASE.jar</span><br><span class="line">spring-orm-4.0.0.RELEASE.jar</span><br><span class="line">spring-tx-4.0.0.RELEASE.jar</span><br><span class="line">spring-web-4.0.0.RELEASE.jar</span><br><span class="line">spring-webmvc-4.0.0.RELEASE.jar</span><br></pre></td></tr></table></figure></li>
 <li><p>创建配置文件:springmvc.xml  增加context,mvc,beans名称空间。</p>
@@ -281,7 +258,7 @@
 </ol>
 </li>
 </ol>
-<h3><span id="xian-shi-suo-you-yuan-gong-xin-xi">显示所有员工信息</span><a href="#xian-shi-suo-you-yuan-gong-xin-xi" class="header-anchor">$</a></h3><ol>
+<h3 id="显示所有员工信息-1"><a href="#显示所有员工信息-1" class="headerlink" title="显示所有员工信息"></a>显示所有员工信息</h3><ol>
 <li><p>页面链接</p>
 <figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"empList"</span>&gt;</span>To Employee List<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li><p>增加处理器</p>
@@ -292,7 +269,7 @@
 
 </li>
 </ol>
-<h2><span id="shi-yong-spring-de-biao-dan-biao-qian">使用 Spring的表单标签</span><a href="#shi-yong-spring-de-biao-dan-biao-qian" class="header-anchor">$</a></h2><ul>
+<h2 id="使用-Spring的表单标签"><a href="#使用-Spring的表单标签" class="headerlink" title="使用 Spring的表单标签"></a>使用 Spring的表单标签</h2><ul>
 <li>通过 SpringMVC 的表单标签可以实现将模型数据中的属性和 HTML 表单元素相绑定，以实现表单数据更便捷编辑和表单值的回显</li>
 <li>form 标签<ul>
 <li>一般情况下，通过 GET 请求获取表单页面，而通过 POST 请求提交表单页面，因此获取表单页面和提交表单页面的 URL 是相同的。</li>
@@ -327,7 +304,7 @@
 </ul>
 </li>
 </ul>
-<h2><span id="restrul-crud-tian-jia-cao-zuo-amp-biao-dan-biao-qian">RESTRUL_CRUD_添加操作&amp;表单标签</span><a href="#restrul-crud-tian-jia-cao-zuo-amp-biao-dan-biao-qian" class="header-anchor">$</a></h2><ol>
+<h2 id="RESTRUL-CRUD-添加操作-amp-表单标签"><a href="#RESTRUL-CRUD-添加操作-amp-表单标签" class="headerlink" title="RESTRUL_CRUD_添加操作&amp;表单标签"></a>RESTRUL_CRUD_添加操作&amp;表单标签</h2><ol>
 <li><p>在list.jsp上增加连接</p>
 <figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"empInput"</span>&gt;</span>Add Employee<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li><p>增加处理器方法</p>
@@ -347,11 +324,11 @@
 <hr>
 <p><strong>注意：</strong>  注意modelAttribute的使用，这里没有在域中使用添加对应的属性会报错<br>ava.lang.IllegalStateException: Neither BindingResult nor plain target object for bean name ‘command’ available as request attribute</p>
 <hr>
-<h2><span id="restrul-crud-shan-chu-cao-zuo-amp-chu-li-jing-tai-zi-yuan">RESTRUL_CRUD_删除操作&amp;处理静态资源</span><a href="#restrul-crud-shan-chu-cao-zuo-amp-chu-li-jing-tai-zi-yuan" class="header-anchor">$</a></h2><ol>
+<h2 id="RESTRUL-CRUD-删除操作-amp-处理静态资源"><a href="#RESTRUL-CRUD-删除操作-amp-处理静态资源" class="headerlink" title="RESTRUL_CRUD_删除操作&amp;处理静态资源"></a>RESTRUL_CRUD_删除操作&amp;处理静态资源</h2><ol>
 <li>页面链接</li>
 </ol>
-<h2><span id="restrul-crud-xiu-gai-cao-zuo">RESTRUL_CRUD_修改操作</span><a href="#restrul-crud-xiu-gai-cao-zuo" class="header-anchor">$</a></h2><p><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200226084536.png" alt></p>
-<h3><span id="gen-ju-id-cha-xun-yuan-gong-dui-xiang-biao-dan-hui-xian">根据id查询员工对象，表单回显</span><a href="#gen-ju-id-cha-xun-yuan-gong-dui-xiang-biao-dan-hui-xian" class="header-anchor">$</a></h3><ol>
+<h2 id="RESTRUL-CRUD-修改操作"><a href="#RESTRUL-CRUD-修改操作" class="headerlink" title="RESTRUL_CRUD_修改操作"></a>RESTRUL_CRUD_修改操作</h2><p><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200226084536.png" alt></p>
+<h3 id="根据id查询员工对象，表单回显"><a href="#根据id查询员工对象，表单回显" class="headerlink" title="根据id查询员工对象，表单回显"></a>根据id查询员工对象，表单回显</h3><ol>
 <li><p>页面链接</p>
 <figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"empEdit/$&#123;emp.id &#125;"</span>&gt;</span>Edit<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
 <li><p>控制器方法</p>
@@ -362,9 +339,9 @@
 
 </li>
 </ol>
-<h3><span id="ti-jiao-biao-dan-xiu-gai-shu-ju">提交表单，修改数据</span><a href="#ti-jiao-biao-dan-xiu-gai-shu-ju" class="header-anchor">$</a></h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"empUpdate"</span>,method=RequestMethod.PUT)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">updateEmp</span><span class="hljs-params">(Employee employee)</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	System.out.println(employee);</span><br><span class="line">	employeeDao.save(employee);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:/retrieveEmps"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@ModelAttribute</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">myModelAttribute</span><span class="hljs-params">(@RequestParam(value=<span class="hljs-string">"id"</span>, required=<span class="hljs-keyword">false</span>)</span> Integer id,</span></span><br><span class="line"><span class="hljs-function">			Model model</span></span><br><span class="line"><span class="hljs-function">		) </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span>(id!=<span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">		Employee employee = employeeDao.get(id);</span><br><span class="line">		model.addAttribute(<span class="hljs-string">"employee"</span>, employee);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="提交表单，修改数据"><a href="#提交表单，修改数据" class="headerlink" title="提交表单，修改数据"></a>提交表单，修改数据</h3><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@RequestMapping</span>(value=<span class="hljs-string">"empUpdate"</span>,method=RequestMethod.PUT)</span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">updateEmp</span><span class="hljs-params">(Employee employee)</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	System.out.println(employee);</span><br><span class="line">	employeeDao.save(employee);</span><br><span class="line">	<span class="hljs-keyword">return</span> <span class="hljs-string">"redirect:/retrieveEmps"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-meta">@ModelAttribute</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">myModelAttribute</span><span class="hljs-params">(@RequestParam(value=<span class="hljs-string">"id"</span>, required=<span class="hljs-keyword">false</span>)</span> Integer id,</span></span><br><span class="line"><span class="hljs-function">			Model model</span></span><br><span class="line"><span class="hljs-function">		) </span>&#123;</span><br><span class="line">	<span class="hljs-keyword">if</span>(id!=<span class="hljs-keyword">null</span>) &#123;</span><br><span class="line">		Employee employee = employeeDao.get(id);</span><br><span class="line">		model.addAttribute(<span class="hljs-string">"employee"</span>, employee);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2><span id="restrul-crud-shan-chu-cao-zuo-amp-chu-li-jing-tai-zi-yuan">RESTRUL_CRUD_删除操作&amp;处理静态资源</span><a href="#restrul-crud-shan-chu-cao-zuo-amp-chu-li-jing-tai-zi-yuan" class="header-anchor">$</a></h2><h3><span id="shan-chu-shi-yan-dai-ma">删除实验代码</span><a href="#shan-chu-shi-yan-dai-ma" class="header-anchor">$</a></h3><ol>
+<h2 id="RESTRUL-CRUD-删除操作-amp-处理静态资源-1"><a href="#RESTRUL-CRUD-删除操作-amp-处理静态资源-1" class="headerlink" title="RESTRUL_CRUD_删除操作&amp;处理静态资源"></a>RESTRUL_CRUD_删除操作&amp;处理静态资源</h2><h3 id="删除实验代码"><a href="#删除实验代码" class="headerlink" title="删除实验代码"></a>删除实验代码</h3><ol>
 <li><p>页面链接</p>
 <figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/empDelete/$&#123;emp.id &#125;"</span>&gt;</span>Delete<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -374,10 +351,10 @@
 
 </li>
 </ol>
-<h3><span id="hiddenhttpmethodfilter-guo-lu-qi">HiddenHttpMethodFilter过滤器</span><a href="#hiddenhttpmethodfilter-guo-lu-qi" class="header-anchor">$</a></h3><ul>
+<h3 id="HiddenHttpMethodFilter过滤器"><a href="#HiddenHttpMethodFilter过滤器" class="headerlink" title="HiddenHttpMethodFilter过滤器"></a>HiddenHttpMethodFilter过滤器</h3><ul>
 <li><mark>发起请求，无法执行，因为delete请求必须通过post请求转换为delete请求，借助：HiddenHttpMethodFilter过滤器</mark></li>
 </ul>
-<h3><span id="xu-yao-shi-yong-jquery-lai-zhuan-huan-qing-qiu-fang-shi">需要使用jQuery来转换请求方式</span><a href="#xu-yao-shi-yong-jquery-lai-zhuan-huan-qing-qiu-fang-shi" class="header-anchor">$</a></h3><ol>
+<h3 id="需要使用jQuery来转换请求方式"><a href="#需要使用jQuery来转换请求方式" class="headerlink" title="需要使用jQuery来转换请求方式"></a>需要使用jQuery来转换请求方式</h3><ol>
 <li>加入jQuery库文件<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/scripts/jquery-1.9.1.min.js</span><br></pre></td></tr></table></figure></li>
 <li>jQuery库文件不起作用<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">警告: No mapping found for HTTP request with URI [/SpringMVC_03_RESTFul_CRUD/scripts/jquery-1.9.1.min.js] in DispatcherServlet with name &apos;springDispatcherServlet&apos;</span><br></pre></td></tr></table></figure></li>
 <li>解决方法，SpringMVC 处理静态资源<blockquote>
@@ -392,7 +369,7 @@
 </blockquote>
 </li>
 <li>配置后，原来的请求又不好使了<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">&lt;!-- 在前端控制器对应的配置文件，增加 --&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">mvc:annotation-driven</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<h3><span id="guan-yu-mvc-default-servlet-handler-zuo-yong">关于作用</span><a href="#guan-yu-mvc-default-servlet-handler-zuo-yong" class="header-anchor">$</a></h3></li>
+<h3 id="关于mvc-default-servlet-handler-作用"><a href="#关于mvc-default-servlet-handler-作用" class="headerlink" title="关于mvc:default-servlet-handler/作用"></a>关于<a href="mvc:default-servlet-handler/" target="_blank" rel="noopener">mvc:default-servlet-handler/</a>作用</h3></li>
 </ol>
 <blockquote>
 <p><a href="mvc:default-servlet-handler/" target="_blank" rel="noopener">mvc:default-servlet-handler/</a> 将在 SpringMVC 上下文中定义一个 DefaultServletHttpRequestHandler，<br>它会对进入 DispatcherServlet 的请求进行筛查，如果发现是没有经过映射的请求，<br>就将该请求交由 WEB 应用服务器默认的 Servlet 处理，如果不是静态资源的请求，才由 DispatcherServlet 继续处理<br>一般 WEB 应用服务器默认的 Servlet 的名称都是 default。<br>若所使用的 WEB 服务器的默认 Servlet 名称不是 default，则需要通过 default-servlet-name 属性显式指定<br>参考：CATALINA_HOME/config/web.xml</p>
@@ -400,7 +377,7 @@
 <figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>org.apache.catalina.servlets.DefaultServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>debug<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">init-param</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">param-name</span>&gt;</span>listings<span class="hljs-tag">&lt;/<span class="hljs-name">param-name</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">param-value</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-name">param-value</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">init-param</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">load-on-startup</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>该标签属性default-servlet-name默认值是”default”,可以省略。<br><a href="mvc:default-servlet-handler/" target="_blank" rel="noopener">mvc:default-servlet-handler/</a>        </p>
 <figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">mvc:default-servlet-handler</span> <span class="hljs-attr">default-servlet-name</span>=<span class="hljs-string">"default"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-<h3><span id="tong-guo-jquery-zhuan-huan-wei-delete-qing-qiu">通过jQuery转换为DELETE请求</span><a href="#tong-guo-jquery-zhuan-huan-wei-delete-qing-qiu" class="header-anchor">$</a></h3><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delete"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"empDelete/$&#123;emp.id &#125;"</span>&gt;</span>Delete<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">""</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"_method"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"DELETE"</span>/&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"scripts/jquery-1.9.1.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="hljs-javascript">$(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</span></span><br><span class="line"><span class="hljs-javascript">$(<span class="hljs-string">".delete"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</span></span><br><span class="line"><span class="hljs-javascript"><span class="hljs-keyword">var</span> href = $(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">"href"</span>);</span></span><br><span class="line"><span class="hljs-javascript">$(<span class="hljs-string">"form"</span>).attr(<span class="hljs-string">"action"</span>,href).submit();</span></span><br><span class="line"><span class="hljs-actionscript"><span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> ;</span></span><br><span class="line">&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="通过jQuery转换为DELETE请求"><a href="#通过jQuery转换为DELETE请求" class="headerlink" title="通过jQuery转换为DELETE请求"></a>通过jQuery转换为DELETE请求</h3><figure class="highlight html hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"delete"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"empDelete/$&#123;emp.id &#125;"</span>&gt;</span>Delete<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">""</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"_method"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"DELETE"</span>/&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"scripts/jquery-1.9.1.min.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="hljs-javascript">$(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</span></span><br><span class="line"><span class="hljs-javascript">$(<span class="hljs-string">".delete"</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;</span></span><br><span class="line"><span class="hljs-javascript"><span class="hljs-keyword">var</span> href = $(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">"href"</span>);</span></span><br><span class="line"><span class="hljs-javascript">$(<span class="hljs-string">"form"</span>).attr(<span class="hljs-string">"action"</span>,href).submit();</span></span><br><span class="line"><span class="hljs-actionscript"><span class="hljs-keyword">return</span> <span class="hljs-literal">false</span> ;</span></span><br><span class="line">&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
                             </div>
                             
                                 <div class="level is-size-7 is-uppercase">
@@ -524,7 +501,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        82
+                        83
                     </p>
                 </div>
             </div>
@@ -534,7 +511,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        21
+                        22
                     </p>
                 </div>
             </div>
@@ -544,7 +521,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        78
+                        79
                     </p>
                 </div>
             </div>
@@ -562,35 +539,35 @@
             <a class="level-item button is-white is-marginless" target="_blank"
                 title="Github" href="https://github.com/lyhcc">
                 
-                <i class="fab fa-github"></i>
+                <i class="fa fa-github"></i>
                 
             </a>
             
             <a class="level-item button is-white is-marginless" target="_blank"
                 title="Facebook" href="https://facebook.com">
                 
-                <i class="fab fa-facebook"></i>
+                <i class="fa fa-facebook"></i>
                 
             </a>
             
             <a class="level-item button is-white is-marginless" target="_blank"
                 title="Twitter" href="https://twitter.com">
                 
-                <i class="fab fa-twitter"></i>
+                <i class="fa fa-twitter"></i>
                 
             </a>
             
             <a class="level-item button is-white is-marginless" target="_blank"
                 title="Dribbble" href="https://dribbble.com">
                 
-                <i class="fab fa-dribbble"></i>
+                <i class="fa fa-dribbble"></i>
                 
             </a>
             
             <a class="level-item button is-white is-marginless" target="_blank"
                 title="RSS" href="/">
                 
-                <i class="fas fa-rss"></i>
+                <i class="fa fa-rss"></i>
                 
             </a>
             
@@ -610,23 +587,23 @@
         <ul class="menu-list">
         
             <li>
-                <a class="level is-mobile" href="https://hexo.io" target="_blank">
+                <a class="level is-mobile" href="https://www.cnblogs.com/lyhcc/" target="_blank">
                     <span class="level-left">
-                        <span class="level-item">Hexo</span>
+                        <span class="level-item">博客园</span>
                     </span>
                     <span class="level-right">
-                        <span class="level-item tag">hexo.io</span>
+                        <span class="level-item tag">www.cnblogs.com</span>
                     </span>
                 </a>
             </li>
         
             <li>
-                <a class="level is-mobile" href="https://github.com/lyhcc" target="_blank">
+                <a class="level is-mobile" href="https://blog.csdn.net/qq_41803739/" target="_blank">
                     <span class="level-left">
-                        <span class="level-item">lyhcc</span>
+                        <span class="level-item">CSDN博客</span>
                     </span>
                     <span class="level-right">
-                        <span class="level-item tag">github.com</span>
+                        <span class="level-item tag">blog.csdn.net</span>
                     </span>
                 </a>
             </li>
@@ -742,6 +719,14 @@
                 <span class="level-item tag">14</span>
             </span>
         </a></li><li>
+        <a class="level is-marginless" href="/categories/SoftwareTesting/">
+            <span class="level-start">
+                <span class="level-item">SoftwareTesting</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Sprig-MVC/">
             <span class="level-start">
                 <span class="level-item">Sprig MVC</span>
@@ -779,15 +764,6 @@
     </div>
 </div>
                                 
-                            <div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            Tag Cloud
-        </h3>
-        <a href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">AJAX 和JSON的使用</a> <a href="/tags/DOM%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">DOM解析</a> <a href="/tags/Google%E4%B8%89%E5%AE%9D/" style="font-size: 10px;">Google三宝</a> <a href="/tags/HDFS%E5%BF%AB%E7%85%A7/" style="font-size: 10px;">HDFS快照</a> <a href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">Hadooop介绍</a> <a href="/tags/Hadoop-IPC/" style="font-size: 10px;">Hadoop IPC</a> <a href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/" style="font-size: 10px;">Hadoop IPC 数据分帧和读写</a> <a href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/" style="font-size: 10px;">Hadoop IPC通信中是如何知道数据长度的</a> <a href="/tags/Hadoop-RPC/" style="font-size: 10px;">Hadoop RPC</a> <a href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">Hadoop 协议</a> <a href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/" style="font-size: 10px;">Hadoop 压缩</a> <a href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/" style="font-size: 10px;">Hadoop 如何建立 IPC连接</a> <a href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/" style="font-size: 10px;">Hadoop 文件分片</a> <a href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Hadoop 通信机制</a> <a href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Hadoop配置文件</a> <a href="/tags/HiddenHttpMethodFilter-REST/" style="font-size: 10px;">HiddenHttpMethodFilter (REST)</a> <a href="/tags/Java-NIO/" style="font-size: 10px;">Java NIO</a> <a href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">Java NIO实例：回显服务器</a> <a href="/tags/Java-Proxy/" style="font-size: 10px;">Java Proxy</a> <a href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/" style="font-size: 10px;">Java Web过滤器和监听器</a> <a href="/tags/Java%E4%BB%A3%E7%90%86/" style="font-size: 10px;">Java代理</a> <a href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/" style="font-size: 10px;">Java代理机制</a> <a href="/tags/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/" style="font-size: 10px;">Java设计模式之设计模式七大原则</a> <a href="/tags/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 10px;">Java设计模式面试题</a> <a href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" style="font-size: 10px;">Java远程调用</a> <a href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Java配置文件</a> <a href="/tags/Kafka%E4%B9%8Bbroker/" style="font-size: 10px;">Kafka之broker</a> <a href="/tags/Kafka%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Kafka初识</a> <a href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/" style="font-size: 10px;">Kafka生产与消费</a> <a href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 10px;">Linux 工具包</a> <a href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" style="font-size: 10px;">MapReduce 通信协议</a> <a href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">MapReduce介绍</a> <a href="/tags/MySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/" style="font-size: 10px;">MySQL数据备份</a> <a href="/tags/NoSSQL%E7%89%B9%E7%82%B9/" style="font-size: 10px;">NoSSQL特点</a> <a href="/tags/RMI/" style="font-size: 10px;">RMI</a> <a href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" style="font-size: 10px;">Shell 之Bash数学运算</a> <a href="/tags/Shell-%E4%B9%8Bfind%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/" style="font-size: 10px;">Shell 之find、which、locate、whereis命令总结</a> <a href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/" style="font-size: 10px;">Shell 的函数的定义和使用</a> <a href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" style="font-size: 10px;">Shell 的字符串处理</a> <a href="/tags/Shell%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0/" style="font-size: 10px;">Shell之脚本功能概述</a> <a href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell全局变量和局部变量</a> <a href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Shell变量的替换和测试</a> <a href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/" style="font-size: 10px;">Shell命令的替换</a> <a href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">Shell文件查找find命令</a> <a href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/" style="font-size: 10px;">Shell有类型变量</a> <a href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/" style="font-size: 10px;">Shell编程 awk</a> <a href="/tags/Sping%E4%B8%8EJava-Web/" style="font-size: 10px;">Sping与Java Web</a> <a href="/tags/Spring-AOP/" style="font-size: 10px;">Spring AOP</a> <a href="/tags/Spring-AOP-%E4%B9%8B%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84AOP/" style="font-size: 10px;">Spring AOP 之基于注解的AOP</a> <a href="/tags/Spring-AOP%E5%BC%95%E5%85%A5%E4%B9%8BJava%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97/" style="font-size: 10px;">Spring AOP引入之Java动态代理打印日志</a> <a href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/" style="font-size: 10px;">Spring IOC实验</a> <a href="/tags/Spring-JDBCTemplate/" style="font-size: 10px;">Spring JDBCTemplate</a> <a href="/tags/Spring-%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">Spring 声明式事务</a> <a href="/tags/Spring-%E6%BA%90%E7%A0%81/" style="font-size: 10px;">Spring 源码</a> <a href="/tags/SpringIOC%E6%80%BB%E7%BB%93/" style="font-size: 10px;">SpringIOC总结</a> <a href="/tags/SpringMVC-%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%85%A5/" style="font-size: 10px;">SpringMVC 请求数据传入</a> <a href="/tags/SpringMVC%E4%B9%8B-RequestMapping/" style="font-size: 10px;">SpringMVC之@RequestMapping</a> <a href="/tags/SpringMVC%E4%B9%8BHelloWorld/" style="font-size: 10px;">SpringMVC之HelloWorld</a> <a href="/tags/SpringMVC%E4%B9%8BModelAttribute/" style="font-size: 10px;">SpringMVC之ModelAttribute</a> <a href="/tags/SpringMVC%E4%B9%8BRESTful%E5%AE%9E%E7%8E%B0CRUD/" style="font-size: 10px;">SpringMVC之RESTful实现CRUD</a> <a href="/tags/SpringMVC%E4%B9%8B%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%87%BA/" style="font-size: 10px;">SpringMVC之响应数据传出</a> <a href="/tags/SpringMVC%E4%B9%8B%E8%A7%86%E5%9B%BE%E8%A7%A3%E6%9E%90%E5%99%A8/" style="font-size: 10px;">SpringMVC之视图解析器</a> <a href="/tags/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 10px;">SpringMVC源码分析</a> <a href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/" style="font-size: 10px;">Spring初始之HelloWorld</a> <a href="/tags/Spring%E5%88%9D%E8%AF%86/" style="font-size: 10px;">Spring初识</a> <a href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">Spring的单元测试</a> <a href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" style="font-size: 10px;">Tomcat 的安装与配置</a> <a href="/tags/Vim%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/" style="font-size: 10px;">Vim多行注释</a> <a href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" style="font-size: 10px;">Windows操作系统配置文件</a> <a href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/" style="font-size: 10px;">hadoop序列化</a> <a href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/" style="font-size: 10px;">hadoop配置文件解析</a> <a href="/tags/kafka%E9%80%9A%E4%BF%A1/" style="font-size: 10px;">kafka通信</a> <a href="/tags/mysql%E5%91%BD%E4%BB%A4%E8%AF%A6%E6%83%85/" style="font-size: 10px;">mysql命令详情</a> <a href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">什么是大数据</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/" style="font-size: 10px;">分布式存储管理</a> <a href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">创建型设计模式</a> <a href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/" style="font-size: 10px;">十大经典算法优缺点</a> <a href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/" style="font-size: 10px;">文本处理三剑客(grep/sed/awk)</a>
-    </div>
-</div>
-                                
                                     
                                         <!-- <div class="column-right-shadow is-hidden-widescreen "> -->
                                         <div class="column-right-shadow  ">
@@ -798,101 +774,111 @@
             Recent
         </h3>
         
-        <article class="media">
+            <article class="media">
+                
+                    <a href="/post/bd735dfe.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail1.svg" alt="软件测试方法">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-14T06:55:25.518Z">2020-05-14</time></div>
+                                <a href="/post/bd735dfe.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    软件测试方法
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/SoftwareTesting/">SoftwareTesting</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
             
-            <a href="/post/fcd38b5a.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="创建型设计模式">
-                </p>
-            </a>
+            <article class="media">
+                
+                    <a href="/post/fcd38b5a.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail2.svg" alt="创建型设计模式">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-02T04:06:50.257Z">2020-04-02</time></div>
+                                <a href="/post/fcd38b5a.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    创建型设计模式
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Java设计模式</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
             
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-02T04:06:50.257Z">2020-04-02</time></div>
-                    <a href="/post/fcd38b5a.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">创建型设计模式</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Java设计模式</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
+            <article class="media">
+                
+                    <a href="/post/7e3cde45.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail3.svg" alt="Java设计模式之设计模式七大原则">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-20T01:35:36.311Z">2020-03-20</time></div>
+                                <a href="/post/7e3cde45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    Java设计模式之设计模式七大原则
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    
+                                </p>
+                            </div>
+                        </div>
+            </article>
             
-            <a href="/post/7e3cde45.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java设计模式之设计模式七大原则">
-                </p>
-            </a>
+            <article class="media">
+                
+                    <a href="/post/9174d842.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail4.svg" alt="Java设计模式面试题">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-18T02:25:27.268Z">2020-03-18</time></div>
+                                <a href="/post/9174d842.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    Java设计模式面试题
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Java设计模式</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
             
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-20T01:35:36.311Z">2020-03-20</time></div>
-                    <a href="/post/7e3cde45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java设计模式之设计模式七大原则</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
+            <article class="media">
+                
+                    <a href="/post/15fe401e.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail5.svg" alt="56. Merge Intervals">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T15:20:47.250Z">2020-03-09</time></div>
+                                <a href="/post/15fe401e.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    56. Merge Intervals
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
             
-            <a href="/post/9174d842.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java设计模式面试题">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-18T02:25:27.268Z">2020-03-18</time></div>
-                    <a href="/post/9174d842.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java设计模式面试题</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Java设计模式</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/15fe401e.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="56. Merge Intervals">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T15:20:47.250Z">2020-03-09</time></div>
-                    <a href="/post/15fe401e.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">56. Merge Intervals</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/post/630c2358.html" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Leetcode/55. Jump Game">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-03T14:33:20.937Z">2020-03-03</time></div>
-                    <a href="/post/630c2358.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">Leetcode/55. Jump Game</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
                                                     
@@ -903,6 +889,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/04/">
@@ -983,552 +980,559 @@
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/">
-                        <span class="tag">AJAX 和JSON的使用</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/DOM%E8%A7%A3%E6%9E%90/">
-                        <span class="tag">DOM解析</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Google%E4%B8%89%E5%AE%9D/">
-                        <span class="tag">Google三宝</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/HDFS%E5%BF%AB%E7%85%A7/">
-                        <span class="tag">HDFS快照</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/">
-                        <span class="tag">Hadooop介绍</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hadoop-IPC/">
-                        <span class="tag">Hadoop IPC</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/">
-                        <span class="tag">Hadoop IPC 数据分帧和读写</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/">
-                        <span class="tag">Hadoop IPC通信中是如何知道数据长度的</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hadoop-RPC/">
-                        <span class="tag">Hadoop RPC</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/">
-                        <span class="tag">Hadoop 协议</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/">
-                        <span class="tag">Hadoop 压缩</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/">
-                        <span class="tag">Hadoop 如何建立 IPC连接</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/">
-                        <span class="tag">Hadoop 文件分片</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/">
-                        <span class="tag">Hadoop 通信机制</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
-                        <span class="tag">Hadoop配置文件</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/HiddenHttpMethodFilter-REST/">
-                        <span class="tag">HiddenHttpMethodFilter (REST)</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Java-NIO/">
-                        <span class="tag">Java NIO</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-                        <span class="tag">Java NIO实例：回显服务器</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Java-Proxy/">
-                        <span class="tag">Java Proxy</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/">
-                        <span class="tag">Java Web过滤器和监听器</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86/">
-                        <span class="tag">Java代理</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/">
-                        <span class="tag">Java代理机制</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/">
-                        <span class="tag">Java设计模式之设计模式七大原则</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%9D%A2%E8%AF%95%E9%A2%98/">
-                        <span class="tag">Java设计模式面试题</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/">
-                        <span class="tag">Java远程调用</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
-                        <span class="tag">Java配置文件</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Kafka%E4%B9%8Bbroker/">
-                        <span class="tag">Kafka之broker</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
-                        <span class="tag">Kafka初识</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/">
-                        <span class="tag">Kafka生产与消费</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/">
-                        <span class="tag">Linux 工具包</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/">
-                        <span class="tag">MapReduce 通信协议</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/">
-                        <span class="tag">MapReduce介绍</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/MySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/">
-                        <span class="tag">MySQL数据备份</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/NoSSQL%E7%89%B9%E7%82%B9/">
-                        <span class="tag">NoSSQL特点</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/RMI/">
-                        <span class="tag">RMI</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
-                        <span class="tag">Shell 之Bash数学运算</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Shell-%E4%B9%8Bfind%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
-                        <span class="tag">Shell 之find、which、locate、whereis命令总结</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/">
-                        <span class="tag">Shell 的函数的定义和使用</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/">
-                        <span class="tag">Shell 的字符串处理</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Shell%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0/">
-                        <span class="tag">Shell之脚本功能概述</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/">
-                        <span class="tag">Shell全局变量和局部变量</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/">
-                        <span class="tag">Shell变量的替换和测试</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/">
-                        <span class="tag">Shell命令的替换</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/">
-                        <span class="tag">Shell文件查找find命令</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/">
-                        <span class="tag">Shell有类型变量</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/">
-                        <span class="tag">Shell编程 awk</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Sping%E4%B8%8EJava-Web/">
-                        <span class="tag">Sping与Java Web</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Spring-AOP/">
-                        <span class="tag">Spring AOP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Spring-AOP-%E4%B9%8B%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84AOP/">
-                        <span class="tag">Spring AOP 之基于注解的AOP</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Spring-AOP%E5%BC%95%E5%85%A5%E4%B9%8BJava%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97/">
-                        <span class="tag">Spring AOP引入之Java动态代理打印日志</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/">
-                        <span class="tag">Spring IOC实验</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Spring-JDBCTemplate/">
-                        <span class="tag">Spring JDBCTemplate</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Spring-%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
-                        <span class="tag">Spring 声明式事务</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Spring-%E6%BA%90%E7%A0%81/">
-                        <span class="tag">Spring 源码</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/SpringIOC%E6%80%BB%E7%BB%93/">
-                        <span class="tag">SpringIOC总结</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/SpringMVC-%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%85%A5/">
-                        <span class="tag">SpringMVC 请求数据传入</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B-RequestMapping/">
-                        <span class="tag">SpringMVC之@RequestMapping</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BHelloWorld/">
-                        <span class="tag">SpringMVC之HelloWorld</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BModelAttribute/">
-                        <span class="tag">SpringMVC之ModelAttribute</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BRESTful%E5%AE%9E%E7%8E%B0CRUD/">
-                        <span class="tag">SpringMVC之RESTful实现CRUD</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%87%BA/">
-                        <span class="tag">SpringMVC之响应数据传出</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B%E8%A7%86%E5%9B%BE%E8%A7%A3%E6%9E%90%E5%99%A8/">
-                        <span class="tag">SpringMVC之视图解析器</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
-                        <span class="tag">SpringMVC源码分析</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/">
-                        <span class="tag">Spring初始之HelloWorld</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Spring%E5%88%9D%E8%AF%86/">
-                        <span class="tag">Spring初识</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
-                        <span class="tag">Spring的单元测试</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">
-                        <span class="tag">Tomcat 的安装与配置</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Vim%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/">
-                        <span class="tag">Vim多行注释</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
-                        <span class="tag">Windows操作系统配置文件</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/">
-                        <span class="tag">hadoop序列化</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/">
-                        <span class="tag">hadoop配置文件解析</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/kafka%E9%80%9A%E4%BF%A1/">
-                        <span class="tag">kafka通信</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/mysql%E5%91%BD%E4%BB%A4%E8%AF%A6%E6%83%85/">
-                        <span class="tag">mysql命令详情</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/">
-                        <span class="tag">什么是大数据</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/">
-                        <span class="tag">分布式存储管理</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-                        <span class="tag">创建型设计模式</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/">
-                        <span class="tag">十大经典算法优缺点</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/">
-                        <span class="tag">文本处理三剑客(grep/sed/awk)</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                            <span class="tag">AJAX 和JSON的使用</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/DOM%E8%A7%A3%E6%9E%90/">
+                            <span class="tag">DOM解析</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Google%E4%B8%89%E5%AE%9D/">
+                            <span class="tag">Google三宝</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/HDFS%E5%BF%AB%E7%85%A7/">
+                            <span class="tag">HDFS快照</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/">
+                            <span class="tag">Hadooop介绍</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-IPC/">
+                            <span class="tag">Hadoop IPC</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/">
+                            <span class="tag">Hadoop IPC 数据分帧和读写</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/">
+                            <span class="tag">Hadoop IPC通信中是如何知道数据长度的</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-RPC/">
+                            <span class="tag">Hadoop RPC</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/">
+                            <span class="tag">Hadoop 协议</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/">
+                            <span class="tag">Hadoop 压缩</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/">
+                            <span class="tag">Hadoop 如何建立 IPC连接</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/">
+                            <span class="tag">Hadoop 文件分片</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/">
+                            <span class="tag">Hadoop 通信机制</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                            <span class="tag">Hadoop配置文件</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/HiddenHttpMethodFilter-REST/">
+                            <span class="tag">HiddenHttpMethodFilter (REST)</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java-NIO/">
+                            <span class="tag">Java NIO</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                            <span class="tag">Java NIO实例：回显服务器</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java-Proxy/">
+                            <span class="tag">Java Proxy</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/">
+                            <span class="tag">Java Web过滤器和监听器</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86/">
+                            <span class="tag">Java代理</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/">
+                            <span class="tag">Java代理机制</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/">
+                            <span class="tag">Java设计模式之设计模式七大原则</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                            <span class="tag">Java设计模式面试题</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/">
+                            <span class="tag">Java远程调用</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                            <span class="tag">Java配置文件</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Kafka%E4%B9%8Bbroker/">
+                            <span class="tag">Kafka之broker</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                            <span class="tag">Kafka初识</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/">
+                            <span class="tag">Kafka生产与消费</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/">
+                            <span class="tag">Linux 工具包</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/">
+                            <span class="tag">MapReduce 通信协议</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/">
+                            <span class="tag">MapReduce介绍</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/MySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/">
+                            <span class="tag">MySQL数据备份</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/NoSSQL%E7%89%B9%E7%82%B9/">
+                            <span class="tag">NoSSQL特点</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/RMI/">
+                            <span class="tag">RMI</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
+                            <span class="tag">Shell 之Bash数学运算</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell-%E4%B9%8Bfind%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+                            <span class="tag">Shell 之find、which、locate、whereis命令总结</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/">
+                            <span class="tag">Shell 的函数的定义和使用</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/">
+                            <span class="tag">Shell 的字符串处理</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0/">
+                            <span class="tag">Shell之脚本功能概述</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/">
+                            <span class="tag">Shell全局变量和局部变量</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/">
+                            <span class="tag">Shell变量的替换和测试</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/">
+                            <span class="tag">Shell命令的替换</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/">
+                            <span class="tag">Shell文件查找find命令</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/">
+                            <span class="tag">Shell有类型变量</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/">
+                            <span class="tag">Shell编程 awk</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Sping%E4%B8%8EJava-Web/">
+                            <span class="tag">Sping与Java Web</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring-AOP/">
+                            <span class="tag">Spring AOP</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring-AOP-%E4%B9%8B%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84AOP/">
+                            <span class="tag">Spring AOP 之基于注解的AOP</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring-AOP%E5%BC%95%E5%85%A5%E4%B9%8BJava%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97/">
+                            <span class="tag">Spring AOP引入之Java动态代理打印日志</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/">
+                            <span class="tag">Spring IOC实验</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring-JDBCTemplate/">
+                            <span class="tag">Spring JDBCTemplate</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring-%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+                            <span class="tag">Spring 声明式事务</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring-%E6%BA%90%E7%A0%81/">
+                            <span class="tag">Spring 源码</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringIOC%E6%80%BB%E7%BB%93/">
+                            <span class="tag">SpringIOC总结</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC-%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%85%A5/">
+                            <span class="tag">SpringMVC 请求数据传入</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B-RequestMapping/">
+                            <span class="tag">SpringMVC之@RequestMapping</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BHelloWorld/">
+                            <span class="tag">SpringMVC之HelloWorld</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BModelAttribute/">
+                            <span class="tag">SpringMVC之ModelAttribute</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BRESTful%E5%AE%9E%E7%8E%B0CRUD/">
+                            <span class="tag">SpringMVC之RESTful实现CRUD</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%87%BA/">
+                            <span class="tag">SpringMVC之响应数据传出</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B%E8%A7%86%E5%9B%BE%E8%A7%A3%E6%9E%90%E5%99%A8/">
+                            <span class="tag">SpringMVC之视图解析器</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+                            <span class="tag">SpringMVC源码分析</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/">
+                            <span class="tag">Spring初始之HelloWorld</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring%E5%88%9D%E8%AF%86/">
+                            <span class="tag">Spring初识</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
+                            <span class="tag">Spring的单元测试</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">
+                            <span class="tag">Tomcat 的安装与配置</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Vim%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/">
+                            <span class="tag">Vim多行注释</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                            <span class="tag">Windows操作系统配置文件</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/">
+                            <span class="tag">hadoop序列化</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/">
+                            <span class="tag">hadoop配置文件解析</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/kafka%E9%80%9A%E4%BF%A1/">
+                            <span class="tag">kafka通信</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/mysql%E5%91%BD%E4%BB%A4%E8%AF%A6%E6%83%85/">
+                            <span class="tag">mysql命令详情</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/">
+                            <span class="tag">什么是大数据</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/">
+                            <span class="tag">分布式存储管理</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                            <span class="tag">创建型设计模式</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/">
+                            <span class="tag">十大经典算法优缺点</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/">
+                            <span class="tag">文本处理三剑客(grep/sed/awk)</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E4%B9%8B%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">
+                            <span class="tag">软件测试之软件测试方法</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
             </div>
         </div>
     </div>
@@ -1553,10 +1557,12 @@
                 </a>
                 <p class="is-size-7">
                     &copy;
-                    2020
+                    2021
                         John Doe&nbsp; Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                             
                                     
+
+                                        
                 </p>
             </div>
             <div class="level-end">
@@ -1566,7 +1572,7 @@
                             <p class="control">
                                 <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
                                     
-                                                <i class="fab fa-creative-commons"></i>
+                                                <i class="fa fa-creative-commons"></i>
                                                 
                                 </a>
                             </p>
@@ -1574,7 +1580,7 @@
                             <p class="control">
                                 <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
                                     
-                                                <i class="fab fa-creative-commons-by"></i>
+                                                <i class="fa fa-creative-commons-by"></i>
                                                 
                                 </a>
                             </p>
@@ -1582,7 +1588,7 @@
                             <p class="control">
                                 <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
                                     
-                                                <i class="fab fa-github"></i>
+                                                <i class="fa fa-github"></i>
                                                 
                                 </a>
                             </p>
@@ -1682,6 +1688,10 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
     
+    
+    
+    
+            
     
 
 

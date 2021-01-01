@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html  lang="en">
+
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.0.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>软件测试方法 - lyhcc博客</title>
+
+
+    <meta name="description" content="等价类划分 属于黑盒测试，它将不能穷举的测试过程进行分类，从而保证完整性和代表性；思考步骤：  确定有效等价类和无效等价类 有效等价类划分（题目条件，还要注意边界值（极值），中间甲堕意找个值) 无效等价类划分（跟有效等价类相反，其他特殊的情况【中文、英文、特殊符号、空格、空】）  注意: 两个框要一个正确，一个错误，这样才能准确的判断；一定要根据需求来判断预期结">
+<meta name="keywords" content="软件测试之软件测试方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件测试方法">
+<meta property="og:url" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;post&#x2F;bd735dfe.html">
+<meta property="og:site_name" content="lyhcc博客">
+<meta property="og:description" content="等价类划分 属于黑盒测试，它将不能穷举的测试过程进行分类，从而保证完整性和代表性；思考步骤：  确定有效等价类和无效等价类 有效等价类划分（题目条件，还要注意边界值（极值），中间甲堕意找个值) 无效等价类划分（跟有效等价类相反，其他特殊的情况【中文、英文、特殊符号、空格、空】）  注意: 两个框要一个正确，一个错误，这样才能准确的判断；一定要根据需求来判断预期结">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
+<meta property="og:updated_time" content="2020-12-31T13:52:34.842Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;lyhcc.github.io&#x2F;images&#x2F;og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+    
+    
+        <script type="text/javascript" src="//js.users.51.la/21033593.js"></script>
+        
+            
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="alternate" href="/atom.xml" title="lyhcc博客" type="application/atom+xml">
+</head>
+
+<body class="is-2-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                            <img src="/images/logo.svg" alt="软件测试方法" height="28">
+                            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+                <div class="navbar-start">
+                    
+                        <a class="navbar-item" href="/">
+                            首页
+                        </a>
+                        
+                        <a class="navbar-item" href="/archives">
+                            归档
+                        </a>
+                        
+                        <a class="navbar-item" href="/categories">
+                            分类
+                        </a>
+                        
+                        <a class="navbar-item" href="/tags">
+                            标签
+                        </a>
+                        
+                        <a class="navbar-item" href="/album">
+                            相册
+                        </a>
+                        
+                        <a class="navbar-item" href="/about">
+                            关于
+                        </a>
+                        
+                </div>
+                
+                    <div class="navbar-end">
+                        
+                            
+                                <a class="navbar-item" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                                    
+                                                <i class="fa fa-github"></i>
+                                                
+                                </a>
+                                
+                                    
+                                        
+                                            <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                                                <i class="fas fa-list-ul"></i>
+                                            </a>
+                                            
+                                                
+                                                    <a class="navbar-item search" title="Search" href="javascript:;">
+                                                        <i class="fa fa-search"></i>
+                                                    </a>
+                                                    
+                    </div>
+        </div>
+    </div>
+</nav>
+        
+            <section class="section">
+                <div class="container">
+                    <div class="columns">
+                        <div class="column is-8-tablet is-9-desktop is-9-widescreen has-order-2 column-main">
+                            
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2020-05-14T06:55:25.518Z">2020-05-14</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/SoftwareTesting/">SoftwareTesting</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    29 minutes read (About 4360 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                        软件测试方法
+                                            
+                            </h1>
+                            <div class="content">
+
+                                <h2 id="等价类划分"><a href="#等价类划分" class="headerlink" title="等价类划分"></a>等价类划分</h2><blockquote>
+<p>属于黑盒测试，它将不能穷举的测试过程进行分类，从而保证完整性和代表性；思考步骤：</p>
+<ol>
+<li>确定有效等价类和无效等价类</li>
+<li>有效等价类划分（题目条件，还要注意边界值（极值），中间甲堕意找个值)</li>
+<li>无效等价类划分（跟有效等价类相反，其他特殊的情况【中文、英文、特殊符号、空格、空】）</li>
+</ol>
+<p><strong>注意:</strong> 两个框要一个正确，一个错误，这样才能准确的判断；一定要根据需求来判断预期结  </p>
+</blockquote>
+<a id="more"></a>
+
+<p><strong><a href="http://qukuailine.com/的注册页面" target="_blank" rel="noopener">http://qukuailine.com/的注册页面</a></strong><br><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200514154933.png" alt></p>
+<h3 id="等价类细节考虑"><a href="#等价类细节考虑" class="headerlink" title="等价类细节考虑"></a>等价类细节考虑</h3><blockquote>
+<p>1、考虑输入长度2、考库输入类型3、组成规则4、是否为空5、是否区分大小写…<br>6、是否重复7、是否去除空格</p>
+</blockquote>
+<h2 id="边界值划分"><a href="#边界值划分" class="headerlink" title="边界值划分"></a>边界值划分</h2><ol>
+<li>如果输入条件规定了值得范围，则应取刚到到这个范围的边界值，以及刚刚超越这个范围边界的值作为输入数据。<ul>
+<li>两位整数加法器数的范围为99-99，则应测试99，-100和099,100<ol start="2">
+<li>输入条件规定了值得个数</li>
+</ol>
+<ul>
+<li>姓名要求1-20个字符，需要测试0、1、2个字符和19、20、21个字符</li>
+<li>某商品信息查询系统，每页最多呈示10条商品信息，我们就应该准备商品信息，使能够查询出10条、11条、1条、0条商品记录</li>
+<li><font color="red">边界值和等价类区别：边界值分析不是从某等价类中随便挑一个作为代表，而是这个等价类的每个边界都要作为测试条件</font></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>银行密码案例</strong>  </p>
+<blockquote>
+<p>需求：<br>密码必须是数字密码组合<br>且长度在8-24<br><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200514162517.png" alt></p>
+</blockquote>
+<h3 id="常见的边界值"><a href="#常见的边界值" class="headerlink" title="常见的边界值"></a>常见的边界值</h3><ul>
+<li>文本框接收字符个数，比如用户名长度，密码长度等</li>
+<li>报表的第1行和最后1行；</li>
+<li>数值元素的第1个和最后1个；</li>
+<li>循环的第1次、2次和倒数第1次、2次。</li>
+</ul>
+<h2 id="因果图法"><a href="#因果图法" class="headerlink" title="因果图法"></a>因果图法</h2><blockquote>
+<p>因果图法是一种利用图解法分析输入的各种组合情况，从而设计测试用例的方法，它适合于检查程序输入条件的各种组合情况<br>因果图法比较适合输入条件比较多的情况，测试所有的输入条件的排列组合。所谓的原因就是输入，所谓的结果就是输出。</p>
+</blockquote>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">因果图的“因”—输入条件</span><br><span class="line"> 因果图的“果”—输出结果因果图法要注意考虑：</span><br></pre></td></tr></table></figure>
+<p>所有输入/输出条件的相互制约关系以及组合关系输出结果对输入条件的依赖关系，也就是什么样的输入组合会产生怎样的输出结果，即“因果关系”</p>
+<p><strong>特点：</strong>  </p>
+<ul>
+<li>考虑输入条件的相互制约及<mark>组合关系</mark></li>
+<li>考虑输条件对输入条件的<mark>依赖关系</mark><h3 id="因果图中的符号"><a href="#因果图中的符号" class="headerlink" title="因果图中的符号"></a>因果图中的符号</h3><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200514165545.png" alt></li>
+</ul>
+<ol>
+<li>恒等一有因就有果，没有因就没有果</li>
+<li>非一有因没有果，没有因有果</li>
+<li>或一条件有一个是真，结果就是真，条件都是假，结果才是假</li>
+<li>且（与）-条件都为真，结果才为真<h3 id="因果图中的约束条件"><a href="#因果图中的约束条件" class="headerlink" title="因果图中的约束条件"></a>因果图中的约束条件</h3><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200514165607.png" alt></li>
+</ol>
+<ul>
+<li>E(互斥、排他)。a、b两个原因不会同时出现，最多只有一个出现。</li>
+<li>I(包含、或)。a、b、c三个原因至少有一个出现。</li>
+<li>O(唯一)。a、b两个原因必须有一个出现，且仅有一个出现。</li>
+<li>R(需求)。a出现时b必定出现。<br> 从结果方面考虑主要有1种约束条件：</li>
+<li>M(屏蔽)。a出现时，b必定不出现；a不出现时，b则不确定。</li>
+</ul>
+<h3 id="因果图导出测试用例"><a href="#因果图导出测试用例" class="headerlink" title="因果图导出测试用例"></a>因果图导出测试用例</h3><p>利用因果图导出测试用例需要经过以下几个步骤  </p>
+<ol>
+<li>找出所有的原因，原因即输入条件或输入条件的等价类。</li>
+<li>找出所有的结果，结果即输出条件。</li>
+<li>明确所有输入条件之间的制约关系以及组合关系。<ul>
+<li>哪些条件不能组合到一起，哪些条件可以组合到一起 </li>
+</ul>
+</li>
+<li>明确所有输出条件之间的制约关系以及组合关系。<ul>
+<li>哪些输出结果不能同时输出，哪些输出结果可以同时输出</li>
+</ul>
+</li>
+<li>找出什么样的输入条件组合会产生哪种输出结果</li>
+<li>把因果图转换成判定表/决策表。</li>
+<li>为判定表/决策表中的每一列表示的情况设计测试用例。</li>
+</ol>
+<p><a href="https://zhuanlan.zhihu.com/p/129342944" target="_blank" rel="noopener">案例参考</a></p>
+<h3 id="交通一卡通案例"><a href="#交通一卡通案例" class="headerlink" title="交通一卡通案例"></a>交通一卡通案例</h3><ul>
+<li>系统只接收50或100元纸币，一次只能使用一张纸币，一次充值金额只能为50元或100元</li>
+<li>若输入50元纸币，并选择充值50元，完成充值后退卡，提示充值成功；</li>
+<li>若输入50元纸币，并选择充值100元，提示输入金额不足并退回50元；</li>
+<li>若输入100元纸币，并选择充值50元，完成充值后退卡，提示充值成功，找零50元；</li>
+<li>若输入100元纸币，并选择充值100元，完成充值后退卡，提示充值成功；</li>
+<li>若输入纸币后在规定时间内不选择充值按钮，退回输入的纸币，并提示错误；</li>
+<li>若选择充值按钮后不输入纸币，提示错误<br><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200514195827.png" alt></li>
+</ul>
+<h2 id="判定表"><a href="#判定表" class="headerlink" title="判定表"></a>判定表</h2><h3 id="判定表的组成"><a href="#判定表的组成" class="headerlink" title="判定表的组成"></a>判定表的组成</h3><ul>
+<li>条件桩:问题的所有条件</li>
+<li>动作桩:问题的所有输出</li>
+<li>条件项:针对条件桩的取值</li>
+<li>动作项:条件项的各种取值情况下的输出结果<blockquote>
+<p>相当于将<font color="red">输入改为条件装桩，输出改为动作桩</font></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="判定表法的步骤"><a href="#判定表法的步骤" class="headerlink" title="判定表法的步骤"></a>判定表法的步骤</h3><ol>
+<li>列出所有条件桩和条件桩</li>
+<li>填入条件项</li>
+<li>填入动作项</li>
+<li>简化判定表（合并相同或相似规则）</li>
+</ol>
+<p><strong>案例</strong>  </p>
+<blockquote>
+<p>怎样称为一个好学生？遵纪守法的前提下，学习成绩好是一个好学生、品德高尚也是一个好学生；（只要违法乱纪就绝对不是一个好学生；成绩和品德有一项，再加遵纪守法也是好学生）<br><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200519103627.png" alt><br><font color="red">-代表任意值</font></p>
+</blockquote>
+<h2 id="场景法"><a href="#场景法" class="headerlink" title="场景法"></a>场景法</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><blockquote>
+<p>场景法就是模拟用户操作软件时的场景，主要用于测试系统的业务流程。  </p>
+</blockquote>
+<ul>
+<li>当拿到一个测试任务时，我们不是先关注某个控件的边界值、等价类是否满足要求而是先要关注它的主要功能和业务流程是否正确实现，这就需要使用场景法来完成测试</li>
+<li>当业务淘程测试没有问题，也就是该软件的主要功能没有问题时，我重点从边界值、等价<blockquote>
+<p><strong>在冒烟测试时也主要采用场景法进行测试</strong><br><a href="https://blog.csdn.net/wang122188/article/details/7106619" target="_blank" rel="noopener">案例</a></p>
+</blockquote>
+<h3 id="用例场景的定义"><a href="#用例场景的定义" class="headerlink" title="用例场景的定义"></a>用例场景的定义</h3></li>
+<li>场景法中两个重要的概念<ul>
+<li>基本流：按照正确的业务流程来实现的一条操作路径（模拟正确的操作流程</li>
+<li>备选流：导致程序出现错误的操作流程（模拟错误的操作流程）</li>
+<li>还有补充一些异常情况</li>
+</ul>
+</li>
+<li>用例场景是用来描述流经用例路径的过程，这个过程从开始到结束遍方用例中所有基本流和备选流。</li>
+<li>场景法设计测试用例时，需要覆盖系统用例中的<font color="red">主成功场景</font>和<font color="red">扩展场景</font></li>
+<li>事件的触发时的情景便形成<strong>场景</strong></li>
+<li>同一事件的不同触发顺序和处理结果形成了<strong>事件流</strong></li>
+</ul>
+<p><strong>案例</strong>  </p>
+<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">使用场景法测试QQ登录功能。</span><br><span class="line">- 输入正确的账号和密码后点击“登录”按钮，程序能正常登录</span><br><span class="line">- 输入正确的账号，错误的密码后点击“登录”按钮，程序应给出错误提示</span><br><span class="line">- 输入正确的账号，不输入密码，点击“登录”按钮，程序应给出错误提示</span><br><span class="line">- 不输入账号和密码，直接点击“登录”按钮，程序给出错误提示“请您输入账号后登陆”</span><br><span class="line">- 不输入账号，输入正确的密码，点击“登录”按钮，程序应给出错误提示</span><br><span class="line">- 输入错误的账号，正确的密码，点击“登录”按钮，程序应给出错误提示</span><br><span class="line">（更多……）</span><br><span class="line">*********列出测试用例矩阵*************</span><br></pre></td></tr></table></figure>
+<h2 id="流程分析法"><a href="#流程分析法" class="headerlink" title="流程分析法"></a>流程分析法</h2><blockquote>
+<p>流程分析法主要是针对测试场景类型属于流程测试场景的测试项下的测试子项进行设计，是从白盒测试设计方法中的路径覆盖分析法借鉴过来的一种方法。</p>
+</blockquote>
+<ul>
+<li>在白盒测试中，路径就是指函数代码的某个分支组合，路径覆盖法需要构造足够的用例覆盖函数的所有代码路径。(就是测试所有分支)</li>
+<li>在黑盒测试中，若将软件系统的某个流程看成路径的话，则可以针对该路径使用路径分析的方法设计测试用例</li>
+</ul>
+<p><strong>优点</strong>  </p>
+<ul>
+<li>降低了测试用例设计难度，只要搞清楚各种流程，就可以设计出高质量的测试用例来，而不需要太多测试方面的经验</li>
+<li>在测试时间较迫的情况下，可以有的放矢的选择测试用例，而不用完全根据经来取舍<h3 id="流程分析法步骤"><a href="#流程分析法步骤" class="headerlink" title="流程分析法步骤"></a>流程分析法步骤</h3></li>
+<li>第一步：详细了解需求；</li>
+<li>第二步：根据需求说明或界面原型，找出业务流程的各个页面以及各页面之间的流转关系；</li>
+<li>第三步：画出业务流程（产品经理使用 Axure软件制作）；</li>
+<li>第四步：写用例，覆盖所有的路径分支<br><a href="https://zhuanlan.zhihu.com/p/130490121" target="_blank" rel="noopener">案例</a></li>
+</ul>
+<h3 id="流程分析法的总结"><a href="#流程分析法的总结" class="headerlink" title="流程分析法的总结"></a>流程分析法的总结</h3><blockquote>
+<p>流程分析法适用于有先后顺序的测试:常用于业务流程、安装流程等<br>流程测试没有问题并不能说明系统功能没有问题<br>还需要针对每步功能进行测试。对于包含复杂流程的系统，只有功能点和处理流程都进行测试覆盖，才算是比较充分的测试。  </p>
+</blockquote>
+<h2 id="错误推测法"><a href="#错误推测法" class="headerlink" title="错误推测法"></a>错误推测法</h2><blockquote>
+<p>错误推测法是指利用直觉和经验猜测出出错的可能类型，有针对性列举出程序中所有可能的错误和容易发生错误的情况，它是测试经验丰富的测试人员喜欢使用的一种测试用例设计方法</p>
+</blockquote>
+<h2 id="正交表"><a href="#正交表" class="headerlink" title="正交表"></a>正交表</h2><blockquote>
+<p>正交试验设计是研究多因素多水平的一种设计方法，它是根据正交性从全面试验中挑选出部分有代表性的点进行试验，这些有代表性的点具备了“<mark>均匀分散，齐整可比</mark>”的特点，正交试验设计是一种基于正交表的、高效率、快速、经济的试验设计方法</p>
+</blockquote>
+<h3 id="正交表的概述"><a href="#正交表的概述" class="headerlink" title="正交表的概述"></a>正交表的概述</h3><p>正交表：一种特制的表，一般的正交表记为：L<sub>n</sub>（m<sup>k</sup><!--  -->）</p>
+<ul>
+<li>n是表的行数，也就是需要测试组合的次数+</li>
+<li>K是表的列数，表示控件的个数（因素的个数，或因子个数）</li>
+<li>m是每个控件包含的取值个数（各因素的水平数，即各因素的状态数）<br>如：L<sub>9</sub>(3<sup>4</sup>）</li>
+<li>有4个控件</li>
+<li>每个控件有3个取值</li>
+<li>9为需要测试的组合个数</li>
+<li><font color="red">叫4因素3水平</font><br><a href="https://wenku.baidu.com/view/0f68ec88d0d233d4b14e69f9.html" target="_blank" rel="noopener">常用正交表</a></li>
+</ul>
+<h3 id="正交表使用步骤"><a href="#正交表使用步骤" class="headerlink" title="正交表使用步骤"></a>正交表使用步骤</h3><ol>
+<li>根据所测程序千控件的个数（因素）以每个控件的取值个数（水平），选取适的正交排</li>
+<li>把控件及其取值列举出来，并对其进行编号</li>
+<li>把控件及其取值映射到正交排列表中<ol>
+<li>把正交排列表中的ABCD（因子）分别替换成4个控件</li>
+<li>把每列中的1.2.3（状态）分别换成这个控件的3个取值（水平），排列顺序要按照表中给出的顺序</li>
+</ol>
+</li>
+<li>根据映射好的正交排列表编写测试用例<br><img src="https://gitee.com//lyhcc/Images/raw/master/img/20200519115810.png" alt></li>
+</ol>
+<ul>
+<li>使用正交排列法的局限性 目前常见的正交排列表只有前面附录文件中给出的几种即使是已有的正交排列表，基本都要求每个控件中取值的个数要相等，这在实际软件中很少遇到。</li>
+<li>没有现成的正交排列表怎么办？<blockquote>
+<p>通过正交排列法的学习，我们更多的应该学习到一种测试思想，也就是在从所有组合集合中选取测试数据时，应该均匀的选取其中的组合作为测试用例，而不要只在某个局部选取数据。</p>
+</blockquote>
+<h3 id="混合正交表"><a href="#混合正交表" class="headerlink" title="混合正交表"></a>混合正交表</h3><h4 id="正交表生成工具Allpairs"><a href="#正交表生成工具Allpairs" class="headerlink" title="正交表生成工具Allpairs"></a>正交表生成工具Allpairs</h4>很对多情况下无法找到合适的正交表，就要使用正交表生成工具使用步骤  <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1、制作取值表（只列出数据即可，不用编号）</span><br><span class="line">2、复制取值表的数据，放到文本文档中保存</span><br><span class="line">    （注意不要更改任何格式，例如文件叫Test2.txt）</span><br><span class="line">3、把文本文档放在 allpairs文件夹中</span><br><span class="line">4、 win+r后输入cnd进入控制台</span><br><span class="line">5、进入 allpairs文件夹6、在控制台中输入</span><br><span class="line">    allpairs. exe Test2.txt&gt;Test21.txt</span><br><span class="line">    （Test21是自己起的名字，用来存放生成的组合用例，</span><br><span class="line">    可以自动生成，不必提前建好）</span><br></pre></td></tr></table></figure>
+<h2 id="测试方法的选择"><a href="#测试方法的选择" class="headerlink" title="测试方法的选择"></a>测试方法的选择</h2>在确定测试方法时，应遵循以下原则</li>
+<li>根据程序的重要性和一旦发生故障将造成的损失来确定测试等级和测试重点。</li>
+<li><font color="red">认真选择测试策略</font>，以便能尽可能少的使用测试用例，发现尽可能多的程序错误。因为一次完整的软件测试过后，如果程序中遗留的错误过多并且严重，则表明该次测试是不足的，而测试不足则意味着让用户承担隐藏错误带来的危险，但测试过度又会带来资源的浪费。因此测试需要找到一个平衡点。</li>
+<li>（1）拿到一个测试任务时，先关注它的<font color="red">主要功能和业务流程</font>、业务逻辑是否正确实现，考虑使用<font color="red">场景法</font>。</li>
+<li>（2）需要输入数据的地方，考虑采用<font color="red">等价类划分法</font>，包括输入条件和输出条件的等价划分，将无限测试变成有限测试。</li>
+<li>（3）在任何情况下都必须采用<font color="red">边界值分析法</font>。这种方法设计出的测试用例发现程序错误的能力最强。</li>
+<li>（4）如果程序的功能说明中含有输入条件的<font color="red">组合情况</font>，则一开始就应考虑选用<font color="red">因果图和判定表法</font>。</li>
+<li>（5）对于参数配置类的软件，需要考虑参数之间的组合情况，考虑使用<font color="red">正交排列法选择较少的组合方式</font>（最少的测试用例获得最大的的测试覆盖率）。<br>（6）对照程序逻辑，检查已设计出的测试用例的逻辑覆盖程度。<br>如果<font color="red">没有达到要求</font>的覆盖标准，则应当再<font color="red">补充</font>更多的测试用例。<br>（7）采用<font color="red">错误推断法</font>再追加测试用例—依靠测试工程师的经验和智慧。</li>
+</ul>
+<p><strong>如何选择？</strong>  </p>
+<ol>
+<li>如果测试功能和流程，要使用场景法</li>
+<li>需要输入数据的地方，我们使用等价类划分法，要注意配置边界值划分来测试</li>
+<li>如果有条件组合的情况，我们需要使用因果图法制作判定表</li>
+<li>配置类软件，组合比较多的。我们使用正交表来科学的选择测试用例</li>
+<li>如果没有达到覆盖标准，就增加一些测试用例</li>
+<li>依靠经验追加一些测试用例（错误推断法）</li>
+</ol>
+
+                            </div>
+                            
+                                <div class="level is-size-7 is-uppercase">
+                                    <div class="level-start">
+                                        <div class="level-item">
+                                            <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                                            <a class="has-link-grey -link" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E4%B9%8B%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/" rel="tag">软件测试之软件测试方法</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                    
+                                            
+                </div>
+    </div>
+
+    
+        
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="menu-label has-text-centered">
+                        Like this article? Support the author with
+                    </h3>
+                    <div class="buttons is-centered">
+                        
+                            
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                                
+                            
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                                
+                            <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                                
+                            
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                                
+                    </div>
+                </div>
+            </div>
+            
+
+                
+                    <div class="card card-transparent">
+                        <div class="level post-navigation is-flex-wrap is-mobile">
+                            
+                                    
+                                        <div class="level-end">
+                                            <a class="level level-item has-link-grey  article-nav-next" href="/post/fcd38b5a.html">
+                                                <span class="level-item">创建型设计模式</span>
+                                                <i class="level-item fas fa-chevron-right"></i>
+                                            </a>
+                                        </div>
+                                        
+                        </div>
+                    </div>
+                    
+
+                        
+                        </div>
+                        
+    
+        
+            
+                
+                    <div class="column is-4-tablet is-4-desktop is-4-widescreen  has-order-1 column-left ">
+                        
+                            
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="" src="https://cdn.jsdelivr.net/gh/lyhcc/Picture_Repository/img/20191026160026.png" alt="lyhcc">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        lyhcc
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        DT Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Hunan,China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        83
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        22
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        79
+                    </p>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/lyhcc" target="_blank">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/lyhcc">
+                
+                <i class="fa fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="https://facebook.com">
+                
+                <i class="fa fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fa fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fa fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fa fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+                                
+                            
+    
+        <div class="card widget" id="toc">
+            <div class="card-content">
+                <div class="menu">
+                    <h3 class="menu-label">
+                        Catalogue
+                    </h3>
+                    <ul class="menu-list"><li>
+        <a class="is-flex" href="#等价类划分">
+        <span class="has-mr-6">1</span>
+        <span>等价类划分</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#等价类细节考虑">
+        <span class="has-mr-6">1.1</span>
+        <span>等价类细节考虑</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#边界值划分">
+        <span class="has-mr-6">2</span>
+        <span>边界值划分</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#常见的边界值">
+        <span class="has-mr-6">2.1</span>
+        <span>常见的边界值</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#因果图法">
+        <span class="has-mr-6">3</span>
+        <span>因果图法</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#因果图中的符号">
+        <span class="has-mr-6">3.1</span>
+        <span>因果图中的符号</span>
+        </a></li><li>
+        <a class="is-flex" href="#因果图中的约束条件">
+        <span class="has-mr-6">3.2</span>
+        <span>因果图中的约束条件</span>
+        </a></li><li>
+        <a class="is-flex" href="#因果图导出测试用例">
+        <span class="has-mr-6">3.3</span>
+        <span>因果图导出测试用例</span>
+        </a></li><li>
+        <a class="is-flex" href="#交通一卡通案例">
+        <span class="has-mr-6">3.4</span>
+        <span>交通一卡通案例</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#判定表">
+        <span class="has-mr-6">4</span>
+        <span>判定表</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#判定表的组成">
+        <span class="has-mr-6">4.1</span>
+        <span>判定表的组成</span>
+        </a></li><li>
+        <a class="is-flex" href="#判定表法的步骤">
+        <span class="has-mr-6">4.2</span>
+        <span>判定表法的步骤</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#场景法">
+        <span class="has-mr-6">5</span>
+        <span>场景法</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#概述">
+        <span class="has-mr-6">5.1</span>
+        <span>概述</span>
+        </a></li><li>
+        <a class="is-flex" href="#用例场景的定义">
+        <span class="has-mr-6">5.2</span>
+        <span>用例场景的定义</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#流程分析法">
+        <span class="has-mr-6">6</span>
+        <span>流程分析法</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#流程分析法步骤">
+        <span class="has-mr-6">6.1</span>
+        <span>流程分析法步骤</span>
+        </a></li><li>
+        <a class="is-flex" href="#流程分析法的总结">
+        <span class="has-mr-6">6.2</span>
+        <span>流程分析法的总结</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#错误推测法">
+        <span class="has-mr-6">7</span>
+        <span>错误推测法</span>
+        </a></li><li>
+        <a class="is-flex" href="#正交表">
+        <span class="has-mr-6">8</span>
+        <span>正交表</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#正交表的概述">
+        <span class="has-mr-6">8.1</span>
+        <span>正交表的概述</span>
+        </a></li><li>
+        <a class="is-flex" href="#正交表使用步骤">
+        <span class="has-mr-6">8.2</span>
+        <span>正交表使用步骤</span>
+        </a></li><li>
+        <a class="is-flex" href="#混合正交表">
+        <span class="has-mr-6">8.3</span>
+        <span>混合正交表</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#正交表生成工具Allpairs">
+        <span class="has-mr-6">8.3.1</span>
+        <span>正交表生成工具Allpairs</span>
+        </a></li></ul></li></ul></li><li>
+        <a class="is-flex" href="#测试方法的选择">
+        <span class="has-mr-6">9</span>
+        <span>测试方法的选择</span>
+        </a></li></ul>
+                </div>
+            </div>
+        </div>
+        
+                                
+                            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://www.cnblogs.com/lyhcc/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">博客园</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.cnblogs.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://blog.csdn.net/qq_41803739/" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">CSDN博客</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">blog.csdn.net</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+                                
+                            
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/BigData/">
+            <span class="level-start">
+                <span class="level-item">BigData</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">15</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/BigData/Hadoop/">
+            <span class="level-start">
+                <span class="level-item">Hadoop</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">10</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/BigData/Kafka/">
+            <span class="level-start">
+                <span class="level-item">Kafka</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/DataMining/">
+            <span class="level-start">
+                <span class="level-item">DataMining</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java-Web/">
+            <span class="level-start">
+                <span class="level-item">Java Web</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            <span class="level-start">
+                <span class="level-item">Java设计模式</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Leecode/">
+            <span class="level-start">
+                <span class="level-item">Leecode</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Leetcode/">
+            <span class="level-start">
+                <span class="level-item">Leetcode</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">11</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Python/">
+            <span class="level-start">
+                <span class="level-item">Python</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Python/Python%E5%8F%AF%E8%A7%86%E5%8C%96/">
+            <span class="level-start">
+                <span class="level-item">Python可视化</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Shell/">
+            <span class="level-start">
+                <span class="level-item">Shell</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">14</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/SoftwareTesting/">
+            <span class="level-start">
+                <span class="level-item">SoftwareTesting</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Sprig-MVC/">
+            <span class="level-start">
+                <span class="level-item">Sprig MVC</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Spring/">
+            <span class="level-start">
+                <span class="level-item">Spring</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Spring-MVC/">
+            <span class="level-start">
+                <span class="level-item">Spring MVC</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/others/">
+            <span class="level-start">
+                <span class="level-item">others</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">7</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+                                
+                                    
+                                        <!-- <div class="column-right-shadow is-hidden-widescreen "> -->
+                                        <div class="column-right-shadow  ">
+                                            
+                                                <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+            <article class="media">
+                
+                    <a href="/post/bd735dfe.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail1.svg" alt="软件测试方法">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-14T06:55:25.518Z">2020-05-14</time></div>
+                                <a href="/post/bd735dfe.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    软件测试方法
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/SoftwareTesting/">SoftwareTesting</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
+                    <a href="/post/fcd38b5a.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail2.svg" alt="创建型设计模式">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-02T04:06:50.257Z">2020-04-02</time></div>
+                                <a href="/post/fcd38b5a.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    创建型设计模式
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Java设计模式</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
+                    <a href="/post/7e3cde45.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail3.svg" alt="Java设计模式之设计模式七大原则">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-20T01:35:36.311Z">2020-03-20</time></div>
+                                <a href="/post/7e3cde45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    Java设计模式之设计模式七大原则
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
+                    <a href="/post/9174d842.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail4.svg" alt="Java设计模式面试题">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-18T02:25:27.268Z">2020-03-18</time></div>
+                                <a href="/post/9174d842.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    Java设计模式面试题
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Java设计模式</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
+                    <a href="/post/15fe401e.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail5.svg" alt="56. Merge Intervals">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T15:20:47.250Z">2020-03-09</time></div>
+                                <a href="/post/15fe401e.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    56. Merge Intervals
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+    </div>
+</div>
+                                                    
+                                                <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">13</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">23</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">18</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">22</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+                                                    
+                                                <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/AJAX-%E5%92%8CJSON%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                            <span class="tag">AJAX 和JSON的使用</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/DOM%E8%A7%A3%E6%9E%90/">
+                            <span class="tag">DOM解析</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Google%E4%B8%89%E5%AE%9D/">
+                            <span class="tag">Google三宝</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/HDFS%E5%BF%AB%E7%85%A7/">
+                            <span class="tag">HDFS快照</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/">
+                            <span class="tag">Hadooop介绍</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-IPC/">
+                            <span class="tag">Hadoop IPC</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-IPC-%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%A7%E5%92%8C%E8%AF%BB%E5%86%99/">
+                            <span class="tag">Hadoop IPC 数据分帧和读写</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-IPC%E9%80%9A%E4%BF%A1%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6%E7%9A%84/">
+                            <span class="tag">Hadoop IPC通信中是如何知道数据长度的</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-RPC/">
+                            <span class="tag">Hadoop RPC</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-%E5%8D%8F%E8%AE%AE/">
+                            <span class="tag">Hadoop 协议</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-%E5%8E%8B%E7%BC%A9/">
+                            <span class="tag">Hadoop 压缩</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B-IPC%E8%BF%9E%E6%8E%A5/">
+                            <span class="tag">Hadoop 如何建立 IPC连接</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-%E6%96%87%E4%BB%B6%E5%88%86%E7%89%87/">
+                            <span class="tag">Hadoop 文件分片</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop-%E9%80%9A%E4%BF%A1%E6%9C%BA%E5%88%B6/">
+                            <span class="tag">Hadoop 通信机制</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                            <span class="tag">Hadoop配置文件</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/HiddenHttpMethodFilter-REST/">
+                            <span class="tag">HiddenHttpMethodFilter (REST)</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java-NIO/">
+                            <span class="tag">Java NIO</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java-NIO%E5%AE%9E%E4%BE%8B%EF%BC%9A%E5%9B%9E%E6%98%BE%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+                            <span class="tag">Java NIO实例：回显服务器</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java-Proxy/">
+                            <span class="tag">Java Proxy</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java-Web%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E7%9B%91%E5%90%AC%E5%99%A8/">
+                            <span class="tag">Java Web过滤器和监听器</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86/">
+                            <span class="tag">Java代理</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java%E4%BB%A3%E7%90%86%E6%9C%BA%E5%88%B6/">
+                            <span class="tag">Java代理机制</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%83%E5%A4%A7%E5%8E%9F%E5%88%99/">
+                            <span class="tag">Java设计模式之设计模式七大原则</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E9%9D%A2%E8%AF%95%E9%A2%98/">
+                            <span class="tag">Java设计模式面试题</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/">
+                            <span class="tag">Java远程调用</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Java%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                            <span class="tag">Java配置文件</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Kafka%E4%B9%8Bbroker/">
+                            <span class="tag">Kafka之broker</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Kafka%E5%88%9D%E8%AF%86/">
+                            <span class="tag">Kafka初识</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/">
+                            <span class="tag">Kafka生产与消费</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Linux-%E5%B7%A5%E5%85%B7%E5%8C%85/">
+                            <span class="tag">Linux 工具包</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/MapReduce-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/">
+                            <span class="tag">MapReduce 通信协议</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/MapReduce%E4%BB%8B%E7%BB%8D/">
+                            <span class="tag">MapReduce介绍</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/MySQL%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/">
+                            <span class="tag">MySQL数据备份</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/NoSSQL%E7%89%B9%E7%82%B9/">
+                            <span class="tag">NoSSQL特点</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/RMI/">
+                            <span class="tag">RMI</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell-%E4%B9%8BBash%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
+                            <span class="tag">Shell 之Bash数学运算</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell-%E4%B9%8Bfind%E3%80%81which%E3%80%81locate%E3%80%81whereis%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+                            <span class="tag">Shell 之find、which、locate、whereis命令总结</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8/">
+                            <span class="tag">Shell 的函数的定义和使用</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell-%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/">
+                            <span class="tag">Shell 的字符串处理</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell%E4%B9%8B%E8%84%9A%E6%9C%AC%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0/">
+                            <span class="tag">Shell之脚本功能概述</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/">
+                            <span class="tag">Shell全局变量和局部变量</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell%E5%8F%98%E9%87%8F%E7%9A%84%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%B5%8B%E8%AF%95/">
+                            <span class="tag">Shell变量的替换和测试</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell%E5%91%BD%E4%BB%A4%E7%9A%84%E6%9B%BF%E6%8D%A2/">
+                            <span class="tag">Shell命令的替换</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BEfind%E5%91%BD%E4%BB%A4/">
+                            <span class="tag">Shell文件查找find命令</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell%E6%9C%89%E7%B1%BB%E5%9E%8B%E5%8F%98%E9%87%8F/">
+                            <span class="tag">Shell有类型变量</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Shell%E7%BC%96%E7%A8%8B-awk/">
+                            <span class="tag">Shell编程 awk</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Sping%E4%B8%8EJava-Web/">
+                            <span class="tag">Sping与Java Web</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring-AOP/">
+                            <span class="tag">Spring AOP</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring-AOP-%E4%B9%8B%E5%9F%BA%E4%BA%8E%E6%B3%A8%E8%A7%A3%E7%9A%84AOP/">
+                            <span class="tag">Spring AOP 之基于注解的AOP</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring-AOP%E5%BC%95%E5%85%A5%E4%B9%8BJava%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97/">
+                            <span class="tag">Spring AOP引入之Java动态代理打印日志</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring-IOC%E5%AE%9E%E9%AA%8C/">
+                            <span class="tag">Spring IOC实验</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring-JDBCTemplate/">
+                            <span class="tag">Spring JDBCTemplate</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring-%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+                            <span class="tag">Spring 声明式事务</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring-%E6%BA%90%E7%A0%81/">
+                            <span class="tag">Spring 源码</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringIOC%E6%80%BB%E7%BB%93/">
+                            <span class="tag">SpringIOC总结</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC-%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%85%A5/">
+                            <span class="tag">SpringMVC 请求数据传入</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B-RequestMapping/">
+                            <span class="tag">SpringMVC之@RequestMapping</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BHelloWorld/">
+                            <span class="tag">SpringMVC之HelloWorld</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BModelAttribute/">
+                            <span class="tag">SpringMVC之ModelAttribute</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8BRESTful%E5%AE%9E%E7%8E%B0CRUD/">
+                            <span class="tag">SpringMVC之RESTful实现CRUD</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E4%BC%A0%E5%87%BA/">
+                            <span class="tag">SpringMVC之响应数据传出</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC%E4%B9%8B%E8%A7%86%E5%9B%BE%E8%A7%A3%E6%9E%90%E5%99%A8/">
+                            <span class="tag">SpringMVC之视图解析器</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/SpringMVC%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+                            <span class="tag">SpringMVC源码分析</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring%E5%88%9D%E5%A7%8B%E4%B9%8BHelloWorld/">
+                            <span class="tag">Spring初始之HelloWorld</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring%E5%88%9D%E8%AF%86/">
+                            <span class="tag">Spring初识</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Spring%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
+                            <span class="tag">Spring的单元测试</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Tomcat-%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">
+                            <span class="tag">Tomcat 的安装与配置</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Vim%E5%A4%9A%E8%A1%8C%E6%B3%A8%E9%87%8A/">
+                            <span class="tag">Vim多行注释</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
+                            <span class="tag">Windows操作系统配置文件</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/hadoop%E5%BA%8F%E5%88%97%E5%8C%96/">
+                            <span class="tag">hadoop序列化</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/hadoop%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/">
+                            <span class="tag">hadoop配置文件解析</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/kafka%E9%80%9A%E4%BF%A1/">
+                            <span class="tag">kafka通信</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/mysql%E5%91%BD%E4%BB%A4%E8%AF%A6%E6%83%85/">
+                            <span class="tag">mysql命令详情</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E6%95%B0%E6%8D%AE/">
+                            <span class="tag">什么是大数据</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86/">
+                            <span class="tag">分布式存储管理</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                            <span class="tag">创建型设计模式</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%E4%BC%98%E7%BC%BA%E7%82%B9/">
+                            <span class="tag">十大经典算法优缺点</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2-grep-sed-awk/">
+                            <span class="tag">文本处理三剑客(grep/sed/awk)</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E4%B9%8B%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">
+                            <span class="tag">软件测试之软件测试方法</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+            </div>
+        </div>
+    </div>
+</div>
+                                                    
+                                        </div>
+                                        
+                    </div>
+                    
+                            
+                    </div>
+                </div>
+            </section>
+            <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                    
+                                <img src="/images/logo.svg" alt="软件测试方法" height="28">
+                                
+                </a>
+                <p class="is-size-7">
+                    &copy;
+                    2021
+                        John Doe&nbsp; Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
+                            
+                                    
+
+                                        
+                </p>
+            </div>
+            <div class="level-end">
+                
+                    <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                        
+                            <p class="control">
+                                <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                                    
+                                                <i class="fa fa-creative-commons"></i>
+                                                
+                                </a>
+                            </p>
+                            
+                            <p class="control">
+                                <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                                    
+                                                <i class="fa fa-creative-commons-by"></i>
+                                                
+                                </a>
+                            </p>
+                            
+                            <p class="control">
+                                <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                                    
+                                                <i class="fa fa-github"></i>
+                                                
+                                </a>
+                            </p>
+                            
+                    </div>
+                    
+            </div>
+        </div>
+    </div>
+</footer>
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+<script src="/js/animation.js"></script>
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+    
+    
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+    
+    
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            
+    
+
+
+<script src="/js/main.js" defer></script>
+
+                    
+                        <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+                            
+</body>
+
+</html>
