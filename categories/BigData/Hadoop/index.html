@@ -167,6 +167,68 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2021-01-03T09:21:47.830Z">2021-01-03</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 1026 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/ad365e02.html">
+                                        HDFSAPI
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <h3 id="HDFS文件上传"><a href="#HDFS文件上传" class="headerlink" title="HDFS文件上传"></a>HDFS文件上传</h3><ol>
+<li>Java代码<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">putFileToHDFS</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> URISyntaxException, IOException, InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//1、创建配置信息对象</span></span><br><span class="line"></span><br><span class="line">    Configuration conf = <span class="hljs-keyword">new</span> Configuration();<span class="hljs-comment">//hjhj</span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//2、设置部分参数</span></span><br><span class="line">    conf.set(<span class="hljs-string">"dfs.replication"</span>,<span class="hljs-string">"2"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//3、找到HDFS地址</span></span><br><span class="line">    <span class="hljs-comment">//final URI uri, final Configuration conf, String user</span></span><br><span class="line">    FileSystem fs = FileSystem.get(<span class="hljs-keyword">new</span> URI(<span class="hljs-string">"hdfs://vmaster:9000"</span>), conf, <span class="hljs-string">"root"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//4、上传本地文件路径</span></span><br><span class="line">    Path src = <span class="hljs-keyword">new</span> Path(<span class="hljs-string">"F:\\Course\\aliyun\\transaction_details.csv"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//5、要上传的HDFS的路径</span></span><br><span class="line">    Path dest = <span class="hljs-keyword">new</span> Path(<span class="hljs-string">"hdfs://vmaster:9000/"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//6、以拷贝的方式上传，从src -&gt; dest</span></span><br><span class="line">    fs.copyFromLocalFile(src,dest);</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//7、关闭</span></span><br><span class="line">    fs.close();</span><br><span class="line"></span><br><span class="line">    <span class="hljs-comment">//</span></span><br><span class="line">    System.out.println(<span class="hljs-string">"OK了"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+                            </div>
+                            
+                                    
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/ad365e02.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
                                 <time class="level-item has-text-grey" datetime="2019-11-20T11:51:58.898Z">2019-11-20</time>
                                 
                                     <div class="level-item">
@@ -784,63 +846,25 @@
 
                         
 
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2019-11-16T06:53:46.535Z">2019-11-16</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/BigData/">BigData</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 166 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/8a9ad9ba.html">
-                                        Hadoop介绍
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <!-- toc -->
-
-<h2 id="起源-Google-在大数据方面的三大论文-（谷歌三宝）"><a href="#起源-Google-在大数据方面的三大论文-（谷歌三宝）" class="headerlink" title="起源 Google 在大数据方面的三大论文 （谷歌三宝）"></a>起源 Google 在大数据方面的三大论文 （谷歌三宝）</h2><p><a href="https://github.com/lyhcc/NoteBook/tree/master/bigdata" target="_blank" rel="noopener">在github大的当前目录下</a><br><a href="https://www.cnblogs.com/javhu/archive/2013/03/25/cyue_hadoop_google.html" target="_blank" rel="noopener">三宝的介绍</a></p>
-<h2 id="Hadoop-三大发行版本"><a href="#Hadoop-三大发行版本" class="headerlink" title="Hadoop 三大发行版本"></a>Hadoop 三大发行版本</h2><ol>
-<li>Apache、Cloudera、Hortonworks Apache版本最原始、最基础：适合零基础 大公司在用</li>
-<li>Cloudera Cloudera’s DistributionIncluding Apache Hadoop 简称CDH<br>中小型公司用、简单方便、自带可视化 </li>
-<li>Hortonworks  文档较好  注：Cloudera 和Hortonworks 在2018年10月，国庆期间宣布合并<h2 id="硬件要求"><a href="#硬件要求" class="headerlink" title="硬件要求"></a>硬件要求</h2><h4 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h4></li>
-</ol>
-<p><strong>最大支持内存查询：</strong>win + R<br><strong>输入</strong>  wmic memphysical get maxcapacity<br><strong>计算</strong> MaxCapacity/1024/1024GB  </p>
-<h4 id="硬盘-500G"><a href="#硬盘-500G" class="headerlink" title="硬盘:500G+"></a>硬盘:500G+</h4>
-                            </div>
-                            
-                                    
-                                            
-                </div>
-    </div>
 
     
-        
-
-                
-
-                        
-
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/categories/BigData/Hadoop/page/0/">Previous</a>
+        </div>
+        <div class="pagination-next">
+            <a class="is-flex-grow has-text-black-ter" href="/categories/BigData/Hadoop/page/2/">Next</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link is-current" href="/categories/BigData/Hadoop/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/categories/BigData/Hadoop/page/2/">2</a></li>
+            
+        </ul>
+    </nav>
+</div>
 
                         </div>
                         
@@ -886,7 +910,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        83
+                        86
                     </p>
                 </div>
             </div>
@@ -896,7 +920,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        22
+                        23
                     </p>
                 </div>
             </div>
@@ -906,7 +930,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        79
+                        81
                     </p>
                 </div>
             </div>
@@ -1013,7 +1037,7 @@
                 <span class="level-item">BigData</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">15</span>
+                <span class="level-item tag">16</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/BigData/Hadoop/">
@@ -1021,7 +1045,7 @@
                 <span class="level-item">Hadoop</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">10</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/BigData/Kafka/">
@@ -1078,6 +1102,14 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">11</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Python/">
@@ -1141,7 +1173,7 @@
                 <span class="level-item">others</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li>
             </ul>
@@ -1161,9 +1193,72 @@
         
             <article class="media">
                 
+                    <a href="/post/ad365e02.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail1.svg" alt="HDFSAPI">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-01-03T09:21:47.830Z">2021-01-03</time></div>
+                                <a href="/post/ad365e02.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    HDFSAPI
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
+                    <a href="/post/b1c45f58.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail2.svg" alt="环境配置">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-01-03T06:52:50.672Z">2021-01-03</time></div>
+                                <a href="/post/b1c45f58.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    环境配置
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/others/">others</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
+                    <a href="/post/f245a8ad.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail3.svg" alt="CentOS配置">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-01-02T10:48:50.725Z">2021-01-02</time></div>
+                                <a href="/post/f245a8ad.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    CentOS配置
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
                     <a href="/post/bd735dfe.html" class="media-left">
                         <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail1.svg" alt="软件测试方法">
+                            <img class="thumbnail" src="/images/thumbnail4.svg" alt="软件测试方法">
                         </p>
                     </a>
                     
@@ -1184,7 +1279,7 @@
                 
                     <a href="/post/fcd38b5a.html" class="media-left">
                         <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail2.svg" alt="创建型设计模式">
+                            <img class="thumbnail" src="/images/thumbnail5.svg" alt="创建型设计模式">
                         </p>
                     </a>
                     
@@ -1201,69 +1296,6 @@
                         </div>
             </article>
             
-            <article class="media">
-                
-                    <a href="/post/7e3cde45.html" class="media-left">
-                        <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail3.svg" alt="Java设计模式之设计模式七大原则">
-                        </p>
-                    </a>
-                    
-                        <div class="media-content">
-                            <div class="content">
-                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-20T01:35:36.311Z">2020-03-20</time></div>
-                                <a href="/post/7e3cde45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
-                                    Java设计模式之设计模式七大原则
-                                </a>
-                                <p class="is-size-7 is-uppercase">
-                                    
-                                </p>
-                            </div>
-                        </div>
-            </article>
-            
-            <article class="media">
-                
-                    <a href="/post/9174d842.html" class="media-left">
-                        <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail4.svg" alt="Java设计模式面试题">
-                        </p>
-                    </a>
-                    
-                        <div class="media-content">
-                            <div class="content">
-                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-18T02:25:27.268Z">2020-03-18</time></div>
-                                <a href="/post/9174d842.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
-                                    Java设计模式面试题
-                                </a>
-                                <p class="is-size-7 is-uppercase">
-                                    <a class="has-link-grey -link" href="/categories/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Java设计模式</a>
-                                </p>
-                            </div>
-                        </div>
-            </article>
-            
-            <article class="media">
-                
-                    <a href="/post/15fe401e.html" class="media-left">
-                        <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail5.svg" alt="56. Merge Intervals">
-                        </p>
-                    </a>
-                    
-                        <div class="media-content">
-                            <div class="content">
-                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T15:20:47.250Z">2020-03-09</time></div>
-                                <a href="/post/15fe401e.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
-                                    56. Merge Intervals
-                                </a>
-                                <p class="is-size-7 is-uppercase">
-                                    <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
-                                </p>
-                            </div>
-                        </div>
-            </article>
-            
     </div>
 </div>
                                                     
@@ -1274,6 +1306,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2021/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/05/">
@@ -1396,6 +1439,13 @@
                     <div class="control">
                         <a class="tags has-addons" href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/">
                             <span class="tag">Hadooop介绍</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop/">
+                            <span class="tag">Hadoop</span>
                             <span class="tag is-orange">1</span>
                         </a>
                     </div>
@@ -1564,6 +1614,13 @@
                     <div class="control">
                         <a class="tags has-addons" href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/">
                             <span class="tag">Kafka生产与消费</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Linux/">
+                            <span class="tag">Linux</span>
                             <span class="tag is-orange">1</span>
                         </a>
                     </div>
@@ -1943,9 +2000,72 @@
         
             <article class="media">
                 
+                    <a href="/post/ad365e02.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail1.svg" alt="HDFSAPI">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-01-03T09:21:47.830Z">2021-01-03</time></div>
+                                <a href="/post/ad365e02.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    HDFSAPI
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
+                    <a href="/post/b1c45f58.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail2.svg" alt="环境配置">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-01-03T06:52:50.672Z">2021-01-03</time></div>
+                                <a href="/post/b1c45f58.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    环境配置
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/others/">others</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
+                    <a href="/post/f245a8ad.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail3.svg" alt="CentOS配置">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-01-02T10:48:50.725Z">2021-01-02</time></div>
+                                <a href="/post/f245a8ad.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    CentOS配置
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
                     <a href="/post/bd735dfe.html" class="media-left">
                         <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail1.svg" alt="软件测试方法">
+                            <img class="thumbnail" src="/images/thumbnail4.svg" alt="软件测试方法">
                         </p>
                     </a>
                     
@@ -1966,7 +2086,7 @@
                 
                     <a href="/post/fcd38b5a.html" class="media-left">
                         <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail2.svg" alt="创建型设计模式">
+                            <img class="thumbnail" src="/images/thumbnail5.svg" alt="创建型设计模式">
                         </p>
                     </a>
                     
@@ -1983,69 +2103,6 @@
                         </div>
             </article>
             
-            <article class="media">
-                
-                    <a href="/post/7e3cde45.html" class="media-left">
-                        <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail3.svg" alt="Java设计模式之设计模式七大原则">
-                        </p>
-                    </a>
-                    
-                        <div class="media-content">
-                            <div class="content">
-                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-20T01:35:36.311Z">2020-03-20</time></div>
-                                <a href="/post/7e3cde45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
-                                    Java设计模式之设计模式七大原则
-                                </a>
-                                <p class="is-size-7 is-uppercase">
-                                    
-                                </p>
-                            </div>
-                        </div>
-            </article>
-            
-            <article class="media">
-                
-                    <a href="/post/9174d842.html" class="media-left">
-                        <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail4.svg" alt="Java设计模式面试题">
-                        </p>
-                    </a>
-                    
-                        <div class="media-content">
-                            <div class="content">
-                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-18T02:25:27.268Z">2020-03-18</time></div>
-                                <a href="/post/9174d842.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
-                                    Java设计模式面试题
-                                </a>
-                                <p class="is-size-7 is-uppercase">
-                                    <a class="has-link-grey -link" href="/categories/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Java设计模式</a>
-                                </p>
-                            </div>
-                        </div>
-            </article>
-            
-            <article class="media">
-                
-                    <a href="/post/15fe401e.html" class="media-left">
-                        <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail5.svg" alt="56. Merge Intervals">
-                        </p>
-                    </a>
-                    
-                        <div class="media-content">
-                            <div class="content">
-                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T15:20:47.250Z">2020-03-09</time></div>
-                                <a href="/post/15fe401e.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
-                                    56. Merge Intervals
-                                </a>
-                                <p class="is-size-7 is-uppercase">
-                                    <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
-                                </p>
-                            </div>
-                        </div>
-            </article>
-            
     </div>
 </div>
                                 
@@ -2056,6 +2113,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2021/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/05/">
@@ -2178,6 +2246,13 @@
                     <div class="control">
                         <a class="tags has-addons" href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/">
                             <span class="tag">Hadooop介绍</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop/">
+                            <span class="tag">Hadoop</span>
                             <span class="tag is-orange">1</span>
                         </a>
                     </div>
@@ -2346,6 +2421,13 @@
                     <div class="control">
                         <a class="tags has-addons" href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/">
                             <span class="tag">Kafka生产与消费</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Linux/">
+                            <span class="tag">Linux</span>
                             <span class="tag is-orange">1</span>
                         </a>
                     </div>

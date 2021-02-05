@@ -154,6 +154,192 @@
                     
                         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
                             <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2020-01-16T03:45:17.598Z">2020-01-16</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 875 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/3812c119.html">
+                                        Spring JDBCTemplate
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <!-- toc -->
+
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p>为了使JDBC更加易于使用，Spring在JDBC API上定义了一个抽象层，以此建立一个JDBC存取框架。<br>作为Spring JDBC框架的核心，JDBC模板的设计目的是为不同类型的JDBC操作提供模板方法，通过这种方式，可以在尽可能保留灵活性的情况下，将数据库存取的工作量降到最低。<br>可以将Spring的JdbcTemplate看作是一个小型的轻量级持久化层框架，和我们之前使用过的DBUtils风格非常接近。</p>
+</blockquote>
+                            </div>
+                            
+                                    
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/3812c119.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2020-01-15T12:59:47.610Z">2020-01-15</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 104 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/2e488ab5.html">
+                                        Spring AOP之基于注解的AOP
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <!-- toc -->
+
+
+<h2 id="基于注解AOP步骤"><a href="#基于注解AOP步骤" class="headerlink" title="基于注解AOP步骤"></a>基于注解AOP步骤</h2><ol>
+<li>将目标类和切面类加到IOC容器中。@Component</li>
+<li>告诉Spring哪个是切面类。@Aspect</li>
+<li>在切面类中使用五个通知注解中的这些通知方法都何时运行</li>
+<li>开启基于AOP注解功能</li>
+</ol>
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"mathCalculator"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"xyz.lyhcc.calculate.MathCalculator"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"loggerUtils"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"xyz.lyhcc.logger.LoggerUtils"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"validAspect"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"xyz.lyhcc.logger.ValidAspect"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">aop:config</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">aop:pointcut</span> <span class="hljs-attr">expression</span>=<span class="hljs-string">"execution(* xyz.lyhcc.calculate.MathCalculator.*(int,int))"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"glabalPointcut"</span>/&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">aop:aspect</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"loggerUtils"</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:before</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logStart"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span>/&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:after-returning</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logFinished"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span> <span class="hljs-attr">returning</span>=<span class="hljs-string">"result"</span>/&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:after-throwing</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logError"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span> <span class="hljs-attr">throwing</span>=<span class="hljs-string">"exception"</span>/&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:after</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logFinal"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span>/&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:around</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"aroundMethod"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span>/&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">aop:aspect</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">aop:aspect</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"validAspect"</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:before</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logStart"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span>/&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:after-returning</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logFinished"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span> <span class="hljs-attr">returning</span>=<span class="hljs-string">"result"</span>/&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:after-throwing</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logError"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span> <span class="hljs-attr">throwing</span>=<span class="hljs-string">"exception"</span>/&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">aop:after</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"logFinal"</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">"glabalPointcut"</span>/&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">aop:aspect</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>脚下留心</strong><br>注解： 快速方便<br>配置： 功能完善<br>重要的用配置，不重要的使用注解</p>
+<hr>
+
+                            </div>
+                            
+                                    
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
+                                <time class="level-item has-text-grey" datetime="2020-01-14T09:35:33.655Z">2020-01-14</time>
+                                
+                                    <div class="level-item">
+                                        <a class="has-link-grey -link" href="/categories/Spring/">Spring</a>
+                                    </div>
+                                    
+                                        
+                                            <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 437 words)
+                </span>
+                                            
+                                                
+                            </div>
+                        </div>
+                        
+                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+                                
+                                    <a class="has-link-black-ter" href="/post/68c47b7a.html">
+                                        Spring AOP引入之Java动态代理打印日志
+                                    </a>
+                                    
+                            </h1>
+                            <div class="content">
+
+                                <!-- toc -->
+
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p>使用动态代理使得在不影响打印日志的类的情况下进行日志打印，也就解耦业务逻辑和日志打印 </p>
+</blockquote>
+                            </div>
+                            
+                                    
+                                        <div class="level is-mobile">
+                                            <div class="level-start">
+                                                <div class="level-item">
+                                                    <a class="button is-size-7 is-light" href="/post/68c47b7a.html#more">
+                                                        Read More
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                            
+                </div>
+    </div>
+
+    
+        
+
+                
+
+                        
+
+    
+    <div class="card">
+        
+                <div class="card-content article ">
+                    
+                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+                            <div class="level-left">
                                 <time class="level-item has-text-grey" datetime="2020-01-14T08:38:45.054Z">2020-01-14</time>
                                 
                                     <div class="level-item">
@@ -581,191 +767,6 @@
 
                         
 
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2020-01-05T05:39:16.613Z">2020-01-05</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 323 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/3e2b1b8c.html">
-                                        MySQL数据备份
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <h2 id="备份mysql数据库或表"><a href="#备份mysql数据库或表" class="headerlink" title="备份mysql数据库或表"></a>备份mysql数据库或表</h2><blockquote>
-<p>命令 mysqldump</p>
-</blockquote>
-<p><strong>常用参数详解</strong>  </p>
-<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-u  用户名</span><br><span class="line">-p  密码  </span><br><span class="line">-h  服务器IP地址  </span><br><span class="line">-d  等价于--no-datab    只导出表结构  </span><br><span class="line">-t  等价于--no-create- info只 导出数据，不导出建表语句  </span><br><span class="line">-A  等价于--all-databases  </span><br><span class="line">-B  等价于--databases导 出一个或多个数据库</span><br></pre></td></tr></table></figure>
-                            </div>
-                            
-                                    
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/3e2b1b8c.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2020-01-04T13:09:32.734Z">2020-01-04</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/Shell/">Shell</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    5 minutes read (About 720 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/f21319aa.html">
-                                        mysql命令详情
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <h2 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h2><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-u 用户名</span><br><span class="line">-p 用户密码</span><br><span class="line">-h 服务器ip</span><br><span class="line">-D 连接的数据库</span><br><span class="line">-N 不输出列信息</span><br><span class="line">-B 使用tab键代替默认的交互分隔符</span><br><span class="line">-e 执行sql语句</span><br><span class="line"></span><br><span class="line">其他选项</span><br><span class="line">-E 垂直输出</span><br><span class="line">-H 以HTML格式输出</span><br><span class="line">-X 以XML格式输出</span><br></pre></td></tr></table></figure>
-                            </div>
-                            
-                                    
-                                        <div class="level is-mobile">
-                                            <div class="level-start">
-                                                <div class="level-item">
-                                                    <a class="button is-size-7 is-light" href="/post/f21319aa.html#more">
-                                                        Read More
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
-    
-    <div class="card">
-        
-                <div class="card-content article ">
-                    
-                        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-                            <div class="level-left">
-                                <time class="level-item has-text-grey" datetime="2020-01-04T07:47:27.852Z">2020-01-04</time>
-                                
-                                    <div class="level-item">
-                                        <a class="has-link-grey -link" href="/categories/others/">others</a>
-                                    </div>
-                                    
-                                        
-                                            <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 287 words)
-                </span>
-                                            
-                                                
-                            </div>
-                        </div>
-                        
-                            <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-                                
-                                    <a class="has-link-black-ter" href="/post/393fa9a5.html">
-                                        Xshell连接Ubuntu
-                                    </a>
-                                    
-                            </h1>
-                            <div class="content">
-
-                                <h2 id="连接操作"><a href="#连接操作" class="headerlink" title="连接操作"></a>连接操作</h2><p><a href="https://blog.csdn.net/lianghe_work/article/details/47340141" target="_blank" rel="noopener">https://blog.csdn.net/lianghe_work/article/details/47340141</a></p>
-<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><ol>
-<li>sudo apt-get install openssh-server报错<figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ll@ubuntu:~$ sudo apt-get install openssh-server</span><br><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line">Some packages could not be installed. This may mean that you have</span><br><span class="line">requested an impossible situation or if you are using the unstable</span><br><span class="line">distribution that some required packages have not yet been created</span><br><span class="line">or been moved out of Incoming.</span><br><span class="line">The following information may help to resolve the situation:</span><br><span class="line"></span><br><span class="line">The following packages have unmet dependencies:</span><br><span class="line"> openssh-server : Depends: openssh-client (= 1:7.2p2-4ubuntu2.8)</span><br><span class="line">                  Depends: openssh-sftp-server but it is not going to be installed</span><br><span class="line">                  Recommends: ssh-import-id but it is not going to be installed</span><br><span class="line">E: Unable to correct problems, you have held broken packages.</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p><strong>解决办法</strong>  sudo apt-get install  openssh-client=1:7.2p2-4ubuntu2.8<br>执行以上命令后在执行安装就可以了， <strong>不过要和以上报错的版本对应</strong></p>
-<ol start="2">
-<li>root用户无法登陆</li>
-</ol>
-<ul>
-<li>在其他用户下切换sudo su root切换到root用户</li>
-<li>vi /etc/ssh/sshd_config  <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 加一句去一句 --&gt;</span><br><span class="line">PermitRootLogin yes</span><br><span class="line"># PermitRootLogin prohibit-password</span><br></pre></td></tr></table></figure></li>
-<li>/etc/init.d/ssh restart  来重启ssh服务</li>
-</ul>
-<ol start="3">
-<li>/usr/bin/xauth:  file /root/.Xauthority does not exist<figure class="highlight sh hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ssh/sshd_config</span><br><span class="line"></span><br><span class="line">添加 AllowAgentForwarding yes</span><br><span class="line">/etc/init.d/ssh restart  来重启ssh服务</span><br></pre></td></tr></table></figure></li>
-<li><a href="https://www.cnblogs.com/kaituorensheng/p/3376094.html" target="_blank" rel="noopener">Ubuntu 输入正确的密码后重新返回到登陆界面</a></li>
-</ol>
-
-                            </div>
-                            
-                                    
-                                            
-                </div>
-    </div>
-
-    
-        
-
-                
-
-                        
-
 
     
 <div class="card card-transparent">
@@ -840,7 +841,7 @@
                         Posts
                     </p>
                     <p class="title has-text-weight-normal">
-                        83
+                        86
                     </p>
                 </div>
             </div>
@@ -850,7 +851,7 @@
                         Categories
                     </p>
                     <p class="title has-text-weight-normal">
-                        22
+                        23
                     </p>
                 </div>
             </div>
@@ -860,7 +861,7 @@
                         Tags
                     </p>
                     <p class="title has-text-weight-normal">
-                        79
+                        81
                     </p>
                 </div>
             </div>
@@ -967,7 +968,7 @@
                 <span class="level-item">BigData</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">15</span>
+                <span class="level-item tag">16</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/BigData/Hadoop/">
@@ -975,7 +976,7 @@
                 <span class="level-item">Hadoop</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">10</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/BigData/Kafka/">
@@ -1032,6 +1033,14 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">11</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Linux/">
+            <span class="level-start">
+                <span class="level-item">Linux</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Python/">
@@ -1095,7 +1104,7 @@
                 <span class="level-item">others</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li>
             </ul>
@@ -1115,9 +1124,72 @@
         
             <article class="media">
                 
+                    <a href="/post/ad365e02.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail1.svg" alt="HDFSAPI">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-01-03T09:21:47.830Z">2021-01-03</time></div>
+                                <a href="/post/ad365e02.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    HDFSAPI
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
+                    <a href="/post/b1c45f58.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail2.svg" alt="环境配置">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-01-03T06:52:50.672Z">2021-01-03</time></div>
+                                <a href="/post/b1c45f58.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    环境配置
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/others/">others</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
+                    <a href="/post/f245a8ad.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail3.svg" alt="CentOS配置">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-01-02T10:48:50.725Z">2021-01-02</time></div>
+                                <a href="/post/f245a8ad.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    CentOS配置
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
                     <a href="/post/bd735dfe.html" class="media-left">
                         <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail1.svg" alt="软件测试方法">
+                            <img class="thumbnail" src="/images/thumbnail4.svg" alt="软件测试方法">
                         </p>
                     </a>
                     
@@ -1138,7 +1210,7 @@
                 
                     <a href="/post/fcd38b5a.html" class="media-left">
                         <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail2.svg" alt="创建型设计模式">
+                            <img class="thumbnail" src="/images/thumbnail5.svg" alt="创建型设计模式">
                         </p>
                     </a>
                     
@@ -1155,69 +1227,6 @@
                         </div>
             </article>
             
-            <article class="media">
-                
-                    <a href="/post/7e3cde45.html" class="media-left">
-                        <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail3.svg" alt="Java设计模式之设计模式七大原则">
-                        </p>
-                    </a>
-                    
-                        <div class="media-content">
-                            <div class="content">
-                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-20T01:35:36.311Z">2020-03-20</time></div>
-                                <a href="/post/7e3cde45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
-                                    Java设计模式之设计模式七大原则
-                                </a>
-                                <p class="is-size-7 is-uppercase">
-                                    
-                                </p>
-                            </div>
-                        </div>
-            </article>
-            
-            <article class="media">
-                
-                    <a href="/post/9174d842.html" class="media-left">
-                        <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail4.svg" alt="Java设计模式面试题">
-                        </p>
-                    </a>
-                    
-                        <div class="media-content">
-                            <div class="content">
-                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-18T02:25:27.268Z">2020-03-18</time></div>
-                                <a href="/post/9174d842.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
-                                    Java设计模式面试题
-                                </a>
-                                <p class="is-size-7 is-uppercase">
-                                    <a class="has-link-grey -link" href="/categories/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Java设计模式</a>
-                                </p>
-                            </div>
-                        </div>
-            </article>
-            
-            <article class="media">
-                
-                    <a href="/post/15fe401e.html" class="media-left">
-                        <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail5.svg" alt="56. Merge Intervals">
-                        </p>
-                    </a>
-                    
-                        <div class="media-content">
-                            <div class="content">
-                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T15:20:47.250Z">2020-03-09</time></div>
-                                <a href="/post/15fe401e.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
-                                    56. Merge Intervals
-                                </a>
-                                <p class="is-size-7 is-uppercase">
-                                    <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
-                                </p>
-                            </div>
-                        </div>
-            </article>
-            
     </div>
 </div>
                                                     
@@ -1228,6 +1237,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2021/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/05/">
@@ -1350,6 +1370,13 @@
                     <div class="control">
                         <a class="tags has-addons" href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/">
                             <span class="tag">Hadooop介绍</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop/">
+                            <span class="tag">Hadoop</span>
                             <span class="tag is-orange">1</span>
                         </a>
                     </div>
@@ -1518,6 +1545,13 @@
                     <div class="control">
                         <a class="tags has-addons" href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/">
                             <span class="tag">Kafka生产与消费</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Linux/">
+                            <span class="tag">Linux</span>
                             <span class="tag is-orange">1</span>
                         </a>
                     </div>
@@ -1897,9 +1931,72 @@
         
             <article class="media">
                 
+                    <a href="/post/ad365e02.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail1.svg" alt="HDFSAPI">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-01-03T09:21:47.830Z">2021-01-03</time></div>
+                                <a href="/post/ad365e02.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    HDFSAPI
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/BigData/">BigData</a> / <a class="has-link-grey -link" href="/categories/BigData/Hadoop/">Hadoop</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
+                    <a href="/post/b1c45f58.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail2.svg" alt="环境配置">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-01-03T06:52:50.672Z">2021-01-03</time></div>
+                                <a href="/post/b1c45f58.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    环境配置
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/others/">others</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
+                    <a href="/post/f245a8ad.html" class="media-left">
+                        <p class="image is-64x64">
+                            <img class="thumbnail" src="/images/thumbnail3.svg" alt="CentOS配置">
+                        </p>
+                    </a>
+                    
+                        <div class="media-content">
+                            <div class="content">
+                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-01-02T10:48:50.725Z">2021-01-02</time></div>
+                                <a href="/post/f245a8ad.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
+                                    CentOS配置
+                                </a>
+                                <p class="is-size-7 is-uppercase">
+                                    <a class="has-link-grey -link" href="/categories/Linux/">Linux</a>
+                                </p>
+                            </div>
+                        </div>
+            </article>
+            
+            <article class="media">
+                
                     <a href="/post/bd735dfe.html" class="media-left">
                         <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail1.svg" alt="软件测试方法">
+                            <img class="thumbnail" src="/images/thumbnail4.svg" alt="软件测试方法">
                         </p>
                     </a>
                     
@@ -1920,7 +2017,7 @@
                 
                     <a href="/post/fcd38b5a.html" class="media-left">
                         <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail2.svg" alt="创建型设计模式">
+                            <img class="thumbnail" src="/images/thumbnail5.svg" alt="创建型设计模式">
                         </p>
                     </a>
                     
@@ -1937,69 +2034,6 @@
                         </div>
             </article>
             
-            <article class="media">
-                
-                    <a href="/post/7e3cde45.html" class="media-left">
-                        <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail3.svg" alt="Java设计模式之设计模式七大原则">
-                        </p>
-                    </a>
-                    
-                        <div class="media-content">
-                            <div class="content">
-                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-20T01:35:36.311Z">2020-03-20</time></div>
-                                <a href="/post/7e3cde45.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
-                                    Java设计模式之设计模式七大原则
-                                </a>
-                                <p class="is-size-7 is-uppercase">
-                                    
-                                </p>
-                            </div>
-                        </div>
-            </article>
-            
-            <article class="media">
-                
-                    <a href="/post/9174d842.html" class="media-left">
-                        <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail4.svg" alt="Java设计模式面试题">
-                        </p>
-                    </a>
-                    
-                        <div class="media-content">
-                            <div class="content">
-                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-18T02:25:27.268Z">2020-03-18</time></div>
-                                <a href="/post/9174d842.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
-                                    Java设计模式面试题
-                                </a>
-                                <p class="is-size-7 is-uppercase">
-                                    <a class="has-link-grey -link" href="/categories/Java%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">Java设计模式</a>
-                                </p>
-                            </div>
-                        </div>
-            </article>
-            
-            <article class="media">
-                
-                    <a href="/post/15fe401e.html" class="media-left">
-                        <p class="image is-64x64">
-                            <img class="thumbnail" src="/images/thumbnail5.svg" alt="56. Merge Intervals">
-                        </p>
-                    </a>
-                    
-                        <div class="media-content">
-                            <div class="content">
-                                <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T15:20:47.250Z">2020-03-09</time></div>
-                                <a href="/post/15fe401e.html" class="title has-link-black-ter is-size-6 has-text-weight-normal">
-                                    56. Merge Intervals
-                                </a>
-                                <p class="is-size-7 is-uppercase">
-                                    <a class="has-link-grey -link" href="/categories/Leetcode/">Leetcode</a>
-                                </p>
-                            </div>
-                        </div>
-            </article>
-            
     </div>
 </div>
                                 
@@ -2010,6 +2044,17 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2021/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2021</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/05/">
@@ -2132,6 +2177,13 @@
                     <div class="control">
                         <a class="tags has-addons" href="/tags/Hadooop%E4%BB%8B%E7%BB%8D/">
                             <span class="tag">Hadooop介绍</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Hadoop/">
+                            <span class="tag">Hadoop</span>
                             <span class="tag is-orange">1</span>
                         </a>
                     </div>
@@ -2300,6 +2352,13 @@
                     <div class="control">
                         <a class="tags has-addons" href="/tags/Kafka%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9/">
                             <span class="tag">Kafka生产与消费</span>
+                            <span class="tag is-orange">1</span>
+                        </a>
+                    </div>
+                    
+                    <div class="control">
+                        <a class="tags has-addons" href="/tags/Linux/">
+                            <span class="tag">Linux</span>
                             <span class="tag is-orange">1</span>
                         </a>
                     </div>
